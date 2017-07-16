@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var compass = require('gulp-compass');
+var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify');
@@ -18,6 +19,8 @@ gulp.task('js', function() {
 			},
 			preserveComments: 'some'
 		}))
+		.pipe(sourcemaps.init())
+		.pipe(sourcemaps.write('./maps'))
 		.pipe(gulp.dest('assets/js/'));
 });
 
@@ -30,7 +33,8 @@ gulp.task("sass", function() {
 	      sass: '_source/scss'
 	    })
 		.on('error', sass.logError))
-		.pipe(sass({outputStyle: 'expanded'})) // compressed, expanded, nested, compact
+		.pipe(sourcemaps.init())
+		.pipe(sourcemaps.write('./maps'))
 		.pipe(gulp.dest("assets/css/"));
 });
 
