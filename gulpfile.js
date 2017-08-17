@@ -20,7 +20,7 @@ gulp.task('js', function() {
 			preserveComments: 'some'
 		}))
 		.pipe(sourcemaps.init())
-		.pipe(sourcemaps.write('./maps'))
+		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest('assets/js/'));
 });
 
@@ -34,7 +34,7 @@ gulp.task("sass", function() {
 	    })
 		.on('error', sass.logError))
 		.pipe(sourcemaps.init())
-		.pipe(sourcemaps.write('./maps'))
+		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest("assets/css/"));
 });
 

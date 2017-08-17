@@ -24,4 +24,4 @@ $(document).ready(function() {
 	
 });
 
-//# sourceMappingURL=maps/scripts.js.map
+//# sourceMappingURL=scripts.js.map
