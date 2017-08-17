@@ -1,40 +1,26 @@
 <?php 
-	$hero_bg = get_sub_field( 'hero_image' ); 
-	$btn_type = get_sub_field( 'hero_button_link_type' );
-	
-	switch($btn_type){
-		case "internal":
-			$btn_link_page = get_sub_field( 'hero_button_link_internal' );
-			$btn_link = get_permalink($btn_link_page);
-			$btn_target = "_self";
-			break;
-			
-		case "external":
-			$btn_link = get_sub_field( 'hero_button_link_external' );
-			$btn_target = "_blank";
-			break;
-			
-		case "custom":
-			$btn_link = get_sub_field( 'hero_button_link_custom' );
-			$btn_target = get_sub_field( 'hero_button_target' );
-			break;
-	}
+	$hero_images = get_sub_field( 'hero_image_gallery' );
+	$hero_logo = get_sub_field( 'hero_logo' );
 ?>
-<section id="homepage_hero" style="background-image: url(<?php echo $hero_bg['url']; ?>);">
+<section id="homepage_hero">
+	<?php
+		if($hero_images):
+			echo "<div class='hero-gallery'>";
+			
+			foreach($hero_images as $image):
+				echo "<div class='slide' style='background: url({$image['url']}) center center no-repeat; background-size: cover;'></div>";
+			endforeach;
+			
+			echo "</div>";
+		endif;
+	?>
 	<div class="wrap">
 		<article>
-			<i class="icon-quote start"></i>
-			<h1><?php the_sub_field( 'title_quote' ); ?></h1>
-			<i class="icon-quote end"></i>
+			<img class="hero-logo" src="<?php echo $hero_logo['url']; ?>" alt="<?php echo $hero_logo['alt']; ?>" />
 			
-			<div class="hero-cta">
-				<a class="btn icon" href="<?php echo $btn_link; ?>" target="<?php echo $btn_target; ?>"><img class="btn-icon" src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-home.png" alt="" /><?php the_sub_field( 'hero_button_text' ); ?></a>
-			</div>
+			<p class="hero-tagline">
+				<?php the_sub_field( 'hero_tagline' ); ?>
+			</p>
 		</article>
-	</div>
-		
-	<div class="hero-scroll">
-		<span>Scroll</span>
-		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/icon-scroll-down.png" alt="" />
 	</div>
 </section>

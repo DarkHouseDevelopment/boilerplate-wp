@@ -1,3 +1,7 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');	
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,20 +24,3 @@ $slug = $post->post_name;
 
 <div <?php echo $slug == 'home' ? '' : 'id="'.$slug.'"'; ?> class="container">
 	
-	<header role="banner">
-		<div class="wrap">
-			<div class="sm_12">
-				<?php the_custom_logo(); ?>
-				<nav id="main_menu" role="navigation">
-				<?php 
-					wp_nav_menu(
-						array(
-							'theme_location' => 'main',
-							'container_class' => 'menu',
-						)
-					);
-				?>
-				</nav>
-			</div>
-		</div>
-	</header>

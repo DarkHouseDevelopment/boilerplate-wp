@@ -1,17 +1,7 @@
 
 	<footer role="contentinfo">
 		<div class="wrap">
-			<nav id="footer_menu" role="navigation">
-			<?php 
-				wp_nav_menu(
-					array(
-						'theme_location' => 'footer',
-						'container_class' => 'menu',
-					)
-				);
-			?>
-			</nav>
-			<small class="footer-content">&copy; <?php echo date("Y"); ?> <?php bloginfo('name'); ?></small>
+			<p class="footer-copyright">&copy;<?php echo date("Y"); ?> <?php bloginfo('name'); ?></p>
 		</div>
 	</footer>
 </div> <!-- end container -->
