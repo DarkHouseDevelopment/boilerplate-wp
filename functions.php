@@ -58,13 +58,12 @@ function theme_setup(){
 
 // Add Stylesheets
 function theme_styles() {
-	wp_enqueue_style( 'layout', get_stylesheet_directory_uri().'/assets/css/layout.css' );
 	wp_enqueue_style( 'styles', get_stylesheet_directory_uri().'/assets/css/styles.css' );
 }
 
 // Add typekit
 function theme_typekit(){
-	wp_enqueue_script( 'theme_typekit', '//use.typekit.net/TYPEKIT_PROJECT_ID.js' );
+	wp_enqueue_script( 'theme_typekit', '//use.typekit.net/uyv5qhl.js' );
 }
 
 function theme_typekit_const(){

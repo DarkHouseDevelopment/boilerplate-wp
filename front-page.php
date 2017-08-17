@@ -1,22 +1,29 @@
-<?php get_header(); ?>
+<?php 
 
-<?php if ( have_posts() ): ?>
-	<?php while ( have_posts() ) : the_post(); ?>
+get_header(); 
 
-	<section role="main">
-		<div class="wrap">
-			<article>
-				<header>
-					<h1><?php the_title(); ?></h1>
-				</header>
-					
-				<?php the_content(); ?>
+if ( have_posts() ):
+	while ( have_posts() ) : the_post();
+			
+		if(have_rows( 'homepage_content_sections' )):
+			while(have_rows( 'homepage_content_sections' )): the_row();
+			
+				$layout = get_row_layout();
 				
-			</article>
-		</div>
-	</section>
+				switch($layout){					
+					case 'hero_image':
+						get_template_part( 'template-parts/frontpage/content', 'hero' );
+						break;
+						
+					case 'intro':
+						get_template_part( 'template-parts/frontpage/content', 'intro' );
+						break;
+				}
+			
+			endwhile;
+		endif;
 
-	<?php endwhile; ?>
-<?php endif; ?>
+	endwhile;
+endif; 
 
-<?php get_footer(); ?>
+get_footer();
