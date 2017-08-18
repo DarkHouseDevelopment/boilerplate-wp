@@ -50,7 +50,7 @@ p {
 #{headings()} {
 	color: $heading_color;
 	font-family: $heading_font;
-	font-weight: 500;
+	font-weight: 300;
 	text-rendering: optimizelegibility;
 	line-height: $base_line_height;
 	margin-bottom: 1rem;
@@ -61,15 +61,25 @@ h1 {
 }
 
 h2 {
-	font-size: 2.4rem;
+	font-size: 3.2rem;
+	
+	@include breakpoint($md){
+		font-size: 3.8rem;
+	}
+	@include breakpoint($lg){
+		font-size: 4.2rem;
+	}
 }
 
 h3 {
-	font-size: 2.0rem;
+	font-size: 2.4rem;
 }
 
 h4 {
-	font-size: 1.8rem;
+	font-size: 1.6rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin: 1rem 0;
 }
 
 h5 {

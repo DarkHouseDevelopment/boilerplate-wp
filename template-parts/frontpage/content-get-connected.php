@@ -1,27 +1,28 @@
-<section role="main" id="homepage_intro">
+<?php
+	$bg_color = get_sub_field( 'background_color' );
+	$bg_image = get_sub_field( 'background_image' );
+	
+	if($bg_color != "#ffffff" || $bg_image):
+		$section_class = "white-text";
+	else:
+		$section_class = "";
+	endif;
+	
+	$btn_text = get_sub_field( 'button_text' );
+?>
+<section class="homepage-get-connected homepage-section <?php echo $section_class; ?>" style="background: <?php echo $bg_color; echo $bg_image ? " url(".$bg_image['url'].") center center / cover no-repeat" : ""; ?>;">
 	<div class="wrap">
 		<article>
-			<header>
-				<h2><?php the_sub_field( 'intro_title' ); ?></h2>
-			</header>
+			<?php the_sub_field( 'section_content' ); ?>
 			
-			<?php the_sub_field( 'intro_content' ); ?>			
+			<a class="btn btn-teal form-toggle" href="javascript:void(0);"><?php echo $btn_text; ?></a>
 		</article>
-		
-		<div class="cta-boxes">
-			<?php while(have_rows( 'intro_cta_boxes' )): the_row(); 
-				$cta_image = get_sub_field( 'cta_box_image' );
-				$cta_link = get_sub_field( 'cta_box_link' );
-				$overlay_color = get_sub_field( 'cta_box_color_overlay' );
-				$overlay_rgb = implode(', ', hex2rgb($overlay_color));
-				
-				echo "<a href='".get_permalink($cta_link->ID)."' class='cta-box' style='background-image: url({$cta_image['url']})'>";
-					echo "<div class='box-cover'>";
-					the_sub_field( 'cta_box_title' );
-					echo "</div>";
-				echo "</a>";
-				
-			endwhile; ?>
-		</div>
+	</div>
+</section>
+<section class="homepage-get-connected-form homepage-section">
+	<div class="wrap">
+		<article>
+			<?php echo do_shortcode( get_sub_field( 'form_shortcode' ) ); ?>
+		</article>
 	</div>
 </section>

@@ -68,7 +68,7 @@ input[type="color"]{
 }
 
 input[type="submit"]{
-	@include btn($brown, $brown, $white);
+	@extend .btn;
 	-webkit-appearance: none;
 	@include size(100%,auto);
 

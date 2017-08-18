@@ -30,7 +30,7 @@
 			margin: 0 0 2rem 2rem;
 			max-width: 80%;
 		}
-		p {
+		.hero-tagline {
 			text-transform: uppercase;
 			font-size: 2rem;
 			font-weight: 700;
@@ -38,6 +38,155 @@
 			
 			span {
 				color: $yellow;
+			}
+		}
+	}
+}
+
+.homepage-section {
+	padding: 6rem 0;
+	text-align: center;
+	
+	@include breakpoint($md){
+		padding: 8rem 0;
+	}
+	@include breakpoint($lg){
+		padding: 10rem 0;
+	}
+	
+	&.white-text {
+		article {
+			h2, p {
+				color: $white;
+			}
+		}
+	}
+	
+	article {
+		max-width: 86rem;
+		margin: 0 auto;
+		
+		.title-icon {
+			margin-bottom: 0.5rem;
+		}
+		h2 {
+			margin: 0;
+		}
+		p {
+			margin: 1.5rem 0 3.5rem;
+		}
+	}
+}
+
+
+.homepage-download {
+	padding: 4rem 0;
+	
+	@include breakpoint($md){
+		padding: 6rem 0;
+	}
+	@include breakpoint($lg){
+		padding: 8rem 0;
+	}
+}
+
+.homepage-callout, .homepage-get-connected {
+	article {
+		p {
+			font-size: 2.4rem;
+			margin: 0;
+		
+			@include breakpoint($md){
+				font-size: 2.7rem;
+			}
+			@include breakpoint($lg){
+				font-size: 3rem;
+			}
+		}
+		.btn {
+			margin-top: 3.5rem;
+		}
+	}
+}
+
+.homepage-get-connected-form {
+	padding: 4rem 0;
+	text-align: left;
+	position: relative;
+		
+	&:after {
+		content: " ";
+		display: block;
+		@include position(absolute, null 0 0 0);
+		margin: auto;
+		width: 90%;
+		max-width: 114rem;
+		height: 0.1rem;
+		background: $tan;
+	}
+	
+	@include breakpoint($md){
+		padding: 6rem 0;
+	}
+	@include breakpoint($lg){
+		padding: 8rem 0;
+	}
+}
+
+.homepage-builders {
+	article {
+		max-width: 98rem;
+		
+		h3 {
+			text-align: left;
+			font-weight: 600;
+			position: relative;
+			margin: 0 0 4rem;
+			
+			&:after {
+				content: " ";
+				display: block;
+				@include position(absolute, null null 0 3rem);
+				width: 6rem;
+				height: 0.2rem;
+				background: $green;
+			}
+		}
+		
+		.builders-flex-container {
+			@include flexbox();
+			@include flex-wrap(wrap);
+			@include flex-justify-content(flex-start);
+			
+			.builder-block {
+				padding: 2rem;
+				width: 50%;
+				
+				@include breakpoint($md){
+					width: 33.333%;
+				}
+				@include breakpoint($lg){
+					width: 25%;
+				}
+				
+				.builder-logo {
+					width: 100%;
+					height: 6.5rem;
+				}
+				
+				a, div {
+					width: 100%;
+				}
+				a {
+					.builder-logo {
+						margin-bottom: 4.4rem;
+					}
+				}
+				.disabled {
+					.builder-logo {
+						opacity: 0.25;
+					}
+				}
 			}
 		}
 	}

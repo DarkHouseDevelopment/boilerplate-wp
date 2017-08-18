@@ -37,17 +37,29 @@
 			break;
 	}
 ?>
-<section class="homepage-download homepage-section <?php echo $section_class; ?>" style="background: <?php echo $bg_color; echo $bg_image ? " url(".$bg_image['url'].") center center / cover no-repeat" : ""; ?>;">
+<section class="homepage-builders homepage-section <?php echo $section_class; ?>" style="background: <?php echo $bg_color; echo $bg_image ? " url(".$bg_image['url'].") center center / cover no-repeat" : ""; ?>;">
 	<div class="wrap">
 		<article>
 			<header>
-				<?php echo $title_icon ? "<img class='title-icon' src='{$title_icon['url']}' alt='{$title_icon['alt']}' />" : ""; ?>
-				<h2><?php the_sub_field( 'section_title' ); ?></h2>
+				<h3 class="section-title"><?php the_sub_field( 'section_title' ); ?></h3>
 			</header>
 			
-			<?php the_sub_field( 'section_content' ); ?>
-			
-			<?php echo "<a class='btn btn-yellow' href='$btn_link' target='$btn_target'>$btn_text</a>"; ?>
+			<?php
+				if(have_rows( 'builders' )):
+					echo "<div class='builders-flex-container'>";
+					
+					while(have_rows( 'builders' )): the_row();
+						$builder_logo = get_sub_field( 'builder_logo' );
+						$builder_link = get_sub_field( 'builder_link' );
+						
+						echo "<div class='builder-block'>";
+						echo $builder_link ? "<a href='$builder_link' target='_blank' rel='noopener noreferrer'><div class='builder-logo' style='background: url({$builder_logo['url']}) center center / contain no-repeat;'></div></a>" : "<div class='disabled'><div class='builder-logo' style='background: url({$builder_logo['url']}) center center / contain no-repeat;'></div><h4>Coming Soon</h4></div>";
+						echo "</div>";
+					endwhile;
+					
+					echo "</div>";
+				endif;
+			?>
 		</article>
 	</div>
 </section>

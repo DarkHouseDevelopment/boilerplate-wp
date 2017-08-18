@@ -21,13 +21,13 @@ $bgcolor: $white;
 
 // Typography
 
-$text_color: $tan;
-$base_font: $font-stack-helvetica;
-$base_font_size: 1.8rem;
+$text_color: $brown;
+$base_font: "adriane",Georgia,Verdana,Times,serif;
+$base_font_size: 2rem;
 $base_font_weight: 400;
-$base_line_height: 1.2;
+$base_line_height: 1.5;
 
-$heading_font: $font-stack-helvetica;
+$heading_font: "proxima-nova",Helvetica,Arial,sans-serif;;
 $heading_color: $brown;
 
 
@@ -51,9 +51,9 @@ $input_focus_glow: 0 0 0.5rem rgba($red,0.5);
 
 $btn_border_width: 2px;
 $btn_border_style: solid;
-$btn_font: $base_font;
-$btn_font_size: 1.6rem;
-$btn_font_weight: 400;
+$btn_font: $heading_font;
+$btn_font_size: 1.8rem;
+$btn_font_weight: 600;
 $btn_line_height: 1;
-$btn_padding: 1rem 2rem;
-$btn_border_radius: 3px;
+$btn_padding: 1rem 3rem;
+$btn_border_radius: 0;

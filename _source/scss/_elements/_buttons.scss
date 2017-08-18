@@ -5,8 +5,8 @@
 // BUTTON_CLASS_NAME{ @include btn(BACKGROUND_COLOR,BORDER_COLOR,TEXT_COLOR); }
 
 .btn{ @include btn($red,$red,$white); }
-.btn:hover{ @include btn($grey,$grey,$white); }
-.btn-alt{ @include btn($lightgrey,$lightgrey,$text_color); }
-.btn-alt:hover{ @include btn($grey,$grey,$white); }
-.btn-outline{ @include btn(none,$grey,$text_color); }
-.btn-outline:hover{ @include btn($brown,$brown,$white); }
+.btn:hover{ @include btn(lighten($red, 10%),lighten($red, 10%),$white); }
+.btn-yellow{ @include btn($yellow,$yellow,$black); }
+.btn-yellow:hover{ @include btn(darken($yellow, 10%),darken($yellow, 10%),$black); }
+.btn-teal{ @include btn($teal,$teal,$white); }
+.btn-teal:hover{ @include btn(lighten($teal, 10%),lighten($teal, 10%),$white); }

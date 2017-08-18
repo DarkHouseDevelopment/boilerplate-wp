@@ -1,49 +1,53 @@
 <?php
+	$bg_color = get_sub_field( 'background_color' );
+	$bg_image = get_sub_field( 'background_image' );
 	
-	$btn_type = get_sub_field( 'hero_button_link_type' );
+	if($bg_color != "#ffffff" || $bg_image):
+		$section_class = "white-text";
+	else:
+		$section_class = "";
+	endif;
 	
-	switch($btn_type){
-		case "internal":
-			$btn_link_page = get_sub_field( 'hero_button_link_internal' );
-			$btn_link = get_permalink($btn_link_page);
-			$btn_target = "_self";
-			break;
-			
-		case "external":
-			$btn_link = get_sub_field( 'hero_button_link_external' );
-			$btn_target = "_blank";
-			break;
-			
-		case "custom":
-			$btn_link = get_sub_field( 'hero_button_link_custom' );
-			$btn_target = get_sub_field( 'hero_button_target' );
-			break;
-	}
+	$include_btn = get_sub_field( 'include_button' );
+	if($include_btn):
+		$btn_text = get_sub_field( 'button_text' );
+		$btn_type = get_sub_field( 'button_link_type' );
+		
+		switch($btn_type){
+			case "internal":
+				$btn_link_page = get_sub_field( 'button_link_internal' );
+				$btn_link = get_permalink($btn_link_page);
+				$btn_target = "_self";
+				break;
+				
+			case "media":
+				$btn_link_media = get_sub_field( 'button_link_media' );
+				$btn_link = $btn_link_media['url'];
+				$btn_target = "_blank";
+				break;
+				
+			case "external":
+				$btn_link = get_sub_field( 'button_link_external' );
+				$btn_target = "_blank";
+				break;
+				
+			case "custom":
+				$btn_link = get_sub_field( 'button_link_custom' );
+				$btn_target = get_sub_field( 'button_target' );
+				break;
+		}
+	endif;
 ?>
-<section role="main" id="homepage_intro">
+<section role="main" class="homepage-intro homepage-section <?php echo $section_class; ?>" style="background: <?php echo $bg_color; echo $bg_image ? " url(".$bg_image['url'].") center center / cover no-repeat" : ""; ?>;">
 	<div class="wrap">
 		<article>
 			<header>
-				<h2><?php the_sub_field( 'intro_title' ); ?></h2>
+				<h2><?php the_sub_field( 'section_title' ); ?></h2>
 			</header>
 			
-			<?php the_sub_field( 'intro_content' ); ?>			
+			<?php the_sub_field( 'section_content' ); ?>
+			
+			<?php echo $include_btn ? "<a class='btn' href='$btn_link' target='$btn_target'>$btn_text</a>" : ""; ?>
 		</article>
-		
-		<div class="cta-boxes">
-			<?php while(have_rows( 'intro_cta_boxes' )): the_row(); 
-				$cta_image = get_sub_field( 'cta_box_image' );
-				$cta_link = get_sub_field( 'cta_box_link' );
-				$overlay_color = get_sub_field( 'cta_box_color_overlay' );
-				$overlay_rgb = implode(', ', hex2rgb($overlay_color));
-				
-				echo "<a href='".get_permalink($cta_link->ID)."' class='cta-box' style='background-image: url({$cta_image['url']})'>";
-					echo "<div class='box-cover'>";
-					the_sub_field( 'cta_box_title' );
-					echo "</div>";
-				echo "</a>";
-				
-			endwhile; ?>
-		</div>
 	</div>
 </section>

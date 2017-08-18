@@ -30,6 +30,10 @@ if ( have_posts() ):
 					case 'get_connected':
 						get_template_part( 'template-parts/frontpage/content', 'get-connected' );
 						break;
+						
+					case 'builders':
+						get_template_part( 'template-parts/frontpage/content', 'builders' );
+						break;
 				}
 			
 			endwhile;

@@ -18,9 +18,9 @@
 		<article>
 			<img class="hero-logo" src="<?php echo $hero_logo['url']; ?>" alt="<?php echo $hero_logo['alt']; ?>" />
 			
-			<p class="hero-tagline">
+			<h1 class="hero-tagline">
 				<?php the_sub_field( 'hero_tagline' ); ?>
-			</p>
+			</h1>
 		</article>
 	</div>
 </section>
