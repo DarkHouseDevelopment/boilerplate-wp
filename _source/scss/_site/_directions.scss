@@ -1,0 +1,100 @@
+/************************************************************************/
+/* DIRECTIONS PAGE STYLES
+/************************************************************************/
+
+section.visit-verrado {
+	article {
+		padding-bottom: 1.5rem;
+		height: 100%;
+		@include dotted($shade75, bottom);
+		
+		h2 {
+			margin: 0 0 4rem;
+			padding: 2rem;
+			@include dotted($shade75, bottom);
+			color: $text_color;
+			text-align: center;
+		}
+		.featured-image {
+			margin-bottom: 3rem;
+			
+			img {
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+}
+
+.contacts-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	
+	li {
+		margin-bottom: 2.5rem;
+		padding-left: 3rem;
+		position: relative;
+		font-weight: 500;
+		
+		.fa {
+			position: absolute;
+			left: 0;
+			top: -0.3rem;
+			font-size: 2.2rem;
+			line-height: 1.1;
+			color: $blue;
+		}
+	}
+}
+.victory .contacts-list li .fa {
+	color: $victory_red;
+}
+
+
+section.verrado-maps {
+	
+	article {
+		@include dotted($shade75, bottom);
+		padding: 0 0 4rem;
+		text-align: center;
+		font-family: $feature_font;
+		
+		@include breakpoint($md){
+			padding: 4rem 0 8rem;
+		}
+		
+		h1 {
+			margin-bottom: 1.5rem;
+		}
+		.map-buttons {
+			padding-top: 1rem;
+		}
+		.btn {
+			margin: 0.5rem;
+		}
+	}
+}
+
+
+section.already-residents {
+	
+	.featured-image {
+		width: 100%;
+		margin-bottom: 3rem;
+		
+		@include breakpoint($md_lg){
+			margin: 0;
+			padding-bottom: 4rem;
+			width: 50%;
+		}
+		
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	.resident-contacts {
+		padding-bottom: 2rem;
+	}
+}

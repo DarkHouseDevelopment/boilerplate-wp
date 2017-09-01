@@ -1,0 +1,136 @@
+/************************************************************************/
+/* GALLERY PAGE STYLES
+/************************************************************************/
+
+
+.page-template-gallery {
+	#victory-gallery {
+		.gallery-section {
+			h2 {
+				span {
+					color: $victory_red;
+				}
+			}
+			.gallery {
+				.gallery-block {
+					color: $victory_blue;
+				}
+			}
+		}
+	}
+	.overlay {
+		@include flexbox();
+		@include flex-wrap(nowrap);
+		@include flex-justify-content(center);
+		@include flex-align-items(center);
+		overflow: hidden;
+		
+		.gallery-slider {
+			width: 100%;
+			height: 100%;
+			
+			.slick-list, .slick-track {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.slide-image {
+				width: 100%;
+				height: 100%;
+				@include flexbox();
+				@include flex-wrap(nowrap);
+				@include flex-justify-content(center);
+				@include flex-align-items(center);
+				
+				img {
+					width: auto;
+					height: auto;
+					max-width: 90%;
+				}
+			}
+		}
+		.close {
+			@include position(absolute, 1rem 1rem null null);
+			width: 4rem;
+			height: 4rem;
+			padding: 1rem;
+			background: $darkteal;
+			color: $white;
+			font-size: 2rem;
+			line-height: 1;
+			text-align: center;
+			
+			&:hover {
+				background: shade($darkteal,30%);
+			}
+		}
+	}
+	.coverup {
+		width: 100%;
+		height: 100%;
+		@include position(absolute, 0 0 null null);
+		background: $white;
+		font-size: 4rem;
+		@include flexbox();
+		@include flex-wrap(nowrap);
+		@include flex-justify-content(center);
+		@include flex-align-items(center);
+		
+		i {
+			display: block;
+			color: $darkteal;
+		}
+	}
+}
+.gallery-section {
+	padding-top: 2rem;
+	
+	h2 {
+		padding: 3.5rem 0;
+		@include dotted($shade75, top);
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: 300;
+		margin: 0;
+		
+		span {
+			font-weight: 800;
+			color: $green;
+		}
+	}
+	.gallery {
+		@include dotted($shade75, top);
+		@include flexbox();
+		@include flex-wrap(wrap);
+		@include flex-justify-content(space-between);
+		padding: 4rem 0;
+		
+		.gallery-block {
+			width: 100%;
+			margin-bottom: 2.5rem;
+			font-size: 1.6rem;
+			line-height: 2.5;
+			color: $darkteal;
+			text-transform: uppercase;
+			font-weight: bold;
+			
+			@include breakpoint($md){
+				width: calc(50% - 1.5rem);
+			}
+			@include breakpoint($md_lg){
+				width: calc(33.333% - 1.5rem);
+			}
+			
+			&.video {
+				@include breakpoint($md_lg){
+					width: calc(50% - 1.5rem);
+				}
+			}
+			
+			img {
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+}

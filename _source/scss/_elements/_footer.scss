@@ -4,6 +4,84 @@
 
 footer[role="contentinfo"] {
 	@include clearfix;
-	background-color: tint($lightgrey, 50%);
-	padding: 2rem 0;
+	border-top: 1px solid $lightgrey;
+	background: url('../img/pattern-stars-footer.png') top center no-repeat;
+	margin-top: 4rem;
+	padding: 4rem 0;
+	position: relative;
+	text-align: center;
+	color: $grey;
+
+	nav.social {
+		margin-bottom: 2em;
+		
+		ul {
+			li {
+				display: inline-block;
+				margin-right: 3px;
+				position: relative;
+				
+				&:before {
+					height: 3rem;
+					width: 3rem;
+					background: $grey;
+					@include border-radius(50%);
+				    font-size: 1.6rem;
+				    position: absolute;
+				    color: #fff;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				}
+				
+				a {
+					height: 3rem;
+					width: 3rem;
+					position: relative;
+					display: inline-block;
+					text-indent: -999rem;
+				}
+			}
+		}
+	}
+		
+	nav[role="navigation"]{
+		margin-bottom: 1em;
+		text-transform: uppercase;
+		
+		ul {
+			li {
+				margin-bottom: 0.5em;
+				
+				@include breakpoint($md) {
+					display: inline;
+					margin: 0;
+					
+					&:not(:last-child):after {
+						content: ' | ';
+					}
+				}
+				
+				&.first {
+					a { padding-left: 0; }
+				}
+				
+				a {
+					color: $grey;
+					font-size: 1.2em;
+					font-weight: 600;
+					padding: 0.25em;
+					
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+	
+	.copy {
+		margin-bottom: 2.5em;
+		width: 100%;
+	}
 }

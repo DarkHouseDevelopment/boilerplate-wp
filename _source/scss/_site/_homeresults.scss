@@ -1,0 +1,329 @@
+/************************************************************************/
+/* HOME RESULTS
+/************************************************************************/
+
+
+.sendinfo-thankyou {
+	background: $darkteal;
+	padding: 2rem;
+	text-align: center;
+	color: $white;
+	margin-bottom: 4rem;
+	
+	h3 {
+		color: inherit;
+		margin-bottom: 1rem;
+	}
+	p {
+		margin: 0;
+	}
+}
+
+.message.print_qmi {
+	border: 0;
+	padding: 0;
+	margin: -2rem 0 4rem;
+	background: transparent;
+	text-align: center;
+	
+	h3 {
+		margin: 0;
+		
+		.fa {
+			font-size: 3.2rem;
+			margin: 0 1rem;
+		    position: relative;
+		    top: 0.4rem;
+		}
+	}
+}
+
+
+#home_results, #home_details {
+	padding-top: 0;
+	
+	header#header {		
+		padding-top: 12rem;
+		padding-bottom: 6rem;
+		
+		@include breakpoint($md){
+			padding-top: 16rem;
+		}
+		@include breakpoint($lg){
+			padding-top: 18rem;
+		}
+		
+		.find-a-home {
+			display: none;
+			margin: 0;
+			
+			@include breakpoint($md_lg){
+				display: block !important;
+			}
+			
+			h1 {
+				margin-bottom: 0;
+			}
+			p {
+				margin: 1rem 0;
+			}			
+			.close-search {
+				display: block;
+				color: $white;
+				font-size: 1.2rem;
+				padding: 1rem;
+
+				@include breakpoint($md_lg){
+					display: none;
+				}
+			}
+		}
+		
+		.mobile-search-toggle {
+			display: block;
+			margin: 0 auto;
+			text-align: center;
+			
+			@include breakpoint($md_lg){
+				display: none;
+			}
+		}
+	}
+	
+	.listing {
+		padding: 6rem 0;
+	}
+}
+
+
+.home-result {
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include flex-align-items(stretch);
+	position: relative;
+	margin-bottom: 2rem;
+	background: $shade25;
+	
+	@include breakpoint($lg_xl){
+		margin-bottom: 0.5rem;
+	}
+	
+	.slider, .property-image {
+		width: 100%;
+		min-height: 18rem;
+		border-bottom: 0.2rem $white solid;
+		position: relative;
+		
+		@include breakpoint($md){
+			border: 0;
+			width: 55%;
+			min-height: 26rem;
+		}
+		@include breakpoint($lg_xl){
+			width: 35%;
+			min-height: 0;
+		}
+		@include breakpoint($lg_xl){
+			width: 33%;
+		}
+		
+		* {
+			width: 100%;
+			height: 100%;
+			@include position(absolute, 0 null null 0);
+		}
+	}
+	.property-details {
+		width: 100%;
+		
+		@include breakpoint($md){
+			width: 45%;
+			border-left: 0.5rem $white solid;
+		}
+		@include breakpoint($lg_xl){
+			width: 25%;
+		}
+		
+		.contact-info {
+			@include breakpoint($md_lg){
+				display: none;
+			}
+		}
+	}
+	.property-specs {
+		width: 100%;
+		display: none;
+		
+		@include breakpoint($md_lg){
+			@include flexbox();
+			border-top: 0.5rem $white solid;
+			padding: 3.5rem;
+		}
+		@include breakpoint($lg_xl){
+			width: 42%;
+			padding: 3.5rem 2rem 2.5rem 1rem;
+			border: 0;
+		}
+	}
+	.corner-arrow {
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 6rem 6rem 0;
+		border-color: transparent $blue transparent transparent;
+		@include position(absolute, 0 0 null null);
+		font-size: 1rem;
+		line-height: 1.2;
+		text-align: center;
+		
+		span {	    
+			display: block;
+			@include transform(rotate(45deg));
+			width: 5rem;
+			position: relative;
+			top: 0.8rem;
+			right: -1.4rem;
+			color: $white;
+			font-weight: 700;
+		}
+	}
+}
+
+
+.property-details {
+	width: 100%;
+	padding: 1.5rem;
+	
+	@include breakpoint($md_lg){
+		padding: 1.5rem 2rem 2rem;
+	}
+	
+	h2 {
+		margin: 0;
+		color: $text_color;
+		
+		a { 
+			color: $text_color;
+			
+			img {
+				margin-left: 1rem;
+				width: 2.5rem;
+			}
+		}
+	}
+	h3 {
+		margin-bottom: 1rem;
+		font-weight: normal;
+		
+		@include breakpoint($md_lg){
+			margin-bottom: 2.5rem;
+		}
+	}
+	.contact-info {
+		font-size: 1.4rem;
+	}
+	.sendinfoform {
+		display: none;
+	}
+}
+.property-specs {
+	width: 100%;
+	background: $shade25;
+	padding: 0.5rem 2rem;
+	text-align:center;
+	position: relative;
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include flex-justify-content(space-between);
+	@include flex-align-items(center);
+	
+	@include breakpoint($md){
+		padding: 2.5rem;
+	}
+	
+	ul {
+		width: 100%;
+		@include flexbox();
+		@include flex-wrap(wrap);
+		@include flex-justify-content(space-between);
+				
+		&:first-child {
+			border-bottom: 1px solid $shade50;
+			
+			@include breakpoint($md) {
+				padding: 0 0 2rem 0;
+			}
+		}
+		&:last-child {
+			
+			@include breakpoint($md) {
+				padding: 2rem 0 0 0;
+			}
+		}
+		
+		li {
+			padding: 1.5rem 0;
+			width: 50%;
+			
+			&:first-child {
+				width: 100%;
+				border-bottom: 1px solid $shade50;
+			}
+			&:not(:first-child){
+				border-right: 1px solid $shade50;
+				padding: 0.5rem 0;
+				margin: 1.5rem 0;
+			}
+			&:last-child {
+				border: 0;
+			}
+			
+			@include breakpoint($md) {
+				border-right: 1px solid $shade50;
+				border-bottom: none;
+				margin: 0;
+				padding: 0.5rem 0;
+				width: 30%;
+				float: left;
+				
+				&:first-child {
+					width: 40%;
+					border-bottom: 0;
+				}
+				&:not(:first-child){
+					margin: 0;
+					padding: 0.5rem 0;
+				}
+			}
+			@include breakpoint($lg){
+				width: 26%;
+				
+				&:first-child {
+					width: 44%;
+				}
+			}
+	
+			&:last-child {
+				border: 0;
+				
+				@include breakpoint($md) {
+					width: 30%;
+				}
+			}
+			
+			.label {
+				font-size: 1.6em;
+				line-height: 1.2em;
+			}
+			.number {
+				font-size: 2.2em;
+				font-weight: 600;
+				line-height: 1.4em;
+				
+				@include breakpoint($md_lg) {
+					font-size: 2.4em; 
+				}
+			}
+		}
+	}
+}

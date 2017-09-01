@@ -1,33 +1,49 @@
 <?php get_header(); ?>
 
-<section>
+<section role="main">
 	<div class="wrap">
-		<div class="content" role="main">				
-			<?php if ( have_posts() ): ?>
-			<h2>Latest Posts</h2>	
-			<?php while ( have_posts() ) : the_post(); ?>
+		<?php if ( have_posts() ): ?>
+		<?php while ( have_posts() ) : the_post(); ?>
+		<header class="page-title">
+			<h1><?php the_title(); ?></h1>
+
+			<p class="subhead">
+				<time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_date(); ?></time><br />
+				<span style="font-weight: bold">Related Categories: </span><?php the_category( ' | ', '', get_the_ID()); ?>
+			</p>
+		</header>
+		<div class="post-content">
 			<article>
-				<header>
-					<h2><a href="<?php esc_url( the_permalink() ); ?>" title="Permalink to <?php the_title(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
-					<time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_date(); ?> <?php the_time(); ?></time> <?php comments_popup_link('Leave a Comment', '1 Comment', '% Comments'); ?>
-				</header>
-				
+
+				<?php if( have_rows('slider') ):
+					echo '<div class="images">';
+						echo '<div class="slider small">';
+							while ( have_rows('slider') ) : the_row();
+								$select_content = get_sub_field('select_slider_type');
+								$slider_image = get_sub_field('slider_image');
+								$video_id = get_sub_field('video_id');
+							?>
+								<div>
+									<?php if($select_content == 'video') { ?>
+										<div class="video-wrapper">
+											<iframe src="https://www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allowfullscreen></iframe>
+										</div>
+									<?php } else if($select_content == 'image') {?>
+										<img src="<?php echo $slider_image['url']; ?>" />
+									<?php } ?>
+								</div>
+							<?php endwhile;
+						echo '</div>';
+					echo '</div>';
+				endif; ?>
 				<?php the_content(); ?>
-				
-				<footer></footer>
+
 			</article>
-			
-			<section class="comments">
-				<?php comments_template( '', true ); ?>
-			</section>
-			<?php endwhile; ?>
-			<?php else: ?>
-			<h2>No posts to display</h2>
-			<?php endif; ?>
+			<?php get_sidebar(); ?>
 		</div>
-		
-		<?php get_sidebar(); ?>
-		
+
+		<?php endwhile; ?>
+		<?php endif; ?>
 	</div>
 </section>
 

@@ -1,0 +1,76 @@
+.overlay {
+	background: rgba($white, 0.9);
+	display: none;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	position: fixed;
+	top: 0; left: 0;
+	text-align: center;
+	width: 100%;
+	z-index: 1100;
+	cursor: pointer;
+}
+
+form.contact {
+	display: none;
+	background: $teal;
+	margin: 0 auto;
+	max-width: 69.4rem;
+	padding: 2rem 2.5rem 2.5rem;
+	position: relative;
+	text-align: center;
+	width: 80%;
+	@include position(fixed, 5rem 0 null 0);
+	z-index: 1200;
+	
+	@include breakpoint($md-lg) {
+		padding: 3rem 4.5rem;
+	}
+	
+	.row {
+		@include breakpoint($md-lg) {
+			@include flexbox();
+			@include flex-wrap(wrap);
+			@include flex-justify-content(space-between);
+		}	
+		.input-field {
+			margin: 0;
+			
+			@include breakpoint($md-lg) {
+				width: 49%;
+			}
+			
+			input {
+				width: 100%;
+			}
+		}
+	}
+	
+	.close {
+		padding: 0.8em;
+		background: rgba(255,255,255,.1);
+		@include position(absolute, 0 0 null null);
+	}
+	
+	h2, p, .checkbox label {
+		color: $white;
+	}
+	
+	.intro {
+		margin-bottom: 3rem;
+		
+		h2 {
+			font-size: 3.2rem;
+			margin-bottom: 0;
+			color: $white;
+		}
+	}
+	.checkboxes {
+		margin-top: 2rem;
+		
+		.checkbox{
+			margin: -3px 0.5rem 0 0;
+		}
+	}
+}

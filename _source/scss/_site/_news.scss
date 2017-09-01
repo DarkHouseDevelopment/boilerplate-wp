@@ -1,0 +1,188 @@
+/************************************************************************/
+/* VERRADO/VICTORY NEWS PAGES
+/************************************************************************/
+
+.recent-news {
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include flex-justify-content(space-between);
+	
+	.recent-posts {
+		width: 100%;
+		
+		@include breakpoint($md_lg){
+			width: calc(66.666% - 1.5rem);
+		}
+		@include breakpoint($lg){
+			width: calc(75% - 1.5rem);
+		}
+	}
+	
+	.post-result {
+		width: 100%;
+		margin-bottom: 2rem;
+		@include flexbox();
+		@include flex-wrap(wrap);
+		@include flex-align-items(stretch);
+		
+		@include breakpoint($lg){
+			margin-bottom: 0.3rem;
+		}
+				
+		.post-image {
+			width: 100%;
+			
+			@include breakpoint($md_lg) {
+				min-height: 25rem;
+				padding-bottom: 0.3rem;
+			}
+			@include breakpoint($lg) {
+				width: 35%;
+				min-height: 0;
+				padding-bottom: 0;
+				padding-right: 0.3rem;
+			}
+			
+			a {
+				display:block;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.post-text {
+			background: $shade25;
+			padding: 2.5rem 3rem;
+			width: 100%;	
+			
+			@include breakpoint($lg) {
+				width: 65%;
+				
+				&.full-width {
+					width: 100%;
+				}
+			}		
+		
+			h3 {
+				margin: 0;
+				
+				a {
+					color: $black;
+				}
+			}
+			time {
+				display: block;
+				margin-bottom: 1rem;
+			}
+			p {
+				font-size: 1.4rem;
+			}
+		}
+	}
+}
+
+
+.post-content {
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include flex-justify-content(space-between);
+	
+	article {
+		width: 100%;
+		
+		@include breakpoint($md_lg){
+			width: calc(66.666% - 1.5rem);
+		}
+		@include breakpoint($lg){
+			width: calc(75% - 1.5rem);
+		}
+		
+		.slider {
+			padding-bottom: 3rem;
+			margin-bottom: 3rem; 
+			@include dotted($shade75, bottom);
+		}
+		img {
+			display: block;
+		
+			&.alignnone {
+				display: inline-block;
+			}
+			&.alignleft {
+				margin: 0 auto;
+				
+				@include breakpoint($sm){
+					float: left;
+					margin: 0.4em 1.5em 1em 0;
+				}
+			}
+			&.alignright {
+				margin: 0 auto;
+				
+				@include breakpoint($sm){
+					float: right;
+					margin: 0.4em 0 1em 1.5em;
+				}
+			}
+			&.aligncenter {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	}
+}
+
+	
+// Sidebar
+aside[role="complementary"] {
+	padding: 6rem 0 0;
+	width: 100%;
+	
+	@include breakpoint($md_lg){
+		padding: 0;
+		width: 33.333%;
+	}
+	@include breakpoint($lg){
+		width: 25%;
+	}
+	
+	h3 {
+		font-family: $heading_font;
+	}
+	
+	.styled-select {
+		@include border-radius(2px);
+		border: 2px solid $shade25;
+		
+		select {
+			padding-left: 2rem;
+			color: $text_color;
+		}
+	}
+	#category_archive {
+		@include border-radius(2px);
+		border: 2px solid $shade25;
+		padding: 2rem;
+		
+		li{
+			margin-bottom: 0;
+			
+			&.categories {
+				font-size: 1.4rem;
+				
+				> ul {
+					margin-top: 1rem;
+					
+					li ul {
+						margin: 0.5rem 0 0.5rem 2rem;
+					}
+				}
+			}
+		}
+	}
+	.interior-widget {
+		margin-bottom: 4rem;
+	}
+	iframe {
+		max-width: 100%;
+	}
+}

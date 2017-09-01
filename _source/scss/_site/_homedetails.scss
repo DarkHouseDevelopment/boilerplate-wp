@@ -1,0 +1,209 @@
+.breadcrumb {
+	font-size: 1.2rem;
+	padding: 1.5rem 0;
+}
+
+#home_details {
+	
+	.home-details {
+		@include flexbox();
+		@include flex-wrap(wrap);
+		@include flex-justify-content(space-between);
+		padding: 3rem 0;
+		@include dotted($shade75, bottom);
+		
+		@include breakpoint($md_lg){
+			padding: 6rem 0;
+		}
+	}
+	
+	.column {
+		width: 100%;
+		
+		@include breakpoint($lg){
+			width: calc(50% - 1.5rem);
+		}
+		
+		.property-details {
+			padding: 0;
+			
+			h1 {
+				margin: 0;
+			}
+			.buttons {
+				margin-bottom: 1.25em;
+				
+				a {
+				margin-bottom: 0.5em;
+				}
+			}
+		}
+		.details {
+			padding: 0;
+			border: 3px solid $shade75;
+			margin: 3em 0;
+			
+			@include breakpoint($lg){
+				margin: 3rem 0 0;
+			}
+			
+			h3 {
+				margin-bottom: 1em;
+				padding: 0.5em 1em 0.75em;
+				background: $shade75;
+				color: $white;
+			}
+			p, ul {
+				padding-left: 3em;
+			}
+		}
+		.floorplans {
+			margin-top: 3em;
+			@include flexbox();
+			@include flex-wrap(wrap);
+			@include flex-justify-content(space-between);
+			
+			h3 {
+				width: 100%;
+				margin-bottom: 1.5rem;
+			}
+			
+			.floorplan { //on home search results page
+				position: relative;
+				cursor: pointer;
+				width: calc(50% - 1.5rem);
+				height: 35rem;
+				text-align: center;
+								
+				&:hover{
+					.zoom {
+						display: block;
+					}
+				}
+				&.placeholder {
+					height: 0;
+				}
+				
+				img {
+					max-width: 100%;
+					max-height: 100%;
+				}
+			
+				.zoom {
+					display: none;
+					@include position(absolute, 0 null null 0);
+					background: $darkteal;
+					padding: 0.5rem 0.7rem;
+					font-size: 2.4rem;
+					line-height: 1;
+					color: $white;
+				}
+	
+				p {
+					font-weight: 800;
+					margin-bottom: 1.25em;
+				}
+			}
+		
+			.overlay {
+				padding-bottom: 10em;
+				
+				.actions {
+					color: $darkteal;
+					font-size: 1.6rem;
+					margin: 15rem 0 2rem;
+					text-align: right;
+				}
+			}
+		}
+	}
+}
+
+// Home Jump
+
+#home_jump {
+	margin: 2rem 0 3rem;
+	
+	a {
+		display: flex;
+		flex-wrap: wrap;
+		width: 25rem;
+		align-items: flex-start;
+		background: $shade25;
+		padding: 1.5rem;
+		margin-top: 2rem;
+		cursor: pointer;
+		
+		@include breakpoint($md_lg){
+			width: 36rem;
+		}
+		
+		&#jump_prev {
+			float: left;
+		}
+		&#jump_next {
+			float: right;
+		}
+		
+		.label {
+			width: 100%;
+			font-size: 1.6rem;
+			line-height: 0.8;
+			font-weight: bold;
+			color: $text_color;
+			padding: 0 0 1rem;
+			border-bottom: 1px solid $shade50;
+			margin-bottom: 1rem;
+			cursor: pointer;
+			
+			&.next {
+				text-align: right;
+			}
+		}
+		>img {
+			width: 12rem;
+			height: auto;
+			float: left;
+			display: none;
+			padding-right: 1rem;
+			cursor: pointer;
+			
+			@include breakpoint($md_lg){
+				display: block;
+			}
+		}
+		.jump_arrow {
+			float: left;
+			width: 2.5rem;
+			display: flex;
+			justify-content: center;
+			cursor: pointer;
+			
+			img {
+				width: 30%;
+				height: 100%;
+			}
+		}
+		article {
+			float: left;
+			width: 21rem;
+			padding: 0;
+			cursor: pointer;
+			
+			h4 {
+				margin: 0;
+				line-height: 1;
+			}
+			p {
+				margin: 0;
+				color: $text_color;
+				font-size: 1.3rem;
+				
+				&:first-of-type {
+					margin-bottom: 0.6rem;
+				}
+			}
+		}
+	}
+	
+}

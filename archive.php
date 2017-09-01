@@ -1,37 +1,46 @@
+<?php
 
-<?php get_header(); ?>
+get_header(); 
 
-	<div class="wrap">
-
-		<section class="content" role="main">
-			asdf
-			<?php if ( have_posts() ): 
-				while ( have_posts() ) : the_post(); ?>
-				
-					<article>
-						<h2><a href="<?php esc_url( the_permalink() ); ?>" title="Permalink to <?php the_title(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
-						<time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_date(); ?> <?php the_time(); ?></time> <?php comments_popup_link('Leave a Comment', '1 Comment', '% Comments'); ?>
-						<?php the_content(); ?>
-					</article>
-				
-				<?php endwhile; ?>
-					
-				<div class="pagination">
-					<?php
-						$image_path = get_template_directory_uri();
-						
-						the_posts_pagination( array(
-							'prev_text'          => __( '<span><img src="'.$image_path.'/assets/img/arrows-prev.png" /></span> Prev', 'twentyfifteen' ),
-							'next_text'          => __( 'Next <span><img src="'.$image_path.'/assets/img/arrows-next.png" /></span>', 'twentyfifteen' ),
-							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( '', 'twentyfifteen' ) . ' </span>',
-						) );
-					?>		
-				</div>
-				
-			<?php endif; ?>
+if ( have_posts() ): ?>
 		
-		</section>
-	
-	</div>
+	<section role='main'>
+		
+		<?php if ( is_day() ) : ?>
+		<h1 class='page-title'>Archive: <?php echo  get_the_date( 'D F Y' ); ?></h1>
+		<?php elseif ( is_month() ) : ?>
+		<h1 class='page-title'>Archive: <?php echo  get_the_date( 'F Y' ); ?></h1>
+		<?php elseif ( is_year() ) : ?>
+		<h1 class='page-title'>Archive: <?php echo  get_the_date( 'Y' ); ?></h1>
+		<?php elseif ( is_category() ) : ?>
+		<h1 class='page-title <?php echo is_category('victory-news') ? "victory" : "script"; ?>'><?php single_cat_title(); ?></h1>
+		<?php else : ?>
+		<h1 class='page-title'>Archive</h1>
+		<?php endif; ?>
+		
+		<div class="wrap">
 
-<?php get_footer(); ?>
+			<div class="recent-news row section">
+				<div class="recent-posts page">
+					<?php 
+					while ( have_posts() ) : the_post(); 
+						get_template_part( 'template-parts/news/content', 'post-result' );
+					endwhile;
+							
+					if(function_exists('wp_simple_pagination')):
+						echo '<footer class="pagination">';
+						wp_simple_pagination();
+						echo '</footer>';
+					endif;
+					?>
+				</div>
+				<?php get_sidebar(); ?>
+			</div><!-- end news -->
+		</div>
+	</section>
+
+<?php 
+
+endif; 
+	
+get_footer();

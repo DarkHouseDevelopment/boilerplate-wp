@@ -14,8 +14,9 @@
 
 label, legend {
 	display: block;
-	font-size: $base_font_size;
-	line-height: $base_line_height;
+	font-family: $base_font;
+	font-size: 1.4rem;
+	line-height: 1.2;
 }
 
 #{$all-text-inputs} {
@@ -24,7 +25,7 @@ label, legend {
 	@include border-radius($input_border_radius);
 	color: $text_color;
 	font-family: $base_font;
-	font-size: $base_font_size;
+	font-size: 1.6rem;
 	line-height: $base_line_height;
 	display: inline-block;
 	@include size(100%,auto);
@@ -34,11 +35,11 @@ label, legend {
 	@include single-transition(all, 0.2s, ease-in-out);
 	
 	&:hover {
-		border-color: shade($blue,20%);
+		//border-color: shade($blue,20%);
 	}
 	
 	&:focus {
-		border-color: $blue;
+		//border-color: $blue;
 		outline: none;
 		@include box-shadow($input_focus_glow);
 	}
@@ -60,6 +61,61 @@ input[type="radio"] {
 	padding: 0;
 	margin: 0 0.5rem 1rem 0;
 }
+/* iCheck plugin Flat skin, green
+----------------------------------- */
+.icheckbox_flat-green,
+.iradio_flat-green {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background: url(../img/sprite-radio-check.png) no-repeat;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: -1px;
+}
+
+.icheckbox_flat-green {
+    background-position: 0 0;
+}
+    .icheckbox_flat-green.checked {
+        background-position: -22px 0;
+    }
+    .icheckbox_flat-green.disabled {
+        background-position: -44px 0;
+        cursor: default;
+    }
+    .icheckbox_flat-green.checked.disabled {
+        background-position: -66px 0;
+    }
+
+.iradio_flat-green {
+    background-position: -88px 0;
+}
+    .iradio_flat-green.checked {
+        background-position: -110px 0;
+    }
+    .iradio_flat-green.disabled {
+        background-position: -132px 0;
+        cursor: default;
+    }
+    .iradio_flat-green.checked.disabled {
+        background-position: -154px 0;
+    }
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi), (min-resolution: 1.25dppx) {
+    .icheckbox_flat-green,
+    .iradio_flat-green {
+        background-image: url(../img/sprite-radio-check@2x.png);
+        -webkit-background-size: 176px 22px;
+        background-size: 176px 22px;
+    }
+}
 
 input[type="color"]{
 	border: 0;
@@ -67,8 +123,8 @@ input[type="color"]{
 	padding: 0;
 }
 
-input[type="submit"]{
-	@include btn($darkgrey, $darkgrey, $white);
+input[type="submit"], section[role="main"] .gform_wrapper .gform_footer input.button, section[role="main"] .gform_wrapper .gform_footer input[type=submit], section[role="main"] .gform_wrapper .gform_page_footer input.button, section[role="main"] .gform_wrapper .gform_page_footer input[type=submit]{
+	@include btn($seafoamgreen, $seafoamgreen, $white);
 	-webkit-appearance: none;
 	@include size(100%,auto);
 
@@ -82,17 +138,62 @@ input[type="submit"]{
 	padding: 0;
 }
 
+p.input {
+	position: relative;
+	margin: 0;
+	
+	&.active {
+		label {
+			top: 0.5rem;
+			font-size: 1.2rem;
+		}
+		input {
+			padding: 2rem 1.5rem 0.4rem;
+		}
+	}
+	
+	label {
+		position: absolute;
+		top: 1.8rem;
+		left: 1.6rem;
+		color: $grey;
+	}
+}
+
 .styled-select {
-	background: $white url("../img/select-arrow.png") right center no-repeat;
+	background: $white;
 	border: $input_border;
 	@include border-radius($input_border_radius);
-	@include size(100%,4rem);
+	@include size(100%,5rem);
 	margin: $input_margin;
 	overflow: hidden;
 	-webkit-appearance: none;
+	position: relative;
 	
-	&:hover {
-		border-color: shade($blue,20%);
+	&:after {
+		content: "\f107";			
+		font-family: FontAwesome;
+		position: absolute;
+		font-size: 1.6rem;
+		line-height: 1.2;
+		color: rgba($text_color, 0.9);
+		top: 1.4rem;
+		right: 0.8rem;
+		margin: auto;
+		z-index: 0;
+	}
+  
+	&.active {
+		//background: $white url("../img/select-arrow-sm.png") right 2.5rem no-repeat;
+		
+		label {
+			top: 0.3rem;
+			left: 1.4rem;
+			font-size: 1.2rem;
+		}
+		select {
+			padding: 1.5rem 1rem 0.5rem 1.4rem;
+		}
 	}
 	
 	&.focus{
@@ -110,16 +211,81 @@ input[type="submit"]{
 			border: $input_border;
 		}
 	}
+  
+	label {
+		position: absolute;
+		top: 1.6rem;
+		left: 1.2rem;
+		color: $grey;
+	}
 
 	select {
 		background: transparent;
 		border: 0 !important;
 		@include border-radius(0);
-		color: $grey;
-		font-size: $base_font_size;
-		@include size(115%,4rem);
-		padding: $input_padding;
+		color: $text_color;
+		font-size: 1.6rem;
+		@include size(115%,5rem);
+		padding: 1rem;
 		outline: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		position: relative;
+		z-index: 2;
+	}
+}
+
+.gform_wrapper {
+	.gform_heading {
+		h3.gform_title {
+			@extend h3;
+		}
+		span.gform_description {
+			@extend p;
+		}
+	}
+	
+	.gform_body {
+		background: $teal;
+		padding: 2rem;
+		color: $white;
+		
+		@include breakpoint($lg){
+			max-width: 68rem;
+		}
+				
+		a {
+			color: $seafoamgreen;
+		}
+		.gfield_required {
+			color: $yellow;
+		}
+		div.charleft {
+			color: $lightgrey;
+			margin: -0.4rem 0 0.4rem;
+		}
+		span.gform_drop_instructions {
+			color: $lightgrey;
+		}
+	}
+}
+.ginput_container_select, .ginput_container {
+	select {
+		background: $white;
+		height: 3.2rem;
+		
+		&:after {
+			content: "\f107";			
+			font-family: FontAwesome;
+			position: absolute;
+			font-size: 1.6rem;
+			line-height: 1.2;
+			color: rgba($text_color, 0.9);
+			top: 1.4rem;
+			right: 0.8rem;
+			margin: auto;
+			z-index: 0;
+		}
 	}
 }
 
@@ -131,13 +297,13 @@ input[type="submit"]{
 	@include margin(null null 1rem null);
 
 	&.error {
-	    background: $msgred;
-	    background: rgba($msgred,0.6);
-	    border-color: $msgred;
+	    background: $red;
+	    background: rgba($red,0.6);
+	    border-color: $red;
 	}
 	&.success {
-	    background: $msggreen;
-	    background: rgba($msggreen,0.6);
-	    border-color: $msggreen;
+	    background: $green;
+	    background: rgba($green,0.6);
+	    border-color: $green;
 	}
 }

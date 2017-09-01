@@ -4,6 +4,397 @@
 
 header[role="banner"] {
 	@include clearfix;
-	@include background-image(linear-gradient(to bottom, tint($black,25%), tint($lightgrey,50%)));
-	padding: 2rem 0;
+	background: $white;
+	position: fixed;
+	top: -100%;
+	left: 0;
+	padding: 0;
+	width: 100%;
+	z-index: 100;
+	@include box-shadow(0 0.1rem 0.5rem rgba(0, 0, 0, 0.3));
+	@include transition-property(top);
+	@include transition-duration(0.5s);
+	@include transition-timing-function(ease-in-out);
+	
+	@include breakpoint($md){
+		@include box-shadow(0 0.1rem 1rem rgba(0, 0, 0, 0.3));
+	}
+	
+	&.open {
+		top: 0;
+	}
+	
+	#logo_circle {
+		width: 10rem;
+		height: 10rem;
+		@include border-radius(50%);
+		background: $white;
+		@include box-shadow(0 0.1rem 1rem rgba(0, 0, 0, 0.3));
+		position: absolute;
+	    top: 0;
+	    right: 0;
+	    left: 0;
+	    bottom: -3.5rem;
+	    margin: auto;
+	    z-index: -1;
+	    
+	    @include breakpoint($md){
+			width: 9rem;
+			height: 9rem;
+		    left: -0.4rem;
+			bottom: -6.3rem;
+	    }
+	    @include breakpoint($lg){
+		    width: 12rem;
+			height: 12rem;
+			bottom: -7.1rem;
+	    }
+	}
+	
+	#pre_menu {
+	    display: none;
+		width: 100%;
+		text-align: center;
+	    
+	    @include breakpoint($md){
+		    display: block;
+			padding: 0.7rem 0 0.5rem;
+	    }
+		
+		li {
+			display: inline-block;
+			
+			&:not(:last-child){
+				&:after {
+					content: " | "
+				}
+			}
+		}
+		
+		a {
+			text-transform: uppercase;
+			color: $grey;
+			padding: 0.5rem;
+			font-size: 1.1rem;
+			font-weight: 600;
+		}
+	}
+		
+	#main_menu {
+		background: $white;
+	    width: 100%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    height: 7.5rem;
+	    position: absolute;
+	    top: 0;
+	    z-index: -1;
+	    
+	    @include breakpoint($md){
+		    border-top: 1px solid $lightgrey;
+		    height: auto;
+		    position: static;
+		    z-index: 1;
+	    }
+	    
+	    .wrap {
+		    width: 100%;
+			margin: 0;
+		    padding: 0;
+		    
+		    @include breakpoint($lg){
+			    padding: 0 1.5rem;
+		    }
+	    }
+	    
+	    .residents {
+		    ul {
+			    li {
+				    width: calc(25% - 2.25rem);
+				    
+					@include breakpoint($lg){
+						width: calc(25% - 3rem);
+					}
+					
+					&.menu-logo {
+					    width: 9rem;
+					    height: 9rem;
+						
+					    @include breakpoint($lg){
+						    width: 12rem;
+						    height: 12rem;
+						}
+					}
+				
+					.sub-menu {
+						display: none;
+						padding: 1rem 0;
+						background: $seafoamgreen;
+						@include position(absolute, 100% 0 null 0);
+						width: 100%;
+						
+						li {
+							width: 100%;
+							font-family: $base_font;
+							font-size: 1.6rem;
+							
+							&:before {
+								display: none;
+							}
+							
+							a {
+								padding: 0.8rem 1rem;
+								font-size: 1.3rem;
+								color: $white;
+								@include single-transition(none);
+								
+								&:hover, &.current-menu-item {
+									@include dotted($white, bottom);
+								}
+							}
+						}
+					}
+			    }
+		    }
+	    }
+		
+		ul {
+			display: none;
+			width: 100%;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-items: center;
+			
+		    @include breakpoint($md){
+			    display: flex;
+		    }
+			
+			li {
+				font-family: $verrado_heading_font;
+				font-size: 1.8rem;
+				line-height: 1.2;
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+				
+				@include breakpoint($md){
+					font-size: 1.4rem;
+				}
+				@include breakpoint($lg){
+					font-size: 2rem;
+				}
+				@include breakpoint($xl){
+					font-size: 2.4rem;
+				}
+									
+				&:before {
+					content: "";
+					display: block;
+					background: $green;
+					height: 0.5rem;
+					width: 0;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					margin: 0 auto 1rem;
+					@include transition-property(width);
+					@include transition-duration(0.2s);
+				}
+				
+				&:hover, &.current-menu-item {
+					&:before {
+						width: 100%;
+					}
+				}
+				
+				&.menu-logo {
+					text-indent: -999rem;
+					background: url(../img/logo.png) center center no-repeat;
+				    background-size: contain;
+				    width: 9rem;
+				    height: 9rem;
+					margin: 0 0 -3rem;
+					
+				    @include breakpoint($lg){
+					    width: 12rem;
+					    height: 12rem;
+					    margin-bottom: -4rem;
+					}
+					
+					&:before {
+						display: none;
+					}
+					
+					a {
+						width: 100%;
+						height: 100%;
+						padding: 0;
+					}
+				}
+				
+				a {
+					color: $text_color;
+					padding: 2.8rem 1.4rem;
+										
+					@include breakpoint($lg){
+						padding: 3rem 2.5rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+	
+#mobile_logo {
+	display: block;
+	text-indent: -999rem;
+	background: url(../img/logo.png) center center no-repeat;
+    background-size: contain;
+    width: 10rem;
+    height: 10rem;
+    margin: 0.5rem auto -3rem;
+    
+    @include breakpoint($md){
+		display: none;
+	}
+}
+
+#menu_btn {
+	position: absolute;
+	top: 2.5rem;
+	right: 1.5rem;
+	font-size: 2.4rem;
+	line-height: 1;
+	color: $text_color;
+    
+    @include breakpoint($md){
+		display: none;
+	}
+}
+
+#mobile_main_menu {
+	position: fixed;
+    top: -110%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 7.5rem;
+    background: $seafoamgreen;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+	@include transition-property(top);
+	@include transition-duration(0.5s);
+	@include transition-timing-function(ease-in-out);
+	@include box-shadow(0 0.1rem 1rem rgba(0, 0, 0, 0.3));
+    
+    @include breakpoint($md){
+		display: none;
+	}
+    
+    &.open {
+	    top: 0;
+    }
+    
+    
+	#mobile_pre_menu {
+		width: 100%;
+		text-align: center;
+		position: absolute;
+		bottom: 1rem;
+		left: 0;
+		color: $white;
+		
+		ul {
+			border: 0;
+			background: transparent;
+			
+			li {
+				border: 0;
+				background: transparent;
+				display: inline;
+				font-size: 1.1rem;
+				
+				&:not(:last-child){
+					&:after {
+						content: " | "
+					}
+				}
+				
+				a {
+					display: inline-block;
+					text-transform: uppercase;
+					color: $white;
+					font-family: $base_font;
+					padding: 0.5rem;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+    
+    .wrap {
+	    width: 100%;
+	    padding: 0 2rem;
+    }
+	
+	ul {
+		width: 100%;
+		@include dotted($lightgrey, top);
+		
+		li {
+			font-family: $verrado_heading_font;
+			font-size: 2.4rem;
+			line-height: 1.2;
+			text-align: center;
+			width: 100%;
+			@include dotted($lightgrey, bottom);
+			
+			&.menu-logo {
+				display: none;
+			}
+			&.menu-item-has-children {
+				position: relative;
+			
+				.subnav-toggle {
+				    @include position(absolute, 1.6rem 0 null null);
+				    font-size: 3rem;
+				    line-height: 1.2;
+				    color: #fff;
+				    margin: auto;
+				    padding: 0 1rem;
+				    z-index: 0;
+				}
+			}
+			
+			a {
+				display: block;
+				color: $white;
+				padding: 2.2rem 1.5rem;
+			}
+			
+			.sub-menu {
+				display: none;
+				@include dotted($lightgrey, top);
+				padding: 1rem 0;
+				
+				li {
+					font-family: $base_font;
+					font-size: 1.6rem;
+					background: none;
+					
+					a {
+						padding: 1rem 1.5rem;
+					}
+				}
+			}
+		}
+	}
 }

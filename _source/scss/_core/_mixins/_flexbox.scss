@@ -106,3 +106,10 @@
 		align-self: $value;
 	}
 }
+
+//  row | row-reverse | column | column-revers
+@mixin flex-direction($value){
+	-ms-flex-direction: $value;
+	-webkit-flex-direction: $value;
+	flex-direction: $value;
+}

@@ -6,6 +6,9 @@
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 }
+*:focus {
+	outline: none;
+}
 
 html {
 	-ms-text-size-adjust: 100%;
@@ -30,6 +33,4 @@ picture {
 	height: auto;
 	vertical-align: middle;
 }
-
-
 

@@ -1,0 +1,430 @@
+body.lp-fyh-2017 {
+	background: #ededed;
+	
+	#template_page-home {
+		padding-top: 5.5rem;
+		
+		@include breakpoint($md_lg){
+			padding-top: 9rem;
+		}
+	}
+	
+	
+	/*
+	  Header
+	============================================*/
+	header[role="banner"] {
+		@include clearfix;
+		border-bottom: 5px solid #ededed;
+		background: $white;
+		z-index: 1;
+		width: 100%;
+		overflow: visible;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 5.5rem;
+		
+		@include breakpoint($md_lg) {
+			border-bottom: 10px solid #ededed;
+			height: 9rem; 
+		}
+		
+		.wrap {
+			max-width: 100%; 
+			overflow: visible;
+			
+			@include breakpoint($md_lg) {
+				max-width: 90%;
+			}
+		}
+		
+		#logo_circle {
+			display: block;
+			box-shadow: none;
+			width: 7rem;
+		    height: 7rem;
+		    left: 0;
+		    bottom: -2.5rem;
+		    
+		    
+			@include breakpoint($md_lg) {
+				width: 10rem;
+			    height: 10rem;
+			    bottom: -4rem;
+			}
+		}
+		
+		.logo {
+			display: block;
+			margin: 0 auto;
+			text-align: center;
+			float: none; 
+			
+			img {
+				display: inline-block;
+				width: 6rem;
+				position: relative;
+				top: 1rem; 
+			
+				@include breakpoint($md_lg) {
+					width: 10rem;
+				} 
+			}
+		}
+	}
+		
+		
+	/*
+	  Home
+	============================================*/
+	#find_a_home {
+		border-right: 5px solid #ededed;
+		border-bottom: 5px solid #ededed;
+		border-left: 5px solid #ededed;
+		padding: 21.5rem 0 0;
+		background-position: center top;
+		background-size: auto 21rem; 
+		background-repeat: no-repeat;
+		
+		@include breakpoint($md_lg) {
+			border-right: 10px solid #ededed;
+			border-bottom: 10px solid #ededed;
+			border-left: 10px solid #ededed; 
+			background-size: cover; 
+			padding: 18rem 0 10rem;
+		}
+		@include breakpoint($lg) {
+			padding: 24rem 0 10rem;
+		}
+		
+		.homesearch {
+			.wrap {
+				max-width: 94rem;
+				padding: 0;
+			}
+			
+			form {
+				@include clearfix;
+				background: rgba($darkgrey, 0.85);
+				padding: 2rem 3rem 5rem;
+				//font-family: $base_font;
+
+				@include breakpoint($lg) {
+					padding: 2rem 3.9rem 3rem; 
+				} 
+				
+				h1 {
+					color: white;
+					font-size: 2rem;
+					font-weight: 500;
+					text-align: center; 
+					font-family: $base_font;
+					text-transform: uppercase;
+					
+					@include breakpoint($md_lg) {
+						font-size: 2.2rem; 
+					}
+				}
+				
+				p.input {
+					margin: 0;
+					
+					label {
+						top: 1.6rem;
+					}				
+					input {
+						background: white;
+					    border: 2px solid white;
+					    color: $text_color;
+					    //font-family: $base_font;
+					    font-size: 16px;
+					    line-height: 1.4em;
+					    padding: 0.75em;
+					}
+					
+					&.active {
+						label {
+							top: 0.4rem;
+						}
+						input {
+							padding: 1.3em 0.75em 0.2em;
+						}
+					}
+				}
+				select {
+					//font-family: $base_font;
+				}
+				input[type="submit"] {
+					height: 5rem; 
+					background: $red;
+					border: 0;
+					color: $white;
+				}
+				.input-field { 
+					width: 100%; 
+					
+					&.button {
+						text-align: center;
+						margin-right: 0; 
+						
+						.btn {
+							width: 100%; 
+						}
+					}
+					
+					@include breakpoint($md_lg) {
+						float: left;
+						margin-right: 3px;
+						margin-bottom: 1em;
+						width: 28.3%; 
+						
+						&.short {
+							width: 13%; 
+						}
+						&.button {
+							float: none;
+							margin: 0 auto; 
+						} 
+					}
+					@include breakpoint($lg) {
+						width: 21.6%;
+						margin-bottom: 0; 
+						
+						&.short {
+							width: 12.136%; 
+						}
+						&.button {
+							width: 21.6%;
+							float: left; 
+						} 
+					}
+				
+				}
+			}
+		}
+	}
+			
+			
+	#explore {
+		padding: 3rem 0 6rem;
+		
+		header {
+			margin-bottom: 4rem;
+			text-align: center;
+			
+			@include breakpoint($md_lg){
+				padding: 0 3em;
+			}
+			@include breakpoint($lg){
+				padding: 0 6em;
+			}
+			
+			h2 {
+				font-size: 3.5rem;
+				font-family: $verrado_heading_font;
+				font-weight: 700;
+				margin: 1rem 0;
+				color: $green;
+				
+				@include breakpoint($md_lg){
+					font-size: 4rem;
+					margin: 2rem 0;
+				}
+				@include breakpoint($lg){
+					font-size: 4.4rem;
+					margin: 3rem 0;
+				}
+			}
+			p {
+				font-family: $base_font;
+				font-size: 1.5rem;
+			}
+			strong, b {
+				font-weight: 700;
+			}
+		}
+		.grid_blocks { 
+			article {
+				padding: 0 0 4em;
+				text-align: center; 
+			
+				h2 {
+					font-size: 1.8em; 
+				}
+				
+				@include breakpoint($md_lg) {
+					padding: 0 13% 4em; 
+				} 
+			}
+			
+			.row {
+				display: flex;
+				flex-wrap: wrap;
+				max-width: 570px;
+				margin: 0 auto; 
+				
+				@include breakpoint($lg) {
+					max-width: 100%; 
+				} 
+			}
+			
+			.block {
+				background: none !important;
+				height: auto;
+				margin-bottom: 3px;
+				position: relative;
+				text-align: center;
+				overflow: hidden;
+				float: left; 
+				
+				img {
+					width: 100%;
+					height: auto; 
+					max-height: 159px;
+				}
+				iframe {
+					max-height: 320px; 
+				}
+				
+				&.sm_square {
+					width: 32.8%;
+					margin-right: 3px; 
+
+					&.last {
+						margin-right: 0;
+						margin-left: 3px; 
+					}
+				}
+				&.lg_rectangle {
+					width: 65.9%; 
+					
+					&.last {
+						margin-left: 0;
+						margin-right: 0; 
+					}
+				}
+				&.lg_square {
+					width: 100%;
+					float: left; 
+					
+					@include breakpoint($lg) {
+						max-height: 320px; 
+					} 
+				}
+				
+				@include breakpoint($lg) {
+					&.d_50 {
+						width: 50%; 
+					}
+					&.d_50:nth-child(2n) {
+						padding-left: 3px; 
+					} 
+				}
+				
+				&:hover { 
+					.cta_box {
+						-moz-transition: all 0.3s ease-in-out;
+						-o-transition: all 0.3s ease-in-out;
+						-webkit-transition: all 0.3s ease-in-out;
+						transition: all 0.3s ease-in-out; 
+						
+						&.alt {
+							background: white !important; 
+							
+							p, blockquote, .blockquote-right, .blockquote-left {
+								color: #42443f !important;
+							}
+						}
+					}
+				}
+				
+				a {
+					display: inline-block;
+					height: 100%;
+					width: 100%; 
+				}
+				.valign {
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					margin: auto; 
+					
+					&.bottom {
+						top: 42%; 
+					}
+				}
+				.image_title {
+					margin: 0 auto 5em;
+					max-width: 85%; 
+				}
+				.cta_box {
+					background: rgba(66, 68, 63, 0.65);
+					border: 2px solid;
+					border-color: #42443f;
+					margin: auto;
+					max-width: 170px;
+					width: 84%; 
+					
+					&.alt {
+						background: transparent;
+						border-color: white !important; 
+					}
+					&.fullwidth {
+						max-width: none;
+						width: 92.75%; 
+					}
+					
+					.textarea {
+						display: table;
+						height: 65px;
+						padding: 2em 0;
+						position: relative;
+						vertical-align: middle;
+						width: 100%; 
+						
+						
+						p, blockquote, .blockquote-right, .blockquote-left {
+							color: white;
+							display: table-cell;
+							font-size: 1.2em;
+							font-weight: 800;
+							margin-bottom: 0;
+							padding: 0 1em;
+							text-transform: uppercase;
+							vertical-align: middle;
+							width: 100%; 
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	footer[role="contentinfo"] {
+		background: $white;
+		border-top: #e5e5e6;
+		color: $grey;
+		
+		nav[role="navigation"] ul li a {
+			color: $grey;
+		}
+		
+		nav.social ul {
+			li.facebook a {
+				background: url("../img/icon-facebook-ltgrey.png") top center no-repeat;
+				background-size: cover;
+			}
+			li.youtube a {
+				background: url("../img/icon-youtube-ltgrey.png") top center no-repeat;
+				background-size: cover;
+			}
+			li.google a {
+				background: url("../img/icon-google-ltgrey.png") top center no-repeat;
+				background-size: cover;
+			}
+		}
+	}
+}

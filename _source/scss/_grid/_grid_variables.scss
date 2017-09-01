@@ -23,12 +23,14 @@ $c: 0; // leave this at 0
 // Breakpoints
 $sm: 320px;
 $md: 600px;
+$md_lg: 768px;
 $lg: 900px;
+$lg_xl: 1032px;
 $xl: $c;
 $xxl: 1500px;
 
 // MAP FOR GRID CLASSES
-$grid_classes: ("MEDIUM" $md "md"),("LARGE" $lg "lg"),("XTRA LARGE" $xl "xl"),("XTRA XTRA LARGE" $xxl "xxl");
+$grid_classes: ("MEDIUM" $md "md"),("MEDIUM LARGE" $md_lg "md-lg"),("LARGE" $lg "lg"),("XTRA LARGE" $xl "xl"),("XTRA XTRA LARGE" $xxl "xxl");
 
 // Other Grid Variables
 $grid_border_box: border-box;

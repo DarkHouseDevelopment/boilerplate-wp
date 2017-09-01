@@ -1,14 +1,8 @@
-<?php get_header(); ?>
+<?php get_header(); 
 
-	<div class="wrap">
+	echo "<section role='main'>";
+	echo "<h1 class='page-title'>Oops, page not found :(</h1>";
+	echo "<div class='wrap' style='text-align:center'><a href='".get_site_url()."' class='btn'>Back to homepage</a></div>";
+	echo "</section>";
 
-		<section class="content" role="main">
-			
-			<h2>Oops, page not found :(</h2>
-			<a href="<?php bloginfo('url'); ?>" class="btn">Back to homepage</a>
-		
-		</section>
-	
-	</div>
-
-<?php get_footer(); ?>
+get_footer();

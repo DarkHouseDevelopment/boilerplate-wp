@@ -1,0 +1,106 @@
+header[role="banner"], #header, nav, .buttons, .link, article.details, .breadcrumb {
+  display: none;
+}
+
+.section {
+  position: relative !important;
+}
+
+.slider {
+  position: absolute;
+  top: 0; right: 0;
+  width: 50% !important;
+  
+  button, .slick-arrow {
+    display: none !important;
+  } 
+  img {
+    width: 200px !important;
+    margin: 0 auto;
+  }
+}
+
+.property-details {
+  width: 40% !important;
+}
+
+.property-specs {
+	width: 100%;
+	background: $shade25;
+	padding: 0.5rem 2rem;
+	text-align:center;
+	position: relative;
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include flex-justify-content(space-between);
+	@include flex-align-items(center);
+	
+	ul {
+		width: 100%;
+		@include flexbox();
+		@include flex-wrap(wrap);
+		@include flex-justify-content(space-between);
+				
+		&:first-child {
+			border-bottom: 1px solid $shade50;
+			padding: 0 0 2rem 0;
+		}
+		&:last-child {
+			padding: 2rem 0 0 0;
+		}
+		
+		li {			
+			border-right: 1px solid $shade50;
+			border-bottom: none;
+			margin: 0;
+			padding: 0.5rem 0;
+			width: 26%;
+			float: left;
+			
+			&:first-child {
+				width: 44%;
+				border-bottom: 0;
+			}
+			&:not(:first-child){
+				margin: 0;
+				padding: 0.5rem 0;
+			}
+	
+			&:last-child {
+				border: 0;
+				width: 30%;
+			}
+			
+			.label {
+				font-size: 1.6em;
+				line-height: 1.2em;
+			}
+			.number {
+				font-size: 2.4em;
+				font-weight: 600;
+				line-height: 1.4em;
+			}
+		}
+	}
+}
+
+#home_jump {
+	display: none;
+}
+
+footer[role="contentinfo"] {
+  div {
+    text-align: center !important;
+    
+    &.last {
+      width: 100% !important;  
+    }
+    
+    .logo_dmb_print {
+      display: block !important;
+    }   
+    .logo_dmb_web {
+      display: none !important;
+    }
+  }
+}

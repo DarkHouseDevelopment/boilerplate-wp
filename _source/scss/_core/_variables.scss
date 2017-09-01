@@ -2,43 +2,92 @@
 // VARIABLES
 //------------------------------------------------------------------------
 
-$black: rgb(20,20,20);
-$darkgrey: rgb(51,51,51);
-$grey: rgb(153,153,153);
-$lightgrey: rgb(204,204,204);
+$black: rgb(34,34,34);
+$darkgrey: rgb(71,73,79);
+$grey: rgb(163,170,158);
+$lightgrey: rgb(234,237,221);
 $white: rgb(255,255,255);
 
-// Site Colors
+$shade75: rgb(170,170,170);
+$shade50: rgb(204,204,204);
+$shade25: rgb(237,237,237);
 
-$blue: rgb(0,180,188);
-$msggreen: rgb(60,150,10); // Used for Success Messages
-$msgred: rgb(225,0,0); // Used for Error Messages
+// Primary Site Colors
+
+$green: rgb(153,201,61);
+$blue: rgb(5,173,209);
+$yellow: rgb(255,206,10);
+$red: rgb(239,63,56);
 $bgcolor: $white;
+
+// Secondary Site Colors
+
+$lightgreen: rgb(181,207,75);
+$lightblue: rgb(91,204,198);
+$lightyellow: rgb(227,224,102);
+$lightred: rgb(244,84,99);
+
+$yellowgreen: rgb(214,219,107);
+$palegreen: rgb(209,226,163);
+$seafoamgreen: rgb(84,196,145);
+
+$teal: rgb(33,145,160);
+$darkteal: rgb(0,124,135);
+
+$pink: rgb(200,30,88);
+$lightpink: rgb(255,117,130);
+$palepink: rgb(255,224,221);
+
+$orange: rgb(255,158,51);
+$lightbrown: rgb(186,165,114);
+$yelloworange: rgb(226,181,71);
+
+$victory_red: rgb(200,30,88);
+$victory_darkmaroon: rgb(99,13,59);
+$victory_maroon: rgb(130,28,84);
+$victory_purple: rgb(125,64,120);
+$victory_blue: rgb(20,185,246);
+$victory_paleblue: rgb(192,232,237);
+$victory_grey: rgb(71,97,110);
+$victory_lightgrey: rgb(170,170,170);
 
 // Typography
 
-$text_color: $darkgrey;
-$base_font: $font-stack-helvetica;
-$base_font_size: 1.8rem;
-$base_font_weight: 400;
-$base_line_height: 1.2;
+@font-face {
+  font-family: "ThirstyScriptBold";
+  src: url('../fonts/thirstyscriptbold-webfont.ttf') format('truetype'), url('../fonts/thirstyscriptbold-webfont.woff') format('woff'), url('../fonts/thirstyscriptbold-webfont.eot') format('eot'), url('../fonts/thirstyscriptbold-webfont.svg') format('svg');
+}
+@font-face {
+  font-family: "ThirstyScriptBlack";
+  src: url('../fonts/thirstyscriptblack-webfont.ttf') format('truetype'), url('../fonts/thirstyscriptblack-webfont.woff') format('woff'), url('../fonts/thirstyscriptblack-webfont.eot') format('eot'), url('../fonts/thirstyscriptblack-webfont.svg') format('svg');
+}
 
-$heading_font: $font-stack-helvetica;
+$text_color: $darkgrey;
+$base_font: "Gotham SSm A", "Gotham SSm B", sans-serif;
+$base_font_size: 1.6rem;
+$base_font_weight: 400;
+$base_line_height: 1.5;
+$feature_font: "Georgia", "Palatino", "Times", serif;
+
+$heading_font: $base_font;
 $heading_color: $black;
+
+$verrado_heading_font : "ThirstyScriptBlack", serif;
+$victory_heading_font : "freight-big-pro", serif;
 
 
 // Links
 
-$link_color: $blue;
+$link_color: $darkteal;
 $link_font_weight: 400;
-$link_hover: shade($blue,30%);
+$link_hover: shade($darkteal,30%);
 
 // Elements
 
 $placeholder_color: $grey;
-$input_border: 1px solid $grey;
-$input_border_radius: 2px;
-$input_padding: 1rem 1.5rem;
+$input_border: 1px solid $white;
+$input_border_radius: 0;
+$input_padding: 1.2rem 1.5rem;
 $input_margin: 0 0 1rem;
 $input_focus_glow: 0 0 0.5rem rgba($blue,0.5);
 
@@ -48,8 +97,8 @@ $input_focus_glow: 0 0 0.5rem rgba($blue,0.5);
 $btn_border_width: 2px;
 $btn_border_style: solid;
 $btn_font: $base_font;
-$btn_font_size: 1.6rem;
-$btn_font_weight: 400;
-$btn_line_height: 1;
-$btn_padding: 1rem 2rem;
-$btn_border_radius: 3px;
+$btn_font_size: 1.5rem;
+$btn_font_weight: 900;
+$btn_line_height: 1.1;
+$btn_padding: 1.5rem 2.5rem;
+$btn_border_radius: 0;

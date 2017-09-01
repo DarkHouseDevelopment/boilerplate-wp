@@ -10,8 +10,9 @@ images_dir = "assets/img"
 javascripts_dir = "assets/js"
 fonts_dir ="assets/fonts"
 
+
 output_style = :compressed
-environment = :development
+environment = :production
 
 relative_assets = true
 disable_warnings = true

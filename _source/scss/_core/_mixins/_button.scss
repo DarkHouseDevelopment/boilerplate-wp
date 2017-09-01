@@ -6,8 +6,14 @@
 	background: $btn_bg;
 	border-color: $btn_border;
 	color: $btn_color;
+	
+	&:focus {		
+		background: $btn_bg;
+		border-color: $btn_border;
+		color: $btn_color;
+	}
 
-	&:visited {
+	&:visited, &:active {
 		background: $btn_bg;
 		border-color: $btn_border;
 		color: $btn_color;
@@ -21,6 +27,8 @@
 	font-size: $btn_font_size;
 	font-weight: $btn_font_weight;
 	line-height: $btn_line_height;
+	text-transform: uppercase;
+	text-align: center;
 	padding: $btn_padding;
 	display: inline-block;
 	cursor: pointer;

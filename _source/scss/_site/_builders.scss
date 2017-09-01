@@ -1,0 +1,273 @@
+/************************************************************************/
+/* BUILDERS PAGE STYLES
+/************************************************************************/
+
+.builder-header {
+	@include flexbox();
+	@include flex-wrap(wrap);
+	
+	.builder-logo {
+		width: 100%;
+		background: $darkteal;
+		padding: 4rem 2rem;
+		@include flexbox();
+		@include flex-align-items(center);
+		@include flex-justify-content(center);
+		
+		@include breakpoint($md){
+			width: 40%;
+		}
+		@include breakpoint($md_lg){
+			width: 33.333%;
+		}
+	}
+	.builder-image {
+		width: 100%;
+		border-top: 0.2rem solid $white;
+		
+		@include breakpoint($md){
+			width: 60%;
+			border-top: 0;
+			border-left: 0.2rem solid $white;
+		}
+		@include breakpoint($md_lg){
+			width: 66.666%;
+		}
+	}
+}
+
+.builder-intro {
+	padding: 2rem 2rem 0;
+	
+	@include breakpoint($md){
+		padding: 4rem 4rem 2rem;
+	}
+	
+	a.btn {
+		margin-bottom: 2rem;
+	}
+		
+	img {
+		display: block;
+	
+		&.alignnone {
+			display: inline-block;
+		}
+		&.alignleft {
+			margin: 0 auto;
+			
+			@include breakpoint($sm){
+				float: left;
+				margin: 0.4em 1.5em 1em 0;
+			}
+		}
+		&.alignright {
+			margin: 0 auto;
+			
+			@include breakpoint($sm){
+				float: right;
+				margin: 0.4em 0 1em 1.5em;
+			}
+		}
+		&.aligncenter {
+			display: block;
+			margin: 0 auto;
+		}
+	}
+}
+
+.builder-results {
+	padding-bottom: 6rem;
+}
+
+
+/************************************************************************/
+/* BUILDERS SHOWCASE PAGE STYLES
+/************************************************************************/
+
+section[role="main"] .showcase-content {			
+	
+	h1.page-title {
+		width: 100%;
+		color: $text_color;
+		margin-bottom: 1rem;
+	}
+	h2 {
+		color: $text_color;
+		margin: 0;
+		font-weight: 900;
+	}
+	h3 {
+		color: $text_color;
+		margin-bottom: 3rem;
+		
+		span {
+			color: $red;
+		}
+	}
+	
+	article {
+		padding-bottom: 1rem;
+		@include dotted($shade75, bottom);
+		@include flexbox();
+		@include flex-wrap(wrap);
+		@include flex-justify-content(space-between);
+		
+		.featured-img {
+			width: 100%;
+			margin-bottom: 3rem;
+			
+			@include breakpoint($md_lg){
+				width: calc(50% - 1.5rem);
+			}
+			@include breakpoint($lg){
+				width: calc(50% - 1.5rem);
+			}
+		}
+		.section-content {			
+			width: 100%;
+			
+			@include breakpoint($md_lg){
+				width: calc(50% - 1.5rem);
+			}
+			@include breakpoint($lg){
+				width: calc(50% - 1.5rem);
+			}
+			
+			ul.features-list {
+				margin: 0 0 3rem;
+				padding: 0;
+				
+				li {
+					display: inline-block;
+					padding-left: 2rem;
+					position: relative;
+					
+					&:before {
+						content: "•";
+						position: absolute;
+						top: 0;
+						left: 0.4rem;
+					}
+					&:first-child {
+						list-style-type: none;
+						padding: 0;
+						
+						&:before {
+							display: none;
+						}
+					}
+				}
+			}
+			.btn {
+				margin: 0 0 3rem 0;
+			}
+		}
+		.collage-content {
+			width: 100%;
+			margin-bottom: 3rem;
+			
+			@include breakpoint($md_lg){
+				width: calc(50% - 1.5rem);
+			}
+			@include breakpoint($lg){
+				width: calc(50% - 1.5rem);
+			}
+			
+			.collage {				
+				@include flexbox();
+				@include flex-wrap(wrap);
+				@include flex-direction(row-reverse);
+			}
+			
+			.collage-img {
+				background: $darkteal;
+				width: 50%;
+				@include flexbox();
+				@include flex-align-items(center);
+				@include flex-justify-content(center);
+				
+				&:first-child {
+					img {
+						max-width: 90%;
+						height: auto;
+					}
+				}
+				
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+		.floorplans {
+			@include flexbox();
+			@include flex-wrap(wrap);
+			@include flex-justify-content(space-between);
+			
+			h3 {
+				width: 100%;
+				margin-bottom: 0;
+			}
+			
+			.floorplan { //on home search results page
+				position: relative;
+				cursor: pointer;
+				width: calc(50% - 1.5rem);
+				height: 35rem;
+				text-align: center;
+								
+				&:hover{
+					.zoom {
+						display: block;
+					}
+				}
+				&.placeholder {
+					height: 0;
+				}
+				
+				img {
+					max-width: 100%;
+					max-height: 100%;
+				}
+			
+				.zoom {
+					display: none;
+					@include position(absolute, 0 null null 0);
+					background: $darkteal;
+					padding: 0.5rem 0.7rem;
+					font-size: 2.4rem;
+					line-height: 1;
+					color: $white;
+				}
+	
+				p {
+					font-weight: 800;
+					margin-bottom: 1.25em;
+				}
+			}
+		
+			.overlay {
+				padding-bottom: 10em;
+				
+				.actions {
+					color: $darkteal;
+					font-size: 1.6rem;
+					margin: 15rem 0 2rem;
+					text-align: right;
+				}
+			}
+		}
+	}
+}
+
+footer.disclaimer-text {
+	padding-top: 3rem;
+	color: $grey;
+	text-align: center;
+	
+	p {
+		font-size: 1.2rem;
+		line-height: 1.5;
+	}
+}

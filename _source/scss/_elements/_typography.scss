@@ -40,7 +40,12 @@ a {
 p {
 	font-size: $base_font_size;
 	line-height: $base_line_height;
-	@include margin(null null 1.5rem null);
+	@include margin(null null 3rem null);
+}
+.feature p {
+	font-size: 1.8rem;
+	line-height: 1.8;
+	font-family: $feature_font;
 }
 
 //------------------------------------------------------------------------
@@ -50,26 +55,44 @@ p {
 #{headings()} {
 	color: $heading_color;
 	font-family: $heading_font;
-	font-weight: 500;
+	font-weight: 800;
 	text-rendering: optimizelegibility;
-	line-height: $base_line_height;
+	line-height: 1.4;
 	margin-bottom: 1rem;
 }
 
 h1 {
 	font-size: 3.2rem;
+	margin-bottom: 2rem;
+	
+	@include breakpoint($md){
+		font-size: 4rem;
+	}
+	@include breakpoint($lg){
+		font-size: 4.8rem;
+	}
+	
+	&.script {
+		font-family: $verrado_heading_font;
+	}
 }
 
 h2 {
-	font-size: 2.4rem;
+	font-size: 2.0rem;
+	font-weight: 500;
+	margin-bottom: 2rem;
+	
+	@include breakpoint($md){
+		font-size: 2.4rem;
+	}
 }
 
 h3 {
-	font-size: 2.0rem;
+	font-size: 1.8rem;
 }
 
 h4 {
-	font-size: 1.8rem;
+	font-size: 1.6rem;
 }
 
 h5 {
@@ -84,12 +107,10 @@ h6 {
 // BASIC TYPOGRAPHY ELEMENTS
 //------------------------------------------------------------------------
 
-blockquote {
-	@extend p;
-	border-left: 2px solid $grey;
-	color: $grey;
-	font-style: italic;
-	@include padding(null null null 1.8rem);
+blockquote, blockquote p {
+	font-family: Georgia, Verdana, serif;
+	color: $teal;
+	font-size: 2.2rem;
 }
 
 ul,
@@ -100,6 +121,10 @@ ol {
 }
 
 article {
+	
+	h1 {
+		color: $green;
+	}
 	
 	ul,
 	ol {

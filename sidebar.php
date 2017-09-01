@@ -1,15 +1,23 @@
 
-		<aside class="sidebar" role="complementary">
-		
-			<?php if ( is_active_sidebar( 'Default Sidebar' ) ) : ?>
-
-				<?php dynamic_sidebar( 'Default Sidebar' ); ?>
-
-			<?php else : ?>
-
-				<p>This theme has sidebar widget support, but there are no active widgets :(</p>
-
-			<?php endif; ?>
-			
-		</aside>
-		
+<aside class="sidebar" role="complementary">
+	<h3>News Archives</h3>
+	<div id="monthly_archive" class="styled-select">
+		<select name="monthly_archive">
+			<option selected="selected" disabled="disabled">By Month</option>
+			<?php $args = array(
+				'type'            => 'monthly',
+				'limit'           => '',
+				'format'          => 'option',
+				'before'          => '',
+				'after'           => '',
+				'show_post_count' => false,
+				'echo'            => 1,
+				'order'           => 'DESC'
+			);
+			wp_get_archives( $args ); ?>
+		</select>
+	</div>
+	<ul id="category_archive">
+		<?php wp_list_categories('title_li=By Category&child_of=2'); ?>
+	</ul>
+</aside>

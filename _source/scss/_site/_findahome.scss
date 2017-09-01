@@ -1,0 +1,23 @@
+.page-template-find-a-home {
+	section[role="main"]{
+		min-height: 100vh;
+		display: flex;
+		align-items: stretch;
+		justify-content: center;
+	}
+	section.find-a-home {
+		padding: 6rem 0 4rem;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		
+		.homesearch {
+			form, .builder-list {
+				background: rgba($darkteal, 0.9);
+			}
+		}
+	}
+	footer[role="contentinfo"] {
+		margin: 0;
+	}
+}

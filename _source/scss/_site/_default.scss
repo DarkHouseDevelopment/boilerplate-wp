@@ -1,3 +1,583 @@
 /************************************************************************/
 /* DEFAULT PAGE STYLES
 /************************************************************************/
+
+.hide-on-mobile {
+	display: none;
+	
+	@include breakpoint($md){
+		display: block;
+	}
+}
+
+.hide-on-desktop {
+	display: block;
+	
+	@include breakpoint($md){
+		display: none;
+	}
+}
+
+.flex-stretch {
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include flex-align-items(stretch);
+}
+
+.dotted-line {
+	width: 100%;
+	height: 0.2rem;
+	@include dotted($shade75, bottom);
+}
+
+
+section[role="main"]{
+	padding-top: 12rem;
+	
+	@include breakpoint($md){
+		padding-top: 16rem;
+	}
+	@include breakpoint($lg){
+		padding-top: 18rem;
+	}
+	
+	h1.page-title {
+		padding: 0 1.5rem;
+		text-align: center;
+		color: $darkteal;
+		
+		&.victory {
+			color: $victory_red;
+		}
+	}
+	
+	section {
+		margin-bottom: 4rem;
+		
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.parent-victory {
+	section[role="main"]{
+		a:not(.btn) {
+			color: $victory_blue;
+			
+			&:hover {
+				color: shade($victory_blue,30%);
+			}
+		}
+	}
+	section.default-content {
+		article {
+			h2 {
+				color: $black;
+				text-transform: uppercase;
+			}
+			blockquote, blockquote p {
+				color: $victory_red;
+			}
+		}
+	}
+}
+
+section.fullwidth {
+	padding: 0;
+	text-align: center;
+	
+	@include breakpoint($md){
+		padding: 4rem 0 3rem;
+	}
+	
+	article {
+		padding: 0;
+		
+		@include breakpoint($md){
+			padding: 0 3.5rem;
+		}
+		@include breakpoint($lg){
+			padding: 0 5.5rem;
+		}
+	}
+}
+
+
+section.fullwidth-slider {
+	
+	.slider {			
+		padding-bottom: 4rem;
+		@include dotted($shade75, bottom);
+		
+		.image-slide {
+			opacity: 0.5;
+			position: relative;
+			
+			&.slick-active {
+				opacity: 1;
+			}
+			
+			@include breakpoint($lg){
+				padding: 0 0.2rem;
+				width: 70rem;
+			}
+			@include breakpoint(1032px){
+				width: 80rem;
+			}
+			@include breakpoint($xl){
+				width: 90rem;
+			}
+			
+			> a {
+				display: block;
+				position: relative;
+			}
+			.caption {
+				background: $teal;
+				color: $white;
+				font-size: 1.4rem;
+				font-weight: bold;
+				padding: 1.5rem 2rem;
+				width: 100%;
+				
+				@include breakpoint($md_lg){					
+					@include position(absolute, null null 0 0);
+					background: rgba($darkteal, 0.8);
+					font-size: 1.8rem;
+				}
+			}
+		}
+		.slick-arrow {
+			background: $darkteal;
+			text-align: center;
+			color: $white;
+	
+			@include breakpoint($md){
+				font-size: 5.6rem;
+				top: calc(50% - 6.6rem);	
+			}
+			@include breakpoint($lg){
+				font-size: 7.2rem;
+				top: calc(50% - 7.2rem);
+				width: calc((100% - 70.4rem) / 2);
+			}
+			@include breakpoint(1032px) {
+				width: calc((100% - 80.4rem) / 2);
+			}
+			@include breakpoint($xl) {
+				width: calc((100% - 90.4rem) / 2);
+			}
+			
+			&.slick-prev {
+				@include breakpoint($md){
+					padding: 2rem;
+				}
+			}
+			&.slick-next {
+				@include breakpoint($md){
+					padding: 2rem;
+					text-indent: 0.5rem;
+				}
+			}
+		}
+	}
+}
+
+section.fullwidth-video {
+	
+	.feature {			
+		padding-bottom: 4rem;
+		@include dotted($shade75, bottom);
+	}
+}
+
+section.default-content {
+	
+	article {
+		padding-bottom: 1rem;
+		@include dotted($shade75, bottom);
+		@include flexbox();
+		@include flex-wrap(wrap);
+		@include flex-direction(column-reverse);
+		@include clearfix();
+		
+		@include breakpoint($md_lg){
+			display: block;
+		}
+		
+		&.columns {
+			@include flex-direction(column);
+		}
+		
+		h2 {
+			color: $green;
+		}
+		a.btn {
+			margin-bottom: 2rem;
+		}
+		
+		.image-feature {
+			width: 100%;
+			float: right;
+			margin-bottom: 2rem;
+			
+			&.image {
+				text-align: center;
+			}
+			
+			&.slider {
+				width: auto;
+				
+				.slick-slide {
+					position: relative;
+					
+					> a {
+						display: block;
+						position: relative;
+					}
+					.caption {
+						background: $darkteal;
+						color: $white;
+						font-size: 1.4rem;
+						padding: 1.2rem 2rem;
+						
+						@include breakpoint($md_lg){
+							@include position(absolute, null null 0 0);
+							background: rgba($darkteal, 0.8);
+						}
+					}
+				}
+				.slick-arrow {					
+					top: 50%;
+					transform: translateY(-50%);
+					color: $white;
+				}
+			}
+			
+			@include breakpoint($md_lg){
+				width: auto;
+				max-width: 48%;
+				margin-left: 3rem;
+				
+				&.image {
+					width: auto;
+					max-width: 48%;
+					
+					&.image-left {
+						float: left;
+						margin-left: 0;
+						margin-right: 3rem;
+					}
+				}
+				&.video {
+					width: 48%;
+				}
+			}
+		}
+
+		div.wp-caption { // image within wysiwyg
+			display: inline-block;
+			width: 100% !important;
+			
+			@include breakpoint($sm) {
+				margin: 0.75em 0 2em;
+			}
+			
+			@include with-layout(12 1) {
+			
+				&.alignleft {
+					img {
+						@include breakpoint($sm) {
+							@include span(6 of 12);
+						}
+					}
+					p {
+						@include breakpoint($sm) {
+							@include span(6 of 12 last);
+							padding-right: 0.6em;
+						}
+					}
+				}
+			
+				&.alignright {
+					p {
+						@include breakpoint($sm) {
+							@include span(6 of 12);
+						}
+					}
+					img {
+						@include breakpoint($sm) {
+							@include span(6 of 12 last);
+							padding-right: 0.6em;
+						}
+					}
+				}
+			}
+			
+			img {
+				margin-bottom: 2em;
+				
+				@include breakpoint($sm) {
+					margin-bottom: 0;
+				}
+			}
+		}
+			
+		img {
+			display: block;
+		
+			&.alignnone {
+				display: inline-block;
+			}
+			&.alignleft {
+				margin: 0 auto;
+				
+				@include breakpoint($sm){
+					float: left;
+					margin: 0.4em 1.5em 1em 0;
+				}
+			}
+			&.alignright {
+				margin: 0 auto;
+				
+				@include breakpoint($sm){
+					float: right;
+					margin: 0.4em 0 1em 1.5em;
+				}
+			}
+			&.aligncenter {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	}
+	
+	&.columns {
+		article {
+			@include breakpoint($md_lg){
+				@include column-count(2);
+				@include column-gap(4rem);
+			}
+		}
+	}
+	
+	&.collage-content {
+		article {
+			@include flexbox();
+			@include flex-wrap(wrap);
+			@include flex-direction(row);
+			@include flex-align-items(center);
+			@include flex-justify-content(space-between);
+			padding-bottom: 4rem;
+			
+			&:before, &:after {
+				content: "";
+				display: none;
+			}
+			
+			.content {
+				width: 100%;
+				
+				@include breakpoint($md_lg){
+					width: calc(50% - 1.5rem);
+				}
+			}
+			.collage {
+				width: 100%;
+				@include flexbox();
+				@include flex-wrap(wrap);
+				
+				@include breakpoint($md_lg){
+					width: calc(50% - 1.5rem);
+				}
+				
+				.collage-image {
+					width: 50%;
+					
+					img {
+						width: 100%;
+						height: auto;
+					}
+				}
+			}			
+		}
+	}
+}
+
+section.business-info {
+	
+	.flex-stretch {
+		padding-bottom: 4rem;
+		
+		&.flex-reverse {
+			flex-direction: row-reverse;
+		}
+	}
+}
+
+section.lead-form-content {
+	.lead-form {
+		padding-bottom: 4rem;
+		
+		form {
+			@include clearfix;
+			background: rgb(99, 13, 59);
+			padding: 2rem 3rem 3rem;
+			
+			&.stay-connected {
+				.input-field {
+					width: 100%;
+					
+					@include breakpoint($md){
+						width: calc(50% - 0.15rem);
+						
+						&.button {
+							width: 100%;
+						}
+					}
+					@include breakpoint($md_lg){
+						width: calc(25% - 0.15rem);
+						
+						&.button {
+							width: 100%;
+						}
+					}
+					@include breakpoint($lg_xl){
+						width: calc(20% - 0.15rem);
+						
+						&.button {
+							width: calc(20% - 0.15rem);
+							
+							input {
+								width: 100%;
+							}
+						}
+					}
+				}
+			}
+			
+			h2 {
+				color: $white;
+				font-size: 2.8em;
+				text-align: center;				
+				
+				@include breakpoint($md_lg) {
+					font-size: 3.2em;
+				}
+			}
+			h3 {
+				color: $white;
+				text-align: center;
+				width: 100%;
+			}			
+		
+			.row {
+				@include flexbox();
+				@include flex-wrap(wrap);
+				@include flex-justify-content(space-between);
+			}
+			
+			.input-field {
+				width: 100%; 
+				
+				&.button {
+					text-align: center;
+					margin-right: 0; 
+					
+					.btn {
+						width: 100%;
+					}
+				}
+				
+				p {
+					margin: 0;
+				}
+			
+				@include breakpoint($md_lg) {
+					width: calc(28% - 0.15rem); 
+					
+					&.short {
+						width: calc(18% - 0.15rem); 
+					}
+					&.button {
+						width: calc(24% - 0.15rem);
+						
+						.btn {
+						  margin: 0;
+						}
+					}
+				} 
+			}
+			.checkboxes {
+				width: 100%;
+				
+				.checkbox {
+					margin: 2rem 0 0;
+					color: $white;
+					
+					@include breakpoint($lg){
+						width: calc(50% - 0.5rem);
+					}
+				}
+			}
+		}
+	}
+}
+
+
+nav#back_nav {
+	padding: 2rem 0 4rem;
+	font-size: 1.4rem;
+	line-height: 1;
+	text-transform: uppercase;
+	
+	a {
+		color: $grey;
+		font-weight: 600;
+	}
+}
+
+
+section.stay-connected {
+	padding: 4rem 0;
+	text-align: center;
+}
+
+
+footer.pagination {	
+	font-size: 1.4em;
+	padding-top: 2em;
+	text-align: center;
+	
+	.pagination {
+		@include clearfix;
+		margin-top: 2em;
+		height: 3em;
+		
+		span.current, a {
+			border: 2px solid $red;
+			padding: 0.5em 1em;
+			margin: 0 2px;
+		}
+		span.pages {
+			margin-right: 10px;
+			display: none;
+			
+			@include breakpoint($md_lg){
+				display: inline;
+			}
+		}
+		a {
+			background: $red;
+			color: $white;
+		}
+		a.first, a.previous, a.last {
+			display: none;
+			
+			@include breakpoint($md_lg){
+				display: inline;
+			}
+		}
+	}
+}

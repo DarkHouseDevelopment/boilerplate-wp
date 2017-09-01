@@ -1,0 +1,448 @@
+/************************************************************************/
+/* PRINT QMI STYLES
+/************************************************************************/
+
+
+#template_page-print-qmi {
+	-webkit-print-color-adjust: exact;
+	padding: 0;
+	
+	.screen-only {
+		display: block;
+	}
+	.print-only {
+		display: none;
+	}
+	
+	.wrap {
+		width: 90%;
+		max-width: 99rem;
+	}
+
+	header[role="banner"]{
+		display: block;
+		height: auto;
+		padding: 3rem 0;
+		position: relative;
+		border: 0;
+		@include box-shadow(none);
+		
+		&#verrado_banner {
+			background: $blue;
+			
+			img {
+				width: 12rem;
+				height: auto;
+				margin-left: 3rem;
+			}
+			
+			h1 {
+				font-family: $verrado_heading_font;
+			}
+		}
+		
+		&#victory_banner {
+			background: $white;
+			border-top: 2px solid $shade50;
+			border-bottom: 2px solid $shade50;
+			padding: 2rem 0;
+						
+			img {
+				width: 15rem;
+				height: auto;
+				margin-right: 3rem;
+			}
+
+			.header-title {
+				width: calc(100% - 18rem);
+				padding: 0 3rem;
+				border-left: 2px solid $victory-red;
+			}
+			
+			h1 {
+				font-family: $victory_heading_font;
+				color: $victory-red;
+				text-transform: uppercase;
+				font-weight: 400;
+				font-size: 7rem;
+				text-align: center;
+				line-height: 0.9;
+				padding-bottom: 2.5rem;
+				
+				span {
+					font-family: $base_font;
+					color: $shade50;
+					font-weight: 500;
+					font-size: 3rem;
+				}
+			}
+		}
+		
+		.header-logo {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.header-title {
+			width: calc(100% - 15rem);
+			padding: 0 3rem;
+		}
+		
+		h1 {
+			color: $white;
+			text-transform: none;
+			font-size: 5.5rem;
+			line-height: 1;
+		}
+	
+		.wrap {
+			width: 100%;
+			display: flex;
+			padding: 0 6rem;
+							
+			.left {
+				text-align: left;
+			}
+			.right {
+				text-align: right;
+			}
+		}
+	}
+	
+	h1 {
+		margin-bottom: 0.5rem;
+	}
+	
+	.date {
+		font-style: italic;
+		font-size: 1.8rem;
+		margin-top: 1rem;
+		margin-bottom: 4rem;
+		text-align: right;
+	}
+	
+	h3 {
+		color: $blue;
+	}
+	
+	.page-break {
+		display: block;
+		page-break-before: always;
+	}
+	
+	table.qmi_results {
+		border-collapse: separate;
+		margin-bottom: 4rem;
+			
+		thead, .thead {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+			
+			@include breakpoint($md_lg){
+				position: static;
+			}
+			
+			th, td {
+				background: $shade50;
+				border: 1px solid $shade50;
+				color: $black;
+				padding: 1rem 1rem;
+				font-size: 1.3rem;
+				font-weight: 400;
+				
+				&:first-of-type{
+					@include border-radius(3px 0 0 0);
+				}
+				&:last-of-type{
+					@include border-radius(0 3px 0 0);
+				}
+			}
+		}
+		tbody {		
+			@include breakpoint($md_lg){
+				border-bottom: 1px solid $shade50;
+				@include border-radius(0 0 3px 3px);
+			}
+			
+			tr {
+				display: block;
+				@include border-radius(3px);
+				@include box-shadow(rgba(0,0,0,0.1) 2px 2px 0);
+				margin-bottom: 2rem;
+				
+				&:last-child {
+					margin: 0;
+				}
+				
+				@include breakpoint($md_lg){
+					display: table-row;
+					margin-bottom: 0;
+					padding: 0;
+					@include border-radius(0);
+					@include box-shadow(none);
+					
+					&:nth-child(odd) {
+						background: #f0f0f0;
+					}
+					
+					&:last-child {
+						td {
+							border-bottom: 1px solid $shade50;
+							
+							&:first-child {
+								@include border-radius(0 0 0 3px);
+							}
+							&:last-child {
+								@include border-radius(0 0 3px 0);
+							}
+						}
+					}
+				}
+				
+				td {
+					background: $shade25;
+					padding: 1rem 2rem;
+					font-weight: 400;
+					display: block;
+					font-size: 1.2rem;
+					line-height: 1.4rem;
+					
+					&:before {
+						content: attr(data-th)": ";
+						font-weight: 500;
+						width: 10rem;
+						display: inline-block;
+					}
+					
+					&:first-child {
+						padding: 2rem 2rem 1rem;
+						@include border-radius(3px 3px 0 0);
+					}
+					&:last-child {
+						padding: 1rem 2rem 1.5rem;
+						@include border-radius(0 0 3px 3px);
+					}
+					
+					@include breakpoint($md_lg){
+						display: table-cell;
+						background: none;
+						padding: 1rem;
+						
+						&:before {
+							display: none;
+						}
+					
+						&:first-of-type, &:last-of-type {
+							@include border-radius(0);
+							padding: 1rem;
+						}
+						&:first-of-type {
+							border-left: 1px solid $shade50;
+						}
+						&:last-of-type {
+							border-right: 1px solid $shade50;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	.qmi_disclaimer {
+		margin-top: 4rem;
+		
+		.text {
+			
+			p {
+				font-size: 1.2rem;
+			}
+			.blue { 
+				color: $blue;
+			}
+		}
+		.logo {
+			    
+			img {
+				position: relative;
+				
+				@include breakpoint($lg){
+					top: 3.5rem;
+				}
+			}
+		}
+	}
+	
+	.overlay {
+		@include flexbox();
+		@include flex-align-items(center);
+		@include flex-justify-content(center);
+		
+		#print_modal {
+			max-width: calc(100% - 3rem);
+			padding: 2rem 3rem;
+			background: $darkteal;
+			color: $white;
+			
+			p {
+				margin: 0 0 1.5rem;
+			}
+			.btn {
+				margin: 0 0.5rem 1rem;
+			}			
+			> a {
+				color: $white;
+			}
+		}
+	}
+}
+
+@media print {
+	#template_page-print-qmi {
+		.wrap {
+			width: 100%;
+		}
+		
+		.screen-only {
+			display: none;
+		}
+		.print-only {
+			display: block;
+		}
+		
+		header[role="banner"]{
+			display: block;
+			
+			img {
+				width: 10rem;
+			}
+			h1 {
+				font-size: 4.5rem;
+			}
+			
+			&#victory_banner {				
+				h1 {
+					font-size: 5rem;
+					text-align: center;
+					line-height: 0.9;
+					padding-bottom: 2.5rem;
+					
+					span {
+						font-size: 3rem;
+					}
+				}
+			}
+		}
+		
+		
+		table.qmi_results {
+			border-collapse: separate;
+			margin-bottom: 2rem;
+				
+			thead, .thead {
+				position: static;
+				background: $shade50;
+				
+				th, td {
+					background: $shade50;
+					border-top: 1px solid $shade50 !important;
+					border-bottom: 1px solid $shade50 !important;
+					border-left: 0;
+					border-right: 0;
+					color: $black;
+					padding: 1rem 1rem;
+					font-size: 1.2rem;
+					font-weight: 400;
+				
+					&:first-of-type {
+						border-left: 1px solid $shade50 !important;
+					}
+					&:last-of-type {
+						border-right: 1px solid $shade50 !important;
+					}
+				}
+			}
+			tbody {		
+				//border-bottom: 1px solid $shade50 !important;
+				
+				tr {					
+					display: table-row;
+					margin-bottom: 0;
+					padding: 0;
+					@include border-radius(0);
+					@include box-shadow(none);
+					page-break-inside: avoid;
+						
+					&:nth-child(odd) {
+						background: #f0f0f0;
+					}
+					
+					td {
+						font-weight: 400;
+						font-size: 1.1rem;
+						display: table-cell;
+						background: none;
+						padding: 1rem;
+						//border-bottom: 1px solid $shade50 !important;
+						page-break-inside: avoid;
+						
+						&:before {
+							display: none;
+						}
+					
+						&:first-of-type, &:last-of-type {
+							padding: 1rem;
+						}
+						&:first-of-type {
+							border-left: 1px solid $shade50 !important;
+						}
+						&:last-of-type {
+							border-right: 1px solid $shade50 !important;
+						}
+					}
+				}
+			}
+		}
+	
+		.qmi_disclaimer {
+			margin-top: 1rem;
+			
+			.text {
+			    width: 83.05085%;
+			    float: left;
+			    margin-right: 1.69492%;
+				
+				p {
+					font-size: 1rem;
+					margin: 0;
+				}
+				.blue {
+					color: $blue;
+					
+					p {
+						margin-bottom: 1rem;
+					}
+				}
+			}
+			.logo {
+			    width: 15.25424%;
+			    float: right;
+			    margin-right: 0;
+
+				img {
+					position: relative;
+					top: 1.5rem;
+				}
+			}
+		}
+		
+		footer {
+			display: none;
+		}
+		
+		.overlay {
+			display: none;
+		}
+	}
+}

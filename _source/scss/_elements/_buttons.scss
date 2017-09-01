@@ -4,9 +4,28 @@
 
 // BUTTON_CLASS_NAME{ @include btn(BACKGROUND_COLOR,BORDER_COLOR,TEXT_COLOR); }
 
-.btn{ @include btn($darkgrey,$darkgrey,$white); }
-.btn:hover{ @include btn($grey,$grey,$white); }
+.btn{ @include btn($seafoamgreen,$seafoamgreen,$white); }
+.btn:hover{ @include btn(darken($seafoamgreen, 10%),darken($seafoamgreen, 10%),$white); }
 .btn-alt{ @include btn($lightgrey,$lightgrey,$text_color); }
 .btn-alt:hover{ @include btn($grey,$grey,$white); }
-.btn-outline{ @include btn(none,$grey,$text_color); }
-.btn-outline:hover{ @include btn($darkgrey,$darkgrey,$white); }
+.btn-outline{ @include btn(none,$seafoamgreen,$seafoamgreen); }
+.btn-outline:hover{ @include btn($seafoamgreen,$seafoamgreen,$white); }
+
+.btn-darkteal{ @include btn($darkteal,$darkteal,$white); }
+.btn-darkteal:hover{ @include btn(darken($darkteal, 10%),darken($darkteal, 10%),$white); }
+
+.btn-victory-blue{ @include btn($victory-blue, $victory-blue, $white); }
+.btn-victory-blue:hover{ @include btn(darken($victory-blue, 10%), darken($victory-blue, 10%), $white); }
+
+.btn-white{ @include btn($white, $white, $red); }
+.btn-white:hover{ @include btn(darken($white, 10%), darken($white, 10%), $red); }
+
+.btn-blue{ @include btn($blue,$blue,$white); }
+.btn-blue:hover{ @include btn(darken($blue, 10%),darken($blue, 10%),$white); }
+
+.btn-red{ @include btn($red,$red,$white); }
+.btn-red:hover{ @include btn(darken($red, 10%),darken($red, 10%),$white); }
+.btn-red-outline{ @include btn(none,$red,$red); }
+.btn-red-outline:hover{ @include btn($red,$red,$white); }
+
+.btn-large, .btn-large:hover { padding: 1.5rem 6rem; }
