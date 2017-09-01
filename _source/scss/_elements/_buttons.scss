@@ -16,6 +16,8 @@
 
 .btn-victory-blue{ @include btn($victory-blue, $victory-blue, $white); }
 .btn-victory-blue:hover{ @include btn(darken($victory-blue, 10%), darken($victory-blue, 10%), $white); }
+.btn-victory-red{ @include btn($victory-red, $victory-red, $white); }
+.btn-victory-red:hover{ @include btn(darken($victory-red, 10%), darken($victory-red, 10%), $white); }
 
 .btn-white{ @include btn($white, $white, $red); }
 .btn-white:hover{ @include btn(darken($white, 10%), darken($white, 10%), $red); }

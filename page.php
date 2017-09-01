@@ -4,6 +4,7 @@ if ( have_posts() ):
 	while ( have_posts() ) : the_post();
 		
 		$title_class = get_field( 'script_font' ) === true ? "page-title script" : "page-title";
+		$overlay = 0;
 		
 		echo "<section role='main'>";
 		echo "<h1 class='$title_class' style='color: ".get_field( 'page_title_color' )."'>".get_the_title()."</h1>";
@@ -38,6 +39,15 @@ if ( have_posts() ):
 						get_template_part( 'template-parts/page/content', 'business-info' );
 						break;
 						
+					case 'photo_gallery_grid':
+						get_template_part( 'template-parts/page/content', 'photo-gallery' );
+						$overlay++;
+						break;
+						
+					case 'video_gallery_grid':
+						get_template_part( 'template-parts/page/content', 'video-gallery' );
+						break;
+						
 					case 'stay_connected_form':
 						get_template_part( 'template-parts/page/content', 'stay-connected-form' );
 						break;
@@ -67,5 +77,9 @@ if ( have_posts() ):
 
 	endwhile; 
 endif; 
+
+if($overlay >= 1):
+	echo "<div id='gallery'><div class='overlay'><div class='gallery-slider'></div><a class='close' href='javascript:void(0);'><i class='fa fa-close'></i></a><div class='coverup'><i class='fa fa-spinner fa-spin'></i></div></div></div>";
+endif;
 
 get_footer(); 

@@ -99,6 +99,76 @@ body.lp-fyh-2017 {
 		}
 		
 		.homesearch {
+			
+			&.gform {
+				margin: 0;
+				
+				@include breakpoint($lg){
+					margin: -14rem 0 -2rem;
+				}
+				
+				.wrap {
+					max-width: $xl;
+					@include flexbox();
+					@include flex-justify-content(center);
+				}
+				.gform_wrapper {
+					margin: 0;
+					width: 100%;
+					
+					@include breakpoint($lg){
+						width: auto;
+					}
+				}
+				.gform_heading {
+					margin: 0;
+					
+					.gform_title {
+						color: white;
+						font-size: 2rem;
+						font-weight: 500;
+						text-align: center; 
+						font-family: $base_font;
+						
+						@include breakpoint($md_lg) {
+							font-size: 2.2rem; 
+						}
+					}
+				}
+				.gform_body {
+					background: transparent;
+					padding: 0;
+					
+					.gfield_label {
+						font-size: 1.5rem;
+					}
+					.gfield_required {
+						color: $red;
+					}
+					input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]){
+						margin-bottom: 0.5rem;
+					}
+					select {
+						margin: 0 0 0.5rem 0;
+						line-height: 2.7rem;
+						height: 2.7rem;
+					}
+					.ginput_container_checkbox {
+						font-size: 1.4rem;
+						margin: 0;
+						
+						input[type="checkbox"] {
+							margin: 0 0.5rem 0 0;
+						}
+					}
+				}
+				.gform_footer {
+					input[type=submit] {
+						@extend .btn-red;
+					}
+				}
+			}
+			
 			.wrap {
 				max-width: 94rem;
 				padding: 0;
