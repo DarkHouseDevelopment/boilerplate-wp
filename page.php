@@ -38,14 +38,6 @@ if ( have_posts() ):
 						get_template_part( 'template-parts/page/content', 'business-info' );
 						break;
 						
-					case 'photo_gallery_grid':
-						get_template_part( 'template-parts/page/content', 'photo-gallery' );
-						break;
-						
-					case 'video_gallery_grid':
-						get_template_part( 'template-parts/page/content', 'video-gallery' );
-						break;
-						
 					case 'stay_connected_form':
 						get_template_part( 'template-parts/page/content', 'stay-connected-form' );
 						break;
