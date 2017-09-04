@@ -33,8 +33,6 @@ gulp.task("sass", function() {
 	      sass: '_source/scss'
 	    })
 		.on('error', sass.logError))
-		.pipe(sourcemaps.init())
-		.pipe(sourcemaps.write('./maps'))
 		.pipe(gulp.dest("assets/css/"));
 });
 

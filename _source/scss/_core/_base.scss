@@ -14,6 +14,7 @@ html {
 	-webkit-tap-highlight-color: lighten($grey, 75%);
 	-webkit-text-size-adjust: 100%;
 	font-size: 10px;
+	margin: 0;
 }
 
 body {
@@ -22,6 +23,15 @@ body {
 	font-family: $base_font;
 	font-weight: $base_font_weight;
 	line-height: $base_line_height;
+	margin: 0;
+}
+
+.wrap {
+	position: relative;
+	max-width: $xl;
+	padding: $grid_padding;
+	margin: 0 auto;
+	@include display-flex();
 }
 
 img,

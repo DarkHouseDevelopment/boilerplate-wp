@@ -1,5 +1,4 @@
 # Require any additional compass plugins here.
-require 'susy'
 require 'breakpoint'
 
 # Set this to the root of your project when deployed:
@@ -10,8 +9,10 @@ images_dir = "assets/img"
 javascripts_dir = "assets/js"
 fonts_dir ="assets/fonts"
 
+sourcemap = (environment == :production) ? false : true
+
 output_style = :compressed
-environment = :production
+environment = :development
 
 relative_assets = true
 disable_warnings = true
