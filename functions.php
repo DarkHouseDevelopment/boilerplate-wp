@@ -5,6 +5,10 @@
 /************************************************************************/
 
 	// External files
+	require_once("functions/acf-customizations.php");
+	require_once("functions/cpt-properties.php");
+	require_once("functions/cpt-campaigns.php");
+	require_once("functions/brightdoor-integration/gravity-forms.php");
 	
 
 /************************************************************************/
@@ -18,8 +22,8 @@ function theme_setup(){
 	add_theme_support('menus');
 	
 	add_theme_support( 'custom-logo', array(
-		'width'       => 400,
-		'height'      => 100,
+		'width'       => 154,
+		'height'      => 90,
 		'flex-height' => true,
 		'flex-width'  => true,
 		'header-text' => array( 'site-title', 'site-description' ),
@@ -29,9 +33,9 @@ function theme_setup(){
 	//add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 	
 	register_nav_menus( array(
-		'main' => __('Main Menu', 'boilerplate-wp' ),
-		'footer' => __('Footer Menu', 'boilerplate-wp' ),
-		'social' => __('Social Menu', 'boilerplate-wp' ),
+		'main' => __('Main Menu', 'kukuiula' ),
+		'preheader' => __('Pre-Header Menu', 'kukuiula' ),
+		'footer' => __('Footer Menu', 'kukuiula' ),
 	) );
 	
 	add_theme_support( 'html5', array(
@@ -58,13 +62,13 @@ function theme_setup(){
 
 // Add Stylesheets
 function theme_styles() {
-	wp_enqueue_style( 'layout', get_stylesheet_directory_uri().'/assets/css/layout.css' );
+	wp_enqueue_script( 'font-awesome', 'https://use.fontawesome.com/ace107d08f.js' );
 	wp_enqueue_style( 'styles', get_stylesheet_directory_uri().'/assets/css/styles.css' );
 }
 
 // Add typekit
 function theme_typekit(){
-	wp_enqueue_script( 'theme_typekit', '//use.typekit.net/TYPEKIT_PROJECT_ID.js' );
+	wp_enqueue_script( 'theme_typekit', '//use.typekit.net/uwd3zlb.js' );
 }
 
 function theme_typekit_const(){

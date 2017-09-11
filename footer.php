@@ -1,17 +1,20 @@
 
 	<footer role="contentinfo">
 		<div class="wrap">
-			<nav id="footer_menu" role="navigation">
-			<?php 
-				wp_nav_menu(
-					array(
-						'theme_location' => 'footer',
-						'container_class' => 'menu',
-					)
-				);
-			?>
-			</nav>
-			<small class="footer-content">&copy; <?php echo date("Y"); ?> <?php bloginfo('name'); ?></small>
+			<article class="footer-content">
+				<img class="footer-logo" src="<?php echo get_template_directory_uri() ?>/assets/img/kukuiula-logo-leaves-lightgreen.png" alt="" />
+				<nav id="footer_menu" role="navigation">
+				<?php 
+					wp_nav_menu(
+						array(
+							'theme_location' => 'footer',
+							'container_class' => 'menu',
+						)
+					);
+				?>
+				</nav>
+				<?php the_field( 'footer_text', 'option' ); ?>
+			</article>
 		</div>
 	</footer>
 </div> <!-- end container -->

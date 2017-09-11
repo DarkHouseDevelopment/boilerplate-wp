@@ -28,10 +28,12 @@ body {
 
 .wrap {
 	position: relative;
-	max-width: $xl;
+	width: 100%;
+	max-width: unquote($xl);
 	padding: $grid_padding;
 	margin: 0 auto;
 	@include display-flex();
+	@include justify-content(space-between);
 }
 
 img,

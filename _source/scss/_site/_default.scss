@@ -1,3 +1,19 @@
 /************************************************************************/
 /* DEFAULT PAGE STYLES
 /************************************************************************/
+
+.hide-on-mobile {
+	display: none;
+	
+	@include breakpoint($md){
+		display: block;
+	}
+}
+
+.hide-on-desktop {
+	display: block;
+	
+	@include breakpoint($md){
+		display: none;
+	}
+}

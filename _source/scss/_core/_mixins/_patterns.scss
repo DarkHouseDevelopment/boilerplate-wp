@@ -1,0 +1,11 @@
+//------------------------------------------------------------------------
+// PATTERNS
+//------------------------------------------------------------------------
+
+// DOTTED LINE MIXIN
+@mixin dotted($color, $position){
+	background-image: linear-gradient(to right, $color 33.333%, rgba(255, 255, 255, 0) 0%);
+	background-position: $position;
+	background-size: 6px 2px;
+	background-repeat: repeat-x;
+}

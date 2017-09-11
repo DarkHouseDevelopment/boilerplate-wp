@@ -35,11 +35,11 @@ label, legend {
 	@include single-transition(all, 0.2s, ease-in-out);
 	
 	&:hover {
-		border-color: shade($blue,20%);
+		border-color: shade($teal,20%);
 	}
 	
 	&:focus {
-		border-color: $blue;
+		border-color: $teal;
 		outline: none;
 		@include box-shadow($input_focus_glow);
 	}
@@ -98,11 +98,11 @@ input[type="submit"]{
 	-webkit-appearance: none;
 	
 	&:hover {
-		border-color: shade($blue,20%);
+		border-color: shade($teal,20%);
 	}
 	
 	&.focus{
-		border-color: $blue;
+		border-color: $teal;
 		outline: none;
 		@include box-shadow($input_focus_glow);
 	}

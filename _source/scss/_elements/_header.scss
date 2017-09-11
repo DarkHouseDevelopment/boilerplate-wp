@@ -3,7 +3,323 @@
 /************************************************************************/
 
 header[role="banner"] {
-	@include clearfix;
-	@include background-image(linear-gradient(to bottom, tint($black,25%), tint($lightgrey,50%)));
-	padding: 2rem 0;
+	@include position(fixed, 0 null null 0);
+	padding: 0;
+	width: 100%;
+	z-index: 100;
+	@include transition-property(background);
+	@include transition-duration(0.5s);
+	@include transition-timing-function(ease-in-out);
+		
+	&.scroll {
+		background: rgba($darkgrey, 0.4);
+	}
+	
+	.custom-logo-link {
+		display: none;
+		@include position(absolute, 2.5rem null null 1rem);
+		
+	    @include breakpoint($md){
+		    display: block;
+		    width: 12rem;
+	    }
+	    @include breakpoint($md_lg){
+		    width: auto;
+	    }
+	    @include breakpoint($xl){
+		    left: 0;
+	    }
+	}
+		
+	#main_menu {
+	    width: 100%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    height: 7.5rem;
+	    position: absolute;
+	    top: 0;
+	    z-index: -1;
+	    
+	    @include breakpoint($md){
+		    height: auto;
+		    position: static;
+		    z-index: 1;
+	    }
+	    
+	    .wrap {
+		    @include justify-content(center);
+		    
+		    @include breakpoint($md){
+			    @include justify-content(flex-end);
+		    }
+		    @include breakpoint($lg_xl){
+			    @include justify-content(center);
+		    }
+	    }
+	    	    		
+		ul {
+			display: none;
+			width: 100%;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-items: center;
+			padding-top: 4rem;
+			padding-bottom: 2rem;
+			
+		    @include breakpoint($md){
+			    display: flex;
+		    }
+			
+			li {
+				font-family: $heading_font;
+				font-size: 1.8rem;
+				line-height: 1.2;
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+				
+				@include breakpoint($md){
+					font-size: 1.6rem;
+					margin: 2.2rem 1.2rem;
+				}
+				@include breakpoint($md_lg){
+					font-size: 2rem;
+				}
+				@include breakpoint($lg){
+					margin: 3rem 2.5rem;
+				}
+									
+				&:before {
+					content: "";
+					display: block;
+					background: $teal;
+					height: 0.2rem;
+					width: 0;
+					@include position(absolute, null 0 -1rem 0);
+					margin: 0 auto;
+					@include transition-property(width);
+					@include transition-duration(0.2s);
+				}
+				
+				&:hover, &.current-menu-item {
+					&:before {
+						width: 100%;
+					}
+				}
+				
+				a {
+					color: $white;
+					padding: 2.8rem 1.4rem;
+					letter-spacing: 0.14em;
+					font-weight: 700;
+					@include text-shadow(1px 1px 1px rgba(0,0,0,0.3));
+										
+					@include breakpoint($md){
+						padding: 0;
+					}
+				}
+			}
+		}
+	
+		#pre_menu {
+		    display: none;
+			text-align: right;
+			@include position(absolute, 2rem 1rem null null);
+		    
+		    @include breakpoint($md){
+			    display: block;
+				@include position(absolute, 1.2rem 1.5rem null null);
+		    }
+		    @include breakpoint($xl){
+			    display: block;
+				@include position(absolute, 1.2rem 0 null null);
+		    }
+			
+			ul {
+				padding: 0;
+			}
+			li {
+				display: inline-block;
+				margin: 0;
+							
+				&:before {
+					@include position(absolute, null 0 -0.2rem 0);
+				}
+				
+				&:not(:last-child){
+					&:after {
+						content: " | "
+					}
+				}
+			}
+			
+			a {
+				font-family: $base_font;
+				text-transform: uppercase;
+				letter-spacing: 0;
+				color: $white;
+				padding: 0;
+				font-size: 1.1rem;
+				font-weight: 600;	
+			}
+		}
+	}
+}
+
+	
+#mobile_logo {
+	display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin: 1.4rem 0 1.4rem 1.5rem;
+    
+    @include breakpoint($md){
+		display: none;
+	}
+}
+
+#menu_btn {
+	position: absolute;
+	top: 1.5rem;
+	right: 1.5rem;
+	font-size: 2.4rem;
+	line-height: 1;
+	color: $white;
+    
+    @include breakpoint($md){
+		display: none;
+	}
+}
+
+#mobile_main_menu {
+	position: fixed;
+    top: -110%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $teal;
+    // Needs latest Compass, add '@import "compass"' to your scss
+	// Permalink - use to edit and share this gradient:
+	// http://colorzilla.com/gradient-editor/#48a093+0,1a8395+100
+	background-color: rgb(72,160,147); // Old browsers
+	@include filter-gradient(#48a093, #1a8395, vertical); // IE6-9
+	@include background-image(linear-gradient(top, rgba(72,160,147,1) 0%,rgba(26,131,149,1) 100%));
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+	@include transition-property(top);
+	@include transition-duration(0.5s);
+	@include transition-timing-function(ease-in-out);
+	@include box-shadow(0 0.1rem 1rem rgba(0, 0, 0, 0.3));
+    
+    @include breakpoint($md){
+		display: none;
+	}
+    
+    &.open {
+	    top: 0;
+    }
+    
+    .menu {
+	    width: 100%;
+    }
+    
+	#mobile_pre_menu {
+		width: 100%;
+		text-align: center;
+		position: absolute;
+		bottom: 1rem;
+		left: 0;
+		color: $white;
+		
+		ul {
+			border: 0;
+			background: transparent;
+			
+			li {
+				border: 0;
+				background: transparent;
+				display: inline;
+				font-size: 1.1rem;
+				
+				&:not(:last-child){
+					&:after {
+						content: " | "
+					}
+				}
+				
+				a {
+					display: inline-block;
+					text-transform: uppercase;
+					color: $white;
+					font-family: $base_font;
+					padding: 0.5rem;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+    
+    .wrap {
+	    width: 100%;
+	    padding: 0 2rem;
+    }
+	
+	ul {
+		width: 100%;
+		@include dotted($lightgrey, top);
+		
+		li {
+			font-family: $heading_font;
+			font-size: 2.4rem;
+			line-height: 1.2;
+			text-align: center;
+			width: 100%;
+			@include dotted($lightgrey, bottom);
+			
+			&.menu-logo {
+				display: none;
+			}
+			&.menu-item-has-children {
+				position: relative;
+			
+				.subnav-toggle {
+				    @include position(absolute, 1.6rem 0 null null);
+				    font-size: 3rem;
+				    line-height: 1.2;
+				    color: #fff;
+				    margin: auto;
+				    padding: 0 1rem;
+				    z-index: 0;
+				}
+			}
+			
+			a {
+				display: block;
+				color: $white;
+				padding: 2.2rem 1.5rem;
+			}
+			
+			.sub-menu {
+				display: none;
+				@include dotted($lightgrey, top);
+				padding: 1rem 0;
+				
+				li {
+					font-family: $base_font;
+					font-size: 1.6rem;
+					background: none;
+					
+					a {
+						padding: 1rem 1.5rem;
+					}
+				}
+			}
+		}
+	}
 }

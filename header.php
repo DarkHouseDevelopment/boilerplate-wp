@@ -20,20 +20,55 @@ $slug = $post->post_name;
 
 <div <?php echo $slug == 'home' ? '' : 'id="'.$slug.'"'; ?> class="container">
 	
-	<header role="banner">
+	<nav id="mobile_main_menu" role="navigation">
 		<div class="wrap">
-			<div class="sm_12">
+			<?php 
+				wp_nav_menu(
+					array(
+						'theme_location' => 'main',
+						'container_class' => 'menu mobile main',
+					)
+				);
+			?>
+		</div>
+		<nav id="mobile_pre_menu" role="navigation">
+		<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'preheader',
+					'container_class' => 'menu mobile pre',
+				)
+			);
+		?>
+		</nav>
+	</nav>
+	
+	<header role="banner" class="open">
+		<a id="mobile_logo" href="<?php bloginfo('url'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/kukuiula-logo-leaves-white.png" alt="Kukui'ula" /></a>
+		
+		<a id="menu_btn" class="main-menu-toggle" href="javascript:void(0);"><span class="fa fa-bars"></span></a>
+		
+		<nav id="main_menu" role="navigation">
+			<div class="wrap">
 				<?php the_custom_logo(); ?>
-				<nav id="main_menu" role="navigation">
-				<?php 
+				<?php
 					wp_nav_menu(
 						array(
 							'theme_location' => 'main',
-							'container_class' => 'menu',
+							'container_class' => 'menu main',
 						)
 					);
 				?>
-				</nav>
+				<div id="pre_menu">
+				<?php 
+					wp_nav_menu(
+						array(
+							'theme_location' => 'preheader',
+							'container_class' => 'menu pre',
+						)
+					);
+				?>
+				</div>
 			</div>
-		</div>
+		</nav>
 	</header>
