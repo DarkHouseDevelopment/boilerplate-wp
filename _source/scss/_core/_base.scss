@@ -5,6 +5,10 @@
 * {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
+	text-rendering: optimizelegibility;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 }
 
 html {
