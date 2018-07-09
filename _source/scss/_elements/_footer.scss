@@ -35,10 +35,10 @@ footer[role="contentinfo"] {
 		color: $tan;
 	}
 	.footer-logos {
-		@include flexbox();
-		@include flex-wrap(wrap);
-		@include flex-align-items(center);
-		@include flex-justify-content(center);
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
 		
 		img {
 			padding: 1rem 1.5rem;

@@ -57,3 +57,25 @@ $btn_font_weight: 600;
 $btn_line_height: 1;
 $btn_padding: 1rem 3rem;
 $btn_border_radius: 0;
+
+
+//------------------------------------------------------------------------
+// GRID VARIABLES
+//------------------------------------------------------------------------
+
+// Column & Container & Thingzzz
+$wrap: 1080;
+$container: $wrap + 60;
+$c: $container + px;
+
+// Breakpoints
+$xs: 320px;
+$sm: 600px;
+$tablet: 768px;
+$md: 900px;
+$desktop: 1032px;
+$lg: $c;
+$xl: 1500px;
+
+// Other Grid Variables
+$grid-padding: 0 3rem;

@@ -27,7 +27,7 @@
 	cursor: pointer;
 	outline: none;
 	
-	@include border-radius($btn_border_radius);
+	border-radius: $btn_border_radius;
 }
 
 .btn-static{ @include btn-static; }

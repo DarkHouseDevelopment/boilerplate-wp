@@ -29,7 +29,7 @@ label, legend {
 #{$all-text-inputs} {
 	background: $white;
 	border: $input_border;
-	@include border-radius($input_border_radius);
+	border-radius: $input_border_radius;
 	color: $brown;
 	font-family: $heading_font;
 	font-weight: 600;
@@ -40,7 +40,7 @@ label, legend {
 	padding: $input_padding;
 	margin: $input_margin;
 	outline: none;
-	@include single-transition(all, 0.2s, ease-in-out);
+	transition: all, 0.2s, ease-in-out;
 	
 	&:hover {
 		border-color: $brown;
@@ -126,7 +126,7 @@ p.input {
 	background: $white;
 	border: 0;
 	border-bottom: 1px solid $tan;
-	@include border-radius($input_border_radius);
+	border-radius: $input_border_radius;
 	@include size(100%,4.2rem);
 	margin: 0 0 1rem !important;
 	overflow: hidden;
@@ -180,7 +180,7 @@ p.input {
 	select {
 		background: transparent;
 		border: 0 !important;
-		@include border-radius(0);
+		border-radius: 0;
 		color: $text_color;
 		font-size: 1.6rem;
 		line-height: 1.4;
@@ -233,7 +233,7 @@ p.input {
 
 div.wpcf7-response-output {
 	border: 2px solid $text_color;
-	@include border-radius(3px);
+	border-radius: 3px;
 	font-family: $heading_font;
 	font-size: 1.6rem;
 	color: $white;

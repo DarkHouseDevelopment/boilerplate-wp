@@ -2,13 +2,10 @@
 // BASE
 //------------------------------------------------------------------------
 
-@import "compass";
 @import "breakpoint";
 @import "susy";
-@import "_core/bourbon/bourbon";
+@import "bourbon";
 @import "_core/variables";
-@import "_grid/grid_variables";
-@import "_grid/grid_setup";
 @import "_core/base";
 @import "_core/mixins";
 

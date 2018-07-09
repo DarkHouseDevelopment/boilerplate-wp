@@ -4,7 +4,7 @@
 
 .wrap {
 	width: 100%;
-	max-width: unquote($xl);
+	max-width: $xl;
 	margin: 0 auto;
 	padding: $grid_padding;
 	position: relative;

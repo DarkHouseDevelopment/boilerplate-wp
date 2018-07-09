@@ -27,7 +27,11 @@ function theme_setup(){
 	) );
 	
 	add_theme_support('post-thumbnails');
-	//add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
+	add_image_size('blog-thumbnail', 360, 220, true); 
+	add_image_size('blog-featured', 710, 360, true); 
+	add_image_size('blog-image', 330, 330, true); 
+	add_image_size('floorplan-thumbnail', 275, 190, true); 
+	add_image_size('gallery', 446, 330, true); 
 	
 	register_nav_menus( array(
 		'main' => __('Main Menu', 'boilerplate-wp' ),

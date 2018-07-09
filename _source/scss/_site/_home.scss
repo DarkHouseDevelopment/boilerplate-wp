@@ -146,9 +146,9 @@
 	}
 	
 	.form-flex-container {		
-		@include flexbox();
-		@include flex-wrap(wrap);
-		@include flex-justify-content(space-between);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
 	}
 	.form-left {
 		width: 100%;
@@ -202,9 +202,9 @@
 		}
 		
 		.builders-flex-container {
-			@include flexbox();
-			@include flex-wrap(wrap);
-			@include flex-justify-content(center);
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
 			
 			.builder-block {
 				padding: 2rem;

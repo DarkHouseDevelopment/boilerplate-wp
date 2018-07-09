@@ -1,3 +1,6 @@
 
-*.scssc
-config.codekit*
+.DS_Store
+/.sass-cache
+/node_modules
+/assets/css
+/assets/js
