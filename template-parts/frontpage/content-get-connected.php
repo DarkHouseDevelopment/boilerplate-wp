@@ -23,6 +23,8 @@
 	<div class="wrap">
 		<article>
 			<?php echo do_shortcode( get_sub_field( 'form_shortcode' ) ); ?>
+			<p class="disclaimer"><?php the_sub_field( 'form_disclaimer' ); ?></p>
+			<a class="close form-toggle" href="javascript:void(0);"><img src="<?php echo get_template_directory_uri() ?>/assets/img/icon-close.png" alt="close" /></a>
 		</article>
 	</div>
 </section>

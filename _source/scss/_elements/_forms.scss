@@ -14,18 +14,27 @@
 
 label, legend {
 	display: block;
-	font-size: $base_font_size;
-	line-height: $base_line_height;
+	font-family: $heading_font;
+	font-size: 1.6rem;
+	line-height: 1.4;
+	color: $tan;
+	
+	&.title {
+		color: $brown;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
 }
 
 #{$all-text-inputs} {
 	background: $white;
 	border: $input_border;
 	@include border-radius($input_border_radius);
-	color: $text_color;
-	font-family: $base_font;
-	font-size: $base_font_size;
-	line-height: $base_line_height;
+	color: $brown;
+	font-family: $heading_font;
+	font-weight: 600;
+	font-size: 1.6rem;
+	line-height: 1.4;
 	display: inline-block;
 	@include size(100%,auto);
 	padding: $input_padding;
@@ -34,13 +43,11 @@ label, legend {
 	@include single-transition(all, 0.2s, ease-in-out);
 	
 	&:hover {
-		border-color: shade($red,20%);
+		border-color: $brown;
 	}
 	
 	&:focus {
-		border-color: $red;
 		outline: none;
-		@include box-shadow($input_focus_glow);
 	}
 	
 	&:disabled {
@@ -69,8 +76,13 @@ input[type="color"]{
 
 input[type="submit"]{
 	@extend .btn;
+	min-width: 0;
 	-webkit-appearance: none;
 	@include size(100%,auto);
+	
+	&:hover {
+		min-width: 0;
+	}
 
 	@include breakpoint($md){
 		@include size(auto);
@@ -82,23 +94,70 @@ input[type="submit"]{
 	padding: 0;
 }
 
+.field-group {
+	width: 100%;
+	margin-bottom: 2rem;
+}
+p.input {
+	position: relative;
+	margin: 0 0 1rem !important;
+	
+	&.active {
+		label {
+			top: 0rem;
+			font-size: 1.2rem;
+		}
+	}
+	
+	label {
+		position: absolute;
+		top: 1.5rem;
+		left: 1rem;
+		color: $tan;
+		z-index: 1;
+	}
+	input {
+		border: 0;
+		border-bottom: 1px solid $tan;
+	}
+}
+
 .styled-select {
-	background: $white url("../img/select-arrow.png") right center no-repeat;
-	border: $input_border;
+	background: $white;
+	border: 0;
+	border-bottom: 1px solid $tan;
 	@include border-radius($input_border_radius);
-	@include size(100%,4rem);
-	margin: $input_margin;
+	@include size(100%,4.2rem);
+	margin: 0 0 1rem !important;
 	overflow: hidden;
 	-webkit-appearance: none;
+	position: relative;
 	
-	&:hover {
-		border-color: shade($red,20%);
+	&:after {
+		content: "\f107";			
+		font-family: FontAwesome;
+		position: absolute;
+		font-size: 2rem;
+		line-height: 1.2;
+		color: rgba($text_color, 0.9);
+		top: 1.4rem;
+		right: 0.8rem;
+		margin: auto;
+		z-index: 0;
+	}
+  
+	&.active {
+		//background: $white url("../img/select-arrow-sm.png") right 2.5rem no-repeat;
+		
+		label {
+			top: 0rem;
+			left: 1rem;
+			font-size: 1.2rem;
+		}
 	}
 	
 	&.focus{
-		border-color: $red;
 		outline: none;
-		@include box-shadow($input_focus_glow);
 	}
 	
 	&.disabled {
@@ -110,34 +169,91 @@ input[type="submit"]{
 			border: $input_border;
 		}
 	}
+  
+	label {
+		position: absolute;
+		top: 1.5rem;
+		left: 1rem;
+		color: $tan;
+	}
 
 	select {
 		background: transparent;
 		border: 0 !important;
 		@include border-radius(0);
-		color: $grey;
-		font-size: $base_font_size;
-		@include size(115%,4rem);
-		padding: $input_padding;
+		color: $text_color;
+		font-size: 1.6rem;
+		line-height: 1.4;
+		@include size(115%,4.2rem);
+		padding: 1.5rem 1rem 0.5rem;
 		outline: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		position: relative;
+		z-index: 2;
 	}
 }
+.wpcf7-form-control-wrap {
+	display: block;
+	
+	.wpcf7-not-valid-tip {
+		font-family: $heading_font;
+		font-size: 1.2rem;
+		@include position(absolute, 1.5rem 0 null null);
+	}
+}
+.wpcf7-checkbox.check-list {
+	display: block;
+	width: 100%;
+	
+	&.columns {
+		@include breakpoint($md){
+			column-count: 2;
+			column-gap: 2rem;
+		}
+	}
+	
+	.wpcf7-list-item {
+		display: block;
+		margin: 0 0 0.5rem;
+		
+		label {
+			position: relative;
+			padding-left: 2.4rem;
+			
+			input[type="checkbox"]{
+				@include position(absolute, 0.6rem null null 0);
+			}
+		}
+	}
+}
+.submit {
+	text-align: right;
+}
 
-.message {
+div.wpcf7-response-output {
 	border: 2px solid $text_color;
 	@include border-radius(3px);
+	font-family: $heading_font;
+	font-size: 1.6rem;
 	color: $white;
 	padding: 1rem 1.5rem;
 	@include margin(null null 1rem null);
 
-	&.error {
-	    background: $msgred;
-	    background: rgba($msgred,0.6);
-	    border-color: $msgred;
+	&.wpcf7-validation-errors {
+	    background: $yellow;
+	    background: rgba($yellow,0.6);
+	    border-color: $yellow;
+	    color: $black;
 	}
-	&.success {
-	    background: $msggreen;
-	    background: rgba($msggreen,0.6);
-	    border-color: $msggreen;
+	&.wpcf7-mail-sent-ng {
+	    background: $red;
+	    background: rgba($red,0.6);
+	    border-color: $red;
+	}
+	&.wpcf7-mail-sent-ok {
+	    background: $green;
+	    background: rgba($green,0.6);
+	    border-color: $green;
 	}
 }

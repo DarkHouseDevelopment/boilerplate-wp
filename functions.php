@@ -19,8 +19,8 @@ function theme_setup(){
 	add_theme_support('menus');
 	
 	add_theme_support( 'custom-logo', array(
-		'width'       => 400,
-		'height'      => 100,
+		'width'       => 160,
+		'height'      => 70,
 		'flex-height' => true,
 		'flex-width'  => true,
 		'header-text' => array( 'site-title', 'site-description' ),
