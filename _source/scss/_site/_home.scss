@@ -4,60 +4,107 @@
 
 #homepage_hero {
 	position: relative;
+	display: flex;
+	justify-content: center;
 	
-	&:before {
-		content: "";
-		@include position(absolute, 0 null null 0);
-		width: 100%;
-		height: 100%;
-		background: rgba($black, 0.4);
-		z-index: 1;
+	.hero-image {
+		width: 90%;
+		max-width: 128rem;
 	}
-	
-	.hero-gallery {
-		@include position(absolute, 0 null null 0);
-		width: 100%;
-		height: 100%;
-		
-		.slick-list, .slick-track, .slide {
-			width: 100%;
-			height: 100%;
-		}
-	}
-	.wrap {
-		z-index: 1;
-	}
-	article {
-		padding: 6rem 0;
+	.hero-circle {
+		@include position(absolute, 0 0 0 0);
+		margin: auto;
+		width: 0;
+		height: 0;
+		background: rgba($black, 0.9);
+		border-radius: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		text-align: center;
-		
+		animation: circle-grow 0.75s 0.75s ease-in-out forwards;
+		max-width: 16rem;
+		max-height: 16rem;
+			
+		@include breakpoint($sm){
+			max-width: 26rem;
+			max-height: 26rem;
+		}	
 		@include breakpoint($md){
-			padding: 9rem 0;
-		}
-		@include breakpoint($lg){
-			padding: 12rem 0;
+			max-width: 34rem;
+			max-height: 34rem;
 		}
 		
-		img {
-			margin: 0 0 2rem 2rem;
-			max-width: 80%;
-		}
-		.hero-tagline {
-			text-transform: uppercase;
-			font-size: 2rem;
-			font-weight: 700;
+		h1 {
 			color: $white;
+			font-size: 2.5rem;
+			line-height: 1.1;
+			text-transform: uppercase;
+			margin: 0;
+			opacity: 0;
+			animation: fade-in 0.5s 1.25s ease-in-out forwards;
+			
+			@include breakpoint($sm){
+				font-size: 3.8rem;
+			}
+			@include breakpoint($md){
+				font-size: 4.8rem;
+			}
 			
 			span {
-				color: $yellow;
+				display: block;
+				color: $green;
+				font-size: 1rem;
+				line-height: 1;
+				@include letter-spacing(200);
+			
+				@include breakpoint($sm){
+					font-size: 1.4rem;
+				}
+				@include breakpoint($md){
+					font-size: 1.8rem;
+				}
 			}
+		}
+		.hero-outer-circle {
+			background: transparent;
+			opacity: 0;
+			border: 0.25rem solid $black;
+			border-radius: 100%;
+			width: 100%;
+			height: 100%;
+			@include position(absolute, 0 0 0 0);
+			margin: auto;
+			animation: outer-circle-grow 0.5s 1.25s ease-in-out forwards;
+			
+			@include breakpoint($sm){
+				border: 0.38rem solid $black;
+			}
+			@include breakpoint($md){
+				border: 0.5rem solid $black;
+			}
+		}
+	}
+	.down-arrows {
+		display: none;
+		font-size: 5rem;
+		font-family: $heading_font;
+		transform: rotate(90deg);
+		@include position(absolute, null null 0 null);
+		margin: auto;
+		@include letter-spacing(-50);
+		
+		@include breakpoint($md){
+			display: block;
 		}
 	}
 }
 
+
 .homepage-section {
 	padding: 6rem 0;
 	text-align: center;
+	position: relative;
 	
 	@include breakpoint($md){
 		padding: 8rem 0;
@@ -73,169 +120,61 @@
 			}
 		}
 	}
-	
+		
+	.pattern-bg {
+		@include position(absolute, 0 null null 0);
+		width: 100%;
+		height: 100%;
+		opacity: 0.18;
+	}
+	header {
+		margin-bottom: 5rem;
+		text-transform: uppercase;
+	}
 	article {
-		max-width: 86rem;
+		max-width: 94rem;
 		margin: 0 auto;
 		position: relative;
 		
 		.title-icon {
-			margin-bottom: 0.5rem;
+			margin-bottom: 2.5rem;
 		}
-		h2 {
+		h2, h3 {
 			margin: 0;
 		}
 		p {
 			margin: 1.5rem 0 3.5rem;
+			line-height: 1.8;
 		}
 	}
 }
 
-
-.homepage-download {
-	@include breakpoint($lg){
-		padding: 8rem 0;
+.homepage-pattern {
+	header {
+		margin: 0;
 	}
 }
 
-.homepage-callout, .homepage-get-connected {
-	article {
-		p {
-			font-size: 2.4rem;
-			margin: 0;
-		
-			@include breakpoint($md){
-				font-size: 2.7rem;
-			}
-			@include breakpoint($lg){
-				font-size: 3rem;
-			}
-		}
-		.btn {
-			margin-top: 3.5rem;
-		}
-	}
-}
-
-.homepage-get-connected-form {
-	display: none;
-	padding: 4rem 0;
-	text-align: left;
-	position: relative;
-		
-	&:after {
-		content: " ";
-		display: block;
-		@include position(absolute, null 0 0 0);
-		margin: auto;
-		width: 90%;
-		max-width: 114rem;
-		height: 0.1rem;
-		background: $tan;
-	}
+.homepage-findahome {
+	background: $black;
 	
-	@include breakpoint($md){
-		padding: 6rem 0;
-	}
-	@include breakpoint($lg){
-		padding: 8rem 0;
-	}
-	
-	article {
-		max-width: 80rem;
-	}
-	
-	.form-flex-container {		
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-	}
-	.form-left {
-		width: 100%;
-		
-		@include breakpoint($md){
-			width: 40%;
-		}
-		@include breakpoint($lg){
-			width: 42%;
-		}
-	}
-	.form-right {
-		width: 100%;
-		
-		@include breakpoint($md){
-			width: 52%;
-		}
-		@include breakpoint($lg){
-			width: 48%;
-		}
-	}
-	.close {
-		@include position(absolute, -2rem 0 null null);
-	}
-	.disclaimer {
-		font-family: $heading_font;
-		color: $tan;
-		font-size: 1.3rem;
-		margin: 3rem 0 0;
-	}
-}
-
-.homepage-builders {
-	article {
-		max-width: 98rem;
-		
+	header {
 		h3 {
-			text-align: left;
-			font-weight: 600;
-			position: relative;
-			margin: 0 0 4rem;
-			
-			&:after {
-				content: " ";
-				display: block;
-				@include position(absolute, null null 0 3rem);
-				width: 6rem;
-				height: 0.2rem;
-				background: $green;
-			}
+			text-transform: none;
+			font-weight: 300;
+			color: $white;
 		}
+	}
+	footer a {
+		text-transform: uppercase;
+		font-family: $heading_font;
+		font-size: 1.6rem;
+		font-weight: 700;
 		
-		.builders-flex-container {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			
-			.builder-block {
-				padding: 2rem;
-				width: 100%;
-				
-				@include breakpoint($md){
-					width: 33.333%;
-				}
-				@include breakpoint($lg){
-					width: 25%;
-				}
-				
-				.builder-logo {
-					width: 100%;
-					height: 6.5rem;
-				}
-				
-				a, div {
-					width: 100%;
-				}
-				a {
-					.builder-logo {
-						margin-bottom: 4.4rem;
-					}
-				}
-				.disabled {
-					.builder-logo {
-						opacity: 0.25;
-					}
-				}
-			}
+		i {
+			font-size: 75%;
+			position: relative;
+			top: -0.2rem;
 		}
 	}
 }

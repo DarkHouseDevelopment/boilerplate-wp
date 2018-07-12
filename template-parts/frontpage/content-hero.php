@@ -1,26 +1,21 @@
 <?php 
-	$hero_images = get_sub_field( 'hero_image_gallery' );
-	$hero_logo = get_sub_field( 'hero_logo' );
+	$hero_image = get_sub_field( 'hero_image' );
 ?>
 <section id="homepage_hero">
 	<?php
-		if($hero_images):
-			echo "<div class='hero-gallery'>";
-			
-			foreach($hero_images as $image):
-				echo "<div class='slide' style='background: url({$image['url']}) center center no-repeat; background-size: cover;'></div>";
-			endforeach;
-			
+		if($hero_image):
+			echo "<div class='hero-image'>";
+			echo "<img src='{$hero_image['url']}' alt='Union Park at Norterra' />";
 			echo "</div>";
 		endif;
 	?>
-	<div class="wrap">
-		<article>
-			<img class="hero-logo" src="<?php echo $hero_logo['url']; ?>" alt="<?php echo $hero_logo['alt']; ?>" />
-			
-			<h1 class="hero-tagline">
-				<?php the_sub_field( 'hero_tagline' ); ?>
-			</h1>
-		</article>
+	<div class="hero-circle">
+		<div class="hero-outer-circle"></div>		
+		<h1 class="hero-tagline">
+			<?php echo get_sub_field( 'circle_text_1' ) ? "<span>".get_sub_field( 'circle_text_1' )."</span>" : ""; ?>
+			<?php the_sub_field( 'circle_text_2' ); ?>
+			<?php echo get_sub_field( 'circle_text_3' ) ? "<span>".get_sub_field( 'circle_text_3' )."</span>" : ""; ?>
+		</h1>
 	</div>
+	<div class="down-arrows">››</div>
 </section>

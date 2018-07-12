@@ -2,11 +2,12 @@
 
 // Adds client custom colors to WYSIWYG editor and ACF color picker. 
 $client_colors = array(
+    "21272e",  // black
     "9eb909",  // green
     "b23525",  // red
+    "ce9640",  // orange
     "f3ec50",  // yellow
     "2aa9aa",  // teal
-    "21272e"   // black
 );
 
 function change_acf_color_picker() {

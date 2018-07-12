@@ -1,7 +1,3 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');	
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,12 +11,38 @@ ini_set('display_errors', '1');
 </head>
 
 <?php 
-global $wp_query;
-$post_id = $wp_query->post->ID;
-$post = get_post( $post_id );
+global $post;
 $slug = $post->post_name;
 ?>
 <body <?php body_class(); ?>>
 
 <div <?php echo $slug == 'home' ? '' : 'id="'.$slug.'"'; ?> class="container">
-	
+
+	<nav id="mobile_main_menu" class="main-menu-mobile" role="navigation">
+		<?php 
+			wp_nav_menu(
+				array(
+					'theme_location' => 'main',
+					'container_class' => 'main-menu',
+				)
+			);
+		?>
+	</nav>
+	<header role="banner">
+		<div class="wrap">
+			<a class="logo" href="/"><?php echo file_get_contents(get_template_directory() . '/assets/img/union-park-logo.svg'); ?></a>
+			<nav id="main_menu" role="navigation">
+				<?php 
+					wp_nav_menu(
+						array(
+							'theme_location' => 'main',
+							'container_class' => 'main-menu',
+						)
+					);
+				?>
+			</nav>
+			<div class="menu-toggle">
+				<div class="menu-icon"><div class="menu-icon-inner"></div></div>
+			</div>
+		</div>
+	</header>

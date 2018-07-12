@@ -5,6 +5,7 @@
 
 $(document).ready(function() {
 	
+	mobileNavSlideIn();
 	homeHeroSlider();
 	formToggle();
 	floatingLabels();

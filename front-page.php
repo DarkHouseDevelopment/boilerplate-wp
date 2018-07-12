@@ -5,34 +5,30 @@ get_header();
 if ( have_posts() ):
 	while ( have_posts() ) : the_post();
 			
-		if(have_rows( 'homepage_content_sections' )):
-			while(have_rows( 'homepage_content_sections' )): the_row();
+		if(have_rows( 'home_content_sections' )):
+			while(have_rows( 'home_content_sections' )): the_row();
 			
 				$layout = get_row_layout();
 				
 				switch($layout){					
-					case 'hero_image_feature':
+					case 'hero_image':
 						get_template_part( 'template-parts/frontpage/content', 'hero' );
 						break;
 						
-					case 'intro_content':
+					case 'intro_text':
 						get_template_part( 'template-parts/frontpage/content', 'intro' );
 						break;
 						
-					case 'download':
-						get_template_part( 'template-parts/frontpage/content', 'download' );
+					case 'pattern_content':
+						get_template_part( 'template-parts/frontpage/content', 'pattern' );
 						break;
 						
-					case 'callout_text':
-						get_template_part( 'template-parts/frontpage/content', 'callout' );
+					case 'full_width_content':
+						get_template_part( 'template-parts/frontpage/content', 'full-width' );
 						break;
 						
-					case 'get_connected':
-						get_template_part( 'template-parts/frontpage/content', 'get-connected' );
-						break;
-						
-					case 'builders':
-						get_template_part( 'template-parts/frontpage/content', 'builders' );
+					case 'find_your_home':
+						get_template_part( 'template-parts/frontpage/content', 'find-home' );
 						break;
 				}
 			

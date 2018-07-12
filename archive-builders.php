@@ -4,6 +4,7 @@
 	<div class="wrap">
 
 		<section class="content" role="main">
+			<h1>Builders Archive</h1>
 			<?php if ( have_posts() ): 
 				while ( have_posts() ) : the_post(); ?>
 				

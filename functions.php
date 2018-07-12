@@ -6,6 +6,9 @@
 
 	// External files
 	require_once("functions/acf-customizations.php");
+	require_once("functions/homes.php");
+	require_once("functions/builders.php");
+	require_once("functions/btnshortcode.php");
 	
 
 /************************************************************************/
@@ -19,8 +22,8 @@ function theme_setup(){
 	add_theme_support('menus');
 	
 	add_theme_support( 'custom-logo', array(
-		'width'       => 160,
-		'height'      => 70,
+		'width'       => 116,
+		'height'      => 68,
 		'flex-height' => true,
 		'flex-width'  => true,
 		'header-text' => array( 'site-title', 'site-description' ),
@@ -83,8 +86,12 @@ function theme_typekit_const(){
 
 function color_options( $init ) {
 	$default_colors = '
-		"141414", "Black",
-		"FFFFFF", "White"
+		"21272e", "Black",		
+	    "9eb909", "Green",
+	    "b23525", "Red",
+	    "ce9640", "Orange",
+	    "f3ec50", "Yellow",
+	    "2aa9aa", "Teal"
 	';
 	// Add custom colors here
 	$custom_colors = '
