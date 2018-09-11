@@ -1,39 +1,65 @@
 var gulp = require('gulp');
+var autoprefixer = require('gulp-autoprefixer');
+var bourbon = require('bourbon').includePaths;
+var connect = require("gulp-connect");
 var sass = require('gulp-sass');
-var compass = require('gulp-compass');
 var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
 var concat = require('gulp-concat');
-var minify = require('gulp-minify');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
+var log = require('fancy-log');
 
-// Compile all gulp tasks
-gulp.task('default', ['js', 'sass', 'watch']);
+// PATH objects
+var paths = {
+	js: ['_source/js/*.js'],
+	scss: ['./_source/scss/**/*.scss'],
+	inc: [bourbon, 'node_modules/susy/sass', 'node_modules/breakpoint-sass/stylesheets']
+};
 
 // Minify JS
-gulp.task('js', function() {
-	return gulp.src(['_source/js/_plugins.js','_source/js/_functions.js','_source/js/scripts.js'])
-		.pipe(concat('scripts.js'))
-		.pipe(minify({
-			ext:{
-				min:'-min.js'
-			},
-			preserveComments: 'some'
-		}))
-		.pipe(sourcemaps.init())
-		.pipe(sourcemaps.write('./maps'))
-		.pipe(gulp.dest('assets/js/'));
+gulp.task('js', function(e) {
+	pump([
+			gulp.src(paths.js),
+			concat('scripts.js'),
+			uglify(),
+			gulp.dest('assets/js/')
+		],
+		e
+	)
+	.on('end',function(){
+		log('**************************************');
+		log('************ JS COMPLETED ************');
+		log('**************************************');
+	});
 });
 
 // Compile SASS files
-gulp.task("sass", function() {
-	gulp.src("_source/scss/**/*.scss")
-		.pipe(compass({
-	      config_file: 'config.rb',
-	      css: 'assets/css',
-	      sass: '_source/scss'
-	    })
-		.on('error', sass.logError))
-		.pipe(gulp.dest("assets/css/"));
+gulp.task('sass', function() {
+	gulp.src(paths.scss)
+		.pipe(sourcemaps.init())
+		.pipe(sass({
+			outputStyle: 'compressed',
+			includePaths: paths.inc
+		}).on('error', sass.logError))
+		.pipe(sourcemaps.write())
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions'],
+			cascade: false
+		}))
+		.pipe(gulp.dest("assets/css/"))
+		.on('end',function(){
+			log('***************************************');
+			log('************ CSS COMPLETED ************');
+			log('***************************************');
+		});
+});
+
+// Set up localhost server
+gulp.task('connect', function() {
+  connect.server({
+    port: 8000
+  });
 });
 
 // Watch
@@ -41,3 +67,6 @@ gulp.task("watch", function() {
 	watch('_source/scss/**/*.scss', function() { gulp.start('sass'); });
 	watch('_source/js/**/*.js', function() { gulp.start('js'); });
 });
+
+// Compile all gulp tasks
+gulp.task('default', ['connect', 'js', 'sass', 'watch']);
