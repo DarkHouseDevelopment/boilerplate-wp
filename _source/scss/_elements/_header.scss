@@ -3,7 +3,294 @@
 /************************************************************************/
 
 header[role="banner"] {
-	@include clearfix;
-	@include background-image(linear-gradient(to bottom, tint($black,25%), tint($lightgrey,50%)));
-	padding: 2rem 0;
+	background-color: $white;
+	position: relative;
+	z-index: 10;
+	
+	.wrap {
+		justify-content: flex-end;
+		padding: 0 1.5rem;
+	}
+	
+	.logo {
+		display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    @include position(absolute, 0 null null 1.5rem);
+	    background: $white;
+		width: 15rem;
+		padding: 1rem 1.5rem;
+		border-bottom: 0.3rem solid $primary_color;
+		
+		@include breakpoint($md){
+			width: 18rem;
+			padding: 1rem 1.5rem;
+			border-bottom: 0.5rem solid $primary_color;
+		}
+		@include breakpoint($lg){
+			width: 23rem;
+			padding: 1.5rem 2.2rem;
+			border-bottom: 0.5rem solid $primary_color;
+		}
+	}
+}
+
+#main_menu_mobile {
+	display: block;
+	
+	@include breakpoint($tablet){
+		display: none;
+	}
+}
+#main_menu {
+	display: none;
+	
+	@include breakpoint($tablet){
+		display: block;
+	}
+}
+.main-menu-mobile {
+	@include position(fixed, -115% null null 0);
+	transition: top 0.5s ease-in-out;
+    width: 100%;
+    background: rgba($primary_color,0.95);
+    height: 100vh;
+    padding: 8rem 0 8rem;
+    overflow-y: scroll;
+	z-index: 10;
+    
+    &.open {
+	    top: 0;
+    }
+    
+    .logo {
+	    width: 100%;
+	    text-align: center;
+	    margin-bottom: 5rem;
+    }
+}
+.main-menu {	
+	ul {
+		font-family: $heading_font;
+		font-size: 1.8rem;
+		border-bottom: 1px solid rgba($white, 0.5);
+		
+		@include breakpoint($tablet){
+			display: flex;
+			justify-content: space-between;
+			font-family: $base_font;
+			font-size: 1.4rem;
+			padding: 1rem 0 1rem 14rem;
+		}
+		@include breakpoint($md){
+			padding: 1.5rem 0 1.5rem 18rem;
+		}
+		@include breakpoint($lg){
+			padding: 2.5rem 0 2.5rem 23rem;
+		}
+		
+		li {
+			position: relative;
+			width: 100%;
+			text-align: center;
+			transition: all 0.3s ease-in-out;
+			
+			@include breakpoint($tablet){
+				width: auto;
+				
+				&:hover > a, &.open > a, &.current-menu-item > a, &.current-page-parent > a {
+					background: $primary_color;
+					color: $white;
+				}
+			}
+			@include breakpoint($md){
+				padding: 0 1rem;
+				
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+			
+		    &.menu-item-has-children {
+			    > a:after {
+				    font-family: "Font Awesome 5 Pro";
+				    //content: "\f107";
+				    content: "\f105";
+				    display: inline-block;
+				    padding-left: 0.2rem;
+				    width: 1rem;
+				    font-size: 75%;
+			    }
+			    
+			    &:hover, &.open {
+				    > a:after {
+					    content: "\f107";
+				    }
+				    .sub-menu {
+					    max-height: 18rem;
+				    }
+			    }
+		    }
+		    &.wide-sub {			    
+				@include breakpoint($tablet){
+					.sub-menu {	width: 145%; }
+				}
+				@include breakpoint($md){
+					.sub-menu { width: calc(140% - 2rem); }
+				}
+		    }
+			
+			a {
+				display: block;
+				padding: 2rem;
+				border-top: 1px solid rgba($white, 0.5);
+				color: $white;
+				transition: all 0.3s ease-in-out;
+				
+				@include breakpoint($tablet){
+					border: 0;
+					padding: 1rem 1.5rem 0.8rem;
+					color: $text_color;
+					font-weight: 600;
+					text-transform: uppercase;
+				}
+			}
+			
+			.sub-menu {
+				transition: all 0.3s ease-in-out;
+				overflow: hidden;
+				font-family: $base_font;
+				font-size: 1.4rem;
+				text-transform: uppercase;
+				margin: -1rem 0 1rem;
+				border: 0;
+				
+				@include breakpoint($tablet){
+					max-height: 0;
+					display: block;
+					background: $white;
+					width: 100%;
+					@include position(absolute, 4rem null null 0);
+					padding: 1rem 0 0;
+					margin: 0;
+				}
+				@include breakpoint($md){
+					width: calc(100% - 2rem);
+					@include position(absolute, 4rem null null 1rem);
+				}
+				
+				li {
+					width: 100%;
+					padding: 0;
+						
+					@include breakpoint($tablet){
+						text-align: left;
+						
+						&.current-menu-item a {
+							background: rgba($secondary_color, 0.2);
+							color: $primary_color;
+							font-weight: 600;
+						}
+					}
+					
+					a {
+						transition: all 0.3s ease-in-out;
+						font-weight: 500;
+						padding: 0.5rem 0;
+						border: 0;
+						
+						@include breakpoint($tablet){
+							padding: 1rem 1.5rem 0.6rem;
+							
+							&:hover {
+								background: rgba($secondary_color, 0.2);
+								color: $primary_color;
+								font-weight: 600;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.menu-toggle {
+    display: block;
+    overflow: visible;
+    margin: 0;
+    padding: 2rem 0 1.5rem;
+    cursor: pointer;
+    transition-timing-function: linear;
+    transition-duration: .15s;
+    transition-property: opacity,filter;
+    text-transform: none;
+    color: inherit;
+    border: 0;
+    background-color: transparent;
+    z-index: 10;
+    
+    @include breakpoint($tablet){
+	    display: none;
+    }
+    
+    &.active {
+	    .menu-icon .menu-icon-inner {
+		    transition-delay: .12s;
+		    transition-timing-function: cubic-bezier(.215,.61,.355,1);
+		    transform: rotate(45deg);
+		    
+		    &:before {
+			    top: 0;
+			    transition: top 75ms ease,opacity 75ms ease .12s;
+			    opacity: 0;
+		    }
+		    &:after {
+		        bottom: 0;
+			    transition: bottom 75ms ease,transform 75ms cubic-bezier(.215,.61,.355,1) .12s;
+			    transform: rotate(-90deg);
+		    }
+	    }
+    }
+	
+	.menu-icon {
+	    position: relative;
+	    display: inline-block;
+	    width: 2.4rem;
+	    height: 2rem;
+	    
+	    .menu-icon-inner {
+		    display: block;
+		    position: absolute;
+	        top: 50%;
+		    margin-top: -2px;
+		    width: 2.4rem;
+		    height: 0.3rem;
+		    border-radius: 0.3rem;
+		    background-color: $primary_color;
+		    transition-timing-function: cubic-bezier(.55,.055,.675,.19);
+			transition-duration: 75ms;
+		    transition-property: transform;
+		    
+		    &:before, &:after {
+			    display: block;
+			    content: "";
+			    position: absolute;
+			    width: 2.4rem;
+			    height: 0.3rem;
+			    border-radius: 0.3rem;
+			    background-color: $primary_color;
+			    transition-timing-function: ease;
+			    transition-duration: .15s;
+			    transition-property: transform;
+		    }
+		    &:before {
+			    top: -0.7rem;
+		        transition: top 75ms ease .12s,opacity 75ms ease;
+		    }
+		    &:after {
+			    bottom: -0.7rem;
+			    transition: bottom 75ms ease .12s,transform 75ms cubic-bezier(.55,.055,.675,.19);
+		    }
+		}
+	}
 }

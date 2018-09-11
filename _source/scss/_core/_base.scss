@@ -35,7 +35,7 @@ body {
 	max-width: $xl;
 	padding: $grid_padding;
 	margin: 0 auto;
-	@include display-flex();
+	display: flex;
 }
 
 img,

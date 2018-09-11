@@ -15,6 +15,9 @@ $msggreen: rgb(60,150,10); // Used for Success Messages
 $msgred: rgb(225,0,0); // Used for Error Messages
 $bgcolor: $white;
 
+$primary_color: $blue;
+$secondary_color: $blue;
+
 // Typography
 
 $text_color: $darkgrey;
@@ -74,14 +77,16 @@ $c: 0; // leave this at 0
 	$calc: round((unquote($wrap) / 9) * 10);
 	$c: unquote($calc + 'px'); // NEVERMORE
 }@else if $GRID_TYPE == 'static'{
-	$container: unquote($wrap + 60);
+	$container: $wrap + 60;
 	$c: $container + 'px';
 }
 
 // Breakpoints
 $sm: 320px;
 $md: 600px;
+$tablet: 768px;
 $lg: 900px;
+$desktop: 1032px;
 $xl: $c;
 $xxl: 1500px;
 
