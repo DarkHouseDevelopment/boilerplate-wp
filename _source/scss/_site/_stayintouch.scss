@@ -1,0 +1,199 @@
+/************************************************************************/
+/* STAY IN TOUCH PAGE STYLES
+/************************************************************************/
+
+
+.stay-in-touch {
+	padding: 4rem 0;
+	text-align: left;
+	position: relative;
+	
+	@include breakpoint($md){
+		padding: 6rem 0;
+	}
+	@include breakpoint($lg){
+		padding: 8rem 0;
+	}
+	
+	.wrap {
+		align-items: flex-start;
+		justify-content: space-between;
+		
+		@include breakpoint($tablet){
+			flex-direction: row-reverse;
+		}
+	}
+	
+	aside {
+		width: 100%;
+		background: $lightgrey;
+		margin-bottom: 3rem;
+		padding: 3rem;
+		text-align: center;
+		
+		@include breakpoint($tablet){
+			width: 29rem;
+			padding: 4rem;
+		}
+		
+		svg {
+			width: 7rem;
+		}
+		h3 {
+			margin: 1.5rem 0;
+			font-family: $base_font;
+			font-weight: 500;
+			
+			@include breakpoint($lg){
+				font-size: 3.2rem;
+			}
+		}
+		address {
+			font-size: 1.6rem;
+			line-height: 1.6;
+			font-style: normal;
+			font-family: $heading_font;
+			margin-bottom: 0.5rem;
+			
+			a { display: block; margin-top: 1rem; }
+		}
+		#sidebar_social_menu {
+			width: 100%;
+			font-size: 2.4rem;
+			
+			a {
+				display: block;
+				color: $teal;
+				margin: 0 0.3rem;
+				font-size: 2.4rem;
+				line-height: 1;
+				height: 2.4rem;
+				width: 2.4rem;
+				text-indent: -9999px;
+				position: relative;
+				
+				&:before {
+					@include position(absolute, 0 null null 0);
+					text-indent: 0;
+					font-family: "fontello";
+					font-style: normal;
+					font-weight: normal;
+					speak: none;
+					
+					display: inline-block;
+					text-decoration: inherit;
+					width: 1em;
+					margin: 0;
+					text-align: center;
+					/* opacity: .8; */
+					
+					/* For safety - reset parent styles, that can break glyph codes*/
+					font-variant: normal;
+					text-transform: none;
+					
+					/* fix buttons height, for twitter bootstrap */
+					line-height: 1em;
+									
+					/* you can be more comfortable with increased icons size */
+					/* font-size: 120%; */
+					
+					/* Font smoothing. That was taken from TWBS */
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+					
+					/* Uncomment for 3D effect */
+					/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+				}
+			}
+			ul {
+				width: 100%;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: center;
+				list-style-type: none;
+				
+				li {
+					width: auto;
+					
+					&.facebook {
+						a { @extend .icon-facebook-squared; }
+					}
+					&.twitter {
+						a { @extend .icon-twitter-squared; }
+					}
+					&.instagram {
+						a {
+							background: $teal;
+							color: $white;
+							border-radius: 0.3rem;
+							font-size: 1.8rem;
+						    height: 2.2rem;
+						    width: 2.2rem;
+							@extend .icon-instagram;
+							
+							&:before {
+								@include position(absolute, 0.2rem null null 0.2rem);
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+	article {
+		width: 100%;
+		max-width: none;
+		margin: 0;
+		
+		@include breakpoint($tablet){
+			width: calc(100% - 33rem);
+		}
+	
+		h2 {
+			font-size: 2.8rem;
+			margin-bottom: 4rem;
+			
+			@include breakpoint($md){
+				font-size: 3.2rem;
+			}
+			@include breakpoint($lg){
+				font-size: 3.5rem;
+			}
+			
+			span {
+				color: $teal;
+			}
+		}
+		.form-flex-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+		.form-left {
+			width: 100%;
+			
+			@include breakpoint($md){
+				width: 40%;
+			}
+			@include breakpoint($lg){
+				width: 42%;
+			}
+		}
+		.form-right {
+			width: 100%;
+			
+			@include breakpoint($md){
+				width: 52%;
+			}
+			@include breakpoint($lg){
+				width: 48%;
+			}
+		}
+		.disclaimer {
+			font-family: $heading_font;
+			color: $tan;
+			font-size: 1.3rem;
+			margin: 3rem 0 0;
+		}
+	}
+}

@@ -4,7 +4,7 @@
 	
 		// Attributes
 		extract(shortcode_atts( array(
-			'link' => 'http://www.verrado.com',
+			'link' => 'http://www.unionparkatnorterra.com',
 			'new_window' => false,
 		), $atts ) );
 		

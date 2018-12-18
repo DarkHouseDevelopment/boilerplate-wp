@@ -1,34 +1,55 @@
-<?php get_header(); ?>
+<?php  
 
-<section>
-	<div class="wrap">
-		<div class="content" role="main">				
-			<?php if ( have_posts() ): ?>
-			<h2>Latest Posts</h2>	
-			<?php while ( have_posts() ) : the_post(); ?>
-			<article>
-				<header>
-					<h2><a href="<?php esc_url( the_permalink() ); ?>" title="Permalink to <?php the_title(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
-					<time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_date(); ?> <?php the_time(); ?></time> <?php comments_popup_link('Leave a Comment', '1 Comment', '% Comments'); ?>
-				</header>
+get_header(); 
+
+if ( have_posts() ):
+	while ( have_posts() ) : the_post();
+					
+		get_template_part( 'template-parts/blog/content', 'header' );
+		
+		echo "<section role='main'>";
 				
-				<?php the_content(); ?>
-				
-				<footer></footer>
-			</article>
+		if(have_rows( 'content_sections' )):
+			while(have_rows( 'content_sections' )): the_row();
 			
-			<section class="comments">
-				<?php comments_template( '', true ); ?>
-			</section>
-			<?php endwhile; ?>
-			<?php else: ?>
-			<h2>No posts to display</h2>
-			<?php endif; ?>
-		</div>
+				$layout = get_row_layout();
+					
+				switch($layout){
+					case 'full_width_text':
+						get_template_part( 'template-parts/page/content', 'full-width-text' );
+						break;
+						
+					case 'pattern_content':
+						get_template_part( 'template-parts/page/content', 'pattern' );
+						break;
+						
+					case 'pattern_video':
+						get_template_part( 'template-parts/page/content', 'pattern-video' );
+						break;
+						
+					case 'pattern_gallery':
+						get_template_part( 'template-parts/page/content', 'pattern-gallery' );
+						break;
+						
+					case 'content_sidebar':
+						get_template_part( 'template-parts/page/content', 'sidebar' );
+						break;
+											
+					case 'download_cta':
+						get_template_part( 'template-parts/page/content', 'download-cta' );
+						break;
+				}
+			
+			endwhile;
+		else:
 		
-		<?php get_sidebar(); ?>
+			get_template_part( 'template-parts/page/content', 'page' );
 		
-	</div>
-</section>
-
-<?php get_footer(); ?>
+		endif;
+		
+		echo "</section>";
+					
+	endwhile;
+endif; 
+	
+get_footer();

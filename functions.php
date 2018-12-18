@@ -34,7 +34,17 @@ function theme_setup(){
 	add_image_size('blog-featured', 710, 360, true); 
 	add_image_size('blog-image', 330, 330, true); 
 	add_image_size('floorplan-thumbnail', 275, 190, true); 
-	add_image_size('gallery', 446, 330, true); 
+	add_image_size('gallery', 446, 330, true);
+	
+	// Add custom sizes to WordPress Media Library
+	function drollic_choose_sizes( $sizes ) {
+	    return array_merge( $sizes, array(
+	        'blog-featured' => __('Blog Featured Image'),
+	        'blog-image' => __('Blog Content Image'),
+	        'gallery' => __('Gallery Image'),
+	    ) );
+	}
+	add_filter( 'image_size_names_choose', 'drollic_choose_sizes' );
 	
 	register_nav_menus( array(
 		'main' => __('Main Menu', 'boilerplate-wp' ),
@@ -67,11 +77,19 @@ function theme_setup(){
 // Add Stylesheets
 function theme_styles() {
 	wp_enqueue_style( 'styles', get_stylesheet_directory_uri().'/assets/css/styles.css' );
+	wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', null, '4.7.0' );
+	
+	if(is_page_template( 'page-templates/print-qmi.php' )):
+		wp_enqueue_style( 'print-qmi', get_stylesheet_directory_uri().'/assets/css/print-qmi.css' );
+	endif;
 }
 
 // Add typekit
-function theme_typekit(){
+function theme_scripts(){
 	wp_enqueue_script( 'theme_typekit', '//use.typekit.net/uyv5qhl.js' );
+	
+	wp_register_script('carousel', get_template_directory_uri() . '/assets/js/carousel.min.js', 'jquery', NULL, true);
+	wp_enqueue_script('carousel');
 }
 
 function theme_typekit_const(){
@@ -114,6 +132,22 @@ function remove_cssjs_ver( $src ) {
 function remove_gen_version() {
 	return '';
 }
+function special_parent_classes( $classes, $item ) {
+
+    if ( ( is_singular( 'homes' ) || is_post_type_archive( 'homes' ) ) && $item->ID == 161 ) {
+        $classes[] = 'current-page-ancestor';
+    }
+    if ( is_singular( 'builders' ) && $item->url == '/builders/' ) {
+        $classes[] = 'current-page-ancestor';
+    }
+    if ( is_singular( 'post' ) && $item->url == get_bloginfo( 'url' ) . '/blog/' ) {
+        $classes[] = 'current-page-ancestor';
+    }
+
+    return $classes;
+
+}
+
 
 /************************************************************************/
 /* ACTIONS & FILTERS
@@ -121,9 +155,10 @@ function remove_gen_version() {
 
 add_action( 'after_setup_theme', 'theme_setup' );
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
-add_action( 'wp_enqueue_scripts', 'theme_typekit' );
+add_action( 'wp_enqueue_scripts', 'theme_scripts' );
 add_action( 'wp_head', 'theme_typekit_const' );
 add_filter( 'tiny_mce_before_init', 'color_options' );
 add_filter( 'style_loader_src', 'remove_cssjs_ver', 10, 2 );
 add_filter( 'the_generator', 'remove_gen_version' );
+add_filter( 'nav_menu_css_class', 'special_parent_classes', 10, 2 );
 

@@ -1,4 +1,4 @@
-<section role="main" class="homepage-intro homepage-section">
+<section class="homepage-intro content-section">
 	<div class="wrap">
 		<article>
 			<header>

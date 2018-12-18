@@ -55,3 +55,17 @@ function builders_post_type() {
 
 } 
 add_action( 'init', 'builders_post_type', 0 );
+
+
+add_filter( 'posts_orderby' , 'custom_builders_order' );
+function custom_builders_order( $orderby ) {
+	global $wpdb;
+	
+	// Check if the query is for an archive
+	if ( is_archive() && get_query_var("post_type") == "builders" ) {
+		// Query was for archive, then set order
+		return "$wpdb->posts.post_title ASC";
+	}
+	
+	return $orderby;
+}

@@ -11,11 +11,12 @@ $white: rgb(255,255,255);		// #ffffff
 
 // Site Colors
 
-$green: rgb(158,185,9);		// #9eb909
+$green: rgb(157,185,92);		// #9eb909
 $red: rgb(178,53,37);		// #b23525
 $orange: rgb(206,150,64);	// #ce9640
 $yellow: rgb(243,236,80);	// #f3ec50
 $teal: rgb(42,169,170);		// #2aa9aa
+$darkteal: rgb(51,82,88);	// #335258
 $msggreen: rgb(60,150,10);	// Used for Success Messages
 $msgred: rgb(225,0,0); 		// Used for Error Messages
 $bgcolor: $white;
@@ -38,7 +39,7 @@ $script_color: $green;
 // Links
 
 $link_color: $teal;
-$link_font_weight: 400;
+$link_font_weight: 700;
 $link_hover: shade($red,30%);
 
 // Elements
@@ -68,7 +69,7 @@ $btn_border_radius: 0;
 //------------------------------------------------------------------------
 
 // Column & Container & Thingzzz
-$wrap: 1080;
+$wrap: 1140;
 $container: $wrap + 60;
 $c: $container + px;
 

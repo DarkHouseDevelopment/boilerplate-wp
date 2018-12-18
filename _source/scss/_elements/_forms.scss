@@ -26,6 +26,43 @@ label, legend {
 	}
 }
 
+.form-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	
+	@include breakpoint($md){
+		padding: 0 3rem;
+	}
+	
+	.form-field {
+		width: 100%;
+		
+		@include breakpoint($sm){
+			width: calc(40% - 0.7rem);
+			
+			&.short {
+				width: calc(20% - 0.6rem);
+			}
+		}
+		@include breakpoint($md){
+			width: calc(20% - 0.8rem);
+			
+			&.short {
+				width: calc(12% - 0.9rem);
+			}
+			&.submit {
+				width: 16%;
+			}
+		}
+		
+		input[type="submit"]{
+			width: 100%;
+			margin-bottom: 1rem;
+		}
+	}
+}
+
 #{$all-text-inputs} {
 	background: $white;
 	border: $input_border;
@@ -106,6 +143,7 @@ p.input {
 		label {
 			top: 0rem;
 			font-size: 1.2rem;
+			color: $tan;
 		}
 	}
 	
@@ -113,7 +151,7 @@ p.input {
 		position: absolute;
 		top: 1.5rem;
 		left: 1rem;
-		color: $tan;
+		color: $brown;
 		z-index: 1;
 	}
 	input {
@@ -134,13 +172,13 @@ p.input {
 	position: relative;
 	
 	&:after {
-		content: "\f107";			
-		font-family: FontAwesome;
+		content: "\e802";
+		font-family: 'fontello';
 		position: absolute;
 		font-size: 2rem;
 		line-height: 1.2;
-		color: rgba($text_color, 0.9);
-		top: 1.4rem;
+		color: $green;
+		top: 1rem;
 		right: 0.8rem;
 		margin: auto;
 		z-index: 0;
@@ -153,6 +191,7 @@ p.input {
 			top: 0rem;
 			left: 1rem;
 			font-size: 1.2rem;
+			color: $tan;
 		}
 	}
 	
@@ -172,9 +211,9 @@ p.input {
   
 	label {
 		position: absolute;
-		top: 1.5rem;
+		top: 1.2rem;
 		left: 1rem;
-		color: $tan;
+		color: $brown;
 	}
 
 	select {
@@ -202,7 +241,7 @@ p.input {
 		@include position(absolute, 1.5rem 0 null null);
 	}
 }
-.wpcf7-checkbox.check-list {
+.check-list {
 	display: block;
 	width: 100%;
 	
@@ -221,14 +260,16 @@ p.input {
 			position: relative;
 			padding-left: 2.4rem;
 			
-			input[type="checkbox"]{
+			input[type="checkbox"], input[type="radio"]{
 				@include position(absolute, 0.6rem null null 0);
 			}
 		}
 	}
 }
-.submit {
+.wpcf7 .submit {
 	text-align: right;
+	
+	p {	margin: 0 !important; }
 }
 
 div.wpcf7-response-output {
@@ -236,7 +277,7 @@ div.wpcf7-response-output {
 	border-radius: 3px;
 	font-family: $heading_font;
 	font-size: 1.6rem;
-	color: $white;
+	color: $text_color;
 	padding: 1rem 1.5rem;
 	@include margin(null null 1rem null);
 

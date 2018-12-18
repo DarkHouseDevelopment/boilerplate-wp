@@ -16,6 +16,7 @@ $slug = $post->post_name;
 ?>
 <body <?php body_class(); ?>>
 
+
 <div <?php echo $slug == 'home' ? '' : 'id="'.$slug.'"'; ?> class="container">
 
 	<nav id="mobile_main_menu" class="main-menu-mobile" role="navigation">
@@ -30,7 +31,7 @@ $slug = $post->post_name;
 	</nav>
 	<header role="banner">
 		<div class="wrap">
-			<a class="logo" href="/"><?php echo file_get_contents(get_template_directory() . '/assets/img/union-park-logo.svg'); ?></a>
+			<a class="logo" href="/"><?php echo file_get_contents(get_template_directory() . '/assets/img/union-park-logo-reg.svg'); ?></a>
 			<nav id="main_menu" role="navigation">
 				<?php 
 					wp_nav_menu(

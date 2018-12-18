@@ -57,3 +57,166 @@ function floatingLabels(){
 		}
 	});
 }
+
+function floorplans() {
+	$('.floorplan').click(function(e) {
+		var zoomID = $(this).find('.zoom').attr('id');
+		var floorplanNum = zoomID.substr(zoomID.length - 1);
+		$('#floorplan_overlay'+floorplanNum).fadeIn();
+		e.preventDefault();
+	});
+
+	$('.floorplans .overlay').click(function(){
+		$(this).hide();
+	});
+	$('.floorplans .close_floorplan').click(function(){
+		$('.floorplans .overlay').fadeOut();
+	});
+}
+
+function sendInfoOverlay(){
+	$('.sendinfo').click(function(){
+		$('#send_info_overlay').fadeIn().addClass('active');
+	});
+	$('.overlay-content').click(function(e){
+		$('#send_info_overlay').fadeOut().removeClass('active');
+	});
+	$('.overlay-content article .close').click(function(e){
+		$('#send_info_overlay').fadeOut().removeClass('active');
+	});
+	$('.overlay-content article').click(function(e){
+		e.stopPropagation();
+	});
+	
+	if($('#send_info_overlay').length){
+		var builder = $('#send_info_overlay').data('builder');
+		var builderEmail = $('#send_info_overlay').data('builderemail');
+		var model = $('#send_info_overlay').data('model');
+		
+		$('#send_info_overlay').find('input[name="builder"]').val(builder);
+		$('#send_info_overlay').find('input[name="builder_email"]').val(builderEmail);
+		$('#send_info_overlay').find('input[name="model"]').val(model);
+	}
+}
+
+function initCarousels(){
+	$('.slider').each(function(){
+		var windowWidth = $(window).width();
+				
+		if(windowWidth >= 600){
+			var sliderItems = 2,
+				sliderHeight = 330,
+				defaultSize = 0.14,
+				activeSize = 0.86;
+		} else {
+			var sliderItems = 2,
+				sliderHeight = 280,
+				defaultSize = 0.10,
+				activeSize = 0.90;
+		}
+		
+		$(this).carouFredSel({
+			auto: false,
+			width: '100%',
+			align: false,
+			items: sliderItems,
+			items: {
+				width: $('.slider-container').width() * defaultSize,
+				height: sliderHeight,
+				visible: 1,
+				minimum: 1
+			},
+			scroll: {
+				items: 1,
+				timeoutDuration : 5000,
+				onBefore: function(data) {
+		
+					//	find current and next slide
+					var currentSlide = $('.slide.active', this),
+						nextSlide = data.items.visible,
+						_width = $('.slider-container').width();
+		
+					//	resize currentslide to small version
+					currentSlide.stop().animate({
+						width: _width * defaultSize
+					});		
+					currentSlide.removeClass( 'active' );
+		
+					//	hide current block
+					data.items.old.add( data.items.visible ).find( '.slide-block' ).stop().fadeOut();					
+		
+					//	animate clicked slide to large size
+					nextSlide.addClass( 'active' );
+					nextSlide.stop().animate({
+						width: _width * activeSize
+					});						
+				},
+				onAfter: function(data) {
+					//	show active slide block
+					data.items.visible.last().find( '.slide-block' ).stop().fadeIn();
+				}
+			},
+			onCreate: function(data){
+		
+				//	clone images for better sliding and insert them dynamacly in slider
+				var newitems = $('.slide',this).clone( true ),
+					_width = $('.slider-container').width();
+		
+				$(this).trigger( 'insertItem', [newitems, newitems.length, false] );
+		
+				//	show images 
+				$('.slide', this).fadeIn();
+				$('.slide:first-child', this).addClass( 'active' );
+				$('.slide', this).width( _width * defaultSize );
+		
+				//	enlarge first slide
+				$('.slide:first-child', this).animate({
+					width: _width * activeSize
+				});
+		
+				//	show first title block and hide the rest
+				$(this).find( '.slide-block' ).hide();
+				$(this).find( '.slide.active .slide-block' ).stop().fadeIn();
+			}
+		});
+	});
+	
+	//	Handle click events
+	$('.slider').children().click(function() {
+		//console.log('image preview clicked');
+		slideIndex = $(this).data('index');
+		console.log(slideIndex);
+		$(this).parents('.slider').trigger( 'slideTo', slideIndex );
+	});
+	$('.slider-next').click(function(){
+		//console.log('slider next button clicked');
+		slideIndex = $(this).parents('.slide').data('index');
+		$(this).parents('.slider').trigger( 'slideTo', slideIndex );
+	});
+	
+	//	Enable code below if you want to support browser resizing
+	$(window).resize(function(){
+		
+		$('.slider').each(function(){	
+			var slider = $(this),
+				_width = $(this).parents('.slider-container').width();
+			
+			if(slider.hasClass('large')){
+				var defaultSize = 0.15,
+					activeSize = 0.7;
+			} else {
+				var defaultSize = 0.14,
+					activeSize = 0.86;
+			}
+		
+			//	show images
+			slider.find( '.slide' ).width( _width * defaultSize );
+		
+			//	enlarge first slide
+			slider.find( '.slide.active' ).width( _width * activeSize );
+		
+			//	update item width config
+			slider.trigger( 'configuration', ['items.width', _width * defaultSize] );
+		});
+	});
+};

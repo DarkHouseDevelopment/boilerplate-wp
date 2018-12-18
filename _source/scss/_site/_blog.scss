@@ -1,0 +1,148 @@
+/************************************************************************/
+/* BLOG PAGE STYLES
+/************************************************************************/
+
+.blog .blog-title {
+	font-weight: 400;
+}
+
+.blog-results {
+	width: 100%;
+	padding-top: 1rem;
+	padding-bottom: 0;
+	
+	.blog-result {
+		display: block;
+		width: 100%;
+		margin-bottom: 3rem;
+		text-align: center;
+		font-size: 1.8rem;
+		color: $text_color;
+		transition: all 0.3s ease-in-out;
+		
+		@include breakpoint($sm){
+			width: calc(50% - 0.6rem);
+			margin-bottom: 4rem;
+		}
+		@include breakpoint($md){
+			width: calc(33% - 0.8rem);
+			margin-bottom: 5rem;
+		}
+			
+		&:hover {
+			color: $teal;
+			
+			.blog-image {
+				.hover {
+					opacity: 1;
+				}
+			}
+			h4 {
+				color: $teal;
+			}
+		}
+		
+		.blog-image {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 22rem;
+			
+			.hover {
+				@include position(absolute, 0 null null 0);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 100%;
+				background: rgba($green, 0.8);
+				opacity: 0;
+				transition: all 0.3s ease-in-out;
+				
+				.btn-white-outline:hover{ @include btn(none,$white,$white); }
+			}
+		}
+		h4 {
+			font-family: $base_font;
+			color: $text_color;
+			text-transform: none;
+			margin-bottom: 0.5rem;
+		}
+		footer { font-family: $heading_font; font-weight: 400; }
+	}
+	.placeholder-blog {
+		height: 0;
+		width: 100%;
+		
+		@include breakpoint($sm){
+			width: calc(50% - 0.6rem);
+		}
+		@include breakpoint($md){
+			width: calc(33% - 0.8rem);
+		}
+	}
+}
+
+#post_header {
+	width: 100%;
+	text-align: center;
+	border-top: 0.6rem solid $yellow;
+	padding-bottom: 0;
+	
+	&.with-featured-image {
+		padding-top: 4rem;
+	
+		@include breakpoint($md){
+			padding-top: 6rem;
+		}
+		@include breakpoint($lg){
+			padding-top: 8rem;
+		}
+	}
+	
+	.pattern-bg {
+		height: 50%;
+	}
+	.featured-image {
+		position: relative;
+		z-index: 2;
+		max-width: 90%;
+		margin: 0 auto;
+		padding-bottom: 4rem;
+	
+		@include breakpoint($md){
+			padding-bottom: 6rem;
+		}
+	}
+	
+	header {
+		font-size: 1.8rem;
+		font-family: $heading_font;
+		max-width: 90%;
+		margin: 0 auto;
+		
+		h2 {
+			position: relative;
+			margin: 0.5rem 0 4rem;
+			
+			&:after {
+				content: '';
+				@include position(absolute, null 0 -3rem 0);
+				margin: auto;
+				background: $yellow;
+				width: 5.6rem;
+				height: 0.3rem;
+			}
+		}
+	}
+}
+
+.single-post {
+	section[role="main"] { padding-top: 0; }
+	.content-section .pattern-bg {
+		opacity: 0.3;
+	}
+	.with-sidebar aside h3:before {
+		background: $yellow;
+	}
+}

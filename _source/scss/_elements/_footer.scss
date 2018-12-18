@@ -2,14 +2,22 @@
 /* FOOTER STYLES
 /************************************************************************/
 
+.home footer[role="contentinfo"]:before {
+	display: none;
+}
+
 footer[role="contentinfo"] {
-	@include clearfix;
 	padding: 2rem 0;
 	position: relative;
 	text-align: center;
-	
+	margin-bottom: 3rem;
+		
 	@include breakpoint($md){
 		padding: 4rem 0;
+		margin-bottom: 4rem;
+	}
+	@include breakpoint($lg){
+		margin-bottom: 5rem;
 	}
 		
 	&:before {
@@ -85,6 +93,7 @@ footer[role="contentinfo"] {
 			display: block;
 			color: $tan;
 			margin: 0 1rem;
+			font-weight: 500;
 		}
 		ul {
 			width: 100%;

@@ -103,3 +103,16 @@ function update_all_min_bed_bath(){
 }
 // only needs to run once
 //add_action( 'init', 'update_all_min_bed_bath' );
+
+
+add_filter("wpcf7_posted_data", function ($wpcf7_posted_data) {
+
+    $post = get_post($wpcf7_posted_data["_wpcf7_container_post"]);
+
+    $wpcf7_posted_data["pageUrl"] = get_permalink($post);
+    $wpcf7_posted_data["pageName"] = get_the_title($post);
+
+
+    return $wpcf7_posted_data;
+
+});

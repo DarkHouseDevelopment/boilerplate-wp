@@ -42,11 +42,11 @@ gulp.task('sass', function() {
 			outputStyle: 'compressed',
 			includePaths: paths.inc
 		}).on('error', sass.logError))
-		.pipe(sourcemaps.write())
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions'],
 			cascade: false
 		}))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest("assets/css/"))
 		.on('end',function(){
 			log('***************************************');

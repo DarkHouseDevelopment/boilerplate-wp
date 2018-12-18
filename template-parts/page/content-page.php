@@ -1,4 +1,4 @@
-<section role="main" id="embedded_content">
+<section role="main" class="section-content">
 	<div class="wrap">
 		<article>
 			<?php the_content(); ?>

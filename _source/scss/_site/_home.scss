@@ -100,63 +100,31 @@
 	}
 }
 
-
-.homepage-section {
-	padding: 6rem 0;
-	text-align: center;
-	position: relative;
+.homepage-intro {
+	padding-top: 6rem;
 	
 	@include breakpoint($md){
-		padding: 8rem 0;
+		padding-top: 8rem;
 	}
 	@include breakpoint($lg){
-		padding: 10rem 0;
+		padding-top: 10rem;
 	}
 	
-	&.white-text {
-		article {
-			h2, p {
-				color: $white;
-			}
-		}
-	}
-		
-	.pattern-bg {
-		@include position(absolute, 0 null null 0);
-		width: 100%;
-		height: 100%;
-		opacity: 0.18;
-	}
-	header {
-		margin-bottom: 5rem;
-		text-transform: uppercase;
-	}
-	article {
-		max-width: 94rem;
-		margin: 0 auto;
-		position: relative;
-		
-		.title-icon {
-			margin-bottom: 2.5rem;
-		}
-		h2, h3 {
-			margin: 0;
-		}
-		p {
-			margin: 1.5rem 0 3.5rem;
-			line-height: 1.8;
-		}
-	}
-}
-
-.homepage-pattern {
-	header {
-		margin: 0;
+	:last-child {
+		margin-bottom: 0;
 	}
 }
 
 .homepage-findahome {
 	background: $black;
+	padding: 4rem 0;
+
+	@include breakpoint($md){
+		padding: 6rem 0;
+	}
+	@include breakpoint($lg){
+		padding: 8rem 0;
+	}
 	
 	header {
 		h3 {
@@ -164,6 +132,13 @@
 			font-weight: 300;
 			color: $white;
 		}
+	}
+	article {
+		max-width: none;
+		width: 100%;
+	}
+	form {
+		margin-bottom: 3rem;
 	}
 	footer a {
 		text-transform: uppercase;
@@ -175,6 +150,26 @@
 			font-size: 75%;
 			position: relative;
 			top: -0.2rem;
+		}
+	}
+}
+
+
+
+/* IE11 Hacks - please forgive me */		
+@media all and (-ms-high-contrast:none){
+	*::-ms-backdrop, #homepage_hero .hero-circle {
+		animation: none;
+		width: 16rem;
+		height: 16rem;
+			
+		@include breakpoint($sm){
+			width: 26rem;
+			height: 26rem;
+		}	
+		@include breakpoint($md){
+			width: 34rem;
+			height: 34rem;
 		}
 	}
 }

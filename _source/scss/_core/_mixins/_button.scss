@@ -6,8 +6,12 @@
 	background: $btn_bg;
 	border-color: $btn_border;
 	color: $btn_color;
+	
+	&.large {
+		padding: 2rem 4.2rem;
+	}
 
-	&:visited {
+	&:visited, &:focus {
 		background: $btn_bg;
 		border-color: $btn_border;
 		color: $btn_color;
@@ -23,6 +27,7 @@
 	line-height: $btn_line_height;
 	padding: $btn_padding;
 	display: inline-block;
+	text-align: center;
 	min-width: 19rem;
 	cursor: pointer;
 	outline: none;

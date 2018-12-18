@@ -1,4 +1,6 @@
-/* Slider */
+/************************************************************************/
+/* SLIDER STYLES
+/************************************************************************/
 
 .slick-slider {
     position: relative;
@@ -95,4 +97,66 @@
 }
 .slick-arrow.slick-hidden {
     display: none;
+}
+
+
+.slider {			
+	width: 100%;
+	
+	&.large {
+		.slide {					
+			@include breakpoint($tablet){
+				height: 33rem;
+			}
+		}
+	}
+	
+	.slide {
+		transition: opacity 0.5s ease-in-out;
+		position: relative;
+		display: none;
+		height: 28rem;
+		float: left;
+		background-size: cover;
+		background-position: right center;
+		border-right: 1px solid $white;
+		cursor: pointer;
+		
+		@include breakpoint($tablet){
+			height: 33rem;
+		}
+		
+		&:after {
+			content: "";
+			@include position(absolute, 0 0 null null);
+			width: 100%;
+			height: 100%;
+			background: rgba($black, 0.5);
+			transition: opacity 0.5s ease-in-out;
+			opacity: 1;
+		}
+		
+		&.active {
+			cursor: default;
+
+			&:after {
+				opacity: 0;
+			}
+			.slider-next {
+				opacity: 0;
+			}
+		}
+		
+		.slider-next {
+			@include position(absolute, 50% 10% null null);
+			transform: translateY(-50%);
+			transition: opacity 0.5s ease-in-out;
+			display: block;
+			color: $white;
+			font-size: 4rem;
+			line-height: 1;
+			opacity: 0.4;
+			z-index: 2;
+		}
+	}
 }

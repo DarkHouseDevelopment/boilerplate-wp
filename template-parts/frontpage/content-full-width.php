@@ -1,7 +1,7 @@
 <?php
 	$title_icon = get_sub_field( 'title_icon' );
 ?>
-<section class="homepage-fullwidth homepage-section">
+<section class="homepage-fullwidth content-section">
 	<div class="wrap">
 		<article>
 			<header>

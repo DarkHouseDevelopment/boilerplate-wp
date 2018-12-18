@@ -9,5 +9,8 @@ $(document).ready(function() {
 	homeHeroSlider();
 	formToggle();
 	floatingLabels();
+	initCarousels();
+	floorplans();
+	sendInfoOverlay();
 	
 });

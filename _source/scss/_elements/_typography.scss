@@ -6,7 +6,7 @@ a {
 	color: $link_color;
 	font-weight: $link_font_weight;
 	text-decoration: none;
-	transition: all, 0.2s, ease-in-out;
+	transition: all 0.3s ease-in-out;
 	
 	&:active,
 	&:focus,
@@ -98,10 +98,10 @@ h3 {
 }
 
 h4 {
-	font-size: 1.6rem;
+	font-size: 1.8rem;
 	font-weight: 700;
 	text-transform: uppercase;
-	margin: 1rem 0;
+	@include letter-spacing(80);
 }
 
 h5 {
@@ -131,16 +131,18 @@ ol {
 	padding: 0;
 }
 
-article {
+article, aside {
 	
 	ul,
 	ol {
 		font-size: $base_font_size;
 		@include padding(null null null 1.8rem);
 		@include margin(null null 1.5rem null);
+		list-style-position: inside;
+		padding-left: 0.5rem;
 		
 		li {
-			line-height: 1.8rem;
+			line-height: 1.5;
 			@include margin(null null 0.5rem null);
 		}
 	    
@@ -182,12 +184,12 @@ small,
 
 @font-face {
   font-family: 'fontello';
-  src: url('../fonts/fontello.eot?74768467');
-  src: url('../fonts/fontello.eot?74768467#iefix') format('embedded-opentype'),
-       url('../fonts/fontello.woff2?74768467') format('woff2'),
-       url('../fonts/fontello.woff?74768467') format('woff'),
-       url('../fonts/fontello.ttf?74768467') format('truetype'),
-       url('../fonts/fontello.svg?74768467#fontello') format('svg');
+  src: url('../fonts/fontello.eot?2000133');
+  src: url('../fonts/fontello.eot?2000133#iefix') format('embedded-opentype'),
+       url('../fonts/fontello.woff2?2000133') format('woff2'),
+       url('../fonts/fontello.woff?2000133') format('woff'),
+       url('../fonts/fontello.ttf?2000133') format('truetype'),
+       url('../fonts/fontello.svg?2000133#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -197,7 +199,7 @@ small,
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?74768467#fontello') format('svg');
+    src: url('../font/fontello.svg?2000133#fontello') format('svg');
   }
 }
 */
@@ -237,8 +239,15 @@ small,
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-right-big:before { content: '\e800'; } /* '' */
-.icon-down-dir:before { content: '\e801'; } /* '' */
+.icon-mail:before { content: '\e800'; } /* '' */
+.icon-right-big:before { content: '\e801'; } /* '' */
+.icon-down-dir:before { content: '\e802'; } /* '' */
+.icon-star:before { content: '\e803'; } /* '' */
+.icon-zoom-in:before { content: '\e804'; } /* '' */
+.icon-left-big:before { content: '\e805'; } /* '' */
+.icon-location:before { content: '\e806'; } /* '' */
+.icon-cancel:before { content: '\e807'; } /* '' */
+.icon-angle-circled-right:before { content: '\f138'; } /* '' */
 .icon-instagram:before { content: '\f16d'; } /* '' */
 .icon-twitter-squared:before { content: '\f304'; } /* '' */
 .icon-facebook-squared:before { content: '\f308'; } /* '' */
