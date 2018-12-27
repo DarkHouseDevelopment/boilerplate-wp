@@ -90,6 +90,11 @@ $desktop: 1032px;
 $xl: $c;
 $xxl: 1500px;
 
+// Breakpoint Slicer Config - https://github.com/lolmaus/breakpoint-slicer
+$slicer-breakpoints: 0 $md $lg $c $xxl;
+$slicer-breakpoint-names: 'xs' 's' 'm' 'l' 'xl';
+$slicer-anti-overlap-corrections: -1px;
+
 
 // Other Grid Variables
 $grid_border_box: border-box;

@@ -14,7 +14,7 @@ var log = require('fancy-log');
 var paths = {
 	js: ['_source/js/*.js'],
 	scss: ['./_source/scss/**/*.scss'],
-	inc: [bourbon, 'node_modules/susy/sass', 'node_modules/breakpoint-sass/stylesheets']
+	inc: [bourbon, 'node_modules/susy/sass', 'node_modules/breakpoint-sass/stylesheets', 'node_modules/breakpoint-slicer/stylesheets']
 };
 
 // Minify JS
