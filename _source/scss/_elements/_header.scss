@@ -6,32 +6,13 @@ header[role="banner"] {
 	background-color: $white;
 	position: relative;
 	z-index: 10;
-	
-	.wrap {
-		justify-content: flex-end;
-		padding: 0 1.5rem;
-	}
-	
-	.logo {
-		display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    @include position(absolute, 0 null null 1.5rem);
-	    background: $white;
-		width: 15rem;
-		padding: 1rem 1.5rem;
-		border-bottom: 0.3rem solid $primary_color;
+	padding: 2.5rem 0;
+	font-size: 1.8rem;
 		
-		@include breakpoint($md){
-			width: 18rem;
-			padding: 1rem 1.5rem;
-			border-bottom: 0.5rem solid $primary_color;
-		}
-		@include breakpoint($lg){
-			width: 23rem;
-			padding: 1.5rem 2.2rem;
-			border-bottom: 0.5rem solid $primary_color;
-		}
+	.custom-logo-link {
+		width: 15rem;
+		display: flex;
+		align-items: center;
 	}
 }
 
@@ -71,22 +52,12 @@ header[role="banner"] {
 }
 .main-menu {	
 	ul {
-		font-family: $heading_font;
 		font-size: 1.8rem;
 		border-bottom: 1px solid rgba($white, 0.5);
 		
 		@include breakpoint($tablet){
 			display: flex;
 			justify-content: space-between;
-			font-family: $base_font;
-			font-size: 1.4rem;
-			padding: 1rem 0 1rem 14rem;
-		}
-		@include breakpoint($md){
-			padding: 1.5rem 0 1.5rem 18rem;
-		}
-		@include breakpoint($lg){
-			padding: 2.5rem 0 2.5rem 23rem;
 		}
 		
 		li {
@@ -97,14 +68,7 @@ header[role="banner"] {
 			
 			@include breakpoint($tablet){
 				width: auto;
-				
-				&:hover > a, &.open > a, &.current-menu-item > a, &.current-page-parent > a {
-					background: $primary_color;
-					color: $white;
-				}
-			}
-			@include breakpoint($md){
-				padding: 0 1rem;
+				margin: 0 3rem;
 				
 				&:last-child {
 					padding-right: 0;
@@ -149,10 +113,30 @@ header[role="banner"] {
 				
 				@include breakpoint($tablet){
 					border: 0;
-					padding: 1rem 1.5rem 0.8rem;
+					padding: 0;
 					color: $text_color;
-					font-weight: 600;
-					text-transform: uppercase;
+					position: relative;
+					transition: all 0.3s ease-in-out;
+					
+					&:after {
+						content: "";
+						display: block;
+						width: 0;
+						height: 0.2rem;
+						background: $text_color;
+						position: absolute;
+						bottom: -0.6rem;
+						left: 0;
+						transition: all 0.3s ease-in-out;
+					}
+					
+					&:hover {
+						color: $text_color;
+						
+						&:after {
+							width: 100%;
+						}
+					}
 				}
 			}
 			

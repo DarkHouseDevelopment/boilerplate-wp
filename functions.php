@@ -5,6 +5,8 @@
 /************************************************************************/
 
 	// External files
+	require_once("functions/acf-customizations.php");
+	require_once("functions/resources-cpt.php");
 	
 
 /************************************************************************/
@@ -18,8 +20,8 @@ function theme_setup(){
 	add_theme_support('menus');
 	
 	add_theme_support( 'custom-logo', array(
-		'width'       => 400,
-		'height'      => 100,
+		'width'       => 150,
+		'height'      => 25,
 		'flex-height' => true,
 		'flex-width'  => true,
 		'header-text' => array( 'site-title', 'site-description' ),
@@ -30,8 +32,8 @@ function theme_setup(){
 	
 	register_nav_menus( array(
 		'main' => __('Main Menu', 'boilerplate-wp' ),
-		'footer' => __('Footer Menu', 'boilerplate-wp' ),
-		'social' => __('Social Menu', 'boilerplate-wp' ),
+		//'footer' => __('Footer Menu', 'boilerplate-wp' ),
+		//'social' => __('Social Menu', 'boilerplate-wp' ),
 	) );
 	
 	add_theme_support( 'html5', array(
@@ -50,6 +52,33 @@ function theme_setup(){
 		'before_title' 	=> '<h3 class="widget-title">',
 		'after_title' 		=> '</h3>',
 	));
+	
+	register_sidebar(array(
+		'name' 				=> 'Footer Left',
+		'id' 					=> 'footer-left',
+		'before_widget' 	=> '<div id="%1$s" class="widget %2$s">',
+		'after_widget' 	=> '</div>',
+		'before_title' 	=> '<h3 class="widget-title">',
+		'after_title' 		=> '</h3>',
+	));
+	
+	register_sidebar(array(
+		'name' 				=> 'Footer Center',
+		'id' 					=> 'footer-center',
+		'before_widget' 	=> '<div id="%1$s" class="widget %2$s">',
+		'after_widget' 	=> '</div>',
+		'before_title' 	=> '<h3 class="widget-title">',
+		'after_title' 		=> '</h3>',
+	));
+	
+	register_sidebar(array(
+		'name' 				=> 'Footer Right',
+		'id' 					=> 'footer-right',
+		'before_widget' 	=> '<div id="%1$s" class="widget %2$s">',
+		'after_widget' 	=> '</div>',
+		'before_title' 	=> '<h3 class="widget-title">',
+		'after_title' 		=> '</h3>',
+	));
 };
 
 /************************************************************************/
@@ -58,8 +87,14 @@ function theme_setup(){
 
 // Add Stylesheets
 function theme_styles() {
-	wp_enqueue_style( 'typekit', 'https://use.typekit.net/TYPEKIT_PROJECT_ID.css' );
+	//wp_enqueue_style( 'typekit', 'https://use.typekit.net/TYPEKIT_PROJECT_ID.css' );
 	wp_enqueue_style( 'styles', get_stylesheet_directory_uri().'/assets/css/styles.css' );
+}
+
+// Add Scritps
+function theme_scripts() {
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'scripts', get_stylesheet_directory_uri().'/assets/js/scripts-min.js', 'jquery', null, true );
 }
 
 /************************************************************************/
@@ -68,8 +103,14 @@ function theme_styles() {
 
 function color_options( $init ) {
 	$default_colors = '
-		"141414", "Black",
-		"FFFFFF", "White"
+		"fde200", "Yellow",
+		"00ce9b", "Green",
+		"3cc4ee", "Blue",
+		"ecf7f9", "Pale Blue",
+		"000000", "Black",
+		"999999", "Grey",
+		"dfdfde", "Light Grey",
+		"FFFFFF", "White",
 	';
 	// Add custom colors here
 	$custom_colors = '
@@ -84,14 +125,7 @@ function color_options( $init ) {
 /* OTHER FUNCTIONS
 /************************************************************************/
 
-function remove_cssjs_ver( $src ) {
-	if( strpos( $src, '?ver=' ) )
-		$src = remove_query_arg( 'ver', $src );
-	return $src;
-}
-function remove_gen_version() {
-	return '';
-}
+
 
 /************************************************************************/
 /* ACTIONS & FILTERS
@@ -100,6 +134,4 @@ function remove_gen_version() {
 add_action( 'after_setup_theme', 'theme_setup' );
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 add_filter( 'tiny_mce_before_init', 'color_options' );
-add_filter( 'style_loader_src', 'remove_cssjs_ver', 10, 2 );
-add_filter( 'the_generator', 'remove_gen_version' );
 

@@ -6,12 +6,12 @@ a {
 	color: $link_color;
 	font-weight: $link_font_weight;
 	text-decoration: none;
-	single-transition: all, 0.2s, ease-in-out;
+	transition: all, 0.2s, ease-in-out;
 	
 	&:active,
 	&:focus,
 	&:hover {
-		color: shade($link_color,25%);
+		color: $link_hover;
 		outline: 0;
 	}
 	
@@ -47,25 +47,43 @@ p {
 // HEADINGS
 //------------------------------------------------------------------------
 
-#{headings()} {
-	color: $heading_color;
-	font-family: $heading_font;
-	font-weight: 500;
-	text-rendering: optimizelegibility;
-	line-height: $base_line_height;
-	margin-bottom: 1rem;
+@for $index from 1 through 6 {
+	h#{$index}{
+		color: $heading_color;
+		font-family: $heading_font;
+		font-weight: 700;
+		text-rendering: optimizelegibility;
+		line-height: $base_line_height;
+		margin-top: 0;
+		margin-bottom: 1rem;
+		text-transform: none;
+	}
 }
 
 h1 {
-	font-size: 3.2rem;
+	font-size: 4rem;
 }
 
 h2 {
-	font-size: 2.4rem;
+	font-size: 3.4rem;
 }
 
 h3 {
 	font-size: 2.0rem;
+	text-transform: uppercase;
+	position: relative;
+	display: inline-block;
+	
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: -0.5rem;
+		left: 0;
+		width: 100%;
+		height: 0.5rem;
+		background: $heading_color;
+	}
 }
 
 h4 {

@@ -2,7 +2,7 @@
 // VARIABLES
 //------------------------------------------------------------------------
 
-$black: rgb(20,20,20);
+$black: rgb(0,0,0);
 $darkgrey: rgb(51,51,51);
 $grey: rgb(153,153,153);
 $lightgrey: rgb(204,204,204);
@@ -10,31 +10,55 @@ $white: rgb(255,255,255);
 
 // Site Colors
 
-$blue: rgb(0,180,188);
+$yellow: rgb(253,226,0);  // #fde200
+$green: rgb(0,206,155);  // #00ce9b
+$blue: rgb(60,196,238);  // #3cc4ee
+$paleblue: rgb(236,247,249);  // #ecf7f9
+$lightgrey: rgb(223,223,222);  // #dfdfde
+
 $msggreen: rgb(60,150,10); // Used for Success Messages
 $msgred: rgb(225,0,0); // Used for Error Messages
 $bgcolor: $white;
 
-$primary_color: $blue;
+$primary_color: $yellow;
 $secondary_color: $blue;
 
 // Typography
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'Apercu';
+  font-weight: 400;
+  src: url('../fonts/apercu-light.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'TiemposBold';
+  font-weight: 700;
+  src: url('../fonts/TiemposText-Semibold.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'TiemposItalic';
+  font-weight: 700;
+  src: url('../fonts/TiemposText-SemiboldItalic.otf') format("opentype");
+}
 
 $text_color: $darkgrey;
-$base_font: Helvetica, Arial, sans-serif;
+$base_font: 'Apercu', Helvetica, Arial, sans-serif;
 $base_font_size: 1.8rem;
 $base_font_weight: 400;
-$base_line_height: 1.2;
+$base_line_height: 1.4;
 
-$heading_font: Georgia, Verdana, Times, serif;
+$heading_font: 'TiemposBold', Georgia, Verdana, Times, serif;
 $heading_color: $black;
 
 
 // Links
 
-$link_color: $blue;
+$link_color: $black;
 $link_font_weight: 400;
-$link_hover: shade($blue,30%);
+$link_hover: lighten($black, 25%);
 
 // Elements
 
@@ -68,7 +92,7 @@ $btn_border_radius: 3px;
 $GRID_TYPE:	'static';
 
 // Column & Container & Thingzzz
-$wrap: 1140;
+$wrap: 940;
 $columns: 12;
 $container: 0; // leave this at 0
 $c: 0; // leave this at 0
@@ -77,21 +101,21 @@ $c: 0; // leave this at 0
 	$calc: round((unquote($wrap) / 9) * 10);
 	$c: unquote($calc + 'px'); // NEVERMORE
 }@else if $GRID_TYPE == 'static'{
-	$container: $wrap + 60;
+	$container: $wrap + 30;
 	$c: $container + 'px';
 }
 
 // Breakpoints
-$sm: 320px;
-$md: 600px;
+$xs: 320px;
+$sm: 600px;
 $tablet: 768px;
-$lg: 900px;
+$md: 900px;
 $desktop: 1032px;
-$xl: $c;
-$xxl: 1500px;
+$lg: 1200px;
+$xl: 1500px;
 
 // Breakpoint Slicer Config - https://github.com/lolmaus/breakpoint-slicer
-$slicer-breakpoints: 0 $md $lg $c $xxl;
+$slicer-breakpoints: 0 $sm $md $c $lg $xl;
 $slicer-breakpoint-names: 'xs' 's' 'm' 'l' 'xl';
 $slicer-anti-overlap-corrections: -1px;
 

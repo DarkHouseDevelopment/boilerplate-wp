@@ -3,5 +3,62 @@
 /************************************************************************/
 
 footer[role="contentinfo"] {
-	padding: 2rem 0;
+	padding: 10rem 0 7rem;
+	background: $black;
+	color: $white;
+	font-size: $base_font_size;
+	
+	h3 {
+		@extend h2;
+		color: $white;
+	}
+	a {
+		color: $white;
+		
+		&:hover {
+			color: darken($white, 25%);
+		}
+	}
+	.widget { margin-bottom: 3rem; }
+	
+	#menu-footer-social {
+		display: flex;
+	}
+	.footer-social {
+		position: relative;
+		margin-right: 1rem;
+		
+		&.facebook a:after {
+			content: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%22-5%20-5%2042%2042%22%3E%3Cpath%20d%3D%22M17.78%2027.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99%202.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123%200-5.26%201.905-5.26%205.405v3.016h-3.53v4.09h3.53V27.5h4.223z%22%20fill%3D%22black%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E');
+		}
+		&.twitter a:after {
+			content: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%22-4%20-4%2039%2039%22%3E%0A%3Cpath%20d%3D%22M28%208.557a9.913%209.913%200%200%201-2.828.775%204.93%204.93%200%200%200%202.166-2.725%209.738%209.738%200%200%201-3.13%201.194%204.92%204.92%200%200%200-3.593-1.55%204.924%204.924%200%200%200-4.794%206.049c-4.09-.21-7.72-2.17-10.15-5.15a4.942%204.942%200%200%200-.665%202.477c0%201.71.87%203.214%202.19%204.1a4.968%204.968%200%200%201-2.23-.616v.06c0%202.39%201.7%204.38%203.952%204.83-.414.115-.85.174-1.297.174-.318%200-.626-.03-.928-.086a4.935%204.935%200%200%200%204.6%203.42%209.893%209.893%200%200%201-6.114%202.107c-.398%200-.79-.023-1.175-.068a13.953%2013.953%200%200%200%207.55%202.213c9.056%200%2014.01-7.507%2014.01-14.013%200-.213-.005-.426-.015-.637.96-.695%201.795-1.56%202.455-2.55z%22%20fill%3D%22black%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E');
+		}
+		&.linkedin a:after {
+			content: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%22-2%20-2%2035%2039%22%3E%3Cpath%20d%3D%22M6.227%2012.61h4.19v13.48h-4.19V12.61zm2.095-6.7a2.43%202.43%200%200%201%200%204.86c-1.344%200-2.428-1.09-2.428-2.43s1.084-2.43%202.428-2.43m4.72%206.7h4.02v1.84h.058c.56-1.058%201.927-2.176%203.965-2.176%204.238%200%205.02%202.792%205.02%206.42v7.395h-4.183v-6.56c0-1.564-.03-3.574-2.178-3.574-2.18%200-2.514%201.7-2.514%203.46v6.668h-4.187V12.61z%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E');
+		}
+		
+		a {
+			display: block;
+			width: 3.6rem;
+			height: 3.6rem;
+			text-indent: -9999px;
+
+			&:hover:after {
+				background: darken($white, 25%);
+			}
+					
+			&:after {
+				display: block;
+				width: 3.6rem;
+				height: 3.6rem;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: $white;
+				border-radius: 100%;
+				text-indent: 0;
+			}
+		}
+	}
 }
