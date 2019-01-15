@@ -1,0 +1,46 @@
+//------------------------------------------------------------------------
+// TEXT MEDIA MODULE
+//------------------------------------------------------------------------
+
+.content-section.text-media {
+	padding: 8rem 0;
+	
+	&.content-left {
+		.wrap {			
+			@include from('md'){
+				flex-direction: row-reverse;
+			}
+		}
+	}
+	
+	.section-content {
+		width: 100%;
+		order: 2;
+		
+		@include from('md'){
+			width: 50%;
+		}
+		
+		header {
+			font-size: 2rem;
+		}
+		article {
+			.btn:not(:last-child) {
+				margin-bottom: 2rem;
+			}
+		}
+	}
+	.section-media {
+		width: calc(100% + 3rem);
+		display: flex;
+		align-items: center;
+		position: relative;
+		margin: 0 -1.5rem 4rem;
+		order: 1;
+		
+		@include from('md'){
+			width: 42%;
+			margin: 0;
+		}
+	}
+}

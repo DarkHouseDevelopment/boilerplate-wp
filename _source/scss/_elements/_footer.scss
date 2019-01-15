@@ -8,6 +8,29 @@ footer[role="contentinfo"] {
 	color: $white;
 	font-size: $base_font_size;
 	
+	.footer-col {
+		width: 100%;
+		
+		&.left, &.center {
+			order: 1;
+			
+			@include from('sm'){
+				width: 50%;
+			}
+			@include from('md'){
+				width: auto;
+			}
+		}
+		&.right {
+			order: 0;
+			
+			@include from('md'){
+				order: 1;
+				width: auto;
+			}
+		}
+	}
+	
 	h3 {
 		@extend h2;
 		color: $white;

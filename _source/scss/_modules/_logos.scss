@@ -1,0 +1,85 @@
+//------------------------------------------------------------------------
+// LOGOS MODULE
+//------------------------------------------------------------------------
+
+.content-section.logos {
+	padding: 8rem 0;
+		
+	header {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 2rem;
+		
+		&.text { 
+			text-align: left;
+			margin-bottom: 0; 
+			
+			h3 {
+				font-size: $base_font_size;
+				font-weight: 400;
+				letter-spacing: normal;
+				
+				&:after { display: none; }
+			}
+		}
+	}
+	
+	.section-content {
+		width: 100%;
+		text-align: center;
+		
+		article {
+			width: 100%;
+			
+			&.static {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+				grid-gap: 4.5rem;
+				
+				&.logo-count-2 {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				&.logo-count-3 {
+					grid-template-columns: repeat(3, 1fr);
+				}
+				&.logo-count-4 {
+					grid-template-columns: repeat(4, 1fr);
+				}
+				&.logo-count-5 {
+					grid-template-columns: repeat(5, 1fr);
+				}
+				&.logo-count-6 {
+					grid-template-columns: repeat(6, 1fr);
+				}
+				&.logo-count-7 {
+					grid-template-columns: repeat(7, 1fr);
+				}
+				&.logo-count-8 {
+					grid-template-columns: repeat(8, 1fr);
+				}
+				&.logo-count-9 {
+					grid-template-columns: repeat(9, 1fr);
+				}
+				&.logo-count-10 {
+					grid-template-columns: repeat(10, 1fr);
+				}
+			}
+			
+			.slick-track {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				
+				&:before, &:after {
+					display: none;
+				}
+			}
+			.logo {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100%;
+			}
+		}
+	}
+}

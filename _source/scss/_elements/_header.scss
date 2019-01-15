@@ -3,11 +3,15 @@
 /************************************************************************/
 
 header[role="banner"] {
+	padding: 2rem;
 	background-color: $white;
 	position: relative;
 	z-index: 10;
-	padding: 2.5rem 0;
 	font-size: 1.8rem;
+	
+	@include breakpoint($tablet){
+		padding: 0;
+	}
 		
 	.custom-logo-link {
 		width: 15rem;
@@ -17,7 +21,7 @@ header[role="banner"] {
 }
 
 #main_menu_mobile {
-	display: block;
+	display: flex;
 	
 	@include breakpoint($tablet){
 		display: none;
@@ -34,30 +38,32 @@ header[role="banner"] {
 	@include position(fixed, -115% null null 0);
 	transition: top 0.5s ease-in-out;
     width: 100%;
-    background: rgba($primary_color,0.95);
+    background: rgba($black,0.95);
     height: 100vh;
     padding: 8rem 0 8rem;
+    display: flex;
+    align-items: center;
     overflow-y: scroll;
 	z-index: 10;
     
     &.open {
 	    top: 0;
     }
-    
-    .logo {
-	    width: 100%;
-	    text-align: center;
-	    margin-bottom: 5rem;
-    }
 }
-.main-menu {	
+body.admin-bar .main-menu-mobile {
+	padding-top: 14.6rem;
+}
+.main-menu {
+	width: 100%;
+	
 	ul {
-		font-size: 1.8rem;
-		border-bottom: 1px solid rgba($white, 0.5);
+		font-size: 2.4rem;
+		//border-bottom: 1px solid rgba($white, 0.5);
 		
 		@include breakpoint($tablet){
 			display: flex;
 			justify-content: space-between;
+			font-size: 1.8rem;
 		}
 		
 		li {
@@ -65,49 +71,37 @@ header[role="banner"] {
 			width: 100%;
 			text-align: center;
 			transition: all 0.3s ease-in-out;
+			padding: 2.5rem 0;
 			
 			@include breakpoint($tablet){
 				width: auto;
-				margin: 0 3rem;
+				padding: 2.5rem 3rem;
 				
 				&:last-child {
 					padding-right: 0;
 				}
+				
+				&.menu-item-has-children:focus .sub-menu,
+				&.menu-item-has-children:focus-within .sub-menu,
+				&.menu-item-has-children:hover .sub-menu {
+					visibility: visible; /* shows sub-menu */
+					opacity: 1;
+					z-index: 1;
+					transform: translateY(0%);
+					transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+				}
+				
+				&:focus, &:focus-within, &:hover {						
+					> a:after {
+						width: 100%;
+					}
+				}
 			}
-			
-		    &.menu-item-has-children {
-			    > a:after {
-				    font-family: "Font Awesome 5 Pro";
-				    //content: "\f107";
-				    content: "\f105";
-				    display: inline-block;
-				    padding-left: 0.2rem;
-				    width: 1rem;
-				    font-size: 75%;
-			    }
-			    
-			    &:hover, &.open {
-				    > a:after {
-					    content: "\f107";
-				    }
-				    .sub-menu {
-					    max-height: 18rem;
-				    }
-			    }
-		    }
-		    &.wide-sub {			    
-				@include breakpoint($tablet){
-					.sub-menu {	width: 145%; }
-				}
-				@include breakpoint($md){
-					.sub-menu { width: calc(140% - 2rem); }
-				}
-		    }
 			
 			a {
 				display: block;
 				padding: 2rem;
-				border-top: 1px solid rgba($white, 0.5);
+				//border-top: 1px solid rgba($white, 0.5);
 				color: $white;
 				transition: all 0.3s ease-in-out;
 				
@@ -132,15 +126,12 @@ header[role="banner"] {
 					
 					&:hover {
 						color: $text_color;
-						
-						&:after {
-							width: 100%;
-						}
 					}
 				}
 			}
 			
 			.sub-menu {
+				display: block;
 				transition: all 0.3s ease-in-out;
 				overflow: hidden;
 				font-family: $base_font;
@@ -150,30 +141,31 @@ header[role="banner"] {
 				border: 0;
 				
 				@include breakpoint($tablet){
-					max-height: 0;
-					display: block;
-					background: $white;
+					visibility: hidden; /* hides sub-menu */
+					opacity: 0;
+					position: absolute;
+					top: calc(100% + 1rem);
+					left: 0;
 					width: 100%;
-					@include position(absolute, 4rem null null 0);
-					padding: 1rem 0 0;
-					margin: 0;
-				}
-				@include breakpoint($md){
-					width: calc(100% - 2rem);
-					@include position(absolute, 4rem null null 1rem);
+					padding: 1rem 0;
+					transform: translateY(-2em);
+					z-index: -1;
+					transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+					background: $white;
 				}
 				
 				li {
 					width: 100%;
+					margin: 0;
 					padding: 0;
 						
 					@include breakpoint($tablet){
 						text-align: left;
 						
 						&.current-menu-item a {
-							background: rgba($secondary_color, 0.2);
-							color: $primary_color;
-							font-weight: 600;
+							//background: rgba($secondary_color, 0.2);
+							//color: $primary_color;
+							//font-weight: 600;
 						}
 					}
 					
@@ -183,13 +175,15 @@ header[role="banner"] {
 						padding: 0.5rem 0;
 						border: 0;
 						
+						&:after { display: none; }
+						
 						@include breakpoint($tablet){
-							padding: 1rem 1.5rem 0.6rem;
+							padding: 1rem 3rem 0.6rem;
 							
 							&:hover {
-								background: rgba($secondary_color, 0.2);
-								color: $primary_color;
-								font-weight: 600;
+								//background: rgba($secondary_color, 0.2);
+								//color: $primary_color;
+								//font-weight: 600;
 							}
 						}
 					}
@@ -202,7 +196,7 @@ header[role="banner"] {
     display: block;
     overflow: visible;
     margin: 0;
-    padding: 2rem 0 1.5rem;
+    padding: 0;
     cursor: pointer;
     transition-timing-function: linear;
     transition-duration: .15s;
@@ -250,7 +244,7 @@ header[role="banner"] {
 		    width: 2.4rem;
 		    height: 0.3rem;
 		    border-radius: 0.3rem;
-		    background-color: $primary_color;
+		    background-color: $black;
 		    transition-timing-function: cubic-bezier(.55,.055,.675,.19);
 			transition-duration: 75ms;
 		    transition-property: transform;
@@ -262,7 +256,7 @@ header[role="banner"] {
 			    width: 2.4rem;
 			    height: 0.3rem;
 			    border-radius: 0.3rem;
-			    background-color: $primary_color;
+			    background-color: $black;
 			    transition-timing-function: ease;
 			    transition-duration: .15s;
 			    transition-property: transform;

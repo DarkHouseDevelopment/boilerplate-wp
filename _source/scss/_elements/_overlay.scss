@@ -1,0 +1,22 @@
+/************************************************************************/
+/* OVERLAY STYLES
+/************************************************************************/
+
+.overlay {
+	background: rgba($white, 0.9);
+	display: none;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	position: fixed;
+	top: 0; left: 0;
+	text-align: center;
+	width: 100%;
+	z-index: 1100;
+	cursor: pointer;
+	
+	.overlay-content {
+		width: 100%;
+		text-align: center;
+	}
+}

@@ -4,9 +4,30 @@
 
 // BUTTON_CLASS_NAME{ @include btn(BACKGROUND_COLOR,BORDER_COLOR,TEXT_COLOR); }
 
-.btn{ @include btn($darkgrey,$darkgrey,$white); }
-.btn:hover{ @include btn($grey,$grey,$white); }
+.btn,.btn-solid,.btn-black{ @include btn($black,$black,$white); }
+.btn:hover,.btn-solid:hover,.btn-black:hover{ @include btn(lighten($black, 20%),lighten($black, 20%),$white); }
 .btn-alt{ @include btn($lightgrey,$lightgrey,$text_color); }
 .btn-alt:hover{ @include btn($grey,$grey,$white); }
-.btn-outline{ @include btn(none,$grey,$text_color); }
-.btn-outline:hover{ @include btn($darkgrey,$darkgrey,$white); }
+.btn-outline{ @include btn(none,$black,$black); }
+.btn-outline:hover{ @include btn($black,$black,$white); }
+
+
+.btn-yellow{ @include btn($yellow,$yellow,$black); }
+.btn-yellow:hover{ @include btn(darken($yellow, 10%),darken($yellow, 10%),$black); }
+.btn-yellow-outline{ @include btn(none,$yellow,$black); }
+.btn-yellow-outline:hover{ @include btn($yellow,$yellow,$black); }
+
+.btn-green{ @include btn($green,$green,$white); }
+.btn-green:hover{ @include btn(darken($green, 10%),darken($green, 10%),$white); }
+.btn-green-outline{ @include btn(none,$green,$green); }
+.btn-green-outline:hover{ @include btn($green,$green,$white); }
+
+.btn-blue{ @include btn($blue,$blue,$white); }
+.btn-blue:hover{ @include btn(darken($blue, 10%),darken($blue, 10%),$white); }
+.btn-blue-outline{ @include btn(none,$blue,$blue); }
+.btn-blue-outline:hover{ @include btn($blue,$blue,$white); }
+
+.btn-white{ @include btn($white,$white,$black); }
+.btn-white:hover{ @include btn(darken($white, 10%),darken($white, 10%),$black); }
+.btn-white-outline{ @include btn(none,$white,$white); }
+.btn-white-outline:hover{ @include btn($white,$white,$black); }

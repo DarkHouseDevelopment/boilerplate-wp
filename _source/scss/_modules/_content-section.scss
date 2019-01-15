@@ -1,0 +1,33 @@
+//------------------------------------------------------------------------
+// CONTENT SECTION DEFAULTS
+//------------------------------------------------------------------------
+
+.content-section {
+	position: relative;
+	
+	.mobile-bg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		
+		@include breakpoint($tablet){
+			display: none;
+		}
+	}
+	
+	header.intro {
+		width: 100%;
+		margin-bottom: 6rem;
+		text-align: center;
+		order: 0;
+		
+		p {
+			text-align: left;
+			max-width: 46rem;
+			margin: 0 auto;
+		}
+	}
+}

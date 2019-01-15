@@ -1,1 +1,1 @@
-$(document).ready(function(){});
+jQuery(document).ready(function(n){n(".menu-toggle").on("click",function(){n(this).toggleClass("active"),n(".main-menu-mobile").toggleClass("open")}),n(".menu-item-has-children > a").bind("touchstart",function(e){e.preventDefault(),n(this).parents(".menu-item-has-children").toggleClass("open")})});

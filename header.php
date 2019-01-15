@@ -20,6 +20,16 @@ $slug = $post->post_name;
 
 <div <?php echo $slug == 'home' ? '' : 'id="'.$slug.'"'; ?> class="container">
 	
+	<nav id="main_menu_mobile" class="main-menu-mobile" role="navigation">
+		<?php 
+			wp_nav_menu(
+				array(
+					'theme_location' => 'main',
+					'container_class' => 'main-menu',
+				)
+			);
+		?>
+	</nav>
 	<header role="banner">
 		<div class="wrap">
 			<?php the_custom_logo(); ?>
@@ -33,5 +43,6 @@ $slug = $post->post_name;
 				);
 			?>
 			</nav>
+			<a href="javascript:void(0);" class="menu-toggle">MENU</a>
 		</div>
 	</header>

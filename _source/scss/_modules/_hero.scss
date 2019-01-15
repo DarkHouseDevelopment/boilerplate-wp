@@ -1,0 +1,54 @@
+//------------------------------------------------------------------------
+// HERO MODULE
+//------------------------------------------------------------------------
+
+.content-section.hero {
+	
+	.hero-content {
+		width: 100%;
+		padding: 8rem 0;
+		
+		@include breakpoint($tablet){
+			width: 48%;
+		}
+		
+		header {
+			font-size: 2rem;
+		}
+		article {
+			.btn:not(:last-child) {
+				margin-bottom: 2rem;
+			}
+		}
+	}
+	.hero-media {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		position: relative;
+		
+		@include breakpoint($tablet){
+			width: 48%;
+		}
+		
+		.launch-overlay.video {
+			display: block;
+			width: 100%;
+			position: relative;
+			
+			&:after {
+				content: "";
+				width: 10rem;
+				height: 10rem;
+				background: url(../img/play-button.png) center center no-repeat;
+				background-size: contain;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto;
+			}
+		}
+	}
+}

@@ -25,6 +25,7 @@
 	display: inline-block;
 	cursor: pointer;
 	outline: none;
+	transition: all, 0.2s, ease-in-out;
 	
 	border-radius: $btn_border_radius;
 }

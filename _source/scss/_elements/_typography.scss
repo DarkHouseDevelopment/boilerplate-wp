@@ -40,7 +40,7 @@ a {
 p {
 	font-size: $base_font_size;
 	line-height: $base_line_height;
-	margin-bottom: 1.5rem;
+	margin-bottom: 2rem;
 }
 
 //------------------------------------------------------------------------
@@ -52,7 +52,6 @@ p {
 		color: $heading_color;
 		font-family: $heading_font;
 		font-weight: 700;
-		text-rendering: optimizelegibility;
 		line-height: $base_line_height;
 		margin-top: 0;
 		margin-bottom: 1rem;
@@ -62,17 +61,23 @@ p {
 
 h1 {
 	font-size: 4rem;
+	line-height: 1.4;
 }
 
 h2 {
 	font-size: 3.4rem;
+	line-height: 1.3;
 }
 
 h3 {
+	font-family: $base_font;
 	font-size: 2.0rem;
+	letter-spacing: 0.1em;
 	text-transform: uppercase;
+	text-rendering: initial;
 	position: relative;
 	display: inline-block;
+	margin-bottom: 3rem;
 	
 	&:after {
 		content: "";

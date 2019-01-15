@@ -17,8 +17,24 @@
 @import "_elements/typography";
 @import "_elements/forms";
 @import "_elements/buttons";
+@import "_elements/video";
+@import "_elements/overlay";
+@import "_elements/slickslider";
 @import "_elements/header";
 @import "_elements/footer";
+
+
+//------------------------------------------------------------------------
+// MODULES
+//------------------------------------------------------------------------
+
+@import "_modules/content-section";
+@import "_modules/hero";
+@import "_modules/logos";
+@import "_modules/text-media";
+@import "_modules/quote";
+@import "_modules/video-module";
+
 
 //------------------------------------------------------------------------
 // PAGE

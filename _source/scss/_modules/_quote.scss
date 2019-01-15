@@ -1,0 +1,57 @@
+//------------------------------------------------------------------------
+// QUOTE MODULE
+//------------------------------------------------------------------------
+
+.content-section.quote {
+	padding: 8rem 0;
+	
+	&.text-image {
+		@include from('md'){
+			.section-content { width: 58%; text-align: left; }
+			.section-media { width: 34%; }
+		}
+	}
+	
+	header {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+	
+	.section-content {
+		width: 100%;
+		text-align: center;
+		
+		article {
+			max-width: 60rem;
+			margin: 0 auto;
+			
+			p { 
+				margin: 0;
+				font-size: 3.2rem; 
+			}
+		}
+		footer {
+			margin-top: 3rem;
+			font-size: $base_font_size;
+			font-family: $heading_font;
+			
+			a {
+				font-family: $base_font;
+				text-transform: uppercase;
+			}
+		}
+	}
+	.section-media {
+		width: calc(100% + 3rem);
+		display: flex;
+		align-items: center;
+		position: relative;
+		margin: 0 -1.5rem 4rem;
+		
+		@include from('md'){
+			width: 100%;
+			margin: 0 0 4rem;
+		}
+	}
+}
