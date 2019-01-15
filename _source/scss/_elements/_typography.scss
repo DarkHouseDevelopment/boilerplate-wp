@@ -47,16 +47,14 @@ p {
 // HEADINGS
 //------------------------------------------------------------------------
 
-@for $index from 1 through 6 {
-	h#{$index}{
-		color: $heading_color;
-		font-family: $heading_font;
-		font-weight: 700;
-		line-height: $base_line_height;
-		margin-top: 0;
-		margin-bottom: 1rem;
-		text-transform: none;
-	}
+#{headings(1,6)}{
+	color: $heading_color;
+	font-family: $heading_font;
+	font-weight: 700;
+	line-height: $base_line_height;
+	margin-top: 0;
+	margin-bottom: 1rem;
+	text-transform: none;
 }
 
 h1 {
