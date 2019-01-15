@@ -90,6 +90,7 @@ function theme_setup(){
 function theme_styles() {
 	//wp_enqueue_style( 'typekit', 'https://use.typekit.net/TYPEKIT_PROJECT_ID.css' );
 	wp_enqueue_style( 'styles', get_stylesheet_directory_uri().'/assets/css/styles.css' );
+	wp_enqueue_style( 'modules', get_stylesheet_directory_uri().'/assets/css/modules.css' );
 }
 
 // Add Scritps
