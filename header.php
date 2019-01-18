@@ -46,3 +46,20 @@ $slug = $post->post_name;
 			<a href="javascript:void(0);" class="menu-toggle">MENU</a>
 		</div>
 	</header>
+
+	<header role="banner" class="fixed">
+		<div class="wrap">
+			<?php the_custom_logo(); ?>
+			<nav id="main_menu" role="navigation">
+			<?php 
+				wp_nav_menu(
+					array(
+						'theme_location' => 'main',
+						'container_class' => 'main-menu',
+					)
+				);
+			?>
+			</nav>
+			<a href="javascript:void(0);" class="menu-toggle">MENU</a>
+		</div>
+	</header>

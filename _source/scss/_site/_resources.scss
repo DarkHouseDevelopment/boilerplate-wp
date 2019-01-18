@@ -2,3 +2,60 @@
 // RESOURCES SECTION
 //------------------------------------------------------------------------
 
+.content-section.hero.resources-archive {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	.hero-content {
+		width: 100%;
+		text-align: center;
+		
+		header {
+			margin-bottom: 6rem;
+		}
+	}
+}
+
+.iso-nav {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	
+	li {
+		a{
+			font-weight: 900;
+			text-transform: uppercase;
+			position: relative;
+	
+			.underline {
+				content: "";
+				display: block;
+				width: 100%;
+				height: 0.2rem;
+				background: $text_color;
+				position: absolute;
+				bottom: -0.5rem;
+				left: 0;
+				transition: all 0.3s ease-in-out;
+			}
+		}
+	}
+}
+
+.fixed-iso-nav {
+	width: 100%;
+	padding: 2rem 0 2.5rem;
+	background: $white;
+	font-size: 1.8rem;
+}
+
+.resources-grid {
+	width: 100%;
+}

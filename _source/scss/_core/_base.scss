@@ -28,10 +28,12 @@ body {
 	font-weight: $base_font_weight;
 	line-height: $base_line_height;
 	margin: 0;
+	position: relative;
 }
 
 .wrap {
 	position: relative;
+	width: 100%;
 	max-width: unquote($c);
 	padding: $grid_padding;
 	margin: 0 auto;
@@ -48,4 +50,9 @@ picture {
 }
 
 
-
+@media screen and (max-width: 600px){
+	#wpadminbar {
+	    position: absolute;
+	    top: -46px;
+	}
+}

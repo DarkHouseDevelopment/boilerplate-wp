@@ -4,7 +4,6 @@
 	<div class="wrap">
 
 		<section class="content" role="main">
-			asdf
 			<?php if ( have_posts() ): 
 				while ( have_posts() ) : the_post(); ?>
 				

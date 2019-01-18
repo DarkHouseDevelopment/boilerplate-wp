@@ -95,8 +95,16 @@ function theme_styles() {
 
 // Add Scritps
 function theme_scripts() {	
+	wp_enqueue_script( 'jquery' );
+	
 	wp_register_script('slick-slider', get_template_directory_uri() . '/assets/js/slick.min.js', 'jquery', NULL, true);
 	wp_enqueue_script('slick-slider');
+	
+	if(is_post_type_archive( "resources" )):
+		wp_enqueue_script( 'isotope', get_template_directory_uri().'/assets/js/isotope.pkgd.min.js', array('jquery'), null, true );
+		wp_enqueue_script( 'isotope-packery', get_template_directory_uri().'/assets/js/packery-mode.pkgd.min.js', array('jquery'), null, true );
+		wp_enqueue_script( 'js-cookie', 'https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js', array('jquery'), null, true );
+	endif;
 	
 	wp_register_script('script', get_template_directory_uri() . '/assets/js/scripts.js', 'jquery', NULL, true);
 	wp_enqueue_script('script');
