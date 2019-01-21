@@ -10,7 +10,7 @@
 				</header>
 			<?php endif; ?>
 			<article>
-				
+				<?php	dynamic_buttons( 'cta_buttons' ); ?>
 			</article>
 		</div>
 	</div>
