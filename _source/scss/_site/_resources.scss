@@ -58,4 +58,45 @@
 
 .resources-grid {
 	width: 100%;
+	padding: 4rem 0;
+	
+	@include from('md'){
+		padding: 7rem 0;
+	}
+	
+	.resource-result {
+		width: 100%;
+		position: relative;
+		margin-bottom: 10rem;
+		
+		@include from('sm'){
+			width: 49%;
+		}
+		@include from('md'){
+			width: 32%;
+		}
+		
+		a {
+			display: block;
+			text-align: center;
+		}
+		.resource-icon {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 6rem;
+			padding: 1rem;
+			background: $white;
+		}
+		.resource-image {
+			width: 100%;
+			margin-bottom: 2.5rem;
+		}
+		strong {
+			display: block;
+			font-size: $base_font_size;
+			margin-bottom: 2.5rem;
+		}
+	}
+	.resource-gutter { width: 2%; }
 }

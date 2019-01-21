@@ -78,9 +78,9 @@ jQuery(document).ready(function($) {
 					itemSelector: '.resource-result',
 					filter: hashFilter,
 					percentPosition: true,
-					layoutMode: 'packery',
-					packery: {
-						gutter: 10
+					layoutMode: 'fitRows',
+					fitRows: {
+						gutter: '.resource-gutter'
 					}
 				});
 				

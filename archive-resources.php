@@ -60,6 +60,7 @@
 			if ( $resources_query->have_posts() ): 
 			
 				echo "<div class='resources-grid'>";
+				echo "<div class='resource-gutter'></div>";
 			
 				while ( $resources_query->have_posts() ) : $resources_query->the_post(); 
 				
