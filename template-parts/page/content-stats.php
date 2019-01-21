@@ -24,7 +24,7 @@ endif;
 	endif; ?>
 	<div class="wrap">
 		<div class="section-content">
-			<?php if(get_sub_field( 'section_title' )): ?>
+			<?php if(get_sub_field( 'video_title' )): ?>
 				<header>
 					<h3><?php the_sub_field( 'section_title' ); ?></h3>
 				</header>
