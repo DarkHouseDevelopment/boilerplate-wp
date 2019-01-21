@@ -24,20 +24,37 @@ endif;
 	endif; ?>
 	<div class="wrap">
 		<div class="section-content">
-			<?php if(get_sub_field( 'video_title' )): ?>
+			<?php if(get_sub_field( 'section_title' ) || get_sub_field( 'section_intro_text' )): ?>
 				<header>
-					<h3><?php the_sub_field( 'section_title' ); ?></h3>
+					<?php 
+					if(get_sub_field( 'section_title' )): 
+						echo "<h3>".get_sub_field( 'section_title' )."</h3>";
+					endif;
+					
+					if(get_sub_field( 'section_intro_text' )): 
+						the_sub_field( 'section_intro_text' );
+					endif;
+					?>
 				</header>
 			<?php endif; ?>
 			<article>
 				<?php
-					$video = get_sub_field( 'video' );
-					echo prepareVideo($video);
+				if(have_rows( 'charts' )):
+					echo "<div class='charts'>";
 					
-					if(get_sub_field( 'video_title' )): ?>
+					while(have_rows( 'charts' )): the_row();
+						
+						$chart_style = get_sub_field( 'chart_style' );
+						get_template_part( "template-parts/dynamic-charts/content", "chart-$chart_style" );
+						
+					endwhile;
+					
+					echo "</div>";
+				endif;
+				
+				if(get_sub_field( 'footer_text' )): ?>
 					<footer>
-						<h4><?php the_sub_field( 'video_title' ); ?></h4>
-						<?php the_sub_field( 'video_description' ); ?>
+						<p><?php the_sub_field( 'footer_text' ); ?></p>
 					</footer>
 				<?php endif; ?>
 			</article>

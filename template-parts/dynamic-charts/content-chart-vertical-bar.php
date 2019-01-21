@@ -1,4 +1,4 @@
-<?php while(have_rows("bar_chart", $dynamic_chart)): the_row(); ?>
+<?php while(have_rows("bar_chart")): the_row(); ?>
 <?php $chart_height = get_sub_field( "chart_height" ); ?>
 <div class="dynamic-chart chart-wrap columns">
 	<div class="chart" <?php echo $chart_height ? "style='height:{$chart_height}px'" : ""; ?>>
