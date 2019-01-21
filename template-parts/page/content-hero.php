@@ -1,20 +1,5 @@
 <?php
-
-$bg_type = get_sub_field( 'background_type' );
-
-if($bg_type == "color"):
-	$bg_color = get_sub_field( 'background_color' );
-	$bg_css = "background: $bg_color;";
-else:
-	$bg_image = get_sub_field( 'background_image' );
-	$desktop_bg_image = $bg_image['desktop_background_image'];
-	$mobile_bg_image = $bg_image['mobile_background_image'];
-	$bg_style = $bg_image['background_style'];
-	$bg_pos = $bg_image['background_position'];
-	
-	$bg_style_css = $bg_style == "stretch" ? "background-size: cover;" : "background-repeat: repeat;";
-	$bg_css = "background: url({$desktop_bg_image['url']}) $bg_pos; $bg_style_css;";
-endif;
+$bg_style = background_type();
 
 $include_cob = get_sub_field( 'include_co-branding' );
 if($include_cob):
@@ -39,10 +24,8 @@ elseif($hero_media == "video"):
 endif;
 ?>
 
-<section class="content-section hero" style="<?php echo $bg_css; ?>">
-	<?php if($mobile_bg_image):
-		echo "<div class='mobile-bg' style='background: url({$mobile_bg_image['url']}) $bg_pos; $bg_style_css'></div>";	
-	endif; ?>
+<section class="content-section hero" style="<?php echo $bg_style['css']; ?>">
+	<?php echo $bg_style['mobile_html_css'] ? $bg_style['mobile_html_css'] : ''; ?>
 	<div class="wrap">
 		<div class="hero-content">
 			<header>

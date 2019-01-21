@@ -8,6 +8,7 @@
 	require_once("functions/acf-customizations.php");
 	require_once("functions/resources-cpt.php");
 	require_once("functions/btnshortcode.php");
+	require_once("functions/module-functions.php");
 	
 
 /************************************************************************/
@@ -88,13 +89,15 @@ function theme_setup(){
 
 // Add Stylesheets
 function theme_styles() {
-	//wp_enqueue_style( 'typekit', 'https://use.typekit.net/TYPEKIT_PROJECT_ID.css' );
 	wp_enqueue_style( 'styles', get_stylesheet_directory_uri().'/assets/css/styles.css' );
 	wp_enqueue_style( 'modules', get_stylesheet_directory_uri().'/assets/css/modules.css' );
 }
 
 // Add Scritps
 function theme_scripts() {	
+	
+	wp_deregister_script( 'jquery' );
+	wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', false, NULL, false );
 	wp_enqueue_script( 'jquery' );
 	
 	wp_register_script('slick-slider', get_template_directory_uri() . '/assets/js/slick.min.js', 'jquery', NULL, true);

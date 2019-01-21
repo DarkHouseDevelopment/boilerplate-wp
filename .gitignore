@@ -3,3 +3,5 @@
 .sass-cache
 config.codekit*
 node_modules
+assets/js
+assets/css
