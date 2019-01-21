@@ -94,9 +94,7 @@ function theme_styles() {
 }
 
 // Add Scritps
-function theme_scripts() {	
-	wp_enqueue_script( 'jquery' );
-	
+function theme_scripts() {		
 	wp_register_script('slick-slider', get_template_directory_uri() . '/assets/js/slick.min.js', 'jquery', NULL, true);
 	wp_enqueue_script('slick-slider');
 	

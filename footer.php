@@ -14,7 +14,6 @@
 	</footer>
 </div> <!-- end container -->
 
-<script type='text/javascript'>var $ = jQuery;</script>
 <?php wp_footer(); ?>
 
 </body>
