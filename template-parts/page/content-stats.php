@@ -18,14 +18,14 @@ endif;
 
 ?>
 
-<section class="content-section video-module" style="<?php echo $bg_css; ?>">
+<section class="content-section stats" style="<?php echo $bg_css; ?>">
 	<?php if($mobile_bg_image):
 		echo "<div class='mobile-bg' style='background: url({$mobile_bg_image['url']}) $bg_pos; $bg_style_css'></div>";	
 	endif; ?>
 	<div class="wrap">
 		<div class="section-content">
 			<?php if(get_sub_field( 'section_title' ) || get_sub_field( 'section_intro_text' )): ?>
-				<header>
+				<header class="intro">
 					<?php 
 					if(get_sub_field( 'section_title' )): 
 						echo "<h3>".get_sub_field( 'section_title' )."</h3>";
@@ -39,8 +39,11 @@ endif;
 			<?php endif; ?>
 			<article>
 				<?php
+				$charts = get_sub_field( 'charts' );
+				$chart_count = count($charts);
+					
 				if(have_rows( 'charts' )):
-					echo "<div class='charts'>";
+					echo "<div class='charts col-$chart_count'>";
 					
 					while(have_rows( 'charts' )): the_row();
 						

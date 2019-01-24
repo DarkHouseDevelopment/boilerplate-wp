@@ -11,6 +11,8 @@
 		box-sizing: border-box;
 	}
 	span.large-stat {
+		display: block;
+		font-family: $heading_font;
 		text-align: center;
 		font-weight: 900;
 		font-size: 40px;
@@ -213,6 +215,8 @@
 	&.pie .pie-chart {
 		position: relative;
 		margin: 0 auto;
+		width: 20rem;
+		height: 20rem;
 
 		.wedge {
 			opacity: 0;
@@ -230,6 +234,20 @@
 				position: absolute;
 				top: 0;
 				left: 0;
+			}
+		}
+		.large-stat {
+			position: absolute;
+			top: 50%;
+			right: 0;
+			left: 0;
+			margin: auto;
+			transform: translateY(-50%);
+			font-size: 8rem;
+			
+			span {
+				display: inline;
+				font-size: 0.75em;
 			}
 		}
 	}

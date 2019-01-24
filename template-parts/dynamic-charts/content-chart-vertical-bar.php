@@ -17,6 +17,6 @@
 			endif; ?>
 		</div>
 	</div>
-	<h4 class="chart-title"><?php echo get_the_title( $dynamic_chart ); ?></h4>
+	<h4 class="chart-title"><?php the_sub_field( 'chart_title' ); ?></h4>
 </div>
 <?php endwhile; ?>

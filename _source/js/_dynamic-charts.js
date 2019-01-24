@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
 							wedge.find('.mask.full').css(csshalf);
 							wedge.find('.fill').css(csshalf);
 							wedge.find('.fix').css(cssfull);
-						}, 500 + (325 * a));
+						}, 500 + (225 * a));
 					});
 				}, 500);
 			} else if (scrolled + win_height_padded < offsetTop) {

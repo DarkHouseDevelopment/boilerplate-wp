@@ -4,11 +4,7 @@
 	$default_pie_color = get_sub_field( "default_pie_color" );
 ?>
 <div class="dynamic-chart chart-wrap pie">
-	
-	<span class="large-stat">
-		<?php the_sub_field( "large_stat" ); ?>
-	</span>
-	
+		
 	<div class="pie-chart">
 		<?php if(have_rows( "wedges" )):
 			while(have_rows( "wedges" )): the_row(); 
@@ -41,8 +37,12 @@
 				</div>
 			</div>
 		</div>
+		
+		<span class="large-stat">
+			<?php the_sub_field( "large_stat" ); ?>
+		</span>
 	</div>
 		
-	<h4 class="chart-title"><?php echo get_the_title( $dynamic_chart ); ?></h4>
+	<h4 class="chart-title"><?php the_sub_field( 'chart_title' ); ?></h4>
 </div>
 <?php endwhile; ?>

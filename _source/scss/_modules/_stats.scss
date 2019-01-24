@@ -25,6 +25,29 @@
 		
 		article {
 			width: 100%;
+			
+			.charts {
+				width: 100%;
+				display: grid;
+				margin-bottom: 3rem;
+				
+				@include from('sm'){
+					grid-template-columns: repeat(2, 1fr);
+					grid-gap: 6rem;
+				}
+				@include from('md'){
+					grid-template-columns: repeat(3, 1fr);
+				}
+				
+				&.col-4 {
+					@include from('md'){
+						grid-template-columns: repeat(4, 1fr);
+					}
+				}
+			}
+			footer {
+				font-style: italic;
+			}
 		}
 	}
 }
