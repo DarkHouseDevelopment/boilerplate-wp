@@ -6,7 +6,7 @@
 	
 	.hero-content {
 		width: 100%;
-		padding: 8rem 0;
+		padding: 14rem 0 8rem	;
 		
 		@include breakpoint($tablet){
 			width: 48%;

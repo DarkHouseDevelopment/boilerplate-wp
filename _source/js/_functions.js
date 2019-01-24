@@ -109,3 +109,7 @@ function backToGridHash(){
 		$('section.back-link a').attr('href', backLink + "#filter=" + backHash);
 	}
 }
+
+function learnerJourneySlideshowInit() {
+	$('.slider-learner-journey').slick();
+}

@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
 	gridInit();
 	mobileGridToggle();
 	backToGridHash();
+	learnerJourneySlideshowInit();
 
 	window.onscroll = function(){ slideInFixedHeader() };
 	

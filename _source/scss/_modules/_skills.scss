@@ -17,6 +17,29 @@
 		
 		article {
 			width: 100%;
+			
+			.skills-grid {
+				margin-bottom: 3rem;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				
+				.skill {
+					margin-bottom: 2rem;
+					padding: 0 1.5rem;
+					width: 50%;
+					
+					//@include breakpoint($sm) { width: 50%; }
+					@include breakpoint($tablet) { width: 32%; }
+					
+					p { margin: 0; }
+				}
+			}
+			
+			a.btn {
+				display: inline-block;
+				margin: 0 1.5rem 1.5rem;
+			}
 		}
 	}
 }
