@@ -3,13 +3,113 @@
 //------------------------------------------------------------------------
 
 .content-section.stats {
-	padding: 8rem 0;
+	padding: 4rem 0;
 	
 	&.breakout {
-		
+		.section-content {
+			display: grid;
+			grid-gap: 0;
+			
+			@include from('sm'){
+				grid-template-columns: 1fr 1fr;
+			}
+			@include from('md'){
+				grid-template-columns: 1fr 2fr;
+			}
+		}
 	}
 	&.combined {
-		
+		.section-content {
+			.breakout {
+				display: grid;
+				grid-gap: 0;
+				
+				@include from('sm'){
+					grid-template-columns: 1fr 1fr;
+				}
+				@include from('md'){
+					grid-template-columns: 1fr 2fr;
+				}
+			}
+			.stat-blocks {
+				display: grid;
+				grid-gap: 0;
+				margin-top: 4rem;
+				
+				@include from('sm'){
+					grid-template-columns: 1fr 1fr;
+				}
+				@include from('md'){
+					grid-template-columns: 1fr 1fr 1fr;
+				}
+				
+				.stat-block {
+					border-top: 1px solid $darkgrey;
+					padding: 3rem 2rem 1rem;
+					
+					@include from('sm'){
+						border-right: 1px solid $darkgrey;
+						
+						&:nth-child(2n){
+							border-right: 0;
+						}
+						&:nth-child(3n){
+							grid-column: 1 / span 2;
+							border-right: 0;
+						}
+					}
+					@include from('md'){
+						border-right: 1px solid $darkgrey;
+						
+						&:nth-child(2n){
+							border-right: 1px solid $darkgrey;
+						}
+						&:nth-child(3n){
+							border-right: 0;
+							grid-column: initial;
+						}
+					}
+				}
+			}
+		}
+	}
+	&.breakout, &.combined {
+		.section-content {
+			figure {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-wrap: wrap;
+				font-size: 8rem;
+				line-height: 1;
+				text-align: center;
+				margin: 0;
+				font-family: $heading_font;
+				
+				.odometer {
+					font-family: $heading_font;
+				}
+				.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
+					left: -3px;
+					right: auto;
+				}
+				>span {
+					font-size: 0.75em;
+				}
+				label {
+					width: 100%;
+					text-transform: uppercase;
+					font-weight: 700;
+					font-family: $base_font;
+					font-size: 1.4rem;
+				}
+			}
+			article {
+				display: flex;
+				align-items: center;
+				text-align: left;
+			}
+		}
 	}
 		
 	

@@ -18,22 +18,53 @@ endif;
 
 ?>
 
-<section class="content-section stats breakout" style="<?php echo $bg_css; ?>">
+<section class="content-section stats combined" style="<?php echo $bg_css; ?>">
 	<?php if($mobile_bg_image):
 		echo "<div class='mobile-bg' style='background: url({$mobile_bg_image['url']}) $bg_pos; $bg_style_css'></div>";	
 	endif; ?>
 	<div class="wrap">
 		<div class="section-content">
-			<?php
-				$stat_type = get_sub_field( 'stat_type' );
-				get_template_part( "template-parts/dynamic-charts/content", "stat-$stat_type" );
-			?>
-			<article>
-				<p>
-					<strong><?php the_sub_field( 'stat_description' ); ?></strong><br>
-					<span><?php the_sub_field( 'stat_source' ); ?></span>
-				</p>
-			</article>
+			<div class="breakout">
+			<?php while(have_rows( 'breakout_stat' )): the_row(); ?>
+				<?php
+					$stat_type = get_sub_field( 'stat_type' );
+					get_template_part( "template-parts/dynamic-charts/content", "stat-$stat_type" );
+				?>
+				<article>
+					<p>
+						<strong><?php the_sub_field( 'stat_description' ); ?></strong><br>
+						<span><?php the_sub_field( 'stat_source' ); ?></span>
+					</p>
+				</article>
+			<?php endwhile; ?>
+			</div>
+			<?php if(have_rows( 'stat_blocks' )): ?>
+			<div class="stat-blocks">
+				<?php while(have_rows( 'stat_blocks' )): the_row();
+					
+					$stat_type = get_sub_field( 'stat_type' );
+					echo "<div class='stat-block'>";
+					get_template_part( "template-parts/dynamic-charts/content", "stat-$stat_type" );
+					
+					if(get_sub_field( 'stat_description' ) || get_sub_field( 'stat_source' )){
+						echo "<footer><p>";
+						
+						if(get_sub_field( 'stat_description' )):
+							echo "<strong>".get_sub_field( 'stat_description' )."</strong><br>";
+						endif;
+						
+						if(get_sub_field( 'stat_source' )):
+							echo "<span>".get_sub_field( 'stat_description' )."</span>";
+						endif;
+						
+						echo "</p></footer>";
+					}
+					
+					echo "</div>";
+					
+				endwhile; ?>
+			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>
