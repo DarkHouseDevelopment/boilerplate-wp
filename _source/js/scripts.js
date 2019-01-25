@@ -9,6 +9,7 @@ jQuery(document).ready(function($) {
 	mobileGridToggle();
 	backToGridHash();
 	learnerJourneySlideshowInit();
+	benefitsBlocksToggle();
 
 	window.onscroll = function(){ slideInFixedHeader() };
 	

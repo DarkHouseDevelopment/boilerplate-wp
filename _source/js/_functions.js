@@ -113,3 +113,24 @@ function backToGridHash(){
 function learnerJourneySlideshowInit() {
 	$('.slider-learner-journey').slick();
 }
+
+function benefitsBlocksToggle() {
+	if( $('.benefits-blocks').length > 0 ) {
+		if( $('.blocks').hasClass('expanding') ) {
+			$('.blocks').find('.block').each(function(){
+				
+				$(this).find('.expand').click(function(){
+					$(this).hide();
+					$(this).parents('.block-content').find('.close').show();
+					$(this).parents('.block-content').find('.block-content-wrap').slideDown('slow');
+				});
+				
+				$(this).find('.close').click(function(){
+					$(this).hide()
+					$(this).parents('.block-content').find('.expand').show();
+					$(this).parents('.block-content').find('.block-content-wrap').slideUp('slow');
+				});
+			});
+		}
+	}
+}
