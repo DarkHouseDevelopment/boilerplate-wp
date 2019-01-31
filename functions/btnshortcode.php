@@ -15,11 +15,12 @@
 		
 		if($new_window == "true"){
 			$target = "_blank";
+			$rel = 'rel="noopener"';
 		} else {
 			$target = "_self";
 		}
 	
-		return "<a class='btn btn-$style' href='$link' target='$target'>$content</a>";
+		return "<a class='btn btn-$style' href='$link' target='$target' $rel>$content</a>";
 	
 	}
 	add_shortcode( 'btn', 'btn_shortcode' );

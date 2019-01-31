@@ -1,33 +1,16 @@
 <?php
-
-$bg_type = get_sub_field( 'background_type' );
-
-if($bg_type == "color"):
-	$bg_color = get_sub_field( 'background_color' );
-	$bg_css = "background: $bg_color;";
-else:
-	$bg_image = get_sub_field( 'background_image' );
-	$desktop_bg_image = $bg_image['desktop_background_image'];
-	$mobile_bg_image = $bg_image['mobile_background_image'];
-	$bg_style = $bg_image['background_style'];
-	$bg_pos = $bg_image['background_position'];
 	
-	$bg_style_css = $bg_style == "stretch" ? "background-size: cover;" : "background-repeat: repeat;";
-	$bg_css = "background: url({$desktop_bg_image['url']}) $bg_pos; $bg_style_css;";
-endif;
+$bg_style = background_type();
 
-$quote_type = get_sub_field( 'quote_type' );
+$quote_type = get_sub_field_sanitized( 'quote_type',false,false,'esc_attr' );
 ?>
-
-<section class="content-section quote <?php echo $quote_type; ?>" style="<?php echo $bg_css; ?>">
-	<?php if($mobile_bg_image):
-		echo "<div class='mobile-bg' style='background: url({$mobile_bg_image['url']}) $bg_pos; $bg_style_css'></div>";	
-	endif; ?>
+<section class="content-section quote <?php echo $quote_type; ?>" style="<?php echo $bg_style['css']; ?>">
+	<?php echo $bg_style['mobile_html_css'] ? $bg_style['mobile_html_css'] : ''; ?>
 	<div class="wrap">
 		<?php if($quote_type == "video"): ?>
 			<?php if(get_sub_field( 'video_title' )): ?>
 				<header>
-					<h2><?php the_sub_field( 'video_title' ); ?></h2>
+					<h2><?php the_sub_field_sanitized( 'video_title',false,false,'esc_html' ); ?></h2>
 				</header>
 			<?php endif; ?>
 			<div class="section-content">
@@ -39,11 +22,13 @@ $quote_type = get_sub_field( 'quote_type' );
 				</article>
 				<?php
 				$footer_link = get_sub_field( 'footer_link' );
+				$footer_link_url = esc_url($footer_link['link_url']);
+				$footer_link_text = esc_html($footer_link['link_text']);
 				
-				if(!empty($footer_link['link_text']) && !empty($footer_link['link_url'])):
+				if(!empty($footer_link_text) && !empty($footer_link_url)):
 					echo "<footer>";
 					
-					echo "<a href='{$footer_link['link_url']}'><strong>{$footer_link['link_text']}</strong></a>";
+					echo "<a href='{$footer_link_url}'><strong>{$footer_link_text}</strong></a>";
 					
 					echo "</footer>";
 				endif;
@@ -52,22 +37,25 @@ $quote_type = get_sub_field( 'quote_type' );
 		<?php else: ?>
 			<div class="section-content">
 				<article>
-					<?php the_sub_field( 'quote_text' ); ?>
+					<?php wp_kses(the_sub_field( 'quote_text' ),$allowed_html); ?>
 				</article>
 				<?php 
-				$quote_author = get_sub_field( 'quote_author' ); 
+				$quote_author = get_sub_field( 'quote_author' );
+				$quote_author_name = esc_html($quote_author['name']);
+				$quote_author_title = esc_html($quote_author['title']);
+				$quote_author_company = esc_html($quote_author['company']);
 				
 				if(!empty($quote_author['name']) || !empty($quote_author['title']) || !empty($quote_author['company'])):
 					echo "<footer>";
 					
 					if($quote_author['name']):
-						echo "<strong>{$quote_author['name']}</strong><br>";
+						echo "<strong>{$quote_author_name}</strong><br>";
 					endif;
 					if($quote_author['title']):
-						echo "<strong>{$quote_author['title']}</strong><br>";
+						echo "<strong>{$quote_author_title}</strong><br>";
 					endif;
 					if($quote_author['company']):
-						echo "<strong>{$quote_author['company']}</strong>";
+						echo "<strong>{$quote_author_company}</strong>";
 					endif;
 					
 					echo "</footer>";
@@ -78,8 +66,11 @@ $quote_type = get_sub_field( 'quote_type' );
 			<div class="section-media">
 				<?php 
 					$quote_image = get_sub_field( 'quote_image' );
+					$quote_image_url = esc_url($quote_image['url']);
+					$quote_image_alt = esc_html($quote_image['alt']);
+					
 					if($quote_image):
-						echo "<img src='{$quote_image['url']}' alt='{$quote_image['alt']}' />";
+						echo "<img src='{$quote_image_url}' alt='{$quote_image_alt}' />";
 					endif;
 				?>
 			</div>

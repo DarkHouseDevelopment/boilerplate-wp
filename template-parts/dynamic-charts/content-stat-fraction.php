@@ -1,5 +1,5 @@
 <?php
-	$fraction = get_sub_field( 'fraction_value' );
+	$fraction = get_sub_field_sanitized( 'fraction_value',false,false,'esc_html' );
 	$fraction_parts = explode('/', $fraction);
 ?>
 

@@ -28,9 +28,9 @@ function prepareVideo($iframe){
 	// add extra params to iframe src
 	$params = array(
 		'rel' => 0,
-	    'title' => 0,
-	    'byline' => 0,
-	    'portrait' => 0,
+		'title' => 0,
+		'byline' => 0,
+		'portrait' => 0,
 	);
 	
 	$new_src = add_query_arg($params, $src);				
@@ -41,5 +41,5 @@ function prepareVideo($iframe){
 	
 	$iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe);
 		
-	return "<div class='video-wrapper'>$iframe</div>";
+	return '<div class="video-wrapper">'.wp_kses($iframe,$allowed_html).'</div>';
 }

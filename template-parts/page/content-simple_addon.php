@@ -6,11 +6,11 @@
 		<div class="section-content">
 			<?php if(get_sub_field( 'section_title' )): ?>
 				<header>
-					<h3><?php the_sub_field( 'section_title' ); ?></h3>
+					<h3><?php the_sub_field_sanitized( 'section_title',false,false,'esc_html' ); ?></h3>
 				</header>
 			<?php endif; ?>
 			<article>
-				<?php the_sub_field( 'section_content' ); ?>
+				<?php wp_kses(the_sub_field( 'section_content' ),$allowed_html); ?>
 				<?php	dynamic_buttons( 'ctas' ); ?>
 			</article>
 		</div>

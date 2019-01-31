@@ -4,26 +4,28 @@ $bg_type = get_field( 'resources_archive_hero_background_type', 'option' );
 
 if($bg_type == "color"):
 	$bg_color = get_field( 'resources_archive_hero_background_color', 'option' );
-	$bg_css = "background: $bg_color;";
+	$bg_css = "background: ".esc_attr($bg_color).";";
 else:
 	$bg_image = get_field( 'resources_archive_hero_background_image', 'option' );
 	$desktop_bg_image = $bg_image['desktop_background_image'];
 	$mobile_bg_image = $bg_image['mobile_background_image'];
-	$bg_style = $bg_image['background_style'];
-	$bg_pos = $bg_image['background_position'];
+	$desktop_bg_image_url = esc_url($desktop_bg_image['url']);
+	$mobile_bg_image_url = esc_url($mobile_bg_image['url']);
+	$bg_style = esc_attr($bg_image['background_style']);
+	$bg_pos = esc_attr($bg_image['background_position']);
 	
 	$bg_style_css = $bg_style == "stretch" ? "background-size: cover;" : "background-repeat: repeat;";
-	$bg_css = "background: url({$desktop_bg_image['url']}) $bg_pos; $bg_style_css;";
+	$bg_css = "background: url({$desktop_bg_image_url}) $bg_pos; $bg_style_css;";
 endif;
 
 $hero_content = get_field( 'resources_archive_hero_content', 'option' );
-$hero_text_color = $hero_content['hero_text_color'];
-$hero_title = $hero_content['hero_title'];
+$hero_text_color = esc_attr($hero_content['hero_text_color']);
+$hero_title = ecs_html($hero_content['hero_title']);
 ?>
 
 <section class="content-section hero resources-archive" style="<?php echo $bg_css; ?>">
 	<?php if($mobile_bg_image):
-		echo "<div class='mobile-bg' style='background: url({$mobile_bg_image['url']}) $bg_pos; $bg_style_css'></div>";	
+		echo "<div class='mobile-bg' style='background: url({$mobile_bg_image_url}) $bg_pos; $bg_style_css'></div>";	
 	endif; ?>
 	<div class="wrap">
 		<div class="hero-content">

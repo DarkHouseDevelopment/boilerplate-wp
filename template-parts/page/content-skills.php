@@ -7,10 +7,10 @@
 			<?php if(get_sub_field( 'intro_title' ) || get_sub_field( 'intro_text' )): ?>
 			<header class="intro">
 				<?php if(get_sub_field( 'intro_title' )): ?>
-					<h3><?php the_sub_field( 'intro_title' ); ?></h3>
+					<h3><?php the_sub_field_sanitized( 'intro_title',false,false,'esc_html' ); ?></h3>
 				<?php endif; ?>
 				<?php if(get_sub_field( 'intro_text' )): ?>
-					<p><?php the_sub_field( 'intro_text' ); ?></p>
+					<p><?php the_sub_field_sanitized( 'intro_text',false,false,'esc_html' ); ?></p>
 				<?php endif; ?>
 			</header>
 			<?php endif; ?>
@@ -20,9 +20,10 @@
 						echo '<div class="skills-grid">';
 						while( have_rows( 'skills' ) ): the_row();
 							$skill_image = get_sub_field( 'skill_image' );
-							$skill_title = get_sub_field( 'skill_title' );
+							$skill_image_url = $skill_image['url'];
+							$skill_title = get_sub_field_sanitized( 'skill_title',false,false,'esc_html' );
 							echo '<div class="skill">';
-								echo '<img src="'.$skill_image['url'].'" alt="'.$skill_title.'" />';
+								echo '<img src="'.$skill_image_url.'" alt="'.$skill_title.'" />';
 								echo '<p>'.$skill_title.'</p>';
 							echo '</div>';
 						endwhile;

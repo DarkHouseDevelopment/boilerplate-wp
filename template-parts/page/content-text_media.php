@@ -1,49 +1,37 @@
 <?php
-
-$bg_type = get_sub_field( 'background_type' );
-
-if($bg_type == "color"):
-	$bg_color = get_sub_field( 'background_color' );
-	$bg_css = "background: $bg_color;";
-else:
-	$bg_image = get_sub_field( 'background_image' );
-	$desktop_bg_image = $bg_image['desktop_background_image'];
-	$mobile_bg_image = $bg_image['mobile_background_image'];
-	$bg_style = $bg_image['background_style'];
-	$bg_pos = $bg_image['background_position'];
-	
-	$bg_style_css = $bg_style == "stretch" ? "background-size: cover;" : "background-repeat: repeat;";
-	$bg_css = "background: url({$desktop_bg_image['url']}) $bg_pos; $bg_style_css;";
-endif;
+$bg_style = background_type();
 
 $include_intro = get_sub_field( 'include_intro' );
 if($include_intro):
-	$intro_title = get_sub_field( 'intro_title' );
+	$intro_title = get_sub_field_sanitized( 'intro_title',false,false,'esc_html' );
 	$intro_text = get_sub_field( 'intro_text' );
 endif;
 
-$section_layout = get_sub_field( 'section_layout' );
+$section_layout = get_sub_field_sanitized( 'section_layout',false,false,'esc_attr' );
 $section_title = get_sub_field( 'section_title' );
-$section_content = get_sub_field( 'section_content' );
 
-$section_media = get_sub_field( 'media_type' );
+$section_media = get_sub_field_sanitized( 'media_type',false,false,'esc_attr' );
 if($section_media == "image"):
 	$section_image = get_sub_field( 'image' );
+	$section_image_url = $section_image['url'];
+	$section_image_alt = $section_image['alt'];
 elseif($section_media == "video"):
 	$section_video = get_sub_field( 'video' );
 	$section_video = prepareVideo($section_video);
 endif;
 ?>
 
-<section class="content-section text-media <?php echo $section_layout; ?>" style="<?php echo $bg_css; ?>">
-	<?php if($mobile_bg_image):
-		echo "<div class='mobile-bg' style='background: url({$mobile_bg_image['url']}) $bg_pos; $bg_style_css'></div>";	
-	endif; ?>
+<section class="content-section text-media <?php echo $section_layout; ?>" style="<?php echo $bg_style['css']; ?>">
+	<?php echo $bg_style['mobile_html_css'] ? $bg_style['mobile_html_css'] : ''; ?>
 	<div class="wrap">
 		<?php if($include_intro): ?>
 			<header class="intro">
 				<h3><?php echo $intro_title; ?></h3>
-				<?php echo $intro_text; ?>
+				<?php
+					if(the_sub_field( 'intro_text' )):
+						wp_kses(the_sub_field( 'intro_text' ),$allowed_html);
+					endif;
+				?>
 			</header>
 		<?php endif; ?>
 		<div class="section-content">
@@ -52,16 +40,16 @@ endif;
 					<h3><?php echo $section_title; ?></h3>
 				</header>
 			<?php endif; ?>
-			<?php if($section_content): ?>
+			<?php if(get_sub_field( 'section_content' )): ?>
 				<article>
-					<?php echo $section_content; ?>
+					<?php echo wp_kses(the_sub_field( 'section_content' ),$allowed_html); ?>
 				</article>
 			<?php endif; ?>
 		</div>
 		<?php if($section_media != "none"): ?>
 		<div class="section-media <?php echo $section_media; ?>">
 			<?php if($section_media == "image"): 
-				echo "<img src='{$section_image['url']}' alt='{$section_image['alt']}' />";
+				echo "<img src='{$section_image_url}' alt='{$section_image_alt}' />";
 			elseif($section_media == "video"):
 				echo $section_video;
 			endif; ?>

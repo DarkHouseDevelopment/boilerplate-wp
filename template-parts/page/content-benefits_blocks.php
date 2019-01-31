@@ -7,10 +7,10 @@
 			<?php if(get_sub_field( 'section_title' ) || get_sub_field( 'section_intro' )): ?>
 			<header class="intro">
 				<?php if(get_sub_field( 'section_title' )): ?>
-					<h3><?php the_sub_field( 'section_title' ); ?></h3>
+					<h3><?php the_sub_field_sanitized( 'section_title',false,false,'esc_html' ); ?></h3>
 				<?php endif; ?>
 				<?php if(get_sub_field( 'section_intro' )): ?>
-					<p><?php the_sub_field( 'section_intro' ); ?></p>
+					<p><?php the_sub_field_sanitized( 'section_intro',false,false,'esc_html' ); ?></p>
 				<?php endif; ?>
 			</header>
 			<?php endif; ?>
@@ -18,27 +18,26 @@
 				<?php
 					$blocks_options = get_sub_field( 'blocks_options' );
 					if($blocks_options):
-						$blocks_per_row = $blocks_options['blocks_per_row'];
-						$content_style = $blocks_options['content_style'];
+						$blocks_per_row = esc_attr($blocks_options['blocks_per_row']);
+						$content_style = esc_attr($blocks_options['content_style']);
 					endif;
 					if( have_rows( 'benefit_blocks' ) ):
 						echo '<div class="blocks b-'.$blocks_per_row.' '.$content_style.'">';
 						while( have_rows( 'benefit_blocks' ) ): the_row();
 							$block_image = get_sub_field( 'block_image' );
-							$block_title = get_sub_field( 'block_title' );
-							$block_content = get_sub_field( 'block_content' );
+							$block_image_url = esc_url($block_image['url']);
+							$block_title = get_sub_field_sanitized( 'block_title',false,false,'esc_attr' );
 							echo '<div class="block">';
-								
 								if($block_image):
-									echo '<img src="'.$block_image['url'].'" alt="'.$block_title.'" />';
+									echo '<img src="'.$block_image_url.'" alt="'.$block_title.'" />';
 								endif;
 								if($block_title):
 									echo '<p class="title">'.$block_title.'</p>';
 								endif;
-								if($block_content):
+								if(get_sub_field( 'block_content' )):
 									echo '<div class="block-content">';
 										echo '<div class="block-content-wrap">';
-											the_sub_field( 'block_content' );
+											wp_kses(the_sub_field( 'block_content' ),$allowed_html);
 										echo '</div>';
 										echo '<div class="block-content-controls">';
 											if($content_style == 'expanding'):
