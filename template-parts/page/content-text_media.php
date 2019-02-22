@@ -1,14 +1,13 @@
-<?php
-$bg_style = background_type();
+<?php 
+$bg_style = background_type(); 
 
 $include_intro = get_sub_field( 'include_intro' );
-if($include_intro):
-	$intro_title = get_sub_field_sanitized( 'intro_title',false,false,'esc_html' );
-	$intro_text = get_sub_field( 'intro_text' );
-endif;
-
 $section_layout = get_sub_field_sanitized( 'section_layout',false,false,'esc_attr' );
-$section_title = get_sub_field( 'section_title' );
+
+while(have_rows("content_title")): the_row();
+	$content_title_color = get_sub_field_sanitized( 'content_title_color',false,false,'esc_html' );
+	$content_title = get_sub_field_sanitized( 'content_title_text',false,false,'esc_html' );
+endwhile;
 
 $section_media = get_sub_field_sanitized( 'media_type',false,false,'esc_attr' );
 if($section_media == "image"):
@@ -19,6 +18,8 @@ elseif($section_media == "video"):
 	$section_video = get_sub_field( 'video' );
 	$section_video = prepareVideo($section_video);
 endif;
+
+get_section_id();
 ?>
 
 <section class="content-section text-media <?php echo $section_layout; ?>" style="<?php echo $bg_style['css']; ?>">
@@ -26,23 +27,30 @@ endif;
 	<div class="wrap">
 		<?php if($include_intro): ?>
 			<header class="intro">
-				<h3><?php echo $intro_title; ?></h3>
-				<?php
-					if(the_sub_field( 'intro_text' )):
-						wp_kses(the_sub_field( 'intro_text' ),$allowed_html);
-					endif;
+				<?php 
+				while(have_rows("section_title")): the_row();
+					$section_title_color = get_sub_field_sanitized( 'section_title_color',false,false,'esc_html' );
+					$section_title = get_sub_field_sanitized( 'section_title_text',false,false,'esc_html' );
+				endwhile;
+
+				if($section_title): 
+					echo "<h2 style='color: $section_title_color;'>$section_title</h2>";
+				endif; 
+				if(get_sub_field( 'intro_text' )):
+					echo wp_kses_post(get_sub_field( 'intro_text' ),$allowed_html);
+				endif;
 				?>
 			</header>
 		<?php endif; ?>
 		<div class="section-content">
-			<?php if($section_title): ?>
+			<?php if($content_title): ?>
 				<header>
-					<h3><?php echo $section_title; ?></h3>
+					<?php echo "<h3 style='color: $section_title_color;'>$section_title</h3>"; ?>
 				</header>
 			<?php endif; ?>
 			<?php if(get_sub_field( 'section_content' )): ?>
 				<article>
-					<?php echo wp_kses(the_sub_field( 'section_content' ),$allowed_html); ?>
+					<?php echo wp_kses_post(get_sub_field( 'section_content' ),$allowed_html); ?>
 				</article>
 			<?php endif; ?>
 		</div>

@@ -6,12 +6,6 @@
 	background: $btn_bg;
 	border-color: $btn_border;
 	color: $btn_color;
-
-	&:visited {
-		background: $btn_bg;
-		border-color: $btn_border;
-		color: $btn_color;
-	}
 }
 
 @mixin btn-static{
@@ -25,9 +19,13 @@
 	display: inline-block;
 	cursor: pointer;
 	outline: none;
-	transition: all, 0.2s, ease-in-out;
-	
+	transition: all 0.2s ease-in-out;
+	transform: scale(1);
 	border-radius: $btn_border_radius;
+	
+	&:hover {
+		transform: scale(1.05);
+	}
 }
 
 .btn-static{ @include btn-static; }

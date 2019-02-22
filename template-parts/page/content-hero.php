@@ -1,11 +1,15 @@
 <?php
 $bg_style = background_type();
+$hero_layout = get_sub_field( 'hero_layout' );
 
 $include_cob = get_sub_field( 'include_co-branding' );
 if($include_cob):
 	$cob_type = get_sub_field( 'co-branding_type' );
 	if($cob_type == "text"):
-		$cob_text = get_sub_field_sanitized( 'co-branding_text',false,false,'esc_html' );
+		while(have_rows("co-branding_text")): the_row();
+			$cob_text_color = get_sub_field_sanitized( 'co-branding_text_color',false,false,'esc_html' );
+			$cob_text = get_sub_field_sanitized( 'co-branding_text_text',false,false,'esc_html' );
+		endwhile;
 	elseif($cob_type == "logo"):
 		$cob_logo = get_sub_field( 'co-branding_logo' );
 		$cob_logo_url = esc_url($cob['url']);
@@ -13,7 +17,10 @@ if($include_cob):
 	endif;
 endif;
 
-$hero_title = get_sub_field_sanitized( 'hero_title',false,false,'esc_html' );
+while(have_rows("hero_title")): the_row();
+	$hero_title_color = get_sub_field_sanitized( 'hero_title_color',false,false,'esc_html' );
+	$hero_title = get_sub_field_sanitized( 'hero_title_text',false,false,'esc_html' );
+endwhile;
 
 $hero_media = get_sub_field_sanitized( 'hero_media',false,false,'esc_html' );
 if($hero_media == "image"):
@@ -29,7 +36,7 @@ elseif($hero_media == "video"):
 endif;
 ?>
 
-<section class="content-section hero" style="<?php echo $bg_style['css']; ?>">
+<section class="content-section hero <?php echo esc_html($hero_layout); ?>" style="<?php echo $bg_style['css']; ?>">
 	<?php echo $bg_style['mobile_html_css'] ? $bg_style['mobile_html_css'] : ''; ?>
 	<div class="wrap">
 		<div class="hero-content">
@@ -37,16 +44,21 @@ endif;
 				<?php 
 				if($include_cob):
 					if($cob_type == "text"):
-						echo "<strong>$cob_text</strong>";
+						echo "<strong style='color: $cob_text_color;'>$cob_text</strong>";
 					elseif($cob_type == "logo"):
 						echo "<img src='{$cob_logo_url}' alt='{$cob_logo_alt}' />";
 					endif;
 				endif;
+				
+				echo "<h1 style='color: $hero_title_color;'>$hero_title</h1>";
 				?>
-				<h1><?php echo $hero_title; ?></h1>
 			</header>
-			<article>
-				<?php wp_kses(the_sub_field('hero_content'),$allowed_html); ?>
+			<article style="color: <?php echo esc_html($section_titles_color); ?>">
+				<?php wp_kses_post(get_sub_field('hero_content'),$allowed_html); ?>
+				
+				<div class='hero-ctas'>
+					<?php dynamic_buttons('hero_ctas'); ?>
+				</div>
 			</article>
 		</div>
 		<?php if($hero_media != "none"): ?>

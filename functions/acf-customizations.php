@@ -6,8 +6,8 @@ function change_acf_color_picker() {
 		acf.add_filter('color_picker_args', function( args, field ){
 
 		    // overwrite palette with custom colors
-		    args.palettes = ['#fde200', '#00ce9b', '#3cc4ee', '#ecf7f9', '#000000', '#999999', '#dfdfde', '#ffffff']		
-		
+		    args.palettes = ['#175467', '#CDEFFA', '#014937', '#A1ECDA', '#791000', '#FF8F7E', '#FFDBD3', '#1F2020', '#3B3C3C', '#ffffff']		
+				
 		    // return
 		    return args;
 		

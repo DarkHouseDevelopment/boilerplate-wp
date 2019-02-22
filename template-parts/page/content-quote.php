@@ -1,8 +1,8 @@
-<?php
-	
-$bg_style = background_type();
-
+<?php 
+$bg_style = background_type(); 
 $quote_type = get_sub_field_sanitized( 'quote_type',false,false,'esc_attr' );
+
+get_section_id();
 ?>
 <section class="content-section quote <?php echo $quote_type; ?>" style="<?php echo $bg_style['css']; ?>">
 	<?php echo $bg_style['mobile_html_css'] ? $bg_style['mobile_html_css'] : ''; ?>
@@ -37,7 +37,7 @@ $quote_type = get_sub_field_sanitized( 'quote_type',false,false,'esc_attr' );
 		<?php else: ?>
 			<div class="section-content">
 				<article>
-					<?php wp_kses(the_sub_field( 'quote_text' ),$allowed_html); ?>
+					<?php wp_kses_post(get_sub_field( 'quote_text' ),$allowed_html); ?>
 				</article>
 				<?php 
 				$quote_author = get_sub_field( 'quote_author' );

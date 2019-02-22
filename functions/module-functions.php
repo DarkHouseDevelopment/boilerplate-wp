@@ -51,54 +51,76 @@ function get_button_fields() {
 	
 	$btn = array();
 	
-	$button_styles = get_sub_field( 'button_styles',$postID );
-	$button_color = $button_styles['button_color'];
-	$button_type = $button_styles['button_type'];
+	$button_styles = get_sub_field( 'button_styles' );
+	$btn['style']['bg'] = esc_html($button_styles['button_color']);
+	$btn['style']['color'] = esc_html($button_styles['button_text_color']);
+	$btn['class'] = "btn";
 	
-	$button_text = get_sub_field( 'button_text',$postID );
+	$button_text = get_sub_field( 'button_text' );
 	
 	$button_link = get_sub_field( 'button_link' );
 	$button_link_type = $button_link['button_link_type'];
 	$button_target = $button_link['button_link_target'];
-	$button_link = $button_link["button_link_$button_link_type"];
-	
-	if($button_link_type == "internal"):
-		$button_link = get_permalink( $button_link->ID );
+	if($button_link_type == "popup"):
+		$button_target = "_self";
 	endif;
 	
+	if($button_link_type == "internal"):
+		$button_href = $button_link["button_link_$button_link_type"];
+		$button_href = get_permalink( $button_link->ID );
+	elseif($button_link_type == "popup"):
+		if(!isset($GLOBALS['popup_count'])):
+			$GLOBALS['popup_count'] = 1;
+		else:
+			$GLOBALS['popup_count'] = $GLOBALS['popup_count'] + 1;
+		endif;
+		$button_href = "javascript:void(0);' data-target='#modal-$postID-{$GLOBALS['popup_count']}";
+		$btn['class'] = "btn modal-trigger";
+		$btn['popup_content'] = $button_link['pop_up_content'];
+	else:
+		$button_href = esc_url($button_link["button_link_$button_link_type"]);
+	endif;	
+		
 	$btn['rel'] = '';
 	if($button_link_type == "external"):
 		$btn['rel'] = 'rel="noopener"';
 	endif;
 	
-	$button_class = "btn-$button_color";
-	if($button_style === 'outline'):
-		$button_class .= "-outline";
-	endif;
-	
-	$btn['link'] = esc_url($button_link);
-	$btn['class'] = esc_attr($button_class);
+	$btn['link_type'] = esc_html($button_link_type);
+	$btn['link'] = $button_href;
 	$btn['target'] = esc_attr($button_target);
 	$btn['text'] = esc_html($button_text);
-	
+		
 	return $btn;
-	
-	//echo "<a href='$button_link' class='btn $button_class' target='$button_target'>$button_text</a>";
 }
 
 // echo single CTA button
 function dynamic_button() {
 	$btn = get_button_fields();
-	echo "<a href='{$btn['link']}' class='btn {$btn['class']}' target='{$btn['target']}' {$btn['rel']}>{$btn['text']}</a>";
+	echo "<a href='{$btn['link']}' class='{$btn['class']}' style='background:{$btn['style']['bg']}; border-color:{$btn['style']['bg']}; color:{$btn['style']['color']};' target='{$btn['target']}' {$btn['rel']}>{$btn['text']}</a>";
 }
 
 // echo multiple CTA buttons
 function dynamic_buttons( $field_name ) {
+	global $post;
+	
 	if( have_rows( $field_name ) ):
 		while( have_rows( $field_name ) ): the_row();
 			$btn = get_button_fields();
-			echo "<a href='{$btn['link']}' class='btn {$btn['class']}' target='{$btn['target']}' {$btn['rel']}>{$btn['text']}</a>";
+			echo "<a href='{$btn['link']}' class='{$btn['class']}' style='background:{$btn['style']['bg']}; border-color:{$btn['style']['bg']}; color:{$btn['style']['color']};' target='{$btn['target']}' {$btn['rel']}>{$btn['text']}</a>";
+			
+			if(isset($btn['popup_content'])):
+				echo "<div id='modal-{$post->ID}-{$GLOBALS['popup_count']}' class='overlay'><div class='overlay-content'><div class='btn-modal'><div class='close'></div>{$btn['popup_content']}</div></div></div>";
+			endif;
 		endwhile;
+	endif;
+}
+
+function get_section_id(){
+	$section_id = get_sub_field_sanitized( 'section_id', false, false, 'esc_html' );
+	
+	if($section_id):
+		echo "<a id='$section_id' name='$section_id'></a>";
 	endif;
 }
 

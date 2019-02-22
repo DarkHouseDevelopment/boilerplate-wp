@@ -2,19 +2,30 @@
 // VARIABLES
 //------------------------------------------------------------------------
 
-$black: rgb(0,0,0);
-$darkgrey: rgb(51,51,51);
+$black: rgb(31,32,32);  // #1F2020
+$darkgrey: rgb(59,60,60);  // #3B3C3C
 $grey: rgb(153,153,153);
 $lightgrey: rgb(204,204,204);
 $white: rgb(255,255,255);
 
 // Site Colors
 
-$yellow: rgb(253,226,0);  // #fde200
+$yellow: rgb(253,226,0);  // #FDE200
 $green: rgb(0,206,155);  // #00ce9b
 $blue: rgb(60,196,238);  // #3cc4ee
 $paleblue: rgb(236,247,249);  // #ecf7f9
 $lightgrey: rgb(223,223,222);  // #dfdfde
+
+// New Dark Colors
+
+$darkteal: rgb(23,84,103);  // #175467
+$darkgreen: rgb(1,73,55);  // #014937
+$darkred: rgb(121,16,0);  // #791000
+$paleteal: rgb(205,239,250);  // #CDEFFA
+$palegreen: rgb(161,236,218);  // #A1ECDA
+$palered: rgb(255,219,211);  // #FFDBD3
+$paleyellow: rgb(255,237,103);  // #FFED67
+$midred: rgb(255,143,126);  // #FF8F7E
 
 $msggreen: rgb(60,150,10); // Used for Success Messages
 $msgred: rgb(225,0,0); // Used for Error Messages

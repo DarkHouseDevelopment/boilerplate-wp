@@ -1,0 +1,86 @@
+//------------------------------------------------------------------------
+// BASE
+//------------------------------------------------------------------------
+
+//@import "compass";
+@import "breakpoint";
+@import "breakpoint-slicer";
+@import "_core/variables";
+@import "_core/base";
+@import "_core/mixins";
+
+
+
+
+//------------------------------------------------------------------------
+// ELEMENTS
+//------------------------------------------------------------------------
+
+body.page-template-dynamic-landing-page {
+	@import "_elements/typography";
+	@import "_elements/forms";
+	@import "_elements/buttons";
+	@import "_elements/video";
+	@import "_elements/overlay";
+	@import "_elements/slickslider";
+	@import "_elements/header";
+	//@import "_elements/footer";
+	
+	footer[role="contentinfo"]{
+		margin: 0;
+		
+		.footer-content {
+			width: 100%;
+			margin: 0 auto;
+			padding: 3rem 1.5rem;
+			
+			@include breakpoint($tablet){
+				padding: 5rem 1.5rem;
+			}
+			
+			.footer-col ul li {
+				font-size: 16px;
+				line-height: 1.5;
+				
+				strong { font-size: 20px; }
+			}
+		}
+	}
+}
+
+
+//------------------------------------------------------------------------
+// MODULES
+//------------------------------------------------------------------------
+
+@import "_modules/benefits-blocks";
+@import "_modules/btn-modals";
+@import "_modules/coach-map";
+@import "_modules/content-section";
+@import "_modules/cta";
+@import "_modules/dynamic-charts";
+@import "_modules/graphs";
+@import "_modules/hero";
+@import "_modules/logos";
+@import "_modules/quote";
+@import "_modules/simple-addon";
+@import "_modules/skills";
+@import "_modules/slideshow";
+@import "_modules/stats";
+@import "_modules/text-media";
+@import "_modules/video-module";
+
+
+//------------------------------------------------------------------------
+// PAGE
+//------------------------------------------------------------------------
+
+@import "_site/default";
+//@import "_site/home";
+//@import "_site/resources";
+
+.content-section.hero {	
+	.hero-content {
+		padding: 9rem 0 10rem;
+	}
+}

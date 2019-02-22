@@ -37,12 +37,12 @@ gulp.task('js', function(e) {
 // Compile SASS files
 gulp.task('sass', function() {
 	gulp.src(paths.scss)
-		.pipe(sourcemaps.init())
+		//.pipe(sourcemaps.init())
 		.pipe(sass({
 			outputStyle: 'compressed',
 			includePaths: paths.inc
 		}).on('error', sass.logError))
-		.pipe(sourcemaps.write())
+		//.pipe(sourcemaps.write())
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions'],
 			cascade: false

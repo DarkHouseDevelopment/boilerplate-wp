@@ -1,4 +1,7 @@
-<?php $bg_style = background_type(); ?>
+<?php 
+$bg_style = background_type(); 
+get_section_id();
+?>
 
 <section class="content-section stats combined" style="<?php echo $bg_style['css']; ?>">
 	<?php echo $bg_style['mobile_html_css'] ? $bg_style['mobile_html_css'] : ''; ?>
