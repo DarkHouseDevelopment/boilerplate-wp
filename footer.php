@@ -47,5 +47,7 @@ document.write('<img src="https://pubads.g.doubleclick.net/activity;xsp=4397652;
 <img src="https://pubads.g.doubleclick.net/activity;xsp=4397652;qty=1;cost=[revenue];ord=[order id]?" width=1 height=1 border=0/>
 </noscript>
 
+<script async src='https://tag.simpli.fi/sifitag/936e12e0-f59b-0136-ddb0-06a9ed4ca31b'></script>
+
 </body>
 </html>

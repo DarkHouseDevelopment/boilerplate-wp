@@ -26,6 +26,10 @@ if ( have_posts() ):
 					case 'full_width_content':
 						get_template_part( 'template-parts/frontpage/content', 'full-width' );
 						break;
+					
+					case 'call_to_action':
+						get_template_part( 'template-parts/page/content', 'call-to-action' );
+						break;
 						
 					case 'find_your_home':
 						get_template_part( 'template-parts/frontpage/content', 'find-home' );

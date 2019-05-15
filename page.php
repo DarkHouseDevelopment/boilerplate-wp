@@ -33,6 +33,10 @@ if ( have_posts() ):
 					get_template_part( 'template-parts/page/content', 'sidebar' );
 					break;
 					
+				case 'call_to_action':
+					get_template_part( 'template-parts/page/content', 'call-to-action' );
+					break;
+					
 				case 'live_connected_nav':
 					$nav_blocks = 'default';
 					include(locate_template( 'template-parts/page/content-nav-blocks.php' ));
