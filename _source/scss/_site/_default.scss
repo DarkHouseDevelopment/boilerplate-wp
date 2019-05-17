@@ -175,6 +175,56 @@ section[role="main"]{
 			}
 		}
 	}
+	
+	&.cta-section {
+		margin: 3rem 0;
+		padding: 4rem 0;
+	
+		@include breakpoint($md){
+			margin: 4rem 0;
+			padding: 6rem 0;
+		}
+		@include breakpoint($lg){
+			margin: 5rem 0;
+			padding: 8rem 0;
+		}
+		
+		&.content {
+			.cta-bg { max-width: 96rem; }
+		}
+		&.container {
+			.cta-bg { max-width: 120rem; }
+		}
+		
+		.cta-bg {
+			@include position(absolute, 0 0 null 0);
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			
+			.bg-overlay {
+				@include position(absolute, 0 0 null 0);
+				width: 100%;
+				height: 100%;				
+			}
+		}
+		
+		header {
+			margin: 0;
+		}
+		.btn {
+			margin-top: 3rem;
+		}
+		
+		&.interior {
+			@include breakpoint($lg){
+				padding: 6rem 0;
+			}
+		}
+	}
 		
 	.pattern-bg {
 		@include position(absolute, 0 null null 0);
