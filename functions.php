@@ -6,6 +6,7 @@
 
 	// External files
 	require_once("functions/acf-customizations.php");
+	require_once("functions/amenities.php");
 	require_once("functions/homes.php");
 	require_once("functions/builders.php");
 	require_once("functions/btnshortcode.php");
@@ -87,6 +88,8 @@ function theme_styles() {
 // Add typekit
 function theme_scripts(){
 	wp_enqueue_script( 'theme_typekit', '//use.typekit.net/uyv5qhl.js' );
+	
+	wp_enqueue_script( 'isotope', 'https://unpkg.com/isotope-layout@3.0.3/dist/isotope.pkgd.min.js', array('jquery'), null, true );
 	
 	wp_register_script('carousel', get_template_directory_uri() . '/assets/js/carousel.min.js', 'jquery', NULL, true);
 	wp_enqueue_script('carousel');

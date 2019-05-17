@@ -1,0 +1,199 @@
+
+#amenities_overview {
+	.section-content {
+		@include breakpoint($md) {
+			max-width: 80%;
+			margin: 0 auto;
+		}
+		@include breakpoint($md) { max-width: 70%; }
+	}
+}
+
+#amenities {
+	
+	header {
+		width: 100%;
+		
+		h3 {
+			position: relative;
+			text-transform: uppercase;
+			font-weight: 500;
+			text-align: center;
+			margin: 7rem 0;
+			
+			&:after {
+				content: '';
+				@include position(absolute, null 0 -2rem 0);
+				margin: auto;
+				background: $green;
+				width: 5.6rem;
+				height: 0.3rem;
+			}
+		}
+		.message {
+			text-align: center;
+			margin: 0 0 4rem;
+		}
+	}
+	
+	.amenities-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-auto-flow: dense;
+		
+		@include breakpoint($sm){
+			grid-template-columns: 1fr 1fr;
+			grid-column-gap: 1.2rem;
+		}
+		@include breakpoint($md){ grid-template-columns: 1fr 1fr 1fr; }
+	}
+	
+	.grid-results {
+		
+	}
+	
+	#amenity_types {
+		width: 100%;
+		
+		&.grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-auto-flow: dense;
+			
+			@include breakpoint($sm){
+				grid-template-columns: 1fr 1fr;
+				grid-column-gap: 1.2rem;
+			}
+			@include breakpoint($md){
+				grid-template-columns: 1fr 1fr 1fr;
+				max-width: 90%;
+				margin: 0 auto;
+			}
+		}
+		
+		&.grid-results {
+			.amenity {		
+				@include breakpoint($sm){ width: calc(50% - 1.2rem); }
+				@include breakpoint($md){
+					width: calc(33.333% - 1.2rem);
+					margin-bottom: 7rem;
+				}
+				@include breakpoint($lg){ width: calc(25% - 1.2rem); }
+			}
+		}
+		
+		.amenity {
+			width: 100%;
+			margin-bottom: 3rem;
+			text-align: center;
+			font-size: 1.6rem; 
+			
+			.amenity-image {
+				position: relative;
+				display: block;
+				width: 100%;
+				height: 19rem;
+				
+				.hover {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 100%;
+					height: 100%;
+					background: rgba($green, 0.8);
+					opacity: 0;
+					transition: all 0.3s ease-in-out;
+					
+					.btn-white-outline:hover{ @include btn(none,$white,$white); }
+					
+					.btn { max-width: 80%; }
+				}
+				
+				&:hover {
+					.hover {
+						opacity: 1;
+					}
+				}
+			}
+			
+			h4 {			
+				a {
+					font-weight: 700;
+					color: $text_color;
+					
+					&:hover {
+						color: $teal;
+					}
+				}
+			}
+		}
+	}
+}
+	
+#amenities_tags {
+	text-align: center;
+	
+	.grid-filter-toggle {
+		background-color: rgba($green,0.9);
+    display: block;
+    color: $white;
+    position: relative;
+    padding: 1.5rem;
+    font-family: $heading_font;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    width: 100%;
+    
+		@include breakpoint($md) { display: none; }
+	}
+	
+	.grid-filters {
+		display: none;
+		width: 100%;
+		
+		@include breakpoint($md) {
+			display: block !important;
+		}
+		
+		&.open { display: block; }
+		
+		.filter-list {
+			width: 100%;
+			
+			li {
+				text-align: center;
+				width: 100%;
+				
+				@include breakpoint($md) {
+					display: inline-block;
+					width: auto;
+				}
+				
+				a {
+					display: block;
+			    color: $text_color;
+			    position: relative;
+			    padding: 1.5rem;
+			    font-family: $heading_font;
+			    text-transform: uppercase;
+			    font-size: 1.5rem;
+			    line-height: 1.2;
+			    width: 100%;
+			    
+			    &:hover {
+				    background-color: rgba($green,0.2);
+			    }
+			    
+			    &.active {
+				    @include breakpoint($md) {
+					    background-color: rgba($green,0.9);
+					    color: $white;
+					  }
+			    }
+				}
+			}
+		}
+	}
+}

@@ -220,3 +220,89 @@ function initCarousels(){
 		});
 	});
 };
+
+function getHashFilter() {
+    var hash = location.hash;
+    // get filter=filterName
+    var matches = location.hash.match( /filter=([^&]+)/i );
+    var hashFilter = matches && matches[1];
+    return hashFilter && decodeURIComponent( hashFilter );
+}
+
+function gridInit(){
+        
+    var $grid = $('.grid-results');
+    
+    // bind filter button click
+    var $filters = $('.grid-filters').on('click', '.grid-filter', function(){
+        var filterAttr = $(this).data('filter');
+        // set filter in the hash
+        location.hash = 'filter=' + encodeURIComponent( filterAttr );
+    })
+    
+    var isIsotopeInit = false;
+    
+    function onHashChange() {
+        // Check to ensure isotope exists on the current page
+        if ( $.isFunction($.fn.isotope) ) {
+            var hashFilter = getHashFilter();
+            var sessionHash = localStorage['sessionHash'];
+            if( !hashFilter && isIsotopeInit ){
+                Cookies.set('sessionHash', '*');
+                return;
+            }
+            isIsotopeInit = true;
+            Cookies.set('sessionHash', hashFilter);
+            //console.log(Cookies.get('sessionHash'));
+        
+            // filter isotope
+            $grid.isotope({
+                itemSelector: '.grid-block',
+                filter: hashFilter,
+                percentPosition: true,
+                masonry: {
+                    columnWidth: '.grid-block',
+                    gutter: 12
+                }
+            });
+            
+            // set active class on filter
+            if ( hashFilter ){
+                $filters.find('.active').removeClass('active');
+                $filters.find('[data-filter="' + hashFilter + '"]').addClass('active');
+                $('.grid-filter-toggle').find('span').text($filters.find('[data-filter="' + hashFilter + '"]').text());
+            }
+        };
+    }
+    
+    $(window).on( 'hashchange', onHashChange );
+    $(window).on( 'load', onHashChange );
+    // trigger event handler to init Isotope
+    onHashChange();
+    
+    
+}
+function mobileGridToggle(){
+    // mobile grid filter toggle
+    $('.grid-filter-toggle').on('click', function(){
+	    console.log('hit');
+        $('.grid-filters').stop().slideToggle().toggleClass('open');
+        $(this).find('.fa').toggleClass('fa-angle-down fa-angle-up');
+    });
+    
+    $('.grid').on('click', '.grid-filters.open .grid-filter', function(){
+        if($('.grid-filter-toggle').is(':visible')){
+            $('.grid-filters').stop().slideToggle('fast').toggleClass('open');
+            $('.grid-filter-toggle').find('.fa').toggleClass('fa-angle-down fa-angle-up');
+        }
+    })    
+}
+function backToGridHash(){    
+    // add hash to back to grid button
+    if($('nav#back_nav.grid').length){
+        var backLink = $('nav#back_nav a').attr('href');
+        var backHash = encodeURIComponent( Cookies.get('sessionHash') );
+                
+        $('nav#back_nav a').attr('href', backLink + "#filter=" + backHash);
+    }
+}

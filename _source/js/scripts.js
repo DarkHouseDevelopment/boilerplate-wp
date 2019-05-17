@@ -12,5 +12,12 @@ $(document).ready(function() {
 	initCarousels();
 	floorplans();
 	sendInfoOverlay();
+	gridInit();
+	backToGridHash();
+	mobileGridToggle();
 	
+});
+
+$(window).load(function(){
+	gridInit();
 });
