@@ -11,34 +11,19 @@ $client_colors = array(
 );
 
 function change_acf_color_picker() {
-
-	global $parent_file;
-	global $client_colors;
-	$client_colors_acf = array();
-	
-	foreach ( $client_colors as $value ) {
-		$client_colors_acf[] = '#'.$value;
-	}
-	
-	$client_colors_acf_jquery = json_encode($client_colors_acf);
 	
 	echo "<script>
-		(function($){
-			acf.add_action('ready append', function() {
-				acf.get_fields({ type : 'color_picker'}).each(function() {
-					$(this).iris({
-						color: $(this).find('.wp-color-picker').val(),
-						mode: 'hsv',
-						palettes: ".$client_colors_acf_jquery.",
-						change: function(event, ui) {
-							$(this).find('.wp-color-result').css('background-color', ui.color.toString());
-							$(this).find('.wp-color-picker').val(ui.color.toString());
-						}
-					});
-				});
-			});
-		})(jQuery);
+		acf.add_filter('color_picker_args', function( args, field ){
+
+		    // overwrite palette with custom colors
+		    args.palettes = ['#9eb909', '#b23525', '#ce9640', '#f3ec50', '#2aa9aa', '#21272e', '#ffffff']		
+		
+		    // return
+		    return args;
+		
+		});
 	</script>";
+	
 }
 
 add_action( 'acf/input/admin_head', 'change_acf_color_picker' );

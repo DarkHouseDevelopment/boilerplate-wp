@@ -15,6 +15,7 @@ $(document).ready(function() {
 	gridInit();
 	backToGridHash();
 	mobileGridToggle();
+	mobileAmenitiesToggle();
 	
 });
 

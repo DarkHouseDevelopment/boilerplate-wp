@@ -4,8 +4,9 @@
 
 	<?php if( $images ): ?>
 		<a class="model-image" href="<?php the_permalink(); ?>" class="image" style="background: url(<?php echo $images[0]['sizes']['floorplan-thumbnail']; ?>) center center no-repeat; background-size: cover;">
-			<div class="hover"><div class="btn btn-white-outline">View Home Details</div></div>
 			<?php echo $quick_movein ? "<div class='quick-move'><i class='icon-star'></i> Quick Move In</div>" : ""; ?>
+			<?php echo $model ? "<div class='model'><i class='icon-home'></i> Model</div>" : ""; ?>
+			<div class="hover"><div class="btn btn-white-outline">View Home Details</div></div>
 		</a>
 	<?php endif; ?>
 

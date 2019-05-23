@@ -52,9 +52,3 @@
 		</article>
 	</div>
 </section>
-
-<section id="send_info">
-	<div class="wrap">
-		<a href="javascript:void(0);" class="btn sendinfo">Send Me Info</a>
-	</div>
-</section>

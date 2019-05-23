@@ -42,3 +42,4 @@ $squareFootage = number_format(intval(get_field('square_footage')));
 $startingPrice = get_field('starting_price');
 $priceRange = explode("-", get_field('price_range'));
 $quick_movein = get_field('quick_move');
+$model = get_field('model_available');

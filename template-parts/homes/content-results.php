@@ -7,6 +7,7 @@
 			
 			<?php
 				$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+				echo "<!-- beds_min = $beds_min -->";
 
 				$args = array(
 					'posts_per_page' => -1,
@@ -17,12 +18,12 @@
 						array(
 							'key' => 'bedrooms',
 							'value' => $beds_min,
-							'compare' => '>='
+							'compare' => 'LIKE'
 						),
 						array(
 							'key' => 'bathrooms',
 							'value' => $baths_min,
-							'compare' => '>='
+							'compare' => 'LIKE'
 						),
 						array(
 							'key' => 'square_footage',
@@ -59,9 +60,9 @@
 				$allresults = new WP_Query($args_allresults);
 				$_SESSION['wp_query'] = $allresults;
 
-				//echo '<pre>';
+				//echo '<!-- ';
 				//print_r($loop);
-				//echo '</pre>';
+				//echo ' -->';
 
 				$temp_query = $wp_query;
 				$wp_query = NULL;
@@ -70,6 +71,11 @@
 				if ( have_posts() ) :
 
 					while ( have_posts() ) : the_post();
+					
+						$bedrooms_acf = get_field( 'bedrooms' );
+						echo "<!-- bedrooms = "; print_r($bedrooms_acf); echo " -->";
+						$bedroom_pm = unserialize(get_post_meta( 'bedrooms', true ));
+						echo "<!-- bedrooms_pm = "; print_r($bedrooms_pm); echo " -->";
 					
 						get_template_part( 'template-parts/homes/content', 'home-result' );
 

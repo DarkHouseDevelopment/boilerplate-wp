@@ -138,6 +138,21 @@
 			</div>	<!-- end wrap -->
 		</section>	
 	<?php endif; ?>
+	
+	<?php
+		$print_qmi_page = get_page_by_path( 'print-quick-move-in-homes' );
+	?>
+	
+	<section class="qmi_disclaimer screen-only">
+	    <div class="wrap">
+	        <div class="copyright row">
+		        <div class="text md-10">
+			        <div class="blue"><?php echo get_field("footer_disclaimer", $print_qmi_page->ID); ?></div>
+			        <?php echo get_field("footer_copyright", $print_qmi_page->ID); ?>
+		        </div>
+	        </div>
+	    </div>
+	</section>
 
 	<?php wp_reset_query(); ?>
 </div>

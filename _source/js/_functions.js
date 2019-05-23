@@ -285,7 +285,6 @@ function gridInit(){
 function mobileGridToggle(){
     // mobile grid filter toggle
     $('.grid-filter-toggle').on('click', function(){
-	    console.log('hit');
         $('.grid-filters').stop().slideToggle().toggleClass('open');
         $(this).find('.fa').toggleClass('fa-angle-down fa-angle-up');
     });
@@ -305,4 +304,20 @@ function backToGridHash(){
                 
         $('nav#back_nav a').attr('href', backLink + "#filter=" + backHash);
     }
+}
+
+
+function mobileAmenitiesToggle(){
+    // mobile grid filter toggle
+    $('.other-amenities-toggle').on('click', function(){
+        $('.amenities-nav').stop().slideToggle().toggleClass('open');
+        $(this).find('.fa').toggleClass('fa-angle-down fa-angle-up');
+    });
+    
+    $('.grid').on('click', '.amenities-nav.open .amenity', function(){
+        if($('.other-amenities-toggle').is(':visible')){
+            $('.amenities-nav').stop().slideToggle('fast').toggleClass('open');
+            $('.other-amenities-toggle').find('.fa').toggleClass('fa-angle-down fa-angle-up');
+        }
+    })    
 }

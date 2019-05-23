@@ -3,6 +3,14 @@
 		<aside>
 			<?php echo file_get_contents(get_template_directory() . '/assets/img/icon-tree.svg'); ?><br />
 			<h3><?php bloginfo('name'); ?></h3>
+			<?php if(get_field( 'include_directions_cta' )):
+				while(have_rows( 'directions_cta' )): the_row();
+					$button_text = get_sub_field( 'button_text' );
+					$button_link = get_sub_field( 'button_link' );
+					
+					echo "<a href='$button_link' class='btn btn-teal directions' target='_blank' rel='nofollow noopenner'>$button_text</a>";
+				endwhile;
+			endif; ?>
 			<?php while(have_rows( 'contact_details' )): the_row(); ?>
 				<address>
 					<?php the_sub_field( 'street_address' ); ?><br />

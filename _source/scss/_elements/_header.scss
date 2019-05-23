@@ -7,6 +7,12 @@ header[role="banner"] {
 	position: relative;
 	z-index: 10;
 	
+	&.nonav {
+		.wrap {
+			justify-content: center;
+		}
+	}
+	
 	.wrap {
 		flex-wrap: nowrap;
 		justify-content: space-between;

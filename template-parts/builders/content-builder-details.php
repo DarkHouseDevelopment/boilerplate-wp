@@ -49,10 +49,10 @@ $builder_query = new WP_Query($args);
 			<div class="location">
 				<?php while(have_rows( 'builder_contact' )): the_row(); ?>
 					<address>
-						<h4>Address</h4>
-						<?php the_sub_field( 'street_address' ); ?><br />
-						<?php the_sub_field( 'city' ); ?>, <?php the_sub_field( 'state' ); ?> <?php the_sub_field( 'zipcode' ); ?><br />
-						<?php the_sub_field( 'phone' ); ?><br />
+						<h4>Contact</h4>
+						<?php echo get_sub_field( 'street_address' ) ? get_sub_field( 'street_address' )."<br />" : ""; ?>
+						<?php echo get_sub_field( 'city' ) ? get_sub_field( 'city' )."," : ""; ?> <?php echo get_sub_field( 'state' ) ? get_sub_field( 'state' ) : ""; ?> <?php echo get_sub_field( 'zipcode' ) ? get_sub_field( 'zipcode' ) : ""; ?><?php echo get_sub_field( 'city' ) || get_sub_field( 'state' ) || get_sub_field( 'zipcode' ) ? "<br />" : ""; ?>
+						<?php echo get_sub_field( 'phone' ) ? get_sub_field( 'phone' )."<br />" : ""; ?>
 						<?php
 							$builder_map_type = get_field( 'builder_map_type' );
 							switch($builder_map_type){
@@ -61,7 +61,7 @@ $builder_query = new WP_Query($args);
 									break;
 									
 								case 'custom':
-									echo "<a href=\"".get_field( 'custom_map_it_link' )."\" target=\"_blank\" rel=\"nofollow noopenner\">Map It<i class=\"icon-location\"></i></a>";
+									echo "<a href=\"".get_field( 'custom_map_it_link' )."\" target=\"_blank\" rel=\"nofollow noopenner\">Get Directions<i class=\"icon-location\"></i></a>";
 									break;
 									
 								case 'disable':
@@ -72,6 +72,7 @@ $builder_query = new WP_Query($args);
 					<?php $builder_email = get_sub_field( 'email' ); ?>
 				<?php endwhile; ?>
 				
+				<?php if(have_rows( 'builder_hours' )): ?>
 				<div class="hours">
 					<h4>Hours</h4>
 					<ul>
@@ -81,6 +82,9 @@ $builder_query = new WP_Query($args);
 					<?php endwhile; ?>
 					</ul>
 				</div>
+				<?php endif; ?>
+				
+				<a href="javascript:void(0);" class="btn btn-teal sendinfo">Request More Info</a>
 			</div>
 		</div>
 		

@@ -125,6 +125,7 @@
 	section[role="main"]{
 		padding-top: 0;
 	}
+	.cta-section { margin-bottom: 0; }
 }
 
 #builder_details {
@@ -225,6 +226,7 @@
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
+			text-align: left;
 			
 			@include breakpoint($lg){
 				width: 26rem;
@@ -273,7 +275,7 @@
 					}
 				}
 			}
-			.btn { margin: 0 auto; }
+			//.btn { margin: 0 auto; }
 		}
 	}
 }

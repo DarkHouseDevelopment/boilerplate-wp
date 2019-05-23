@@ -95,6 +95,7 @@
 		
 		.builder {
 			margin: 2rem 0;
+			max-width: 25%;
 			
 			@include breakpoint($sm){
 				margin: 2rem 3.5rem;
@@ -208,6 +209,25 @@
 					
 					i {
 						font-size: 90%;
+					}
+				}
+				.model {
+					@include position(absolute, 0 null null 0);
+					background: $orange;
+					color: $white;
+					padding: 0.5rem 0.8rem 0.5rem 2.8rem;
+					font-family: $heading_font;
+					font-size: 1.4rem;
+					line-height: 1.1;
+					text-transform: uppercase;
+					font-weight: 700;
+					
+					i {
+						@include position(absolute, 0.5rem null null 0.8rem);
+						background: url(../img/icon-model-home.png) center center no-repeat;
+						width: 1.4rem;
+						height: 1.4rem;
+						display: block;
 					}
 				}
 				

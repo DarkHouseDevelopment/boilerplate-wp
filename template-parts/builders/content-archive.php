@@ -32,7 +32,7 @@
 				$preview_image = get_field( 'builder_hero_image' );
 				?>
 			
-				<a href="<?php echo $coming_soon ? "javascript:void(0);" : get_the_permalink(); ?>" class="builder <?php the_field( 'builder_color' ); ?> <?php echo $coming_soon ? "coming-soon" : "active"; ?>">
+				<a href="<?php the_permalink(); ?>" class="builder <?php the_field( 'builder_color' ); ?> active">
 					<div class="logo-block">
 						<img src="<?php echo $logo['url'] ?>" alt="<?php the_title(); ?>" />
 					</div>
