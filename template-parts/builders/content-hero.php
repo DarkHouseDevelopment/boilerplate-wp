@@ -9,7 +9,7 @@
 <section id="page_hero">
 	<?php
 		if($hero_image):
-			echo "<div class='hero-image' style='background: url({$hero_image['url']}) center center no-repeat; background-size: cover;'></div>";
+			echo "<div class='hero-image'><img src='{$hero_image['url']}' alt='".get_the_title()."' /></div>";
 		endif;
 	?>
 	<div class="hero-circle <?php the_field( 'hero_circle_color', $builder_page->ID ) ?>">

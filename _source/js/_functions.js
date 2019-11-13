@@ -31,6 +31,16 @@ function homeHeroSlider(){
 	});
 }
 
+function heroAnimation(){
+	$("#page_hero .hero-image img").on('load', function(){
+		$(this).parents('#page_hero').find('.hero-circle').addClass('active');
+	}).each(function(){
+		if(this.complete){
+			$(this).trigger('load');
+		}
+	});
+}
+
 function formToggle(){
 	$('.form-toggle').click(function(){
 		$('.homepage-get-connected-form').slideToggle();
@@ -101,7 +111,8 @@ function sendInfoOverlay(){
 
 function initCarousels(){
 	$('.slider').each(function(){
-		var windowWidth = $(window).width();
+		var windowWidth = $(window).width(),
+				carouselWidth = $(this).parents('.slider-container').width();
 				
 		if(windowWidth >= 600){
 			var sliderItems = 2,
@@ -114,6 +125,9 @@ function initCarousels(){
 				defaultSize = 0.10,
 				activeSize = 0.90;
 		}
+		console.log("carouselWidth = "+carouselWidth);
+		console.log("default slide width = "+carouselWidth * defaultSize);
+		console.log("active slide width = "+carouselWidth * activeSize);
 		
 		$(this).carouFredSel({
 			auto: false,
@@ -121,7 +135,7 @@ function initCarousels(){
 			align: false,
 			items: sliderItems,
 			items: {
-				width: $('.slider-container').width() * defaultSize,
+				width: carouselWidth * defaultSize,
 				height: sliderHeight,
 				visible: 1,
 				minimum: 1
@@ -160,7 +174,7 @@ function initCarousels(){
 		
 				//	clone images for better sliding and insert them dynamacly in slider
 				var newitems = $('.slide',this).clone( true ),
-					_width = $('.slider-container').width();
+					_width = $(this).parents('.slider-container').width();
 		
 				$(this).trigger( 'insertItem', [newitems, newitems.length, false] );
 		
@@ -260,10 +274,15 @@ function gridInit(){
                 itemSelector: '.grid-block',
                 filter: hashFilter,
                 percentPosition: true,
-                masonry: {
+                layoutMode: 'fitRows',
+                fitRows: {
                     columnWidth: '.grid-block',
                     gutter: 12
-                }
+                },
+                getSortData: {
+	                title: '.title'
+                },
+                sortBy: 'title'
             });
             
             // set active class on filter
@@ -304,6 +323,74 @@ function backToGridHash(){
                 
         $('nav#back_nav a').attr('href', backLink + "#filter=" + backHash);
     }
+}
+
+
+function builderPopupForm(){
+	if($('#builder_popup_form').length){
+		var popupActive = false,
+			popup = $('#builder_popup_form'),
+			builder = popup.data('builder'),
+			builderEmail = popup.data('builderemail'),
+			exitIntent = popup.data('exit'),
+			scroll50 = popup.data('scroll'),
+			timedDelay = popup.data('timed'),
+			delayLength = popup.data('delay'),
+			dismissedTimer = popup.data('dismiss'),
+			popupCookie = Cookies.get('builder_popup_dismiss');
+		
+		popup.find('span.builder').text(builder);
+		popup.find('input[name="builder"]').val(builder);
+		popup.find('input[name="builder_email"]').val(builderEmail);
+		
+		if(exitIntent === true){
+			// Exit intent
+			function addEvent(obj, evt, fn) {
+			  if (obj.addEventListener) {
+			    obj.addEventListener(evt, fn, false);
+			  } else if (obj.attachEvent) {
+			    obj.attachEvent("on" + evt, fn);
+			  }
+			}
+
+			// Exit intent trigger
+			addEvent(document, 'mouseout', function(evt) {
+				if (evt.toElement === null && evt.relatedTarget === null && popupActive === false && popupCookie != 'true') {
+		            popup.fadeToggle().toggleClass('active');
+			        popupActive = true;
+		        }
+		    });
+		}
+		if(scroll50 === true){
+			var documentHeight = $(document).outerHeight(),
+				windowHeight = $(window).outerHeight();
+			
+			$(window).scroll(function(){
+				if($(window).scrollTop() >= (documentHeight / 2 - (windowHeight / 2)) && popupActive === false && popupCookie != 'true'){
+					popup.fadeToggle().toggleClass('active');
+			        popupActive = true;
+				}
+			});
+		}
+		if(timedDelay === true && delayLength != '' && popupCookie != 'true'){
+			setTimeout(function(){
+				if(popupActive === false){
+					popup.fadeToggle().toggleClass('active');
+			        popupActive = true;
+			    }
+			}, (delayLength * 1000));
+		}
+		
+		$('#builder_popup_form .toggle-btn').on('click', function(){
+			popup.find('.wpcf7').slideToggle();
+			$(this).hide();
+		})
+		
+		$('#builder_popup_form .close').on('click', function(){
+			popup.fadeOut().removeClass('active');
+			Cookies.set('builder_popup_dismiss', true, { expires: dismissedTimer });
+		})
+	}
 }
 
 

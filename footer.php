@@ -1,4 +1,3 @@
-
 	<footer role="contentinfo">
 		<div class="wrap">
 			<div class="footer-logos">
@@ -38,7 +37,7 @@
 
 <!-- Activity name for this tag: C1531_Union Park at Norterra View Thru -->
 <!-- URL of the webpage where the tag will be placed: http://unionparkatnorterra.com/ -->
-<script type='text/javascript'>
+<!--<script type='text/javascript'>
 var axel = Math.random()+"";
 var a = axel * 10000000000000;
 document.write('<img src="https://pubads.g.doubleclick.net/activity;xsp=4397652;qty=1;cost=[revenue];ord=[order id]?" width=1 height=1 border=0/>');
@@ -47,7 +46,7 @@ document.write('<img src="https://pubads.g.doubleclick.net/activity;xsp=4397652;
 <img src="https://pubads.g.doubleclick.net/activity;xsp=4397652;qty=1;cost=[revenue];ord=[order id]?" width=1 height=1 border=0/>
 </noscript>
 
-<script async src='https://tag.simpli.fi/sifitag/936e12e0-f59b-0136-ddb0-06a9ed4ca31b'></script>
+<script async src='https://tag.simpli.fi/sifitag/936e12e0-f59b-0136-ddb0-06a9ed4ca31b'></script>-->
 
 </body>
 </html>

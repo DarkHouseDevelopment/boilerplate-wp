@@ -7,7 +7,16 @@
 			
 			<?php
 				$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-				echo "<!-- beds_min = $beds_min -->";
+				global $quick_move;
+				$quick_move_query = array();
+				
+				if($quick_move == 'yes'){
+					$quick_move_query['prop'] = 'post__in';
+					$quick_move_query['value'] = $qmi_floorplans;
+				} else {
+					$quick_move_query['prop'] = 'post__not_in';
+					$quick_move_query['value'] = array();
+				}
 
 				$args = array(
 					'posts_per_page' => -1,
@@ -30,7 +39,6 @@
 							'value' => $sqft_min,
 							'compare' => '>='
 						),
-						$quick_move_query,
 						$builder_query,
 						array(
 							'key' => 'starting_price',
@@ -45,6 +53,7 @@
 							'type' => 'NUMERIC'
 						),
 					),
+					$quick_move_query['prop'] => $quick_move_query['value'],
 					'meta_key' => 'square_footage',
 					'orderby'=> 'meta_value_num',
 					'order' => 'ASC',
@@ -71,11 +80,6 @@
 				if ( have_posts() ) :
 
 					while ( have_posts() ) : the_post();
-					
-						$bedrooms_acf = get_field( 'bedrooms' );
-						echo "<!-- bedrooms = "; print_r($bedrooms_acf); echo " -->";
-						$bedroom_pm = unserialize(get_post_meta( 'bedrooms', true ));
-						echo "<!-- bedrooms_pm = "; print_r($bedrooms_pm); echo " -->";
 					
 						get_template_part( 'template-parts/homes/content', 'home-result' );
 

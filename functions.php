@@ -6,9 +6,11 @@
 
 	// External files
 	require_once("functions/acf-customizations.php");
-	require_once("functions/amenities.php");
 	require_once("functions/homes.php");
+	require_once("functions/qmi.php");
 	require_once("functions/builders.php");
+	require_once("functions/amenities.php");
+	require_once("functions/near-norterra.php");
 	require_once("functions/btnshortcode.php");
 	
 

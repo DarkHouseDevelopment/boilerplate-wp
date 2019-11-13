@@ -18,7 +18,7 @@
 			$target = "_self";
 		}
 	
-		return "<a class='btn btn-darkteal' href='$link' target='$target'>$content $test</a>";
+		return "<a class='btn btn-darkteal' href='$link' target='$target'>$content</a>";
 	
 	}
 	add_shortcode( 'btn', 'btn_shortcode' );

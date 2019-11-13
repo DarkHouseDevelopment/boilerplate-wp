@@ -4,6 +4,23 @@ if(!isset($_GET['s'])):
 	header('Location: /home-search/');
 endif;
 
+$args = array(
+	'posts_per_page' => -1,
+	'post_status' => array('publish'),
+	'post_type' => 'qmi',
+);
+
+$qmi_loop = new WP_Query($args);
+$qmi_floorplans = array();
+
+while($qmi_loop->have_posts()): $qmi_loop->the_post();
+	$floorplan = get_field( 'floorplan' );
+	$qmi_floorplans[] = $floorplan->ID;
+endwhile;
+
+wp_reset_query();
+$qmi_floorplans = array_unique($qmi_floorplans);
+
 session_start();
 
 if((isset($_POST) && !empty($_POST)) || (isset($_GET) && !empty($_GET))){	
@@ -57,15 +74,14 @@ $price_min = $_SESSION['price-min'];
 $price_max = $_SESSION['price-max'];
 $quick_move = $_SESSION['quick-move'];
 $builder = $_SESSION['builder'];
+$quick_move_query = array();
 
 if($quick_move == 'yes'){
-	$quick_move_query = array(
-		'key' => 'quick_move',
-		'value' => 1,
-		'compare' => '='
-	);
+	$quick_move_query['prop'] = 'post__in';
+	$quick_move_query['value'] = $qmi_floorplans;
 } else {
-	$quick_move_query = '';
+	$quick_move_query['prop'] = 'post__not_in';
+	$quick_move_query['value'] = array();
 }
 if(!empty($builder)){
 	$builder_query = array(

@@ -14,7 +14,13 @@
 		<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a><br /><span>// <a href="<?php get_the_permalink($builder->ID); ?>"><?php echo $builder->post_title; ?></a></span></h4>
 		
 		<?php echo $squareFootage; ?> Sq Ft // <?php echo $totalBeds; ?> Beds // <?php echo $totalBaths; ?> Baths<br />
-		Priced from <?php echo $priceRange[0]; ?> $<?php echo $priceRange[1]; ?>'s
+		<?php
+			if($priceRange[0] == "tbd"):
+				echo 'Price TBD'; 
+			elseif(!empty($priceRange[1])):
+				echo 'Priced from '.$priceRange[0].' $' . $priceRange[1] . '\'s'; 
+			endif; 
+		?>
 	</div>
 
 </div>

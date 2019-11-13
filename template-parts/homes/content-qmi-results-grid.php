@@ -6,16 +6,8 @@
 		$args = array(
 			'posts_per_page' => -1,
 			'post_status' => 'publish',
-			'post_type' => 'homes',
-			'meta_query' => array(
-				'relation' => 'AND',
-				array(
-					'key' => 'quick_move',
-					'value' => 1,
-					'compare' => '='
-				)
-			),
-			'meta_key' => 'square_footage',
+			'post_type' => 'qmi',
+			'meta_key' => 'square_feet',
 			'orderby'=> 'meta_value_num',
 			'order' => 'ASC',
 			'paged' => $paged

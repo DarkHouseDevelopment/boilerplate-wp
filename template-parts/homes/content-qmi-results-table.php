@@ -1,26 +1,39 @@
 <div id="template_page-print-qmi" class="container">				
 	<?php
-	$builder_query = "";
+	$homes_query = "";
 	if(isset($_GET['builder'])):
-		$builder_query = array(
-			'key' => 'builder',
-			'value' => $_GET['builder'],
-			'compare' => '='
+		$builder_args = array(
+			'post_type' => 'homes',
+			'posts_per_page' => -1,
+			'meta_query' => array(
+				array(
+					'key' => 'builder',
+					'value' => $_GET['builder'],
+					'compare' => '='
+				)
+			)
+		);
+	
+		$builder_homes = get_posts( $builder_args );
+		$homes_array = array();
+		
+		foreach($builder_homes as $home){
+			$homes_array[] = $home->ID;
+		}
+		
+		$homes_query = array(
+			'key' => 'floorplan',
+			'value' => $homes_array,
+			'compare' => 'IN'
 		);
 	endif;
 	
 	$args = array(
 		'posts_per_page' => -1,
 		'post_status' => array('publish'),
-		'post_type' => 'homes',
+		'post_type' => 'qmi',
 		'meta_query' => array(
-			'relation' => 'AND',
-			array(
-				'key' => 'quick_move',
-				'value' => 1,
-				'compare' => 'LIKE'
-			),
-			$builder_query
+			$homes_query
 		)
 	);
 	
@@ -35,29 +48,27 @@
 			while( $qmi_loop->have_posts() ): $qmi_loop->the_post();
 				
 				global $post;
-				$builder = get_field( 'builder' );	
-				$home_title = $post->post_title;
+				$floorplan = get_field( 'floorplan' );
+				$builder = get_field('builder', $floorplan->ID);	
+				$home_title = get_the_title( $floorplan );
 				$plan_name = preg_replace("/-[^-]*$/", "", $home_title); 					
 
-				if(have_rows("qmi_homes")):
-					while(have_rows("qmi_homes")): the_row();
-						$ordered_results[$current_result]['id'] = $post->ID;
-						$ordered_results[$current_result]['status'] = $post->post_status;
-						$ordered_results[$current_result]['builder'] = $builder->post_title ? $builder->post_title : $builder;
-						$ordered_results[$current_result]['model'] = $plan_name;
-						$ordered_results[$current_result]['street_address'] = get_sub_field("street_address");
-						$ordered_results[$current_result]['lot_number'] = get_sub_field("lot_number");
-						$ordered_results[$current_result]['square_feet'] = get_sub_field("square_feet");
-						$ordered_results[$current_result]['stories'] = get_sub_field("stories");
-						$ordered_results[$current_result]['bedrooms'] = get_sub_field("bedrooms");
-						$ordered_results[$current_result]['bathrooms'] = get_sub_field("bathrooms");
-						$ordered_results[$current_result]['garages'] = get_sub_field("garage");						
-						$ordered_results[$current_result]['price'] = get_sub_field("price");						
-						$ordered_results[$current_result]['available'] = get_sub_field("available");
-				
-						$current_result++;
-					endwhile;
-				endif;
+				$ordered_results[$current_result]['id'] = $post->ID;
+				$ordered_results[$current_result]['status'] = $post->post_status;
+				$ordered_results[$current_result]['builder'] = $builder->post_title ? $builder->post_title : $builder;
+				$ordered_results[$current_result]['model'] = $plan_name;
+				$ordered_results[$current_result]['model_id'] = $floorplan->ID;
+				$ordered_results[$current_result]['street_address'] = get_field("street_address");
+				$ordered_results[$current_result]['lot_number'] = get_field("lot_number");
+				$ordered_results[$current_result]['square_feet'] = get_field("square_feet");
+				$ordered_results[$current_result]['stories'] = get_field("stories");
+				$ordered_results[$current_result]['bedrooms'] = get_field("bedrooms");
+				$ordered_results[$current_result]['bathrooms'] = get_field("bathrooms");
+				$ordered_results[$current_result]['garages'] = get_field("garage");						
+				$ordered_results[$current_result]['price'] = get_field("price");						
+				$ordered_results[$current_result]['available'] = get_field("available");
+		
+				$current_result++;
 			
 			endwhile;
 			
@@ -71,7 +82,10 @@
 		?>
 
 		<section id="qmi_print_results">
-			<div class="wrap">				
+			<div class="wrap">
+				<header class="date">
+					Available as of <?php echo date("m.d.Y"); ?>
+				</header>
 				<table class="qmi-results" border="0" cellspacing="0" cellpadding="0" width="100%">
 					<tbody>
 						<tr bgcolor="#a7a9ac" class="thead">
@@ -97,7 +111,7 @@
 									<?php echo $result['street_address']; ?>
 								</td>
 								<td data-th="Lot #">
-									<?php echo $result['lot_number']; ?>
+									<?php echo "<a href='".get_the_permalink($result['id'])."' target='_blank'>".$result['lot_number']."</a>"; ?>
 								</td>
 								<td data-th="Stories">
 									<?php echo $result['stories']; ?>
@@ -142,6 +156,17 @@
 	<?php
 		$print_qmi_page = get_page_by_path( 'print-quick-move-in-homes' );
 	?>
+			
+    <section id="qmi_print_footer" class="qmi_disclaimer print-only">
+        <div class="wrap">
+	        <div class="copyright row">
+		        <div class="text md-10">
+			        <div class="blue"><?php echo get_field("footer_disclaimer"); ?></div>
+			        <?php echo get_field("footer_copyright"); ?>
+		        </div>
+	        </div>
+        </div>
+    </section>
 	
 	<section class="qmi_disclaimer screen-only">
 	    <div class="wrap">

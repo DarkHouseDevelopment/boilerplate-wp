@@ -1,4 +1,14 @@
 
+#amenities_back, #nn_breadcrumbs {
+	.wrap {
+		display: block;
+		width: 90%;
+		max-width: 128rem;		
+	    padding: 0.8rem 0;
+	    font-size: 1.3rem;
+	}
+}
+
 #amenities_overview {
 	.section-content {
 		@include breakpoint($md) {
@@ -39,13 +49,32 @@
 	.amenities-grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-auto-flow: dense;
 		
 		@include breakpoint($sm){
 			grid-template-columns: 1fr 1fr;
 			grid-column-gap: 1.2rem;
 		}
-		@include breakpoint($md){ grid-template-columns: 1fr 1fr 1fr; }
+		@include breakpoint($md){ 
+			grid-template-columns: repeat(6, 1fr);
+			
+			.grid-block {
+				grid-column: span 2;
+			
+				/* Dealing with 2 orphan items */
+				&:last-child:nth-child(3n - 1) {
+					grid-column-end: -2;
+				}
+				
+				&:nth-last-child(2):nth-child(3n + 1) {
+					grid-column-end: 4;
+				}
+			
+				/* Dealing with single orphan */
+				&:last-child:nth-child(3n - 2) {
+					grid-column-end: 5;
+				}
+			}
+		}
 	}
 	
 	.grid-results {
@@ -65,9 +94,27 @@
 				grid-column-gap: 1.2rem;
 			}
 			@include breakpoint($md){
-				grid-template-columns: 1fr 1fr 1fr;
 				max-width: 90%;
 				margin: 0 auto;
+				grid-template-columns: repeat(6, 1fr);
+				
+				.grid-block {
+					grid-column: span 2;
+				
+					/* Dealing with 2 orphan items */
+					&:last-child:nth-child(3n - 1) {
+						grid-column-end: -2;
+					}
+					
+					&:nth-last-child(2):nth-child(3n + 1) {
+						grid-column-end: 4;
+					}
+				
+					/* Dealing with single orphan */
+					&:last-child:nth-child(3n - 2) {
+						grid-column-end: 5;
+					}
+				}
 			}
 		}
 		
@@ -194,8 +241,73 @@
 	}
 }
 
+#amenity_details {
+	padding-top: 0;
+	
+	.amenity-images {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 3rem;
+		align-items: center;
+		
+		@include breakpoint($tablet){
+			grid-template-columns: 3fr 2fr;
+		}
+		@include breakpoint($md){
+			grid-gap: 6rem;
+		}
+		
+		&.contact-only {
+			grid-template-columns: 1fr;
+			justify-content: center;
+			
+			.stay-in-touch {
+				width: 100%;
+				max-width: 46rem;
+				margin: 0 auto;
+			}
+		}
+				
+		.slider-container {
+			width: 100%;
+			margin-bottom: 0;
+			
+			@include breakpoint($sm){
+				.caroufredsel_wrapper, .slider, .slide { height: 42rem !important; }
+			}
+			.slide {				
+				.caption {
+					@include position(absolute, null null 0 0);
+					width: 100%;
+					background: rgba($teal, 0.8);
+					color: $white;
+					padding: 1rem;
+					font-size: 1.5rem;
+					line-height: 1.2;
+					font-weight: 700;
+					white-space: nowrap;
+				}
+			}
+		}
+		.stay-in-touch {
+			padding: 0;
+			
+			aside { width: 100%; margin: 0; }
+		}
+	}
+}
+
 #other_amenities {
 	text-align: center;
+	margin-bottom: 3rem;
+
+	@include breakpoint($md){
+		margin-bottom: 4rem;
+	}
+	@include breakpoint($lg){
+		margin-bottom: 5rem;
+	}
 	
 	.other-amenities-toggle {
 		background-color: $lightgrey;
@@ -246,7 +358,7 @@
 				    line-height: 1.2;
 				    width: 100%;
 				    
-				    &:hover, &:active {
+				    &:hover, &:active, &.active {
 					    background-color: rgba($green,0.9);
 					    color: $white;
 				    }
@@ -254,4 +366,10 @@
 			}
 		}
 	}
+}
+
+.additional-content {
+	margin-bottom: 4rem;
+	
+	section:first-child { padding-top: 2rem }
 }

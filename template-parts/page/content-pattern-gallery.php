@@ -11,7 +11,7 @@
 					<?php if( $images ): 
 						$image_index = 0;
 				        foreach( $images as $image ): ?>
-				            <div class="slide" data-index="<?php echo $image_index; ?>" style="background: url(<?php echo $image['sizes']['gallery']; ?>) center center no-repeat; background-size: cover;" /><a class="slider-next" href="javascript:void(0);"><i class="icon-angle-circled-right"></i></a></div>
+				            <div class="slide" data-index="<?php echo $image_index; ?>" title="<?php echo $image['alt']; ?>" style="background: url(<?php echo $image['sizes']['gallery']; ?>) center center no-repeat; background-size: cover;" /><a class="slider-next" href="javascript:void(0);"><i class="icon-angle-circled-right"></i></a></div>
 				        <?php $image_index++;
 					    endforeach; ?>
 					<?php endif; ?>

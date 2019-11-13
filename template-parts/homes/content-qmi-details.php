@@ -1,11 +1,13 @@
-<?php include( get_template_directory() . '/template-parts/homes/script-home-variables.php' ); ?>
+<?php include( get_template_directory() . '/template-parts/homes/script-qmi-variables.php' ); ?>
 
 <section id="model_details" class="content-section">
 	<div class="wrap">
 		<header>
 			<h2>
-				<?php the_title(); ?>
-				<small>by <a href="<?php echo get_the_permalink( $builder->ID ); ?>"><?php echo $builder->post_title; ?></a></small>
+				<?php the_title(); ?> - Quick Move-In
+				<small>Available: <?php echo $available; ?></small>
+				<small>Address: <?php echo $address; ?></small>
+				<small>Model: <a href="<?php echo get_the_permalink( $floorplan->ID ); ?>"><?php echo $floorplan->post_title; ?></a> by <a href="<?php echo get_the_permalink( $builder->ID ); ?>"><?php echo $builder->post_title; ?></a></small>
 			</h2>
 			<div class="actions">
 				<?php echo $floorplan_file ? '<a class="btn-outline" href="'.$floorplan_file['url'].'">Download Floorplan</a>' : '' ?>
@@ -37,11 +39,10 @@
 			
 			<div class="floorplans">
 				<?php
-				$floorplanImages = get_field('floorplan_images');
 				$floorplanCount = 1;
 		
-				if($floorplanImages):
-					foreach( $floorplanImages as $floorplan ): ?>
+				if($floorplan_images):
+					foreach( $floorplan_images as $floorplan ): ?>
 						<div class="floorplan">
 							<img src="<?php echo $floorplan['url']; ?>" alt="<?php the_title(); ?>" />
 							<a href="javascript:void(0);" id="zoom_floorplan<?php echo $floorplanCount; ?>" class="zoom"><i class="icon-zoom-in"></i></a>
@@ -67,13 +68,8 @@
 		
 		<ul class="model-numbers">
 			<li>
-				<?php 
-				if($priceRange[0] == "tbd"):
-					echo ucfirst('<div class="label top">Price</div>') . ' <div class="value">TBD</div>'; 
-				elseif(!empty($priceRange[1])):
-					echo ucfirst('<div class="label top">'.ucfirst($priceRange[0]).'</div>') . ' <div class="value">$' . $priceRange[1] . ',000<span>s</span></div>'; 
-				endif; 
-				?>
+				<div class="label">Price</div>
+				<div class="value">$<?php echo number_format($price); ?></div>
 			</li>
 			<li>
 				<div class="label">Approx. Sq Ft.</div>

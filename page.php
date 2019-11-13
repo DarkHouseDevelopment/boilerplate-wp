@@ -33,8 +33,16 @@ if ( have_posts() ):
 					get_template_part( 'template-parts/page/content', 'sidebar' );
 					break;
 					
+				case 'image_grid':
+					get_template_part( 'template-parts/page/content', 'image-grid' );
+					break;
+					
 				case 'call_to_action':
 					get_template_part( 'template-parts/page/content', 'call-to-action' );
+					break;
+					
+				case 'live_connected_amenities':
+					get_template_part( 'template-parts/page/content', 'live-amenities' );
 					break;
 					
 				case 'live_connected_nav':

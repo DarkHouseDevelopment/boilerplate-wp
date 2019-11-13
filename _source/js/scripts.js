@@ -7,6 +7,7 @@ $(document).ready(function() {
 	
 	mobileNavSlideIn();
 	homeHeroSlider();
+	heroAnimation();
 	formToggle();
 	floatingLabels();
 	initCarousels();
@@ -16,6 +17,7 @@ $(document).ready(function() {
 	backToGridHash();
 	mobileGridToggle();
 	mobileAmenitiesToggle();
+	builderPopupForm();
 	
 });
 

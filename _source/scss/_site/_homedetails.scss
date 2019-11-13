@@ -146,8 +146,12 @@
 		}
 		
 		li {
-			display: block;
-			width: auto;
+			display: block;    
+			width: 50%;
+			margin: 1rem 0;
+			
+			@include breakpoint($sm){ width: 33.333% }
+			@include breakpoint($md){ width: auto }
 		}		
 		.label {
 			font-size: 1.5rem;
@@ -158,7 +162,7 @@
 	}
 }
 
-#send_info_overlay {
+#send_info_overlay, #builder_popup_form {
 	@include position(fixed, 0 null null 0);
 	display: none;
 	width: 100%;
@@ -167,6 +171,7 @@
 	
 	&.active {
 		.overlay-bg { opacity: 1; }
+		.overlay-content article { top: -2rem; }
 	}
 	
 	.overlay-bg {
@@ -191,6 +196,8 @@
 			background: $white;
 			padding: 3rem;
 			position: relative;
+			top: -15rem;
+			transition: all 0.8s ease-in-out;
 			
 			@include breakpoint($md){
 				padding: 5rem;
@@ -222,6 +229,24 @@
 				line-height: 1;
 				color: $teal;
 			}
+		}
+	}
+}
+#builder_popup_form {
+	.overlay-bg {
+		background: rgba($black, 0.7);
+	}
+	.overlay-content {
+		article{
+			max-width: 56rem;
+			background: #EBEBEB;
+			border-radius: 5px;
+			text-align: center;
+			
+			h4 { text-transform: uppercase }
+			.toggle-btn { margin: 0 auto }
+			.wpcf7 { display: none; }
+			.close, span { color: $text_color; }
 		}
 	}
 }
