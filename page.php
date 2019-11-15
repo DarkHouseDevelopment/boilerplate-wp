@@ -62,6 +62,22 @@ if ( have_posts() ):
 				case 'download_cta':
 					get_template_part( 'template-parts/page/content', 'download-cta' );
 					break;
+										
+				case 'builder_incentives':
+					get_template_part( 'template-parts/page/content', 'builder-incentives' );
+					break;
+				
+				case 'faq':
+					get_template_part( 'template-parts/page/content', 'faq' );
+					break;
+				
+				case 'development_updates_blog':
+					get_template_part( 'template-parts/page/content', 'development-blog' );
+					break;
+				
+				case 'call_to_action_form':
+					get_template_part( 'template-parts/page/content', 'call-to-action-form' );
+					break;
 			}
 		
 		endwhile;

@@ -12,7 +12,7 @@
 			echo "<div class='hero-image'><img src='{$hero_image['url']}' alt='".get_the_title()."' /></div>";
 		endif;
 	?>
-	<div class="hero-circle <?php the_field( 'hero_circle_color', $builder_page->ID ) ?>">
+	<div class="hero-circle <?php the_field( 'hero_circle_color', $builder_page->ID ); ?>">
 		<div class="hero-outer-circle"></div>		
 		<h1 class="hero-tagline">
 			<span><?php the_field( 'hero_title_1', $builder_page->ID ); ?></span>

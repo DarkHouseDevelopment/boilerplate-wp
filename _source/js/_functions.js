@@ -408,3 +408,14 @@ function mobileAmenitiesToggle(){
         }
     })    
 }
+
+function faq() {
+	var faqs = $('.faqs .faq > p').hide();
+	$('.faqs .faq > h4').click(function(){
+		faqs.slideUp();
+		$('.faqs .faq > h4').find('span').text('+');
+		$(this).find('span').text('-');
+		$(this).next().slideDown();
+		return false;
+	});
+}
