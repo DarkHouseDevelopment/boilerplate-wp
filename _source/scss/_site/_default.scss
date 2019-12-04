@@ -899,11 +899,17 @@ section[role="main"]{
 			@include breakpoint($tablet){ width: 46%; }
 		}
 	
+		p.input.active label {
+			color: rgba($white, 0.6)
+		}
+	
+		label { color: $white }
 		input:not([type="submit"]) {
 			background-color: transparent;
 			border-color: $white;
+			color: $white;
 			
-			&:hover { border-color: $brown; }
+			&:hover { border-color: $white; }
 		}
 		
 		input[type="submit"] { margin-top: 1rem !important; }

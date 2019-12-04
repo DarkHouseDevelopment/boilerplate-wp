@@ -1,30 +1,41 @@
 <?php 
 $logo = get_field( 'builder_logo' ); 
 
-
-$args = array(
-	'posts_per_page' => -1,
-	'post_status' => 'publish',
+$builder_args = array(
 	'post_type' => 'homes',
+	'posts_per_page' => -1,
 	'meta_query' => array(
-		'relation' => 'AND',
 		array(
 			'key' => 'builder',
 			'value' => $post->ID,
 			'compare' => '='
-		),
-		array(
-			'key' => 'quick_move',
-			'value' => 1,
-			'compare' => '='
-		),
-	),
-	'meta_key' => 'starting_price',
-	'orderby'=> 'meta_value_num',
-	'order' => 'ASC'
+		)
+	)
 );
-				
-$builder_query = new WP_Query($args);
+
+$builder_homes = get_posts( $builder_args );
+$homes_array = array();
+
+foreach($builder_homes as $home){
+	$homes_array[] = $home->ID;
+}
+
+$homes_query = array(
+	'key' => 'floorplan',
+	'value' => $homes_array,
+	'compare' => 'IN'
+);
+
+$args = array(
+	'posts_per_page' => -1,
+	'post_status' => array('publish'),
+	'post_type' => 'qmi',
+	'meta_query' => array(
+		$homes_query
+	)
+);
+
+$qmi_loop = new WP_Query($args);
 ?>
 
 <section id="builder_details">
@@ -40,7 +51,7 @@ $builder_query = new WP_Query($args);
 			<div class="builder-content">
 				<?php the_field( 'builder_content' ); ?>
 				<div class="builder-links">
-					<?php if ( $builder_query->have_posts() ):
+					<?php if ( $qmi_loop->have_posts() ):
 						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					endif; ?>
 					<a href="<?php the_field( 'builder_website' ); ?>" target="_blank" rel="nofollow noopenner">Visit <?php the_title(); ?> Website<i class="icon-right-big"></i></a>
