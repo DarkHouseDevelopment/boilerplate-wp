@@ -22,13 +22,13 @@ header[role="banner"] {
 	
 	.logo {
 		display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    //@include position(absolute, 0 null null 1.5rem);
-	    background: $white;
+    justify-content: center;
+    align-items: center;
+    //@include position(absolute, 0 null null 1.5rem);
+    background: $white;
 		width: 14.6rem;
 		padding: 1.3rem 1.5rem 1.4rem;
-			padding: 0.5rem 0.6rem 1rem;
+		padding: 0.5rem 0.6rem 1rem;
 		
 		@include breakpoint($md){
 			//width: 18rem;
@@ -64,11 +64,11 @@ header[role="banner"] {
 .main-menu-mobile {
 	@include position(fixed, -115% null null 0);
 	transition: top 0.5s ease-in-out;
-    width: 100%;
-    background: rgba($green,0.95);
-    height: 100vh;
-    padding: 8rem 0 0;
-    overflow-y: scroll;
+  width: 100%;
+  background: rgba($green,0.95);
+  height: 100vh;
+  padding: 8rem 0 0;
+  overflow-y: scroll;
 	z-index: 10;
 	display: flex;
 	justify-content: center;

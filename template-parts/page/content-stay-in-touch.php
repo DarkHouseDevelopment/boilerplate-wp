@@ -1,6 +1,27 @@
+<?php
+	$builder_emails = array();
+	$args = array(
+		'post_type' => 'builders',
+		'posts_per_page' => -1
+	);
+	$builder_query = new WP_Query($args);
+	
+	if($builder_query->have_posts()):
+		while($builder_query->have_posts()): $builder_query->the_post();
+			$builder_contact = get_field( 'builder_contact' );
+			//print_r($builder_contact);
+			if(isset($builder_contact[0]['email']) && !empty($builder_contact[0]['email'])):
+				$builder_emails[] = $builder_contact[0]['email'];
+			endif;
+		endwhile;
+	endif;
+	
+	wp_reset_query();
+?>
+
 <section class="content-section stay-in-touch">
 	<div class="wrap">
-		<article>
+		<article data-builderemails="<?php echo implode(",", $builder_emails); ?>">
 			<h2><?php the_field( 'form_title' ); ?></h2>
 			<?php echo do_shortcode( get_field( 'form_shortcode' ) ); ?>
 			<?php //the_field( 'form_embed_code' ); ?>

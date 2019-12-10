@@ -2,8 +2,10 @@
 // MIXINS
 //------------------------------------------------------------------------
 
-@import "_mixins/_button";
-@import "_mixins/_clearfix";
-@import "_mixins/_letter-spacing";
-@import "_mixins/_wrap";
+@import "_mixins/unpack_shorthand";
+@import "_mixins/assign_inputs";
+@import "_mixins/text_inputs";
+@import "_mixins/button";
+@import "_mixins/position";
+@import "_mixins/clearfix";
 

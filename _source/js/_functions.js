@@ -109,6 +109,15 @@ function sendInfoOverlay(){
 	}
 }
 
+function stayInTouchBuilderEmails(){
+	if($('.content-section.stay-in-touch').length){
+		var form = $('.content-section.stay-in-touch form');
+		var builderEmails = form.data('builderemails');
+		
+		form.find('input[name="builder_emails"]').val(builderEmails);
+	}
+}
+
 function initCarousels(){
 	$('.slider').each(function(){
 		var windowWidth = $(window).width(),
