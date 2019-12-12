@@ -44,17 +44,25 @@ $qmi_loop = new WP_Query($args);
 	</header>
 	<article>
 		
-		<div class="logo-block <?php the_field( 'builder_color' ) ?>">
+		<?php if(get_field( 'builder_website' )):
+			echo "<a class='logo-block ".get_field( 'builder_color' )."' href='".get_field( 'builder_website' )."' target='_blank' rel='nofollow noopenner'>";
+		else:
+			echo "<div class='logo-block ".get_field( 'builder_color' )."'>";
+		endif; ?>
 			<img src="<?php echo $logo['url'] ?>" alt="<?php the_title(); ?>" />
-		</div>
+		<?php if(get_field( 'builder_website' )):
+			echo "</a>";
+		else:
+			echo "</div>";
+		endif; ?>
 		<div class="builder-info">
 			<div class="builder-content">
 				<?php the_field( 'builder_content' ); ?>
 				<div class="builder-links">
+					<a href="<?php the_field( 'builder_website' ); ?>" target="_blank" rel="nofollow noopenner">Visit <?php the_title(); ?> Website<i class="icon-right-big"></i></a><br>
 					<?php if ( $qmi_loop->have_posts() ):
 						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					endif; ?>
-					<a href="<?php the_field( 'builder_website' ); ?>" target="_blank" rel="nofollow noopenner">Visit <?php the_title(); ?> Website<i class="icon-right-big"></i></a>
 				</div>
 			</div>
 			<div class="location">
@@ -63,7 +71,7 @@ $qmi_loop = new WP_Query($args);
 						<h4>Contact</h4>
 						<?php echo get_sub_field( 'street_address' ) ? get_sub_field( 'street_address' )."<br />" : ""; ?>
 						<?php echo get_sub_field( 'city' ) ? get_sub_field( 'city' )."," : ""; ?> <?php echo get_sub_field( 'state' ) ? get_sub_field( 'state' ) : ""; ?> <?php echo get_sub_field( 'zipcode' ) ? get_sub_field( 'zipcode' ) : ""; ?><?php echo get_sub_field( 'city' ) || get_sub_field( 'state' ) || get_sub_field( 'zipcode' ) ? "<br />" : ""; ?>
-						<?php echo get_sub_field( 'phone' ) ? "<a href='tel:".get_sub_field( 'phone' )."'>".get_sub_field( 'phone' )."</a><br />" : ""; ?>
+						<?php echo get_sub_field( 'phone' ) ? "<a class='btn btn-teal-outline' href='tel:".get_sub_field( 'phone' )."'>".get_sub_field( 'phone' )."</a><br />" : ""; ?>
 						<?php
 							$builder_map_type = get_field( 'builder_map_type' );
 							switch($builder_map_type){

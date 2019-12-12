@@ -101,7 +101,7 @@ h4 {
 	font-size: 1.8rem;
 	font-weight: 700;
 	text-transform: uppercase;
-	letter-spacing: 1.44px;
+	@include letter-spacing(80);
 }
 
 h5 {

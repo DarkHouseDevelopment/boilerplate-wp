@@ -56,7 +56,7 @@
 				color: $green;
 				font-size: 1rem;
 				line-height: 1;
-				letter-spacing: 2.8px;
+				@include letter-spacing(200);
 			
 				@include breakpoint($sm){
 					font-size: 1.4rem;
@@ -92,7 +92,7 @@
 		transform: rotate(90deg);
 		@include position(absolute, null null 0 null);
 		margin: auto;
-		letter-spacing: -2.5px;
+		@include letter-spacing(-50);
 		
 		@include breakpoint($md){
 			display: block;

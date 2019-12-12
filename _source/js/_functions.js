@@ -112,7 +112,7 @@ function sendInfoOverlay(){
 function stayInTouchBuilderEmails(){
 	if($('.content-section.stay-in-touch').length){
 		var form = $('.content-section.stay-in-touch form');
-		var builderEmails = form.data('builderemails');
+		var builderEmails = form.parents('article').data('builderemails');
 		
 		form.find('input[name="builder_emails"]').val(builderEmails);
 	}

@@ -13,7 +13,7 @@ $(document).ready(function() {
 	initCarousels();
 	floorplans();
 	sendInfoOverlay();
-	stayInTouchBuilderEmails();
+	stayInTouchBuilderEmails(); 
 	gridInit();
 	backToGridHash();
 	mobileGridToggle();

@@ -73,8 +73,7 @@ label, legend {
 	font-size: 1.6rem;
 	line-height: 1.4;
 	display: inline-block;
-	width: 100%;
-	height: auto;
+	@include size(100%,auto);
 	padding: $input_padding;
 	margin: $input_margin;
 	outline: none;
@@ -86,7 +85,6 @@ label, legend {
 	
 	&:focus {
 		outline: none;
-		box-shadow: $input_focus_glow;
 	}
 	
 	&:disabled {
@@ -102,16 +100,14 @@ label, legend {
 input[type="checkbox"],
 input[type="radio"] {
 	display: inline;
-	width: auto;
-	height: auto;
+	@include size(auto);
 	padding: 0;
 	margin: 0 0.5rem 1rem 0;
 }
 
 input[type="color"]{
 	border: 0;
-	width: 4.1rem;
-	height: 4.1rem;
+	@include size(4.1rem);
 	padding: 0;
 }
 
@@ -283,7 +279,7 @@ div.wpcf7-response-output {
 	font-size: 1.6rem;
 	color: $text_color;
 	padding: 1rem 1.5rem;
-	margin-bottom: 1rem;
+	@include margin(null null 1rem null);
 
 	&.wpcf7-validation-errors {
 	    background: $yellow;
@@ -327,9 +323,6 @@ div.wpcf7-response-output {
 	@include breakpoint($lg){
 		width: 48%;
 	}
-}
-.form-full {
-	width: 100%;
 }
 .disclaimer {
 	font-family: $heading_font;

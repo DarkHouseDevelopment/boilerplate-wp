@@ -44,7 +44,7 @@
 					foreach( $floorplanImages as $floorplan ): ?>
 						<div class="floorplan">
 							<img src="<?php echo $floorplan['url']; ?>" alt="<?php the_title(); ?>" />
-							<a href="javascript:void(0);" id="zoom_floorplan<?php echo $floorplanCount; ?>" class="zoom"><i class="icon-zoom-in"></i></a>
+							<a href="javascript:void(0);" id="zoom_floorplan<?php echo $floorplanCount; ?>" class="zoom btn-teal"><i class="icon-zoom-in"></i> View Floorplan</a>
 						</div>
 		
 						<div id="floorplan_overlay<?php echo $floorplanCount; ?>" class="overlay">

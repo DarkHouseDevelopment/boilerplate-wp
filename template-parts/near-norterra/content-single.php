@@ -18,13 +18,13 @@
 </section>
 
 <?php
-if ( function_exists( 'yoast_get_primary_term_id' ) ) {
+if ( function_exists( 'yoast_get_primary_term_id' ) && yoast_get_primary_term_id( 'nn_category', $post ) ) {
   $primary_term_id    = yoast_get_primary_term_id( 'nn_category', $post );
   $postTerm           = get_term( $primary_term_id );
   $category_name      = $postTerm->name;
   $category_id        = $primary_term_id;
 } else {
-  $cats = get_the_terms( $post->ID, 'product_cat' );
+  $cats = get_the_terms( $post->ID, 'nn_category' );
   $top_cats = array();
   if(!empty($cats) && is_array($cats)):
     foreach($cats as $cat) {

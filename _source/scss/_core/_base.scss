@@ -5,10 +5,6 @@
 * {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	text-rendering: optimizelegibility;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
 }
 
 html {
@@ -30,14 +26,6 @@ body {
 	line-height: $base_line_height;
 	margin: 0;
 	padding: 0;
-}
-
-.wrap {
-	position: relative;
-	max-width: $xl;
-	padding: $grid_padding;
-	margin: 0 auto;
-	display: flex;
 }
 
 img,
