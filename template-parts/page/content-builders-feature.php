@@ -1,4 +1,14 @@
-
+<?php				
+	$args = array(
+		'post_type' => 'builders',
+		'posts_per_page' => -1,
+		'post_parent' => 0,
+		'orderby' => 'title',
+		'order' => 'asc'
+	);
+	$builder_query = new WP_Query($args);
+	$builder_count = $builder_query->post_count; 
+?>
 <section class="content-section builders-feature">
 	<div class="wrap">
 		<header>
@@ -6,16 +16,7 @@
 				echo "<h3>".get_sub_field( 'section_title' )."</h3>";
 			endif; ?>
 		</header>
-		<article id="builders_blocks">
-			<?php				
-				$args = array(
-					'post_type' => 'builders',
-					'posts_per_page' => -1,
-					'orderby' => 'title',
-					'order' => 'asc'
-				);
-				$builder_query = new WP_Query($args);
-			?>
+		<article id="builders_blocks" class="builder-count-<?php echo $builder_count; ?>">
 			<?php while ( $builder_query->have_posts() ) : $builder_query->the_post(); ?>
 			
 				<?php

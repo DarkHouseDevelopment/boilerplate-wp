@@ -14,7 +14,12 @@ if ( !empty( $nn_categories ) ): ?>
 						<?php if( get_field( 'hero_image', $category ) ): ?>
 							<?php $image = get_field( 'hero_image', $category ); ?>
 							<a class="amenity-image" href="<?php echo get_term_link($category->term_id, 'nn_category'); ?>" class="image" style="background: url(<?php echo $image['sizes']['floorplan-thumbnail']; ?>) center center no-repeat; background-size: cover;">
-								<div class="hover"><div class="btn btn-white-outline"><?php echo $category->name; ?><br>Around Union Park</div></div>
+								<div class="hover">
+									<div class="btn btn-white-outline">
+										<?php echo $category->name; ?>
+										<?php echo $category->name !== "Union Street" ? "<br>Around Union Park" : ""; ?>
+									</div>
+								</div>
 							</a>
 						<?php endif; ?>
 						<div class="amenity-details">

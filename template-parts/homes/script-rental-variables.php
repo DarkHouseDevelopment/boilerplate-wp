@@ -1,31 +1,8 @@
 <?php 
-
-global $qmi_floorplans;
-
-if(empty($qmi_floorplans)):
-	$args = array(
-		'numberposts' => -1,
-		'post_status' => array('publish'),
-		'post_type' => 'qmi',
-	);
-	
-	// $qmi_loop = new WP_Query($args);
-	$qmi_posts = get_posts( $args );
-	$qmi_floorplans = array();
-	
-	foreach($qmi_posts as $qmi):
-		$floorplan = get_field( 'floorplan', $qmi->ID );
-		$qmi_floorplans[] = $floorplan->ID;
-	endforeach;
-	
-	// wp_reset_query();
-	$qmi_floorplans = array_unique($qmi_floorplans);
-endif;
 	
 $builder = get_field('builder');
-$neighborhood = get_field('neighborhood');
 $builder_email = get_post_meta( $builder->ID, 'builder_contact_0_email', true );
-$images = get_field('model_images');
+$images = get_field('rental_images');
 $floorplan_images = get_field('floorplan_images');
 $floorplan_file = get_field('floorplan_file');
 $virtual_tour = get_field('virtual_tour_url');
@@ -64,6 +41,5 @@ endif;
 
 $squareFootage = number_format(intval(get_field('square_footage')));
 $startingPrice = get_field('starting_price');
-$priceRange = explode("-", get_field('price_range'));
-$quick_movein = in_array($post->ID, $qmi_floorplans);
+$maxPrice = get_field('max_price');
 $model = get_field('model_available');

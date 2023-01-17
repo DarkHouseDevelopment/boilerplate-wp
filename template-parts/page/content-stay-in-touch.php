@@ -2,6 +2,7 @@
 	$builder_emails = array();
 	$args = array(
 		'post_type' => 'builders',
+		'post_parent' => 0,
 		'posts_per_page' => -1
 	);
 	$builder_query = new WP_Query($args);

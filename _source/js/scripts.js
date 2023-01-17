@@ -10,6 +10,7 @@ $(document).ready(function() {
 	heroAnimation();
 	formToggle();
 	floatingLabels();
+	searchTypeToggle();
 	initCarousels();
 	floorplans();
 	sendInfoOverlay();
@@ -18,6 +19,7 @@ $(document).ready(function() {
 	backToGridHash();
 	mobileGridToggle();
 	mobileAmenitiesToggle();
+	builderFloorplanFilter();
 	builderPopupForm();
 	faq();
 	

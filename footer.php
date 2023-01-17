@@ -5,7 +5,7 @@
 				<a class="logo" href="/"><?php echo file_get_contents(get_template_directory() . '/assets/img/union-park-logo-reg.svg'); ?></a>
 				<a href="https://www.usrealco.com/" target="_blank" rel="nofollow noreferrer"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/footer-logo-usaa-2-sm.png" alt="USAA Real Estate Company" /></a>
 			</div>
-			<p class="footer-copyright">&copy;<?php echo date("Y"); ?> <?php bloginfo('name'); ?><sup>&reg;</sup></p>
+			<p class="footer-copyright">&copy;<?php echo date("Y"); ?> <?php bloginfo('name'); ?><sup>&reg;</sup> “UNION PARK AT NORTERRA” is a registered trademark owned by US Real Estate Limited Partnership and may not be used without license or permission from US Real Estate Limited Partnership.<br><br></p>
 			<nav id="footer_menu" role="navigation">
 				<?php 
 					wp_nav_menu(
@@ -32,7 +32,7 @@
 </div> <!-- end container -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type='text/javascript' src="<?php echo get_template_directory_uri(); ?>/assets/js/scripts.js?ver=12.11.19"></script>
+<script type='text/javascript' src="<?php echo get_template_directory_uri(); ?>/assets/js/scripts.js?ver=2022-10-05.01"></script>
 <?php wp_footer(); ?>
 
 <!-- Activity name for this tag: C1531_Union Park at Norterra View Thru -->

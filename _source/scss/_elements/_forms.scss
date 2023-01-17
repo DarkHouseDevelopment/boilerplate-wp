@@ -160,6 +160,67 @@ p.input {
 	}
 }
 
+/* Customize the label (the container) */
+.custom-radio-container {
+	display: block;
+	position: relative;
+	padding-left: 2.8rem;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	
+	/* Hide the browser's default radio button */
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+	
+	/* Create a custom radio button */
+	.custom-radio {
+		position: absolute;
+		top: 0.3rem;
+		left: 0;
+		height: 1.8rem;
+		width: 1.8rem;
+		background-color: $lightgrey;
+		border-radius: 50%;
+	}
+	
+	/* On mouse-over, add a grey background color */
+	&:hover input ~ .custom-radio {
+		background-color: $grey;
+	}
+	
+	/* When the radio button is checked, add a blue background */
+	input:checked ~ .custom-radio {
+		background-color: $green;
+		
+		/* Show the indicator (dot/circle) when checked */
+		&:after { display: block; }
+	}
+	
+	/* Create the indicator (the dot/circle - hidden when not checked) */
+	.custom-radio:after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0.7rem;
+		height: 0.7rem;
+		transform: translateX(-50%) translateY(-50%);
+		border-radius: 50%;
+		background: white;
+		display: none;
+	}
+	
+}
+
+
 .styled-select {
 	background: $white;
 	border: 0;

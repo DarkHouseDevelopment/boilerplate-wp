@@ -36,7 +36,7 @@ function builders_post_type() {
 		'label'                 => __( 'Builder', 'verrado' ),
 		'description'           => __( 'Builders in Verrado', 'verrado' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'page-attributes' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
@@ -64,7 +64,7 @@ function custom_builders_order( $orderby ) {
 	// Check if the query is for an archive
 	if ( is_archive() && get_query_var("post_type") == "builders" ) {
 		// Query was for archive, then set order
-		return "$wpdb->posts.post_title ASC";
+		return "$wpdb->posts.menu_order ASC";
 	}
 	
 	return $orderby;

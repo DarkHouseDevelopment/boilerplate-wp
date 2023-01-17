@@ -12,9 +12,15 @@
 		<div class="hero-outer-circle"></div>		
 		<h1 class="hero-tagline">
 			<?php
-				echo '<span>'.get_field( 'nn_hero_title_1', 'option' ).'</span>';
-				echo get_field( 'nn_hero_title_2', 'option' );
-				echo '<span>'.$amenity_type->name.'</span>';
+				if($amenity_type->name == "Union Street"):
+					echo "<span></span>";
+					echo $amenity_type->name;
+					echo "<span></span>";
+				else:
+					echo '<span>'.get_field( 'nn_hero_title_1', 'option' ).'</span>';
+					echo get_field( 'nn_hero_title_2', 'option' );
+					echo '<span>'.$amenity_type->name.'</span>';
+				endif;
 			?>
 		</h1>
 	</div>

@@ -63,6 +63,7 @@
 							'posts_per_page' => -1,
 							'post_type' => 'builders',
 							'post_status' => 'publish',
+							'post_parent' => 0,
 							'ordeerby' => 'post_title',
 							'order' => 'ASC'
 						);
@@ -71,10 +72,10 @@
 						if($builder_query->have_posts()):
 							while($builder_query->have_posts()): $builder_query->the_post();
 								$builder_logo = get_field( 'builder_logo' );
-								$builder_coming_coon = get_field( 'coming_soon' );
+								$builder_coming_soon = get_field( 'coming_soon' );
 								
 								echo "<div class='builder'>";
-								if($builder_coming_coon == true):
+								if($builder_coming_soon == true):
 									echo "<div class='coming-soon'><img src='".$builder_logo['url']."' alt='".get_the_title()."' /></div>";
 								else:
 									echo "<a href='".get_the_permalink()."'><img src='".$builder_logo['url']."' alt='".get_the_title()."' /></a>";

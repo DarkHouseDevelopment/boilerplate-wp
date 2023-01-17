@@ -17,7 +17,7 @@ if ( have_posts() ):
 	echo "<div class='wrap'>";
 	while ( have_posts() ) : the_post(); ?>
 			<a class="blog-result" href="<?php esc_url( the_permalink() ); ?>">
-				<div class="blog-image" style="background: url(<?php echo has_post_thumbnail() ? get_the_post_thumbnail_url( $post, 'blog-thumbnail' ) : $fallback_image['sizes']['blog-thumbnail']; ?>) center center no-repeat / cover">
+				<div class="blog-image" style="background-image: url(<?php echo has_post_thumbnail() ? get_the_post_thumbnail_url( $post, 'blog-thumbnail' ) : $fallback_image['sizes']['blog-thumbnail']; ?>);">
 					<?php //echo has_post_thumbnail() ? get_the_post_thumbnail( $post, 'blog-thumbnail' ) : "<img src='{$fallback_image['sizes']['blog-thumbnail']}' />"; ?>
 					<div class="hover"><div class="btn btn-white-outline">View Blog</div></div>
 				</div>

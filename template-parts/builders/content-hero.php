@@ -2,6 +2,8 @@
 	$builder_page = get_page_by_path( 'meet-our-builders' );
 	if(is_post_type_archive( 'builders' )):
 		$hero_image = get_field( 'hero_image', $builder_page->ID );
+	elseif( !empty( $post->post_parent ) ):
+		$hero_image = get_field( 'builder_hero_image', $post->post_parent );
 	else:
 		$hero_image = get_field( 'builder_hero_image', $post->ID );
 	endif;

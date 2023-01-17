@@ -40,6 +40,7 @@
 		text-align: center;
 		max-width: 16rem;
 		max-height: 16rem;
+		padding: 0.5rem;
 		
 		&.active {
 			animation: hero-circle-grow 0.75s 0.25s ease-in-out forwards;
@@ -270,11 +271,45 @@ section[role="main"]{
 			padding: 8rem 0;
 		}
 		
+		.banner-link {
+			display: block;
+			min-height: 20rem;
+		}
+		
 		&.content {
 			.cta-bg { max-width: 96rem; }
 		}
 		&.container {
 			.cta-bg { max-width: 120rem; }
+		}
+		
+		&.left {
+			.wrap {
+				justify-content: flex-start;
+				
+				article { 
+					margin: 0;
+					text-align: left;
+					
+					h3, h4 {
+						text-shadow: 0.1rem 0.1rem 0.3rem rgba($black, 0.3);
+					}
+				}
+			}
+		}
+		&.right {
+			.wrap {
+				justify-content: flex-end;
+				
+				article { 
+					margin: 0;
+					text-align: right;
+					
+					h3, h4 {
+						text-shadow: 0.1rem 0.1rem 0.3rem rgba($black, 0.3);
+					}
+				}
+			}
 		}
 		
 		.cta-bg {
@@ -646,14 +681,90 @@ section[role="main"]{
 		max-width: none;
 		width: 100%;
 		
-		@include breakpoint($sm){
-			grid-template-columns: 1fr 1fr;
+		&.builder-count-1 {
+			max-width: 30rem;
+			margin: 0 auto;
 		}
-		@include breakpoint($md){
-			grid-template-columns: 1fr 1fr 1fr;
+		&.builder-count-2 {
+			@include breakpoint($sm){
+				grid-template-columns: 1fr 1fr;
+				max-width: 60rem;
+				margin: 0 auto;
+			}
 		}
-		@include breakpoint($lg){
-			grid-template-columns: 1fr 1fr 1fr 1fr;
+		&.builder-count-3 {
+			@include breakpoint($sm){
+				grid-template-columns: repeat(4, 1fr);
+				
+				.builder {
+					grid-column: span 2;
+					
+					&:last-child {
+						grid-column: 2 / span 2;
+					}
+				}
+			}
+			@include breakpoint($md){
+				grid-template-columns: repeat(3, 1fr);
+				max-width: 90rem;
+				margin: 0 auto;
+				
+				.builder {
+					grid-column: span 1;
+					
+					&:last-child {
+						grid-column: 3 / span 1;
+					}
+				}
+			}
+		}
+		&.builder-count-4 {
+			@include breakpoint($sm){
+				grid-template-columns: 1fr 1fr;
+			}
+			@include breakpoint($md){
+				grid-template-columns: 1fr 1fr 1fr;
+				
+				.builder:last-child {
+					grid-column: 2 / span 1;
+				}
+			}
+			@include breakpoint($lg){
+				grid-template-columns: 1fr 1fr 1fr 1fr;
+				
+				.builder:last-child {
+					grid-column: 4 / span 1;
+				}
+			}
+		}
+		&.builder-count-5 {
+			@include breakpoint($sm){
+				grid-template-columns: repeat(4, 1fr);
+				
+				.builder {
+					grid-column: span 2;
+					
+					&:last-child {
+						grid-column: 2 / span 2;
+					}
+				}
+			}
+			@include breakpoint($md){
+				grid-template-columns: repeat(6, 1fr);
+				max-width: 90rem;
+				margin: 0 auto;
+				
+				.builder {
+					grid-column: span 2;
+					
+					&:nth-child(4) {
+						grid-column: 2 / span 2;
+					}
+					&:last-child {
+						grid-column: 4 / span 2;
+					}
+				}
+			}
 		}
 		
 		.builder {
@@ -663,13 +774,6 @@ section[role="main"]{
 	    border-radius: 0.5rem;
 	    overflow: hidden;
 	    color: $white;
-	    
-	    @include breakpoint($md){
-		    &:last-child { grid-column: 2 / span 1 }
-	    }
-	    @include breakpoint($lg){
-		    &:last-child { grid-column: 4 / span 1 }
-	    }
 			
 /*
 			&.tan {
@@ -686,18 +790,14 @@ section[role="main"]{
 			}
 */
 			
-			&.tan {
-				background: $tan;
-			}
-			&.dark-teal {
-				background: $darkteal;
-			}
-			&.green {
-				background: $green;
-			}
-			&.teal {
-				background: $teal;
-			}
+			&.brown { background: $brown; }
+			&.tan { background: $tan; }
+			&.dark-teal { background: $darkteal; }
+			&.dark-navy { background: $darknavy; }
+			&.green { background: $green; }
+			&.teal { background: $teal; }
+			&.orange { background: $orange; }
+			&.red { background: $red; }
 			
 			.logo-block {
 				width: 100%;

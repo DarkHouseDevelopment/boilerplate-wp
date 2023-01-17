@@ -1,0 +1,14 @@
+{
+  "identifier" : "29F2AC7C-AE61-4E31-A981-F6E0FED67501",
+  "ignoredFilePatterns" : [
+    "node_modules",
+    "node_modules\/.staging\/node-sass-1778efa8\/src\/.DS_Store",
+    "template-parts\/near-norterra\/.DS_Store",
+    "template-parts\/amenities\/.DS_Store",
+    ".DS_Store"
+  ],
+  "remotePath" : "\/wp-content\/themes\/unionparktheme-2.0\/",
+  "remoteURL" : "https:\/\/upnorterra.sftp.wpengine.com\/",
+  "server" : "Union Park at Norterra (staging)",
+  "usesPublishing" : true
+}

@@ -1,4 +1,4 @@
-<?php include( get_stylesheet_directory() . '/template-parts/homes/script-home-variables.php' ); ?>
+<?php include( get_stylesheet_directory() . '/template-parts/homes/script-rental-variables.php' ); ?>
 
 <section id="model_details" class="content-section">
 	<div class="wrap">
@@ -14,7 +14,7 @@
 		</header>
 		
 		<article>
-			<?php the_field( 'floorplan_description' ); ?>
+			<?php the_field( 'rental_description' ); ?>
 		</article>
 		
 		<div class="model-images">
@@ -69,12 +69,12 @@
 		<ul class="model-numbers">
 			<li>
 				<?php 
-				if($priceRange[0] == "tbd"):
-					echo ucfirst('<div class="label top">Price</div>') . ' <div class="value">TBD</div>'; 
-				elseif($priceRange[0] == "1m"):
-					echo '<div class="label top">Starting At</div><div class="value">$' . strtoupper($priceRange[0]) . ' ' . ucfirst($priceRange[1]) . '</div>'; 
-				elseif(!empty($priceRange[1])):
-					echo ucfirst('<div class="label top">'.ucfirst($priceRange[0]).'</div>') . ' <div class="value">$' . $priceRange[1] . ',000<span>s</span></div>'; 
+				if( !empty( $startingPrice ) && empty( $maxPrice ) ):
+					echo '<div class="label top">Price</div> <div class="value">$'.number_format( $startingPrice ).'<span>/mo</span></div>'; 
+				elseif( !empty( $startingPrice ) && !empty( $maxPrice ) ):
+					echo '<div class="label top">Price</div> <div class="value">$'.number_format( $startingPrice ).' - $'.number_format( $maxPrice ).'<span>/mo</span></div>'; 
+				else:
+					echo '<div class="label top">Price</div> <div class="value">TBD</div>'; 
 				endif; 
 				?>
 			</li>

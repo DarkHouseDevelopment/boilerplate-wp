@@ -22,6 +22,12 @@
 		&:nth-child(even){
 			flex-direction: row-reverse;
 		}
+		&.brown{
+			border-color: $brown;
+			
+			.logo-block { background: $brown; }
+			.preview .hover .btn { @include btn(rgba($brown,0.8), transparent, $white); }
+		}
 		&.tan{
 			border-color: $tan;
 			
@@ -33,6 +39,12 @@
 			
 			.logo-block { background: $darkteal; }
 			.preview .hover .btn { @include btn(rgba($darkteal,0.8), transparent, $white); }
+		}
+		&.dark-navy{
+			border-color: $darknavy;
+			
+			.logo-block { background: $darknavy; }
+			.preview .hover .btn { @include btn(rgba($darknavy,0.8), transparent, $white); }
 		}
 		&.green{
 			border-color: $green;
@@ -159,6 +171,7 @@
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: flex-start;
+		width: 100%;
 	}
 	
 	.logo-block {
@@ -178,8 +191,10 @@
 			margin: 0;
 		}
 		
+		&.brown { background: $brown; }
 		&.tan { background: $tan; }
 		&.dark-teal { background: $darkteal; }
+		&.dark-navy { background: $darknavy; }
 		&.green { background: $green; }
 		&.teal { background: $teal; }
 		&.orange { background: $orange; }

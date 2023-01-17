@@ -1,0 +1,9 @@
+{
+  "identifier" : "29DD0943-2E0E-4EB1-BD0F-50B6BFEE0C4E",
+  "ignoredFilePatterns" : [
+    "node_modules"
+  ],
+  "remotePath" : "\/wp-content\/themes\/unionparktheme-2.0\/",
+  "server" : "Union Park at Norterra (prod)",
+  "usesPublishing" : true
+}

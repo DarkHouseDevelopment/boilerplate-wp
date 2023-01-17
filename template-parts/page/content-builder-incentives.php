@@ -9,6 +9,7 @@
 				$args = array(
 					'post_type' => 'builders',
 					'posts_per_page' => -1,
+					'post_parent' => 0,
 					'orderby' => 'title',
 					'order' => 'asc',
 				);

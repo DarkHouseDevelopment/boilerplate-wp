@@ -1,10 +1,9 @@
-<?php include( get_stylesheet_directory() . '/template-parts/homes/script-home-variables.php' ); ?>
+<?php include( get_stylesheet_directory() . '/template-parts/homes/script-rental-variables.php' ); ?>
 
-<div class="home-result <?php echo $builder->post_name." ".$neighborhood->post_name; ?>">
+<div class="home-result">
 
 	<?php if( $images ): ?>
 		<a class="model-image" href="<?php the_permalink(); ?>" class="image" style="background: url(<?php echo $images[0]['sizes']['floorplan-thumbnail']; ?>) center center no-repeat; background-size: cover;">
-			<?php echo $quick_movein ? "<div class='quick-move'><i class='icon-star'></i> Quick Move In</div>" : ""; ?>
 			<?php echo $model ? "<div class='model'><i class='icon-home'></i> Model</div>" : ""; ?>
 			<div class="hover"><div class="btn btn-white-outline">View Home Details</div></div>
 		</a>
@@ -15,12 +14,12 @@
 		
 		<?php echo $squareFootage; ?> Sq Ft // <?php echo $totalBeds; ?> Beds // <?php echo $totalBaths; ?> Baths<br />
 		<?php
-			if($priceRange[0] == "tbd"):
-				echo 'Price TBD'; 
-			elseif($priceRange[0] == "1m"):
-				echo 'Priced from $' . strtoupper($priceRange[0]) . ' ' . $priceRange[1]; 
-			elseif(!empty($priceRange[1])):
-				echo 'Priced from '.$priceRange[0].' $' . $priceRange[1] . '\'s'; 
+			if( !empty( $startingPrice ) && empty( $maxPrice ) ):
+				echo 'Price from $'.number_format( $startingPrice ).'<span>/mo</span>'; 
+			elseif( !empty( $startingPrice ) && !empty( $maxPrice ) ):
+				echo 'Priced from $'.number_format( $startingPrice ).' - $'.number_format( $maxPrice ).'<span>/mo</span>'; 
+			else:
+				echo 'Price TDB';
 			endif; 
 		?>
 	</div>

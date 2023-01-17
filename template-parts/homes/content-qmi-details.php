@@ -8,6 +8,9 @@
 				<small>Available: <?php echo $available; ?></small>
 				<small>Address: <?php echo $address; ?></small>
 				<small>Model: <a href="<?php echo get_the_permalink( $floorplan->ID ); ?>"><?php echo $floorplan->post_title; ?></a> by <a href="<?php echo get_the_permalink( $builder->ID ); ?>"><?php echo $builder->post_title; ?></a></small>
+				<?php if(!empty($site_plan)):
+					echo "<small><br><a href='".$site_plan['url']."' target='_blank'>Download Builder Site Plan<i class='icon-right-big'></i></a></small>";
+				endif; ?>
 			</h2>
 			<div class="actions">
 				<?php echo $floorplan_file ? '<a class="btn-outline" href="'.$floorplan_file['url'].'">Download Floorplan</a>' : '' ?>
@@ -45,7 +48,8 @@
 					foreach( $floorplan_images as $floorplan ): ?>
 						<div class="floorplan">
 							<img src="<?php echo $floorplan['url']; ?>" alt="<?php the_title(); ?>" />
-							<a href="javascript:void(0);" id="zoom_floorplan<?php echo $floorplanCount; ?>" class="zoom"><i class="icon-zoom-in"></i></a>
+							<?php echo $virtual_tour ? '<a class="virtual-tour btn-teal" href="'.$virtual_tour.'" target="_blank" rel="nofollow noopenner">Virtual Tour <i class="icon-angle-circled-right"></i></a>' : '' ?>
+							<a href="javascript:void(0);" id="zoom_floorplan<?php echo $floorplanCount; ?>" class="zoom btn-teal"><i class="icon-zoom-in"></i> View Floorplan</a>
 						</div>
 		
 						<div id="floorplan_overlay<?php echo $floorplanCount; ?>" class="overlay">

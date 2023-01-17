@@ -6,6 +6,8 @@ $builder_email = get_post_meta( $builder->ID, 'builder_contact_0_email', true );
 $images = get_field( 'qmi_images' ) ? get_field( 'qmi_images' ) : get_field('model_images', $floorplan->ID);
 $floorplan_images = get_field('floorplan_images', $floorplan->ID);
 $floorplan_file = get_field('floorplan_file', $floorplan->ID);
+$virtual_tour = get_field( 'qmi_virtual_tour_url' ) ? get_field( 'qmi_virtual_tour_url' ) : get_field('virtual_tour_url', $floorplan->ID);
+$site_plan = get_field( 'builder_site_plan', $builder->ID );
 $address = get_field( 'street_address' );
 
 // Assign Custom Fields values to variables

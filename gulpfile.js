@@ -1,71 +1,97 @@
-var gulp = require('gulp');
-var autoprefixer = require('gulp-autoprefixer');
-var bourbon = require('bourbon').includePaths;
-var connect = require("gulp-connect");
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var watch = require('gulp-watch');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var pump = require('pump');
-var log = require('fancy-log');
+'use strict';
 
-// PATH objects
+// helpers
+// https://github.com/gulpjs/gulp
+// https://www.webstoemp.com/blog/switching-to-gulp4/
+
+var autoprefixer = require('gulp-autoprefixer'),
+		bourbon = require('bourbon').includePaths,
+		breakpoint = 'node_modules/breakpoint-sass/stylesheets',
+		concat = require('gulp-concat'),
+		del = require("del"),
+		gracefulFs = require('graceful-fs'),
+		gulp = require('gulp'),
+		mapStream  = require('map-stream'),
+		remtopx  = require('gulp-rem-to-px'),
+		notify = require('gulp-notify'),
+		plumber = require("gulp-plumber"),
+		sass = require('gulp-sass'),
+		terser = require('gulp-terser');
+
 var paths = {
-	js: ['_source/js/*.js'],
-	scss: ['./_source/scss/**/*.scss'],
-	inc: [bourbon, 'node_modules/susy/sass', 'node_modules/breakpoint-sass/stylesheets']
+	styles: {
+		src: [
+			'_source/scss/styles.scss',
+			'_source/scss/print-qmi.scss',
+			'_source/scss/_core/**/*.scss',
+			'_source/scss/_elements/**/*.scss',
+			'_source/scss/_site/**/*.scss'
+		],
+		dest: ['assets/css/'],
+		inc: [bourbon,breakpoint]
+	},
+	scripts: {
+		src: ['_source/js/_functions.js','_source/js/_plugins.js','_source/js/scripts.js'],
+		dest: ['assets/js/']
+	}
 };
 
-// Minify JS
-gulp.task('js', function(e) {
-	pump([
-			gulp.src(paths.js),
-			concat('scripts.js'),
-			uglify(),
-			gulp.dest('assets/js/')
-		],
-		e
-	)
-	.on('end',function(){
-		log('**************************************');
-		log('************ JS COMPLETED ************');
-		log('**************************************');
+// modified version of https://www.npmjs.com/package/gulp-touch
+const updateTimestamp = function (options) {
+	return mapStream(function (file, cb) {
+		if (file.isNull()) {
+			return cb(null, file);
+		}
+		return gracefulFs.utimes(file.path, new Date(), new Date(), cb.bind(null, null, file));
 	});
-});
+};
 
-// Compile SASS files
-gulp.task('sass', function() {
-	gulp.src(paths.scss)
-		.pipe(sourcemaps.init())
+// Clean assets
+function clean() {
+	return del(paths.scripts.dest,paths.styles.dest);
+}
+
+// css
+function css() {
+	return gulp.src(paths.styles.src)
+		.pipe(plumber())
 		.pipe(sass({
 			outputStyle: 'compressed',
-			includePaths: paths.inc
+			includePaths: paths.styles.inc
 		}).on('error', sass.logError))
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-			cascade: false
-		}))
-		.pipe(gulp.dest("assets/css/"))
-		.on('end',function(){
-			log('***************************************');
-			log('************ CSS COMPLETED ************');
-			log('***************************************');
-		});
-});
+		.pipe(autoprefixer())
+		.pipe(remtopx({
+				fontSize: 10
+		 }))
+		.pipe(gulp.dest(paths.styles.dest))
+		.pipe(updateTimestamp())
+		.pipe(notify({ message: 'CSS complete!' }));
+}
 
-// Set up localhost server
-gulp.task('connect', function() {
-  connect.server({
-    port: 8000
-  });
-});
+// js
+function scripts() {
+	return gulp.src(paths.scripts.src)
+		.pipe(plumber())
+		.pipe(concat('scripts.js'))
+		.pipe(terser())
+		.pipe(gulp.dest(paths.scripts.dest))
+		.pipe(notify({ message: 'JS complete!' }))
+}
 
-// Watch
-gulp.task("watch", function() {
-	watch('_source/scss/**/*.scss', function() { gulp.start('sass'); });
-	watch('_source/js/**/*.js', function() { gulp.start('js'); });
-});
+// watch
+function watch() {
+	gulp.watch(paths.styles.src, css);
+	gulp.watch(paths.scripts.src, scripts);
+}
 
-// Compile all gulp tasks
-gulp.task('default', ['connect', 'js', 'sass', 'watch']);
+var build = gulp.series(clean, gulp.parallel(watch, css, scripts));
+
+// declare tasks
+exports.clean = clean;
+exports.styles = css;
+exports.scripts = scripts;
+exports.watch = watch;
+exports.build = build;
+
+// run 'gulp' cli command
+exports.default = build;

@@ -25,8 +25,11 @@ if ( have_posts() ):
 		get_template_part( 'template-parts/builders/content', 'hero' );
 		
 		echo "<section role='main'>";
-		
-		get_template_part( 'template-parts/builders/content', 'builder-details' );
+		if( !empty( $post->post_parent ) ):
+			get_template_part( 'template-parts/builders/content', 'neighborhood-details' );
+		else:
+			get_template_part( 'template-parts/builders/content', 'builder-details' );
+		endif;
 		
 		if(have_rows( 'builder_ctas' )):
 			while(have_rows( 'builder_ctas' )): the_row();

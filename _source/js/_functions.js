@@ -68,9 +68,18 @@ function floatingLabels(){
 	});
 }
 
+function searchTypeToggle(){
+	$('input[name="search-select"').on('change', function(){
+		var searchType = $(this).val();
+		$('form[name="homesearch"]').attr('action', '/'+searchType+'/');
+		$('form[name="homesearch"]').find('.form-field.search-toggle').hide();
+		$('form[name="homesearch"]').find('.form-field.search-toggle.'+searchType).show();
+	});
+}
+
 function floorplans() {
-	$('.floorplan').click(function(e) {
-		var zoomID = $(this).find('.zoom').attr('id');
+	$('.floorplan .zoom').click(function(e) {
+		var zoomID = $(this).attr('id');
 		var floorplanNum = zoomID.substr(zoomID.length - 1);
 		$('#floorplan_overlay'+floorplanNum).fadeIn();
 		e.preventDefault();
@@ -332,6 +341,26 @@ function backToGridHash(){
                 
         $('nav#back_nav a').attr('href', backLink + "#filter=" + backHash);
     }
+}
+
+
+function builderFloorplanFilter(){
+	$('.builder-floorplans-filter li a').on('click', function(){
+		var filter = $(this).data('filter');
+		
+		$('.builder-floorplans-filter li').removeClass('active');
+		$(this).parents('li').addClass('active');
+		
+		if( filter == 'all' ){
+			$('#home_results_list').find('.home-result').fadeIn();
+			$('.neighborhood-availability h4').hide();
+		} else {
+			$('#home_results_list').find('.home-result:not(.'+filter+')').hide();
+			$('#home_results_list').find('.home-result.'+filter).fadeIn();
+			$('.neighborhood-availability h4').hide();
+			$('.neighborhood-availability h4.'+filter).fadeIn();
+		}
+	});
 }
 
 

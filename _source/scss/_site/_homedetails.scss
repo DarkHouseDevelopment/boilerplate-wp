@@ -28,12 +28,10 @@
 			}
 		}
 		.actions {
+			&.qmi { max-width: 40rem }
+			
 			a {
-				margin-bottom: 1rem;
-				
-				@include breakpoint($md){
-					margin: 0;
-				}
+				margin: 0.5rem;
 			}
 		}
 	}
@@ -98,6 +96,13 @@
 					height: 100%;
 					width: auto;
 					transition: opacity 0.3s ease-in-out;
+				}
+				.virtual-tour {
+					@include position(absolute, null null 0 0);
+					margin: auto;
+			    font-size: 1.5rem;
+			    padding: 1rem 2rem;
+			    min-width: 0;
 				}
 				.zoom {
 					display: block;

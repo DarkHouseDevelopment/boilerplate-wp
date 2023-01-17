@@ -8,6 +8,6 @@
 	<?php endif; ?>
 	<header>
 		<time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_time( 'm/d/y' ); ?></time>
-		<h2><?php the_title(); ?></h2>
+		<h1><?php the_title(); ?></h1>
 	</header>
 </section>

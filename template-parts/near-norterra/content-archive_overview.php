@@ -13,7 +13,7 @@
 		<div class="section-content">
 			<?php 
 				$description = is_tax( 'nn_category' ) ? term_description() : get_field( 'nn_page_overview', 'option' );
-				echo "<p>$description</p>";
+				echo $description;
 			?>
 		</div>
 	</div>

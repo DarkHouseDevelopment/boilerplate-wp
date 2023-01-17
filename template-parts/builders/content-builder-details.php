@@ -1,5 +1,6 @@
 <?php 
 $logo = get_field( 'builder_logo' ); 
+global $post;
 
 $builder_args = array(
 	'post_type' => 'homes',
@@ -14,7 +15,7 @@ $builder_args = array(
 );
 
 $builder_homes = get_posts( $builder_args );
-$homes_array = array();
+$homes_array = array( 0 );
 
 foreach($builder_homes as $home){
 	$homes_array[] = $home->ID;
@@ -63,10 +64,17 @@ $qmi_loop = new WP_Query($args);
 					<?php if ( $qmi_loop->have_posts() ):
 						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					endif; ?>
+					<?php 
+					while( have_rows( 'builder_site_plans' ) ): the_row();
+						$site_plan = get_sub_field( 'site_plan' );
+						echo "<br><a href='".$site_plan['url']."' target='_blank'>".(get_sub_field( 'site_plan_title' ) ?: "Download Site Plan")."<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					endwhile; 
+					?>
 				</div>
 			</div>
 			<div class="location">
 				<?php while(have_rows( 'builder_contact' )): the_row(); ?>
+					<?php if(get_sub_field( 'street_address' ) && (get_sub_field( 'city' ) || get_sub_field( 'state' ) || get_sub_field( 'zipcode' ) || get_sub_field( 'phone' ))): ?>
 					<address>
 						<h4>Contact</h4>
 						<?php echo get_sub_field( 'street_address' ) ? get_sub_field( 'street_address' )."<br />" : ""; ?>
@@ -88,6 +96,7 @@ $qmi_loop = new WP_Query($args);
 							}
 						?>
 					</address>
+					<?php endif; ?>
 					<?php $builder_email = get_sub_field( 'email' ); ?>
 				<?php endwhile; ?>
 				
@@ -114,7 +123,7 @@ $qmi_loop = new WP_Query($args);
 	<div class="overlay-bg"></div>
 	<div class="overlay-content">
 		<article>
-			<h4>Send me info about <?php the_title(); ?> at Union Park in Norterra</h4>
+			<h4>Send me info about <?php the_title(); ?> at Union Park at Norterra</h4>
 			<?php echo do_shortcode( '[contact-form-7 id="546" title="Send Me Info"]' ); ?>
 			
 			<a href="javascript:void(0);" class="close"><i class="icon-cancel"></i></a>
