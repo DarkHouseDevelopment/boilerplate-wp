@@ -1,8 +1,10 @@
 <?php
+	$id = get_sub_field('section_id');
+	$class = get_sub_field('section_class');
 	$pattern_color = is_singular( 'post' ) ? 'yellow' : get_sub_field( 'pattern_color' );
 	$title_icon = get_sub_field( 'title_icon' );
 ?>
-<section class="pattern-section interior content-section">
+<section id="<?php echo $id; ?>" class="pattern-section interior content-section <?php echo $class; ?>">
 	<div class="pattern-bg" style="background: url(<?php echo get_template_directory_uri(); ?>/assets/img/upan-pattern-<?php echo $pattern_color; ?>.svg) center center repeat; background-size: 16rem;"></div>
 	<div class="wrap">
 		<article>

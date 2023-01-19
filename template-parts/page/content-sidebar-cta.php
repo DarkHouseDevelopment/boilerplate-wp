@@ -1,4 +1,8 @@
-<section class="content-section full-width with-sidebar sidebar-cta <?php the_sub_field( 'section_layout' ); ?>">
+<?php
+	$id = get_sub_field('section_id');
+	$class = get_sub_field('section_class');
+?>
+<section id="<?php echo $id; ?>" class="content-section full-width with-sidebar sidebar-cta <?php the_sub_field( 'section_layout' ); ?> <?php echo $class; ?>">
 	<div class="wrap">
 		<article>
 			<?php the_sub_field( 'section_content' ); ?>
@@ -31,16 +35,15 @@
 					?>
 				</div>
 			<?php endif; ?>
-				<header>
-					<?php echo get_sub_field( 'title_text' ) ? "<h3 style='color:".$text_color."'>".get_sub_field( 'title_text' )."</h3>" : ""; ?>
-					<?php echo get_sub_field( 'subtitle_text' ) ? "<h4 style='color:".$text_color."'>".get_sub_field( 'subtitle_text' )."</h4>" : ""; ?>
-					<?php 
-						while(have_rows( 'cta_button' )): the_row();
-							include("content-dynamic-button.php"); 
-						endwhile;
-					?>
-				</header>
-			</div>
+			<header>
+				<?php echo get_sub_field( 'title_text' ) ? "<h3 style='color:".$text_color."'>".get_sub_field( 'title_text' )."</h3>" : ""; ?>
+				<?php echo get_sub_field( 'subtitle_text' ) ? "<h4 style='color:".$text_color."'>".get_sub_field( 'subtitle_text' )."</h4>" : ""; ?>
+				<?php 
+					while(have_rows( 'cta_button' )): the_row();
+						include("content-dynamic-button.php"); 
+					endwhile;
+				?>
+			</header>
 		</aside>
 		<?php endwhile; ?>
 	</div>

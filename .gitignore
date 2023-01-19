@@ -8,3 +8,4 @@
 .sass-cache
 config.codekit*
 node_modules
+/.vscode

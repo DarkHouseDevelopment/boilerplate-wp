@@ -33,6 +33,10 @@ if ( have_posts() ):
 					get_template_part( 'template-parts/page/content', 'sidebar' );
 					break;
 					
+				case 'content_sidebar_cta':
+					get_template_part( 'template-parts/page/content', 'sidebar-cta' );
+					break;
+					
 				case 'image_grid':
 					get_template_part( 'template-parts/page/content', 'image-grid' );
 					break;
@@ -77,6 +81,14 @@ if ( have_posts() ):
 				
 				case 'call_to_action_form':
 					get_template_part( 'template-parts/page/content', 'call-to-action-form' );
+					break;
+				
+				case 'sticky_nav_bar':
+					get_template_part( 'template-parts/page/content', 'sticky-nav-bar' );
+					break;
+				
+				case 'sticky_cta_button':
+					get_template_part( 'template-parts/page/content', 'sticky-cta-button' );
 					break;
 			}
 		
