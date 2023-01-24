@@ -90,6 +90,10 @@ if ( have_posts() ):
 				case 'sticky_cta_button':
 					get_template_part( 'template-parts/page/content', 'sticky-cta-button' );
 					break;
+				
+				case 'cta_blocks':
+					get_template_part( 'template-parts/page/content', 'cta-blocks' );
+					break;
 			}
 		
 		endwhile;

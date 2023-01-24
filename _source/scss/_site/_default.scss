@@ -828,6 +828,40 @@ section[role="main"]{
 	}
 }
 
+.cta-blocks {
+	margin: 0 !important;
+	padding: 0 !important;
+	display: grid;
+	@include breakpoint($tablet) {
+		grid-template-columns: 1fr 1fr;
+	}
+	.cta-block {
+		position: relative;
+		padding: 4rem 0;
+		@include breakpoint($md){ padding: 6rem 0; }
+		@include breakpoint($lg){ padding: 8rem 0; }
+
+		article {
+			max-width: 600px;
+			img {
+				margin-bottom: 20px;
+				max-width: 120px;
+			}
+			header {
+				p {
+					text-transform: none;
+					margin-bottom: 0;
+				}
+			}
+			.button-group {
+				.btn {
+					margin: 20px 10px 0;
+				}
+			}
+		}
+	}
+}
+
 
 
 /* IE11 Hacks - please forgive me */		
