@@ -8,10 +8,10 @@
 		<article>
 			<header>
 				<?php echo $title_icon ? "<img class='title-icon' src='{$title_icon['url']}' alt='{$title_icon['alt']}' />" : ""; ?>
-				<h3><?php the_sub_field( 'title_text' ); ?></h3>
+				<h3><?php echo get_sub_field( 'title_text' ); ?></h3>
 			</header>
 			
-			<?php the_sub_field( 'section_content' ); ?>
+			<?php echo get_sub_field( 'section_content' ); ?>
 		</article>
 	</div>
 </section>

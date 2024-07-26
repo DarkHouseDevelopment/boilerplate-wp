@@ -49,7 +49,7 @@ if ( function_exists( 'yoast_get_primary_term_id' ) && yoast_get_primary_term_id
 <section id="amenities_overview" role="main">
 	<div class="wrap">
 		<div class="section-content">
-			<?php the_field( 'amenity_content' ); ?>
+			<?php echo get_field( 'amenity_content' ); ?>
 		</div>
 	</div>
 </section>
@@ -142,10 +142,10 @@ if ( function_exists( 'yoast_get_primary_term_id' ) && yoast_get_primary_term_id
 					endif; ?>
 					<?php while(have_rows( 'contact_details', $contact_page )): the_row(); ?>
 						<address>
-							<?php the_sub_field( 'street_address' ); ?><br />
-							<?php the_sub_field( 'city' ); ?>, <?php the_sub_field( 'state' ); ?> <?php the_sub_field( 'zipcode' ); ?><br />
-							<?php the_sub_field( 'phone' ); ?><br />
-							<a href='mailto:<?php the_sub_field( 'email_address' ); ?>'><?php the_sub_field( 'email_address' ); ?></a>
+							<?php echo get_sub_field( 'street_address' ); ?><br />
+							<?php echo get_sub_field( 'city' ); ?>, <?php echo get_sub_field( 'state' ); ?> <?php echo get_sub_field( 'zipcode' ); ?><br />
+							<?php echo get_sub_field( 'phone' ); ?><br />
+							<a href='mailto:<?php echo get_sub_field( 'email_address' ); ?>'><?php echo get_sub_field( 'email_address' ); ?></a>
 						</address>
 					<?php endwhile; ?>
 					<nav id="sidebar_social_menu">

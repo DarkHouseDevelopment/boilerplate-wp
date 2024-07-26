@@ -4,7 +4,7 @@
 // Calcluates the CSS letter spacing based on Photoshop letter spacing value.
 
 @mixin letter-spacing($s){
-	$calc: unquote( ( $s / 1000 ) + 'em' );
+	$calc: unquote( calc( $s / 1000 ) + 'em' );
 	letter-spacing: #{$calc};
 }
 

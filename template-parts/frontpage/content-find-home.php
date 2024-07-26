@@ -34,7 +34,7 @@
 	<div class="wrap">
 		<article>
 			<header>
-				<h3><?php the_sub_field( 'home_search_title' ); ?></h3>
+				<h3><?php echo get_sub_field( 'home_search_title' ); ?></h3>
 				<?php if(get_sub_field( 'home_search_intro' )):
 					echo "<p>".get_sub_field( 'home_search_intro' )."</p>";
 				endif; ?>

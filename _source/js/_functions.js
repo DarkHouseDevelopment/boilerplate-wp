@@ -116,6 +116,16 @@ function sendInfoOverlay(){
 		$('#send_info_overlay').find('input[name="builder_email"]').val(builderEmail);
 		$('#send_info_overlay').find('input[name="model"]').val(model);
 	}
+	
+	if($('#builder_popup_form').length){
+		var builder = $('#builder_popup_form').data('builder');
+		var builderEmail = $('#builder_popup_form').data('builderemail');
+		var model = $('#builder_popup_form').data('model');
+		
+		$('#builder_popup_form').find('input[name="builder"]').val(builder);
+		$('#builder_popup_form').find('input[name="builder_email"]').val(builderEmail);
+		$('#builder_popup_form').find('input[name="model"]').val(model);
+	}
 }
 
 function stayInTouchBuilderEmails(){

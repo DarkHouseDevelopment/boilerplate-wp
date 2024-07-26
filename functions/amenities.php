@@ -43,7 +43,7 @@ function register_amenities_post_type() {
 		'label'                 => __( 'Amenity', 'unionpark' ),
 		'description'           => __( 'Amenities near Norterra', 'unionpark' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title' ),
+		'supports'              => array( 'title', 'page-attributes' ),
 		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,

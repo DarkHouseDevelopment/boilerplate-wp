@@ -15,7 +15,7 @@
 				$logo = get_field( 'builder_logo' );
 				$preview_image = get_field( 'builder_hero_image' );
 				?>
-				<a href="<?php the_permalink(); ?>" class="builder <?php the_field( 'builder_color' ); ?> active">
+				<a href="<?php the_permalink(); ?>" class="builder <?php echo get_field( 'builder_color' ); ?> active">
 					<div class="logo-block">
 						<img src="<?php echo $logo['url'] ?>" alt="<?php the_title(); ?>" />
 					</div>

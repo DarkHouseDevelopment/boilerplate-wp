@@ -9,6 +9,6 @@ if($button_link_type == "internal"):
 	$button_link = get_the_permalink( $button_link->ID );
 endif;
 
-$button_target = get_sub_field( 'button_link_target' );
+$button_target = get_sub_field( 'button_target' );
 
 echo "<a href='$button_link' class='btn $button_style' target='$button_target'>$button_text</a>";

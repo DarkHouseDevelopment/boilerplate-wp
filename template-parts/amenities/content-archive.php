@@ -2,8 +2,7 @@
 	$args = array(
 		'post_type'			=> 'amenities',
 		'posts_per_page'	=> -1,
-		'meta_key'			=> 'amenity_order',
-		'orderby'			=> 'meta_value_num',
+		'orderby'			=> array('menu_order', 'title'),
 		'order'				=> 'ASC'
 	);
 	

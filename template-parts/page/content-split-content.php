@@ -14,7 +14,7 @@
 	
 	$media_type = get_sub_field( 'media_type' );
 ?>
-<section class="content-section split-content <?php echo $media_type; ?> <?php the_sub_field( 'section_layout' ); ?>" style="<?php echo $bg_style != "pattern" ? $bg_css : ""; ?>">
+<section class="content-section split-content <?php echo $media_type; ?> <?php echo get_sub_field( 'section_layout' ); ?>" style="<?php echo $bg_style != "pattern" ? $bg_css : ""; ?>">
 	<?php echo $bg_style == "pattern" ? "<div class='pattern-bg' style='$bg_css'></div>" : ""; ?>
 	<div class="wrap">
 		<div class="section-media">
@@ -64,8 +64,8 @@
 		</div>
 		<div class="section-content">
 			<div class="content-inner">
-				<h3><?php the_sub_field( 'section_title' ); ?></h3>
-				<?php the_sub_field( 'section_content' ); ?>
+				<h3><?php echo get_sub_field( 'section_title' ); ?></h3>
+				<?php echo get_sub_field( 'section_content' ); ?>
 			</div>
 		</div>
 	</div>

@@ -13,7 +13,7 @@
 		<div class="hero-outer-circle"></div>		
 		<h1 class="hero-tagline">
 			<?php echo get_sub_field( 'circle_text_1' ) ? "<span>".get_sub_field( 'circle_text_1' )."</span>" : ""; ?>
-			<?php the_sub_field( 'circle_text_2' ); ?>
+			<?php echo get_sub_field( 'circle_text_2' ); ?>
 			<?php echo get_sub_field( 'circle_text_3' ) ? "<span>".get_sub_field( 'circle_text_3' )."</span>" : ""; ?>
 		</h1>
 	</div>

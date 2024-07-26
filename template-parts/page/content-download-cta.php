@@ -33,7 +33,7 @@
 	<div class="wrap">
 		<article>
 			<header>
-				<h3><?php the_field( 'cta_text', 'option' ); ?></h3>
+				<h3><?php echo get_field( 'cta_text', 'option' ); ?></h3>
 			</header>
 			
 			<?php echo "<a href='$btn_link' class='btn' target='$btn_target'>$btn_text</a>"; ?>

@@ -8,7 +8,7 @@
 			echo "<div class='hero-image'><img src='{$hero_image['url']}' alt='".get_the_title()."' /></div>";
 		endif;
 	?>
-	<div class="hero-circle <?php the_field( 'hero_circle_color', $amenity_type ) ?>">
+	<div class="hero-circle <?php echo get_field( 'hero_circle_color', $amenity_type ) ?>">
 		<div class="hero-outer-circle"></div>		
 		<h1 class="hero-tagline">
 			<?php

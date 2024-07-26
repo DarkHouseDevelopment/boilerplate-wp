@@ -58,9 +58,9 @@ $qmi_loop = new WP_Query($args);
 		endif; ?>
 		<div class="builder-info">
 			<div class="builder-content">
-				<?php the_field( 'builder_content' ); ?>
+				<?php echo get_field( 'builder_content' ); ?>
 				<div class="builder-links">
-					<a href="<?php the_field( 'builder_website' ); ?>" target="_blank" rel="nofollow noopenner">Visit <?php the_title(); ?> Website<i class="icon-right-big"></i></a><br>
+					<a href="<?php echo get_field( 'builder_website' ); ?>" target="_blank" rel="nofollow noopenner">Visit <?php the_title(); ?> Website<i class="icon-right-big"></i></a><br>
 					<?php if ( $qmi_loop->have_posts() ):
 						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					endif; ?>
@@ -105,14 +105,17 @@ $qmi_loop = new WP_Query($args);
 					<h4>Hours</h4>
 					<ul>
 					<?php while(have_rows( 'builder_hours' )): the_row(); ?>
-						<li class="label"><?php the_sub_field( 'days' ); ?></li>
-						<li class="value"><?php the_sub_field( 'hours' ); ?></li>
+						<li class="label"><?php echo get_sub_field( 'days' ); ?></li>
+						<li class="value"><?php echo get_sub_field( 'hours' ); ?></li>
 					<?php endwhile; ?>
 					</ul>
 				</div>
 				<?php endif; ?>
 				
+				<?php if($post->post_name == "cachet-homes" && !$post->post_parent): ?>
+				<?php else: ?>
 				<a href="javascript:void(0);" class="btn btn-teal sendinfo">Request More Info</a>
+				<?php endif; ?>
 			</div>
 		</div>
 		

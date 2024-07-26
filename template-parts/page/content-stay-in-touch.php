@@ -23,10 +23,10 @@
 <section class="content-section stay-in-touch">
 	<div class="wrap">
 		<article data-builderemails="<?php echo implode(",", $builder_emails); ?>">
-			<h2><?php the_field( 'form_title' ); ?></h2>
+			<h2><?php echo get_field( 'form_title' ); ?></h2>
 			<?php echo do_shortcode( get_field( 'form_shortcode' ) ); ?>
-			<?php //the_field( 'form_embed_code' ); ?>
-			<p class="disclaimer"><?php the_field( 'form_disclaimer' ); ?></p>
+			<?php //echo get_field( 'form_embed_code' ); ?>
+			<p class="disclaimer"><?php echo get_field( 'form_disclaimer' ); ?></p>
 		</article>
 		<aside>
 			<?php echo file_get_contents(get_template_directory() . '/assets/img/icon-tree.svg'); ?><br />
@@ -41,15 +41,15 @@
 			endif;
 			while(have_rows( 'hours' )): the_row(); ?>
 				<div class="hours">
-					<strong><?php the_sub_field( 'hours_title' ); ?></strong><br>
-					<span><?php the_sub_field( 'hours_content' ); ?></span>
+					<strong><?php echo get_sub_field( 'hours_title' ); ?></strong><br>
+					<span><?php echo get_sub_field( 'hours_content' ); ?></span>
 				</div>
 			<?php endwhile;
 			while(have_rows( 'contact_details' )): the_row(); ?>
 				<address>
 					<?php echo do_shortcode( "[wpseo_address oneline=false show_country=false show_phone=false show_email=false hide_name=true]" ); ?>
-					<span class="wpseo-phone"><a href="tel:<?php echo preg_replace('/[^0-9]/', '', get_sub_field( 'phone' )); ?>" class="tel"><?php the_sub_field( 'phone' ); ?></a></span>
-					<span class="wpseo-email"><a href='mailto:<?php the_sub_field( 'email_address' ); ?>'><?php the_sub_field( 'email_address' ); ?></a></span>
+					<span class="wpseo-phone"><a href="tel:<?php echo preg_replace('/[^0-9]/', '', get_sub_field( 'phone' )); ?>" class="tel"><?php echo get_sub_field( 'phone' ); ?></a></span>
+					<span class="wpseo-email"><a href='mailto:<?php echo get_sub_field( 'email_address' ); ?>'><?php echo get_sub_field( 'email_address' ); ?></a></span>
 				</address>
 			<?php endwhile; ?>
 			<nav id="sidebar_social_menu">

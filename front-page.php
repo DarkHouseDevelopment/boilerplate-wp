@@ -23,12 +23,20 @@ if ( have_posts() ):
 						get_template_part( 'template-parts/frontpage/content', 'pattern' );
 						break;
 						
+					case 'pattern_video':
+						get_template_part( 'template-parts/page/content', 'pattern-video' );
+						break;
+						
 					case 'full_width_content':
 						get_template_part( 'template-parts/frontpage/content', 'full-width' );
 						break;
 					
 					case 'call_to_action':
 						get_template_part( 'template-parts/page/content', 'call-to-action' );
+						break;
+						
+					case 'multiple_ctas':
+						get_template_part( 'template-parts/page/content', 'multiple-ctas' );
 						break;
 						
 					case 'find_your_home':

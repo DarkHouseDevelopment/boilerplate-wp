@@ -35,7 +35,7 @@
 			<div class="pattern-bg" style="background: url(<?php echo get_template_directory_uri(); ?>/assets/img/upan-pattern-darkteal.svg) center center repeat; background-size: 16rem;"></div>
 			<article>
 				<header>
-					<h3><?php the_field( 'home_search_title' ); ?></h3>
+					<h3><?php echo get_field( 'home_search_title' ); ?></h3>
 					<?php if(get_field( 'home_search_intro' )):
 						echo get_field( 'home_search_intro' );
 					endif; ?>
@@ -54,7 +54,7 @@
 		<div class="browse-builders">
 			<article>
 				<header>
-					<h4><?php the_field( 'builders_title' ); ?></h4>
+					<h4><?php echo get_field( 'builders_title' ); ?></h4>
 				</header>
 				
 				<div class="builders">

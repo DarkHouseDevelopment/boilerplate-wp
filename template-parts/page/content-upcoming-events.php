@@ -5,7 +5,7 @@
 <section class="content-section upcoming-events" style="<?php echo $bg_css; ?>">
 	<div class="wrap">
 		<header>
-			<h3><?php the_sub_field( 'section_title' ); ?></h3>
+			<h3><?php echo get_sub_field( 'section_title' ); ?></h3>
 		</header>
 		<div class="events-container">
 			<?php 

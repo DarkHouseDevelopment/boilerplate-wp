@@ -4,12 +4,12 @@
 <?php if($hero_image): ?>
 <section id="page_hero">
 	<div class='hero-image'><img src="<?php echo $hero_image['url']; ?>" alt="<?php the_title(); ?>" /></div>
-	<div class="hero-circle <?php the_field( 'hero_circle_color' ) ?>">
+	<div class="hero-circle <?php echo get_field( 'hero_circle_color' ) ?>">
 		<div class="hero-outer-circle"></div>		
 		<h1 class="hero-tagline">
-			<span><?php the_field( 'hero_title_1' ); ?></span>
-			<?php the_field( 'hero_title_2' ); ?>
-			<span><?php the_field( 'hero_title_3' ); ?></span>
+			<span><?php echo get_field( 'hero_title_1' ); ?></span>
+			<?php echo get_field( 'hero_title_2' ); ?>
+			<span><?php echo get_field( 'hero_title_3' ); ?></span>
 		</h1>
 	</div>
 </section>

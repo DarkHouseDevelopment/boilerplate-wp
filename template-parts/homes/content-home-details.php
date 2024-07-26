@@ -1,4 +1,10 @@
-<?php include( get_stylesheet_directory() . '/template-parts/homes/script-home-variables.php' ); ?>
+<?php 
+include( get_stylesheet_directory() . '/template-parts/homes/script-home-variables.php' ); 
+
+$smi_button_label = get_field( 'send_me_info_button_label', 'option' );
+$smi_popup_intro = get_field( 'send_me_info_popup_intro', 'option' );
+$smi_popup_form = get_field( 'send_me_info_popup_form', 'option' );
+?>
 
 <section id="model_details" class="content-section">
 	<div class="wrap">
@@ -9,12 +15,12 @@
 			</h2>
 			<div class="actions">
 				<?php echo $floorplan_file ? '<a class="btn-outline" href="'.$floorplan_file['url'].'">Download Floorplan</a>' : '' ?>
-				<a class="btn sendinfo" href="javascript:void(0);">Send Me Info</a>
+				<a class="btn sendinfo" href="javascript:void(0);"><?php echo $smi_button_label; ?></a>
 			</div>
 		</header>
 		
 		<article>
-			<?php the_field( 'floorplan_description' ); ?>
+			<?php echo get_field( 'floorplan_description' ); ?>
 		</article>
 		
 		<div class="model-images">
@@ -106,8 +112,8 @@
 	<div class="overlay-bg"></div>
 	<div class="overlay-content">
 		<article>
-			<h4>Send me info about <?php the_title(); ?> by <?php echo $builder->post_title; ?></h4>
-			<?php echo do_shortcode( '[contact-form-7 id="546" title="Send Me Info"]' ); ?>
+			<h4><?php echo str_replace('[model]', get_the_title(), str_replace('[builder]', $builder->post_title, $smi_popup_intro)); ?></h4>
+			<?php echo do_shortcode( $smi_popup_form ); ?>
 			
 			<a href="javascript:void(0);" class="close"><i class="icon-cancel"></i></a>
 		</article>

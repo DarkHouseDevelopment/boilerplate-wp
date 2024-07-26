@@ -2,10 +2,10 @@
 	$id = get_sub_field('section_id');
 	$class = get_sub_field('section_class');
 ?>
-<section id="<?php echo $id; ?>" class="content-section full-width with-sidebar sidebar-cta <?php the_sub_field( 'section_layout' ); ?> <?php echo $class; ?>">
+<section id="<?php echo $id; ?>" class="content-section full-width with-sidebar sidebar-cta <?php echo get_sub_field( 'section_layout' ); ?> <?php echo $class; ?>">
 	<div class="wrap">
 		<article>
-			<?php the_sub_field( 'section_content' ); ?>
+			<?php echo get_sub_field( 'section_content' ); ?>
 		</article>
 		<?php while(have_rows( 'sidebar_call_to_action' )): the_row();
 			$background_style = get_sub_field( 'background_style' );

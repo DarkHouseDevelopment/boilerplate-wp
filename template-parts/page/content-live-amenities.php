@@ -1,17 +1,63 @@
-<?php
-	$ra_hero = get_field( 'ra_hero_image', 'option' );
-	$nn_hero = get_field( 'nn_hero_image', 'option' );
-?>
 <section class="content-section nav-blocks">
 	<div class="wrap">
 		<?php if(get_sub_field( 'section_title' )): ?>
 		<header>
 			<h4><?php echo get_sub_field( 'section_title' ); ?></h4>
+			<?php echo get_sub_field( 'section_intro_content' ) ? "<article class='intro-content'>".get_sub_field( 'section_intro_content' )."</article>" : ""; ?>
 		</header>
 		<?php endif; ?>
-		<nav class="image-block-nav amenities" role="navigation">
+		<?php /* <nav class="image-block-nav amenities" role="navigation">
 			<a class='block' href='<?php echo get_post_type_archive_link( 'amenities' ); ?>' style='background: url(<?php echo $ra_hero['url']; ?>) center center no-repeat; background-size: cover;'><div class='block-circle'><div class='hover-circle'><div class='hover-outer-circle'></div></div><span>Resident Amenities</span></div></a>
 			<a class='block' href='<?php echo get_post_type_archive_link( 'near-norterra' ); ?>' style='background: url(<?php echo $nn_hero['url']; ?>) center center no-repeat; background-size: cover;'><div class='block-circle'><div class='hover-circle'><div class='hover-outer-circle'></div></div><span>Around<br>Union Park</span></div></a>
-		</nav>
+		</nav> */ ?>
+		<?php	
+			$args = array(
+				'post_type'			=> 'amenities',
+				'posts_per_page'	=> -1,
+				'orderby'			=> array('menu_order', 'title'),
+				'order'				=> 'ASC'
+			);
+			
+			$amenity_query = new WP_Query( $args );
+		?>
+		
+		<?php if ( $amenity_query->have_posts() ): ?>
+			<div class="grid">		
+				<section id="amenities" class="content-section">
+					<div class="wrap">
+						<div id="amenity_types" class="amenities-grid">
+							<?php while ( $amenity_query->have_posts() ) : $amenity_query->the_post(); ?>
+								<div class="amenity grid-block">
+									<?php
+										$amenity_type = get_field( 'amenity_type' );
+										
+										if($amenity_type == 'page'):
+											$amenity_hero = get_field( 'amenity_hero' );
+											$image = $amenity_hero['hero_image'];
+											$amenity_link = get_the_permalink();
+											$amenity_target = 'target="_self"';
+										else:
+											$image = get_field( 'amenity_image' );
+											$amenity_link = get_field( 'amenity_link' );
+											$amenity_target = 'target="_blank" rel="nofollow noopenner"';
+										endif;
+									?>
+									<?php if( $image ): ?>
+										<a class="amenity-image" href="<?php echo $amenity_link; ?>" <?php echo $amenity_target; ?> class="image" style="background: url(<?php echo $image['sizes']['large']; ?>) center center no-repeat; background-size: cover;">
+											<div class="hover"><div class="btn btn-white-outline">Learn More</div></div>
+										</a>
+									<?php endif; ?>
+									<div class="amenity-details">
+										<h4><a href="<?php echo $amenity_link; ?>" target="_blank" class="title"><?php echo get_the_title(); ?></a></h4>
+									</div>
+								
+								</div>
+										
+							<?php endwhile; ?>
+						</div>
+					</div>
+				</section>
+			</div>
+		<?php endif; wp_reset_query(); ?>
 	</div>
 </section>

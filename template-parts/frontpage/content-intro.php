@@ -9,7 +9,7 @@
 				</h2>
 			</header>
 			
-			<?php the_sub_field( 'intro_content' ); ?>
+			<?php echo get_sub_field( 'intro_content' ); ?>
 		</article>
 	</div>
 </section>

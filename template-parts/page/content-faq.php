@@ -1,7 +1,7 @@
 <section class="faq-section content-section">
 	<div class="wrap">
 		<header>
-			<h3><?php the_sub_field( 'section_title' ); ?></h3>
+			<h3><?php echo get_sub_field( 'section_title' ); ?></h3>
 		</header>
 		<?php
 			if( have_rows( 'faqs' ) ):

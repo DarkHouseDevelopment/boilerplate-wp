@@ -15,7 +15,7 @@ var autoprefixer = require('gulp-autoprefixer'),
 		remtopx  = require('gulp-rem-to-px'),
 		notify = require('gulp-notify'),
 		plumber = require("gulp-plumber"),
-		sass = require('gulp-sass'),
+		sass = require('gulp-sass')(require('sass')),
 		terser = require('gulp-terser');
 
 var paths = {

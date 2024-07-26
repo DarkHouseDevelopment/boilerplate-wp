@@ -44,6 +44,19 @@ if ( have_posts() ):
 			endwhile;
 		endif;
 		
+		if(have_rows( 'neighborhood_ctas' )):
+			while(have_rows( 'neighborhood_ctas' )): the_row();
+				$exp_datetime = strtotime(get_sub_field( 'expiration_datetime' ));
+				$current_time = strtotime(date( 'Y-m-d H:i:s' ));
+				$active_ctas = 0;
+				
+				if($current_time <= $exp_datetime && $active_ctas == 0):
+					$active_ctas++;
+					get_template_part( 'template-parts/page/content', 'call-to-action' );
+				endif;
+			endwhile;
+		endif;
+		
 		get_template_part( 'template-parts/builders/content', 'floorplans' );
 		
 		echo "</section>";

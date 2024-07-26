@@ -1,7 +1,7 @@
 <section class="content-section image-grid">
 	<div class="wrap">
 		<header>
-			<h3><?php the_sub_field( 'section_title' ); ?></h3>
+			<h3><?php echo get_sub_field( 'section_title' ); ?></h3>
 		</header>
 		<div class="image-grid-container">
 			<?php 
@@ -14,7 +14,7 @@
 			?>
 		</div>
 		<article class="image-grid-content">
-			<?php the_sub_field( 'section_content' ) ?>
+			<?php echo get_sub_field( 'section_content' ) ?>
 		</article>
 	</div>
 </section>

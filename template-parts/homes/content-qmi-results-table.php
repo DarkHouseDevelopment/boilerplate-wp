@@ -63,7 +63,8 @@
 				$builder = get_field('builder', $floorplan->ID);
 				$neighborhood = get_field( 'neighborhood', $floorplan->ID );
 				$home_title = get_the_title( $floorplan );
-				$plan_name = preg_replace("/-[^-]*$/", "", $home_title); 					
+				$plan_name = $home_title;
+				// $plan_name = preg_replace("/-[^-]*$/", "", $home_title);
 
 				$ordered_results[$current_result]['id'] = $post->ID;
 				$ordered_results[$current_result]['status'] = $post->post_status;
