@@ -60,31 +60,47 @@
 		
 		&.green {
 			background: rgba($green, 0.9);
-			
 			.hero-outer-circle { border-color: $green; }
 		}
 		&.red {
-			background: rgba($red, 0.9);
-			
+			background: rgba($red, 0.9);			
 			.hero-outer-circle { border-color: $red; }
 		}
 		&.orange {
-			background: rgba($orange, 0.9);
-			
+			background: rgba($orange, 0.9);			
 			.hero-outer-circle { border-color: $orange; }
 		}
 		&.yellow {
-			background: rgba($yellow, 0.9);
-			
+			background: rgba($yellow, 0.9);			
 			h1, h1 span { color: $black; }
 			.hero-outer-circle { border-color: $yellow; }
 		}
 		&.teal {
-			background: rgba($teal, 0.9);
-			
+			background: rgba($teal, 0.9);			
 			.hero-outer-circle { border-color: $teal; }
 		}
+		&.brown { 
+			background: rgba($brown, 0.9);
+			.hero-outer-circle { border-color: $brown; }
+		}
+		&.tan { 
+			background: rgba($tan, 0.9);
+			.hero-outer-circle { border-color: $tan; }
+		}
+		&.dark-teal { 
+			background: rgba($darkteal, 0.9);
+			.hero-outer-circle { border-color: $darkteal; }
+		}
+		&.dark-blue { 
+			background: rgba($darkblue, 0.9);
+			.hero-outer-circle { border-color: $darkblue; }
+		}
+		&.dark-navy { 
+			background: rgba($darknavy, 0.9);
+			.hero-outer-circle { border-color: $darknavy; }
+		}
 		
+		img { max-width: 85%; max-height: 20rem; }
 		h1 {
 			color: $white;
 			font-size: 2.5rem;

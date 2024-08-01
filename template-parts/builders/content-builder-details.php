@@ -14,6 +14,13 @@ $builder_args = array(
 	)
 );
 
+$builder_children = get_children( array(
+	'post_parent' => $post->ID,
+	'post_type' => 'builders',
+	'numberposts' => -1,
+	'post_status' => 'publish'
+) );
+
 $builder_homes = get_posts( $builder_args );
 $homes_array = array( 0 );
 
@@ -39,39 +46,14 @@ $args = array(
 $qmi_loop = new WP_Query($args);
 ?>
 
-<section id="builder_details">
+<section id="builder_details" class="<?php echo !empty( $builder_children ) ? "has-children" : ""; ?>">
 	<header>
 		<a href="/builders/"><i class="icon-left-big"></i> View all builders</a>
 	</header>
+	<?php if( empty( $builder_children ) ): ?>
 	<article>
 		
-		<?php if(get_field( 'builder_website' )):
-			echo "<a class='logo-block ".get_field( 'builder_color' )."' href='".get_field( 'builder_website' )."' target='_blank' rel='nofollow noopenner'>";
-		else:
-			echo "<div class='logo-block ".get_field( 'builder_color' )."'>";
-		endif; ?>
-			<img src="<?php echo $logo['url'] ?>" alt="<?php the_title(); ?>" />
-		<?php if(get_field( 'builder_website' )):
-			echo "</a>";
-		else:
-			echo "</div>";
-		endif; ?>
 		<div class="builder-info">
-			<div class="builder-content">
-				<?php echo get_field( 'builder_content' ); ?>
-				<div class="builder-links">
-					<a href="<?php echo get_field( 'builder_website' ); ?>" target="_blank" rel="nofollow noopenner">Visit <?php the_title(); ?> Website<i class="icon-right-big"></i></a><br>
-					<?php if ( $qmi_loop->have_posts() ):
-						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-					endif; ?>
-					<?php 
-					while( have_rows( 'builder_site_plans' ) ): the_row();
-						$site_plan = get_sub_field( 'site_plan' );
-						echo "<br><a href='".$site_plan['url']."' target='_blank'>".(get_sub_field( 'site_plan_title' ) ?: "Download Site Plan")."<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-					endwhile; 
-					?>
-				</div>
-			</div>
 			<div class="location">
 				<?php while(have_rows( 'builder_contact' )): the_row(); ?>
 					<?php if(get_sub_field( 'street_address' ) && (get_sub_field( 'city' ) || get_sub_field( 'state' ) || get_sub_field( 'zipcode' ) || get_sub_field( 'phone' ))): ?>
@@ -79,7 +61,6 @@ $qmi_loop = new WP_Query($args);
 						<h4>Contact</h4>
 						<?php echo get_sub_field( 'street_address' ) ? get_sub_field( 'street_address' )."<br />" : ""; ?>
 						<?php echo get_sub_field( 'city' ) ? get_sub_field( 'city' )."," : ""; ?> <?php echo get_sub_field( 'state' ) ? get_sub_field( 'state' ) : ""; ?> <?php echo get_sub_field( 'zipcode' ) ? get_sub_field( 'zipcode' ) : ""; ?><?php echo get_sub_field( 'city' ) || get_sub_field( 'state' ) || get_sub_field( 'zipcode' ) ? "<br />" : ""; ?>
-						<?php echo get_sub_field( 'phone' ) ? "<a class='btn btn-teal-outline' href='tel:".get_sub_field( 'phone' )."'>".get_sub_field( 'phone' )."</a><br />" : ""; ?>
 						<?php
 							$builder_map_type = get_field( 'builder_map_type' );
 							switch($builder_map_type){
@@ -95,6 +76,7 @@ $qmi_loop = new WP_Query($args);
 									break;
 							}
 						?>
+						<?php echo get_sub_field( 'phone' ) ? "<a class='btn btn-teal-outline' href='tel:".get_sub_field( 'phone' )."'>".get_sub_field( 'phone' )."</a>" : ""; ?>
 					</address>
 					<?php endif; ?>
 					<?php $builder_email = get_sub_field( 'email' ); ?>
@@ -117,9 +99,53 @@ $qmi_loop = new WP_Query($args);
 				<a href="javascript:void(0);" class="btn btn-teal sendinfo">Request More Info</a>
 				<?php endif; ?>
 			</div>
+			<div class="builder-content">
+				<?php echo get_field( 'builder_content' ); ?>
+				<div class="builder-links">
+					<a href="<?php echo get_field( 'builder_website' ); ?>" target="_blank" rel="nofollow noopenner">Visit <?php the_title(); ?> Website<i class="icon-right-big"></i></a><br>
+					<?php if ( $qmi_loop->have_posts() ):
+						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					endif; ?>
+					<?php 
+					while( have_rows( 'builder_site_plans' ) ): the_row();
+						$site_plan = get_sub_field( 'site_plan' );
+						echo "<br><a href='".$site_plan['url']."' target='_blank'>".(get_sub_field( 'site_plan_title' ) ?: "Download Site Plan")."<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					endwhile; 
+					?>
+				</div>
+			</div>
+		</div>
+		<div class="builder-promo-block">
+			<?php 
+				$builder_intro_cta = get_field( 'builder_intro_ctas' );
+				// if(!empty($builder_intro_cta)):
+					while(have_rows( 'builder_intro_ctas' )): the_row();
+						$exp_datetime = strtotime(get_sub_field( 'expiration_datetime' ));
+						$current_time = strtotime(date( 'Y-m-d H:i:s' ));
+						if($current_time <= $exp_datetime):
+							$cta_block_styles = get_sub_field( 'cta_block_styles' );
+							echo "<div class='promo-block' style='background: ".$cta_block_styles['background_color']."; color: ".$cta_block_styles['text_color'].";'>";
+							echo !empty(get_sub_field( 'cta_image_link' )) ? "<a class='promo-block--image' href='".get_sub_field( 'cta_image_link' )."' target='_blank' rel='nofollow noopener'>" : "<div class='promo-block--image'>";
+							echo wp_get_attachment_image( get_sub_field( 'cta_image' ), 'large' );
+							echo !empty(get_sub_field( 'cta_image_link' )) ? "</a>" : "</div>";
+							echo "<div class='promo-block--content'>";
+							echo !empty(get_sub_field( 'cta_title' )) ? "<h4>".get_sub_field( 'cta_title' )."</h4>" : "";
+							echo get_sub_field( 'cta_content' );
+							if(get_sub_field( 'include_cta_button' )):
+								while(have_rows( 'cta_button' )): the_row();
+									include(get_stylesheet_directory()."/template-parts/page/content-dynamic-button.php");
+								endwhile;
+							endif;
+							echo "</div>";
+							echo "</div>";
+						endif;
+					endwhile;
+				// endif;
+			?>
 		</div>
 		
 	</article>
+	<?php endif; ?>
 </section>
 
 <div id="send_info_overlay" data-builder="<?php the_title(); ?>" data-builderemail="<?php echo $builder_email; ?>">

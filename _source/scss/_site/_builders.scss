@@ -166,6 +166,10 @@
 	@include breakpoint($md){
 		padding: 7rem 8rem;
 	}
+
+	&.has-children {
+		padding: 2rem 2rem 0.8rem !important;
+	}
 	
 	header {
 		width: 100%;
@@ -253,6 +257,8 @@
 			flex-wrap: wrap;
 			justify-content: space-between;
 			text-align: left;
+			border-top: 2px solid #dedede;
+			padding-top: 1.5rem;
 			
 			@include breakpoint($lg){
 				width: 26rem;
@@ -301,7 +307,27 @@
 					}
 				}
 			}
-			//.btn { margin: 0 auto; }
+			.btn { margin-top: 1.5rem; }
+		}
+	}
+	.builder-promo-block {
+		width: 100%;
+		margin-bottom: 3rem;
+		
+		@include breakpoint($lg){
+			width: 32rem;
+		}
+		
+		.promo-block {
+			width: 100%;
+			padding: 1rem;
+			text-align: center;
+			border: 0;
+			border-radius: 0;
+			text-align: center;
+
+			h1, h2, h3, h4, h5, h6 { color: inherit }
+			.btn { margin-bottom: 15px }
 		}
 	}
 }

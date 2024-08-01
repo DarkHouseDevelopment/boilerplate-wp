@@ -54,38 +54,10 @@ $neighborhood_map_type = get_field( 'neighborhood_map_type' ) == 'builder' ? get
 
 <section id="builder_details">
 	<header>
-		<a href="/builders/"><i class="icon-left-big"></i> View all builders</a>
+		<a href="<?php echo get_the_permalink( $builder_id ); ?>"><i class="icon-left-big"></i> Back to <?php echo get_the_title( $builder_id ); ?></a>
 	</header>
 	<article>
-		
-		<?php if( $neighborhood_website ):
-			echo "<a class='logo-block ".get_field( 'builder_color', $builder_id )."' href='".$neighborhood_website."' target='_blank' rel='nofollow noopenner'>";
-		else:
-			echo "<div class='logo-block ".get_field( 'builder_color', $builder_id )."'>";
-		endif; ?>
-			<img src="<?php echo $logo['url'] ?>" alt="<?php the_title(); ?>" />
-		<?php if( $neighborhood_website ):
-			echo "</a>";
-		else:
-			echo "</div>";
-		endif; ?>
 		<div class="builder-info">
-			<div class="builder-content">
-				<?php echo $neighborhood_content; ?>
-				<div class="builder-links">
-					<a href="<?php echo $neighborhood_website; ?>" target="_blank" rel="nofollow noopenner">Visit <?php echo get_the_title( $builder_id ); ?> Website<i class="icon-right-big"></i></a><br>
-					<?php if ( $qmi_loop->have_posts() ):
-						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-					endif; ?>
-					<?php 
-					if(!empty( $neighborhood_site_plans )):
-						foreach( $neighborhood_site_plans as $site_plan ):
-							echo "<br><a href='".$site_plan['site_plan']['url']."' target='_blank'>".($site_plan['site_plan_title'] ?: "Download Site Plan")."<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-						endforeach;
-					endif; 
-					?>
-				</div>
-			</div>
 			<div class="location">
 				<?php
 				if(!empty( $neighborhood_contact )):
@@ -94,7 +66,6 @@ $neighborhood_map_type = get_field( 'neighborhood_map_type' ) == 'builder' ? get
 							<h4>Contact</h4>
 							<?php echo !empty( $neighborhood_contact['street_address'] ) ? $neighborhood_contact['street_address']."<br />" : ""; ?>
 							<?php echo !empty( $neighborhood_contact['city'] ) ? $neighborhood_contact['city']."," : ""; ?> <?php echo !empty( $neighborhood_contact['state'] ) ? $neighborhood_contact['state'] : ""; ?> <?php echo !empty( $neighborhood_contact['zipcode'] ) ? $neighborhood_contact['zipcode'] : ""; ?><?php echo !empty( $neighborhood_contact['city'] ) || !empty( $neighborhood_contact['state'] ) || !empty( $neighborhood_contact['zipcode'] ) ? "<br />" : ""; ?>
-							<?php echo !empty( $neighborhood_contact['phone'] ) ? "<a class='btn btn-teal-outline' href='tel:".$neighborhood_contact['phone']."'>".$neighborhood_contact['phone']."</a><br />" : ""; ?>
 							<?php
 								switch($neighborhood_map_type){
 									case 'address':
@@ -110,6 +81,7 @@ $neighborhood_map_type = get_field( 'neighborhood_map_type' ) == 'builder' ? get
 										break;
 								}
 							?>
+							<?php echo !empty( $neighborhood_contact['phone'] ) ? "<a class='btn btn-teal-outline' href='tel:".$neighborhood_contact['phone']."'>".$neighborhood_contact['phone']."</a>" : ""; ?>
 						</address>
 					<?php endif; ?>
 					<?php $builder_email = $neighborhood_contact['email']; ?>
@@ -129,6 +101,50 @@ $neighborhood_map_type = get_field( 'neighborhood_map_type' ) == 'builder' ? get
 				
 				<a href="javascript:void(0);" class="btn btn-teal sendinfo">Request More Info</a>
 			</div>
+			<div class="builder-content">
+				<?php echo $neighborhood_content; ?>
+				<div class="builder-links">
+					<a href="<?php echo $neighborhood_website; ?>" target="_blank" rel="nofollow noopenner">Visit <?php echo get_the_title( $builder_id ); ?> Website<i class="icon-right-big"></i></a><br>
+					<?php if ( $qmi_loop->have_posts() ):
+						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					endif; ?>
+					<?php 
+					if(!empty( $neighborhood_site_plans )):
+						foreach( $neighborhood_site_plans as $site_plan ):
+							echo "<br><a href='".$site_plan['site_plan']['url']."' target='_blank'>".($site_plan['site_plan_title'] ?: "Download Site Plan")."<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						endforeach;
+					endif; 
+					?>
+				</div>
+			</div>
+		</div>
+		<div class="builder-promo-block">
+			<?php 
+				// $builder_intro_cta = get_field( 'neighborhood_intro_ctas' );
+				// if(!empty($builder_intro_cta)):
+					while(have_rows( 'neighborhood_intro_ctas' )): the_row();
+						$exp_datetime = strtotime(get_sub_field( 'expiration_datetime' ));
+						$current_time = strtotime(date( 'Y-m-d H:i:s' ));
+						if($current_time <= $exp_datetime):
+							$cta_block_styles = get_sub_field( 'cta_block_styles' );
+							echo "<div class='promo-block' style='background: ".$cta_block_styles['background_color']."; color: ".$cta_block_styles['text_color'].";'>";
+							echo !empty(get_sub_field( 'cta_image_link' )) ? "<a class='promo-block--image' href='".get_sub_field( 'cta_image_link' )."' target='_blank' rel='nofollow noopener'>" : "<div class='promo-block--image'>";
+							echo wp_get_attachment_image( get_sub_field( 'cta_image' ), 'large' );
+							echo !empty(get_sub_field( 'cta_image_link' )) ? "</a>" : "</div>";
+							echo "<div class='promo-block--content'>";
+							echo !empty(get_sub_field( 'cta_title' )) ? "<h4>".get_sub_field( 'cta_title' )."</h4>" : "";
+							echo get_sub_field( 'cta_content' );
+							if(get_sub_field( 'include_cta_button' )):
+								while(have_rows( 'cta_button' )): the_row();
+									include(get_stylesheet_directory()."/template-parts/page/content-dynamic-button.php");
+								endwhile;
+							endif;
+							echo "</div>";
+							echo "</div>";
+						endif;
+					endwhile;
+				// endif;
+			?>
 		</div>
 		
 	</article>
