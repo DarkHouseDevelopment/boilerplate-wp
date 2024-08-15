@@ -81,6 +81,11 @@
 				$ordered_results[$current_result]['garages'] = get_field("garage");
 				$ordered_results[$current_result]['price'] = get_field("price") ? "$".number_format(get_field("price")) : "TBD";
 				$ordered_results[$current_result]['available'] = get_field("available");
+
+				if(get_field('hide_qmi_price') == 1):
+					$ordered_results[$current_result]['price'] = get_field('price_replacement');
+				endif;
+				$ordered_results[$current_result]['price'] = !empty(get_field('price_link')) ? "<a href='".get_field('price_link')."' target='_blank' rel='nofollow noopener'>".$ordered_results[$current_result]['price']."</a>" : $ordered_results[$current_result]['price'];;
 				
 				if($builder->ID): 
 					$builder_id = $builder->ID;
@@ -125,7 +130,7 @@
 							<tr>
 								<td data-th="Builder">
 									<?php echo $result['builder']; ?>
-									<?php echo !empty( $result['neighborhood'] ) ? "<br><em>(" . $result['neighborhood'] . ")</em>" : ""; ?>
+									<?php echo !empty( $result['neighborhood'] ) && $result['neighborhood'] !== $result['builder'] ? "<br><em>(" . $result['neighborhood'] . ")</em>" : ""; ?>
 								</td>
 								<td data-th="Model">
 									<?php echo "<a href='".get_the_permalink($result['model_id'])."' target='_blank'>".$result['model']."</a>"; ?>
@@ -145,7 +150,7 @@
 								<td data-th="Bed/Bath/Grg">
 									<?php echo $result['bedrooms']." / ".$result['bathrooms']." / ".$result['garages']; ?>
 								</td>
-								<td data-th="Price*">
+								<td data-th="Price*" style="color:#2aa9aa;font-weight:700;">
 									<?php echo $result['price']; ?>
 								</td>
 								<td data-th="Available">
