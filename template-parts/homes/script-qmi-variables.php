@@ -16,6 +16,11 @@ $totalBaths = get_field('bathrooms');
 $totalStories = get_field('stories');
 $totalCarGarage = get_field('garage');
 $squareFootage = number_format(intval(get_field('square_feet')));
-$price = get_field('price');
+$price = '$'.number_format(get_field('price'));
 $priceRange = explode("-", get_field('price_range'));
 $available = get_field( 'available' );
+
+if(get_field('hide_qmi_price') == 1):
+  $price = get_field('price_replacement');
+endif;
+$price = !empty(get_field('price_link')) ? "<a href='".get_field('price_link')."' target='_blank' rel='nofollow noopener'>".$price."</a>" : $price;

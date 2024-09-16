@@ -85,7 +85,7 @@
 				if(get_field('hide_qmi_price') == 1):
 					$ordered_results[$current_result]['price'] = get_field('price_replacement');
 				endif;
-				$ordered_results[$current_result]['price'] = !empty(get_field('price_link')) ? "<a href='".get_field('price_link')."' target='_blank' rel='nofollow noopener'>".$ordered_results[$current_result]['price']."</a>" : $ordered_results[$current_result]['price'];;
+				$ordered_results[$current_result]['price'] = !empty(get_field('price_link')) ? "<a href='".get_field('price_link')."' target='_blank' rel='nofollow noopener'>".$ordered_results[$current_result]['price']."</a>" : $ordered_results[$current_result]['price'];
 				
 				if($builder->ID): 
 					$builder_id = $builder->ID;

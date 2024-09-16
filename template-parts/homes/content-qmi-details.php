@@ -79,7 +79,7 @@ $smi_popup_form = get_field( 'send_me_info_popup_form', 'option' );
 		<ul class="model-numbers">
 			<li>
 				<div class="label">Price</div>
-				<div class="value">$<?php echo number_format($price); ?></div>
+				<div class="value"><?php echo $price; ?></div>
 			</li>
 			<li>
 				<div class="label">Approx. Sq Ft.</div>
