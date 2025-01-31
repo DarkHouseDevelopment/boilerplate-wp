@@ -4,6 +4,7 @@ include( get_template_directory() . '/template-parts/homes/script-qmi-variables.
 $smi_button_label = get_field( 'send_me_info_button_label', 'option' );
 $smi_popup_intro = get_field( 'send_me_info_popup_intro', 'option' );
 $smi_popup_form = get_field( 'send_me_info_popup_form', 'option' );
+
 ?>
 
 <section id="model_details" class="content-section">
@@ -15,7 +16,10 @@ $smi_popup_form = get_field( 'send_me_info_popup_form', 'option' );
 				<small>Address: <?php echo $address; ?></small>
 				<small>Model: <a href="<?php echo get_the_permalink( $floorplan->ID ); ?>"><?php echo $floorplan->post_title; ?></a> by <a href="<?php echo get_the_permalink( $builder->ID ); ?>"><?php echo $builder->post_title; ?></a></small>
 				<?php if(!empty($site_plan)):
-					echo "<small><br><a href='".$site_plan['url']."' target='_blank'>Download Builder Site Plan<i class='icon-right-big'></i></a></small>";
+					echo "<small><br></small>";
+					foreach($site_plan as $plan):
+						echo "<small><a href='".$plan['site_plan']['url']."' target='_blank'>".$plan['site_plan_title']."<i class='icon-right-big'></i></a></small>";
+					endforeach;
 				endif; ?>
 			</h2>
 			<div class="actions">

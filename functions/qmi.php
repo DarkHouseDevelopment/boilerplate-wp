@@ -50,3 +50,39 @@ function qmi_post_type() {
 
 // Hook into the 'init' action
 add_action( 'init', 'qmi_post_type', 0 );
+
+
+function update_qmi_builder_counts() {
+	$args = array(
+			'posts_per_page' => -1,
+			'post_type' => 'qmi',
+			'post_status' => 'publish'
+	);
+	$qmi_query = new WP_Query($args);
+	
+	$builder_counts = array();
+
+	if ($qmi_query->have_posts()) :
+			while ($qmi_query->have_posts()) : $qmi_query->the_post();
+			
+					$floorplan = get_field('floorplan');
+					if ($floorplan) {
+							$home_post = $floorplan;
+							$builder = get_field('builder', $home_post->ID);
+
+							if ($builder) {
+									if (!isset($builder_counts[$builder->ID])) {
+											$builder_counts[$builder->ID] = 1;
+									} else {
+											$builder_counts[$builder->ID]++;
+									}
+							}
+					}
+			
+			endwhile;
+	endif;
+
+	// Save the builder counts
+	update_option('qmi_builder_counts', $builder_counts);
+}
+add_action('save_post_qmi', 'update_qmi_builder_counts');

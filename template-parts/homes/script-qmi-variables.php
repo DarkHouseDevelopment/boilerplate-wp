@@ -7,7 +7,7 @@ $images = get_field( 'qmi_images' ) ? get_field( 'qmi_images' ) : get_field('mod
 $floorplan_images = get_field('floorplan_images', $floorplan->ID);
 $floorplan_file = get_field('floorplan_file', $floorplan->ID);
 $virtual_tour = get_field( 'qmi_virtual_tour_url' ) ? get_field( 'qmi_virtual_tour_url' ) : get_field('virtual_tour_url', $floorplan->ID);
-$site_plan = get_field( 'builder_site_plan', $builder->ID );
+$site_plan = get_field( 'builder_site_plans', $builder->ID );
 $address = get_field( 'street_address' );
 
 // Assign Custom Fields values to variables

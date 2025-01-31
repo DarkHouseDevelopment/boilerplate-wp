@@ -127,10 +127,43 @@ $neighborhood_map_type = get_field( 'neighborhood_map_type' ) == 'builder' ? get
 						$current_time = strtotime(date( 'Y-m-d H:i:s' ));
 						if($current_time <= $exp_datetime):
 							$cta_block_styles = get_sub_field( 'cta_block_styles' );
+							$cta_media = get_sub_field( 'cta_media' );
 							echo "<div class='promo-block' style='background: ".$cta_block_styles['background_color']."; color: ".$cta_block_styles['text_color'].";'>";
-							echo !empty(get_sub_field( 'cta_image_link' )) ? "<a class='promo-block--image' href='".get_sub_field( 'cta_image_link' )."' target='_blank' rel='nofollow noopener'>" : "<div class='promo-block--image'>";
-							echo wp_get_attachment_image( get_sub_field( 'cta_image' ), 'large' );
-							echo !empty(get_sub_field( 'cta_image_link' )) ? "</a>" : "</div>";
+							if($cta_media == 'video'):
+								echo "<div class='promo-block--video'>";
+								// get iframe HTML
+								$iframe = get_sub_field( 'cta_video' );
+												
+								// use preg_match to find iframe src
+								preg_match('/src="(.+?)"/', $iframe, $matches);
+								$src = $matches[1];
+																	
+								// add extra params to iframe src
+								$params = array(
+									'rel' => 0,
+									'title' => 0,
+									'byline' => 0,
+									'portrait' => 0,
+								);
+								
+								$new_src = add_query_arg($params, $src);				
+								$iframe = str_replace($src, $new_src, $iframe);
+												
+								// add extra attributes to iframe html
+								$attributes = 'frameborder="0"';
+								
+								$iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe);
+									
+								echo "<div class='video-wrapper'>$iframe</div>";
+								echo "</div>";
+							else:
+								$cta_image = get_sub_field( 'cta_image' );
+								$cta_image_link = get_sub_field( 'cta_image_link' );
+								echo !empty($cta_image_link) ? "<a class='promo-block--image' href='$cta_image_link' target='_blank' rel='nofollow noopener'>" : "<div class='promo-block--image'>";
+								echo wp_get_attachment_image( $cta_image, 'large' );
+								echo !empty($cta_image_link) ? "</a>" : "</div>";
+							endif;
+
 							echo "<div class='promo-block--content'>";
 							echo !empty(get_sub_field( 'cta_title' )) ? "<h4>".get_sub_field( 'cta_title' )."</h4>" : "";
 							echo get_sub_field( 'cta_content' );

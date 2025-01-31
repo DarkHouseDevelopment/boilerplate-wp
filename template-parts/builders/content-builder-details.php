@@ -22,28 +22,7 @@ $builder_children = get_children( array(
 ) );
 
 $builder_homes = get_posts( $builder_args );
-$homes_array = array( 0 );
-
-foreach($builder_homes as $home){
-	$homes_array[] = $home->ID;
-}
-
-$homes_query = array(
-	'key' => 'floorplan',
-	'value' => $homes_array,
-	'compare' => 'IN'
-);
-
-$args = array(
-	'posts_per_page' => -1,
-	'post_status' => array('publish'),
-	'post_type' => 'qmi',
-	'meta_query' => array(
-		$homes_query
-	)
-);
-
-$qmi_loop = new WP_Query($args);
+$qmi_builder_counts = get_option( 'qmi_builder_counts' );
 ?>
 
 <section id="builder_details" class="<?php echo !empty( $builder_children ) ? "has-children" : ""; ?>">
@@ -103,7 +82,7 @@ $qmi_loop = new WP_Query($args);
 				<?php echo get_field( 'builder_content' ); ?>
 				<div class="builder-links">
 					<a href="<?php echo get_field( 'builder_website' ); ?>" target="_blank" rel="nofollow noopenner">Visit <?php the_title(); ?> Website<i class="icon-right-big"></i></a><br>
-					<?php if ( $qmi_loop->have_posts() ):
+					<?php if ( !empty($qmi_builder_counts[$post->ID]) ):
 						echo "<a href='/quick-move-in-homes/?builder=".$post->ID."'>Quick Move-In Homes<i class='icon-right-big'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 					endif; ?>
 					<?php 
@@ -124,10 +103,43 @@ $qmi_loop = new WP_Query($args);
 						$current_time = strtotime(date( 'Y-m-d H:i:s' ));
 						if($current_time <= $exp_datetime):
 							$cta_block_styles = get_sub_field( 'cta_block_styles' );
+							$cta_media = get_sub_field( 'cta_media' );
 							echo "<div class='promo-block' style='background: ".$cta_block_styles['background_color']."; color: ".$cta_block_styles['text_color'].";'>";
-							echo !empty(get_sub_field( 'cta_image_link' )) ? "<a class='promo-block--image' href='".get_sub_field( 'cta_image_link' )."' target='_blank' rel='nofollow noopener'>" : "<div class='promo-block--image'>";
-							echo wp_get_attachment_image( get_sub_field( 'cta_image' ), 'large' );
-							echo !empty(get_sub_field( 'cta_image_link' )) ? "</a>" : "</div>";
+							if($cta_media == 'video'):
+								echo "<div class='promo-block--video'>";
+								// get iframe HTML
+								$iframe = get_sub_field( 'cta_video' );
+												
+								// use preg_match to find iframe src
+								preg_match('/src="(.+?)"/', $iframe, $matches);
+								$src = $matches[1];
+																	
+								// add extra params to iframe src
+								$params = array(
+									'rel' => 0,
+									'title' => 0,
+									'byline' => 0,
+									'portrait' => 0,
+								);
+								
+								$new_src = add_query_arg($params, $src);				
+								$iframe = str_replace($src, $new_src, $iframe);
+												
+								// add extra attributes to iframe html
+								$attributes = 'frameborder="0"';
+								
+								$iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe);
+									
+								echo "<div class='video-wrapper'>$iframe</div>";
+								echo "</div>";
+							else:
+								$cta_image = get_sub_field( 'cta_image' );
+								$cta_image_link = get_sub_field( 'cta_image_link' );
+								echo !empty($cta_image_link) ? "<a class='promo-block--image' href='$cta_image_link' target='_blank' rel='nofollow noopener'>" : "<div class='promo-block--image'>";
+								echo wp_get_attachment_image( $cta_image, 'large' );
+								echo !empty($cta_image_link) ? "</a>" : "</div>";
+							endif;
+							
 							echo "<div class='promo-block--content'>";
 							echo !empty(get_sub_field( 'cta_title' )) ? "<h4>".get_sub_field( 'cta_title' )."</h4>" : "";
 							echo get_sub_field( 'cta_content' );

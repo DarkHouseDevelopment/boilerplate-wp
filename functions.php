@@ -80,11 +80,11 @@ function theme_setup(){
 
 // Add Stylesheets
 function theme_styles() {
-	wp_enqueue_style( 'styles', get_stylesheet_directory_uri().'/assets/css/styles.css', null, '2022-09-08.1' );
+	wp_enqueue_style( 'styles', get_stylesheet_directory_uri().'/assets/css/styles.css', null, filemtime(get_stylesheet_directory().'/assets/css/styles.css') );
 	wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', null, '4.7.0' );
 	
 	if(is_page_template( 'page-templates/print-qmi.php' )):
-		wp_enqueue_style( 'print-qmi', get_stylesheet_directory_uri().'/assets/css/print-qmi.css', null, '2022-08-05.3' );
+		wp_enqueue_style( 'print-qmi', get_stylesheet_directory_uri().'/assets/css/print-qmi.css', null, filemtime(get_stylesheet_directory().'/assets/css/print-qmi.css') );
 	endif;
 }
 

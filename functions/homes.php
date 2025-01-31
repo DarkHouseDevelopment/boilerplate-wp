@@ -116,3 +116,77 @@ add_filter("wpcf7_posted_data", function ($wpcf7_posted_data) {
     return $wpcf7_posted_data;
 
 });
+
+
+function update_builder_stats() {
+	$args = array(
+			'posts_per_page' => -1,
+			'post_type' => 'homes',
+			'post_status' => 'publish'
+	);
+	$homes_query = new WP_Query($args);
+	
+	$builder_stats = array();
+
+	if ($homes_query->have_posts()) :
+			while ($homes_query->have_posts()) : $homes_query->the_post();
+			
+					$builder = get_field('builder');
+					$square_footage = get_field('square_footage');
+					$starting_price = get_field('starting_price');
+
+					if (!isset($builder_stats[$builder->ID])) {
+							$builder_stats[$builder->ID] = array(
+									'min_square_footage' => $square_footage,
+									'max_square_footage' => $square_footage,
+									'min_starting_price' => $starting_price,
+									'max_starting_price' => $starting_price
+							);
+					} else {
+							$builder_stats[$builder->ID]['min_square_footage'] = min($builder_stats[$builder->ID]['min_square_footage'], $square_footage);
+							$builder_stats[$builder->ID]['max_square_footage'] = max($builder_stats[$builder->ID]['max_square_footage'], $square_footage);
+							$builder_stats[$builder->ID]['min_starting_price'] = min($builder_stats[$builder->ID]['min_starting_price'], $starting_price);
+							$builder_stats[$builder->ID]['max_starting_price'] = max($builder_stats[$builder->ID]['max_starting_price'], $starting_price);
+					}
+			
+			endwhile;
+	endif;
+
+	// Apply general price labels
+	foreach ($builder_stats as $builder_id => $stats) {
+			$builder_stats[$builder_id]['min_price_label'] = get_price_label($stats['min_starting_price']);
+			$builder_stats[$builder_id]['max_price_label'] = get_price_label($stats['max_starting_price']);
+	}
+
+	// Save the builder stats
+	update_option('builder_stats', $builder_stats);
+}
+
+function get_price_label($price) {
+	if ($price >= 1000000) {
+			$millions = floor($price / 1000000);
+			$hundred_thousands = floor(($price % 1000000) / 100000) * 100000;
+			$remainder = $price % 100000;
+
+			if ($remainder <= 35000) {
+					return 'Low $' . $millions . '.' . ($hundred_thousands / 100000) . 'M';
+			} elseif ($remainder <= 70000) {
+					return 'Mid $' . $millions . '.' . ($hundred_thousands / 100000) . 'M';
+			} else {
+					return 'High $' . $millions . '.' . ($hundred_thousands / 100000) . 'M';
+			}
+	} else {
+			$hundred_thousands = floor($price / 100000) * 100000;
+			$remainder = $price % 100000;
+
+			if ($remainder <= 35000) {
+					return 'Low $' . ($hundred_thousands / 1000) . 'k\'s';
+			} elseif ($remainder <= 70000) {
+					return 'Mid $' . ($hundred_thousands / 1000) . 'k\'s';
+			} else {
+					return 'High $' . ($hundred_thousands / 1000) . 'k\'s';
+			}
+	}
+}
+
+add_action('save_post_homes', 'update_builder_stats');

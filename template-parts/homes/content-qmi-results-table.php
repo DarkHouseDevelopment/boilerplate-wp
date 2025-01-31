@@ -102,7 +102,7 @@
 			usort($ordered_results, function($a, $b) {
 			    $retval = strcmp($a['builder'], $b['builder']);
 			    if($retval == 0){
-				    $retval = $a['price'] - $b['price'];
+				    $retval = intval($a['price']) - intval($b['price']);
 			    }
 			    return $retval;
 			});

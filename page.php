@@ -11,6 +11,8 @@ if ( have_posts() ):
 		while(have_rows( 'content_sections' )): the_row();
 		
 			$layout = get_row_layout();
+
+			echo current_user_can('administrator') ? "<!-- Layout: ".$layout." -->" : "";
 				
 			switch($layout){
 				case 'full_width_text':
@@ -67,8 +69,16 @@ if ( have_posts() ):
 					get_template_part( 'template-parts/page/content', 'download-cta' );
 					break;
 										
+				case 'builders_feature':
+					get_template_part( 'template-parts/page/content', 'builders-feature' );
+					break;
+										
 				case 'builder_incentives':
 					get_template_part( 'template-parts/page/content', 'builder-incentives' );
+					break;
+										
+				case 'agents_builders':
+					get_template_part( 'template-parts/page/content', 'agents-builders' );
 					break;
 				
 				case 'faq':

@@ -6,6 +6,70 @@
 	width: 100%;
 	max-width: 95rem;
 	margin: 0 auto;
+
+	&.agents-builders {
+		.builder {
+			// justify-content: flex-start;
+			border: 5px solid;
+			&:nth-child(even){ flex-direction: row; }
+
+			.logo-block {
+				@include breakpoint($tablet){
+					width: 24rem;
+					height: auto;
+				}
+				
+				img { max-height: 13rem }
+			}
+			.builder-details {
+				width: 100%;
+				padding: 1.5rem 2.5rem;
+				text-align: left;
+
+				@include breakpoint($tablet){
+					width: calc(100% - 48rem);
+				}
+				
+				> p { font-size: 1.4rem; }
+				.builder-links { font-size: 1.6rem; font-weight: 700; }
+			}
+			.builder-promo-block {
+				width: 100%;
+				height: 100%;
+				position: relative;
+
+				@include breakpoint($tablet){
+					width: 28rem;
+					height: 24rem;
+				}
+
+				.promo-block--image {
+					width: 100%;
+					height: 100%;
+
+					img {
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
+				}
+				.promo-block--cta {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					@include position(absolute, null null 0 0);
+					width: 100%;
+					padding: 1.5rem 1rem 1rem;
+					background: rgba($teal, 0.8);
+					color: $white;
+					font-size: 1.4rem;
+
+					> * { color: $white; margin: 0 0 1rem; }
+				}
+			}
+		}
+	}
 	
 	.builder {
 		width: 100%;

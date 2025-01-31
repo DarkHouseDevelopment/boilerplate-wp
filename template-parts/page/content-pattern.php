@@ -3,6 +3,7 @@
 	$class = get_sub_field('section_class');
 	$pattern_color = is_singular( 'post' ) ? 'yellow' : get_sub_field( 'pattern_color' );
 	$title_icon = get_sub_field( 'title_icon' );
+	$subtitle = get_sub_field( 'subtitle_text' );
 ?>
 <section id="<?php echo $id; ?>" class="pattern-section interior content-section <?php echo $class; ?>">
 	<div class="pattern-bg" style="background: url(<?php echo get_template_directory_uri(); ?>/assets/img/upan-pattern-<?php echo $pattern_color; ?>.svg) center center repeat; background-size: 16rem;"></div>
@@ -11,7 +12,13 @@
 			<header>
 				<?php echo $title_icon ? "<img class='title-icon' src='{$title_icon['url']}' alt='{$title_icon['alt']}' />" : ""; ?>
 				<h3><?php echo get_sub_field( 'title_text' ); ?></h3>
-				<?php echo get_sub_field( 'subtitle_text' ) ? "<h4>".get_sub_field( 'subtitle_text' )."</h4>" : ""; ?>
+				<?php 
+					if(!empty($subtitle) && preg_match('/^\[.*\]$/', $subtitle)):
+						echo do_shortcode( $subtitle );
+					elseif(!empty($subtitle)):
+						echo "<h4>".get_sub_field( 'subtitle_text' )."</h4>"; 
+					endif;
+				?>
 			</header>
 		</article>
 	</div>
