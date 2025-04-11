@@ -39,6 +39,10 @@ if ( have_posts() ):
 					get_template_part( 'template-parts/page/content', 'sidebar-cta' );
 					break;
 					
+				case 'content_sidebar_multiple_ctas':
+					get_template_part( 'template-parts/page/content', 'sidebar-multiple-ctas' );
+					break;
+					
 				case 'image_grid':
 					get_template_part( 'template-parts/page/content', 'image-grid' );
 					break;

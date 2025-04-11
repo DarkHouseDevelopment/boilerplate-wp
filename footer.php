@@ -32,7 +32,7 @@
 </div> <!-- end container -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type='text/javascript' src="<?php echo get_template_directory_uri(); ?>/assets/js/scripts.js?ver=2022-10-05.01"></script>
+<script type='text/javascript' src="<?php echo get_template_directory_uri(); ?>/assets/js/scripts.js?ver=2025-04-09"></script>
 <?php wp_footer(); ?>
 
 <!-- Activity name for this tag: C1531_Union Park at Norterra View Thru -->

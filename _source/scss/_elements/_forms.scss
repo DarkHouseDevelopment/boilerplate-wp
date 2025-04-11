@@ -223,6 +223,7 @@ p.input {
 
 .styled-select {
 	background: $white;
+	display: block;
 	border: 0;
 	border-bottom: 1px solid $tan;
 	border-radius: $input_border_radius;
@@ -230,6 +231,7 @@ p.input {
 	margin: 0 0 1rem !important;
 	overflow: hidden;
 	-webkit-appearance: none;
+	appearance: none;
 	position: relative;
 	
 	&:after {
@@ -289,6 +291,7 @@ p.input {
 		outline: none;
 		-webkit-appearance: none;
 		-moz-appearance: none;
+		appearance: none;
 		position: relative;
 		z-index: 2;
 	}
@@ -328,9 +331,14 @@ p.input {
 	}
 }
 .wpcf7 .submit {
-	text-align: right;
+	text-align: center;
 	
 	p {	margin: 0 !important; }
+	.wpcf7-submit {
+		width: 100%;
+		margin-top: 2rem;
+	}
+	.wpcf7-spinner { display: none !important; }
 }
 
 div.wpcf7-response-output {

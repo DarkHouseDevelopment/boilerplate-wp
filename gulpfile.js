@@ -33,6 +33,17 @@ var paths = {
 	scripts: {
 		src: ['_source/js/_functions.js','_source/js/_plugins.js','_source/js/scripts.js'],
 		dest: ['assets/js/']
+	},
+	blocksjs: {
+		src: ['blocks/_src/js/**/*.js'],
+		dest: ['blocks/js/']
+	},
+	blockscss: {
+		src: [
+			'blocks/_src/scss/**/*.scss',
+		],
+		dest: ['blocks/css/'],
+		inc: [bourbon,breakpoint]
 	}
 };
 
@@ -48,7 +59,7 @@ const updateTimestamp = function (options) {
 
 // Clean assets
 function clean() {
-	return del(paths.scripts.dest,paths.styles.dest);
+	return del(paths.scripts.dest,paths.styles.dest,paths.blocksjs.dest,paths.blockscss.dest);
 }
 
 // css
@@ -78,18 +89,48 @@ function scripts() {
 		.pipe(notify({ message: 'JS complete!' }))
 }
 
+// blocks js
+function blocksjs() {
+	return gulp.src(paths.blocksjs.src)
+		.pipe(plumber())
+		.pipe(terser())
+		.pipe(gulp.dest(paths.blocksjs.dest))
+		.pipe(notify({ message: 'Blocks JS complete!' }))
+}
+
+// blocks css
+function blockscss() {
+	return gulp.src(paths.blockscss.src)
+		.pipe(sass({
+			outputStyle: 'compressed',
+			includePaths: paths.blockscss.inc
+		}).on('error', sass.logError))
+		.pipe(autoprefixer({
+			grid:true
+		}))
+		.pipe(remtopx({
+				fontSize: 16
+		 }))
+		.pipe(gulp.dest(paths.blockscss.dest))
+		.pipe(notify({ message: 'Blocks CSS complete!' }));
+}
+
 // watch
 function watch() {
 	gulp.watch(paths.styles.src, css);
 	gulp.watch(paths.scripts.src, scripts);
+	gulp.watch(paths.blocksjs.src, blocksjs);
+	gulp.watch(paths.blockscss.src, blockscss);
 }
 
-var build = gulp.series(clean, gulp.parallel(watch, css, scripts));
+var build = gulp.series(clean, gulp.parallel(watch, css, scripts, blocksjs, blockscss));
 
 // declare tasks
 exports.clean = clean;
 exports.styles = css;
 exports.scripts = scripts;
+exports.blocksjs = blocksjs;
+exports.blockscss = blockscss;
 exports.watch = watch;
 exports.build = build;
 

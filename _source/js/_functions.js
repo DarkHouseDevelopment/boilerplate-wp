@@ -97,6 +97,16 @@ function sendInfoOverlay(){
 	$('.sendinfo').click(function(){
 		$('#send_info_overlay').fadeIn().addClass('active');
 	});
+
+	$('.event-sendinfo').click(function(){
+		let builder = $(this).data('builder');
+		let builderEmail = $(this).data('builder-email');
+		$('#send_info_overlay').find('input[name="builder"]').val(builder);
+		$('#send_info_overlay').find('span.builder-title').html(builder);
+		$('#send_info_overlay').find('input[name="builder_email"]').val(builderEmail);
+		$('#send_info_overlay').fadeIn().addClass('active');
+	});
+
 	$('.overlay-content').click(function(e){
 		$('#send_info_overlay').fadeOut().removeClass('active');
 	});

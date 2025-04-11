@@ -127,39 +127,64 @@ function update_builder_stats() {
 	$homes_query = new WP_Query($args);
 	
 	$builder_stats = array();
+	$neighborhood_stats = array();
 
 	if ($homes_query->have_posts()) :
-			while ($homes_query->have_posts()) : $homes_query->the_post();
-			
-					$builder = get_field('builder');
-					$square_footage = get_field('square_footage');
-					$starting_price = get_field('starting_price');
+		while ($homes_query->have_posts()) : $homes_query->the_post();
+		
+			$builder = get_field('builder');
+			$neighborhood = get_field('neighborhood');
+			$square_footage = get_field('square_footage');
+			$starting_price = get_field('starting_price');
 
-					if (!isset($builder_stats[$builder->ID])) {
-							$builder_stats[$builder->ID] = array(
-									'min_square_footage' => $square_footage,
-									'max_square_footage' => $square_footage,
-									'min_starting_price' => $starting_price,
-									'max_starting_price' => $starting_price
-							);
-					} else {
-							$builder_stats[$builder->ID]['min_square_footage'] = min($builder_stats[$builder->ID]['min_square_footage'], $square_footage);
-							$builder_stats[$builder->ID]['max_square_footage'] = max($builder_stats[$builder->ID]['max_square_footage'], $square_footage);
-							$builder_stats[$builder->ID]['min_starting_price'] = min($builder_stats[$builder->ID]['min_starting_price'], $starting_price);
-							$builder_stats[$builder->ID]['max_starting_price'] = max($builder_stats[$builder->ID]['max_starting_price'], $starting_price);
-					}
-			
-			endwhile;
+			if (!isset($builder_stats[$builder->ID])) {
+				$builder_stats[$builder->ID] = array(
+					'min_square_footage' => $square_footage,
+					'max_square_footage' => $square_footage,
+					'min_starting_price' => $starting_price,
+					'max_starting_price' => $starting_price,
+					'floor_plans' => 1
+				);
+			} else {
+				$builder_stats[$builder->ID]['min_square_footage'] = min($builder_stats[$builder->ID]['min_square_footage'], $square_footage);
+				$builder_stats[$builder->ID]['max_square_footage'] = max($builder_stats[$builder->ID]['max_square_footage'], $square_footage);
+				$builder_stats[$builder->ID]['min_starting_price'] = min($builder_stats[$builder->ID]['min_starting_price'], $starting_price);
+				$builder_stats[$builder->ID]['max_starting_price'] = max($builder_stats[$builder->ID]['max_starting_price'], $starting_price);
+				$builder_stats[$builder->ID]['floor_plans']++;
+			}
+
+			if (!isset($neighborhood_stats[$neighborhood->ID])) {
+				$neighborhood_stats[$neighborhood->ID] = array(
+					'min_square_footage' => $square_footage,
+					'max_square_footage' => $square_footage,
+					'min_starting_price' => $starting_price,
+					'max_starting_price' => $starting_price,
+					'floor_plans' => 1
+				);
+			} else {
+				$neighborhood_stats[$neighborhood->ID]['min_square_footage'] = min($neighborhood_stats[$neighborhood->ID]['min_square_footage'], $square_footage);
+				$neighborhood_stats[$neighborhood->ID]['max_square_footage'] = max($neighborhood_stats[$neighborhood->ID]['max_square_footage'], $square_footage);
+				$neighborhood_stats[$neighborhood->ID]['min_starting_price'] = min($neighborhood_stats[$neighborhood->ID]['min_starting_price'], $starting_price);
+				$neighborhood_stats[$neighborhood->ID]['max_starting_price'] = max($neighborhood_stats[$neighborhood->ID]['max_starting_price'], $starting_price);
+				$neighborhood_stats[$neighborhood->ID]['floor_plans']++;
+			}
+		
+		endwhile;
 	endif;
 
 	// Apply general price labels
 	foreach ($builder_stats as $builder_id => $stats) {
-			$builder_stats[$builder_id]['min_price_label'] = get_price_label($stats['min_starting_price']);
-			$builder_stats[$builder_id]['max_price_label'] = get_price_label($stats['max_starting_price']);
+		$builder_stats[$builder_id]['min_price_label'] = get_price_label($stats['min_starting_price']);
+		$builder_stats[$builder_id]['max_price_label'] = get_price_label($stats['max_starting_price']);
+	}
+	foreach ($neighborhood_stats as $neighborhood_id => $stats) {
+		$neighborhood_stats[$neighborhood_id]['min_price_label'] = get_price_label($stats['min_starting_price']);
+		$neighborhood_stats[$neighborhood_id]['max_price_label'] = get_price_label($stats['max_starting_price']);
 	}
 
 	// Save the builder stats
 	update_option('builder_stats', $builder_stats);
+	update_option('neighborhood_stats', $neighborhood_stats);
 }
 
 function get_price_label($price) {

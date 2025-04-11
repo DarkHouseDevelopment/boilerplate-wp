@@ -11,15 +11,89 @@
 		.builder {
 			// justify-content: flex-start;
 			border: 5px solid;
+			background-color: $tan;
+			color: $white;
 			&:nth-child(even){ flex-direction: row; }
 
+			&.brown{
+				border-color: $brown;
+				background-color: $brown;
+			}
+			&.tan{
+				border-color: $tan;
+				background-color: $tan;
+			}
+			&.dark-teal{
+				border-color: $darkteal;
+				background-color: $darkteal;
+			}
+			&.dark-blue{
+				border-color: $darkblue;
+				background-color: $darkblue;
+			}
+			&.dark-navy{
+				border-color: $darknavy;
+				background-color: $darknavy;
+			}
+			&.green{
+				border-color: $green;
+				background-color: $green;
+			}
+			&.teal{
+				border-color: $teal;
+				background-color: $teal;
+			}
+			&.orange{
+				border-color: $orange;
+				background-color: $orange;
+			}
+			&.red{
+				border-color: $red;
+				background-color: $red;
+			}
+
 			.logo-block {
+				position: relative;
+				padding: 2rem;
+
+				&:after {
+					content: '';
+					position: absolute;
+					left: 50%;
+					bottom: 0;
+					height: 2px;
+					width: 90%;
+					background: white;
+					transform: translateX(-50%);
+				}
+
 				@include breakpoint($tablet){
 					width: 24rem;
 					height: auto;
+
+					&:after {
+						top: 50%;
+						bottom: auto;
+						left: auto;
+						right: 0;
+						width: 2px;
+						height: 86%;
+						transform: translateY(-50%);
+					}
 				}
 				
-				img { max-height: 13rem }
+				img { max-height: 10rem }
+				h4 { color: $white; margin: 0; }
+				> ul { 
+					font-size: 1.4rem; 
+					line-height: 1.3; 
+					margin: 0;
+					padding: 0;
+					list-style-type: none;
+					text-align: center;
+
+					li { margin: 0.5rem 0 0; }
+				} 
 			}
 			.builder-details {
 				width: 100%;
@@ -30,8 +104,10 @@
 					width: calc(100% - 48rem);
 				}
 				
-				> p { font-size: 1.4rem; }
-				.builder-links { font-size: 1.6rem; font-weight: 700; }
+				h3 { color: $white; font-size: 2.6rem; }
+				> p { margin: 1rem 0 0; }
+				.builder-links { margin-top: 2rem; font-size: 1.6rem; font-weight: 700; }
+				.builder-links a { color: $white; }
 			}
 			.builder-promo-block {
 				width: 100%;
