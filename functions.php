@@ -12,6 +12,7 @@
 	require_once("functions/builders.php");
 	require_once("functions/amenities.php");
 	require_once("functions/near-norterra.php");
+	require_once("functions/gravity-forms-functions.php");
 	require_once("functions/btnshortcode.php");
 	
 

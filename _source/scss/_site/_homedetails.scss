@@ -230,14 +230,14 @@
 	}
 	.overlay-content {
 		article{
-			max-width: 56rem;
+			max-width: 60rem;
 			background: #EBEBEB;
 			border-radius: 5px;
 			text-align: center;
 			
 			h4 { text-transform: uppercase }
 			.toggle-btn { margin: 0 auto }
-			.wpcf7 { display: none; }
+			.wpcf7, .gform_wrapper { display: none; text-align: left; }
 			.close, span { color: $text_color; }
 		}
 	}

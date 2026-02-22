@@ -440,7 +440,7 @@ function builderPopupForm(){
 		}
 		
 		$('#builder_popup_form .toggle-btn').on('click', function(){
-			popup.find('.wpcf7').slideToggle();
+			popup.find('.wpcf7, .gform_wrapper').slideToggle();
 			$(this).hide();
 		})
 		

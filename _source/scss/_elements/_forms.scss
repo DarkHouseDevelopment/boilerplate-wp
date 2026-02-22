@@ -400,14 +400,27 @@ div.wpcf7-response-output {
 	margin: 3rem 0 0;
 }
 
-.pattern-form .form-flex-container {
+.pattern-form .form-flex-container, .pattern-form .gform_wrapper {
 	width: 100%;
 	background: $white;
 	padding: 2rem;
 	margin-top: 3rem;
+	text-align: left;
 
 	@include breakpoint($tablet){
 		flex-wrap: nowrap;
+	}
+
+	> form[id*="gform_"] {
+		width: 100%;
+		@include breakpoint($tablet){
+			display: grid;
+			grid-template: auto / 1fr auto;
+			align-items: flex-end;
+			grid-gap: 2rem;
+
+			.gform_footer { margin-top: 0 !important}
+		}
 	}
 
 	.form-center .field-group {
@@ -433,4 +446,46 @@ div.wpcf7-response-output {
 		}
 		.wpcf7-spinner { display: none !important; }
 	}
+}
+
+
+
+/* Gravity Forms */
+.gform_wrapper { margin: 0; font-family: $heading_font; }
+.gform_heading .gform_required_legend { display: none; }
+.gform_wrapper .gform_fields { row-gap: 24px !important }
+.gform_wrapper .gform_fields .gfield :is(input, textarea) { box-shadow: none !important; }
+.gform_wrapper .gform_footer .gform_button { transition: all 0.2s ease-in-out; border-radius: 0 !important; background-color: var(--wp--preset--color--primary) !important; font-size: 18px !important; font-weight: 600 !important; height: 46px !important; }
+.gform_wrapper .gform_footer .gform_button.gform-button--width-full { width: 100% !important; }
+
+.gform_wrapper .gform_fields .gfield:not(.gfield--type-choice) :is(input, textarea, select) {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid $tan;
+  box-shadow: none;
+	border-radius: 0;
+}
+.gform_wrapper .gform_fields .gfield:not(.gfield--type-choice) :is(input, textarea, select):focus {
+  outline: none;
+}
+.gform_wrapper .gform_fields .gfield:not(.gfield--type-choice) :is(input, textarea, select)::placeholder {
+  opacity: 0.5;
+}
+.gform_wrapper .gform_fields .ginput_left.address_country { inline-size: 100%; }
+.gform_wrapper .gform_fields .gfield select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='9' viewBox='0 0 13 9' fill='none'%3E%3Cpath d='M12.9707 2.32324L6.48535 8.80859L0 2.32324L1.41895 0.904297L6.48535 5.9707L11.5518 0.904297L12.9707 2.32324Z' fill='%238F5E33'/%3E%3C/svg%3E");
+  background-size: 13px 8px;
+}
+.gform_wrapper .gform_fields .gfield.gfield--type-choice input {
+  border: 2px solid $tan;
+}
+.gform_wrapper .gform_fields .gfield_label {
+	color: $brown;
+	margin-bottom: 0;
+}
+.gform_wrapper .gform_fields .gfield.gfield--type-choice .gfield_consent_label {
+	color: $brown;
+  font-size: 14px;
+  line-height: 1.5;
 }

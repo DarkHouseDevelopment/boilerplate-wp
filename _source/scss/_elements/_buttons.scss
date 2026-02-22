@@ -5,7 +5,7 @@
 // BUTTON_CLASS_NAME{ @include btn(BACKGROUND_COLOR,BORDER_COLOR,TEXT_COLOR); }
 
 .btn,.btn-green{ @include btn($green,$green,$white); }
-.btn:hover,.btn-green:hover{ @include btn(lighten($green, 10%),lighten($green, 10%),$white); }
+.btn:hover,.btn-green:hover{ @include btn(lighten($green, 10%),lighten($green, 10%),$white); text-decoration: none }
 .btn-outline{ @include btn(none,$green,$green); }
 .btn-outline:hover{ @include btn($green,$green,$white); }
 

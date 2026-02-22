@@ -165,7 +165,7 @@ $qmi_builder_counts = get_option( 'qmi_builder_counts' );
 	<div class="overlay-content">
 		<article>
 			<h4>Send me info about <?php the_title(); ?> at Union Park at Norterra</h4>
-			<?php echo do_shortcode( '[contact-form-7 id="546" title="Send Me Info"]' ); ?>
+			<?php echo do_shortcode( get_field( 'send_me_info_popup_form', 'option' ) ); ?>
 			
 			<a href="javascript:void(0);" class="close"><i class="icon-cancel"></i></a>
 		</article>

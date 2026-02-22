@@ -17,7 +17,7 @@
 			<?php 
 			if(get_field( 'pop-up_form', 'option' )):
 				$popup_form = get_field( 'pop-up_form', 'option' );
-				echo do_shortcode( '[contact-form-7 id="'.$popup_form->ID.'" title=""]' ); 
+				echo do_shortcode( $popup_form ); 
 			endif;
 			?>
 			

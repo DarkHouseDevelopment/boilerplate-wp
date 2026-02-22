@@ -60,7 +60,7 @@
 			<label>Max Price</label>
 			<select name="price-max">
 				<option disabled="disabled" selected="selected"></option>
-				<option value="600000">Any</option>
+				<option value="1000000000">Any</option>
 				<?php /*
 				<option <?php echo $_SESSION['price-max'] == '199999' ? 'selected="selected"' : ''; ?> value="199999">High $100,000s</option>
 				<option <?php echo $_SESSION['price-max'] == '235000' ? 'selected="selected"' : ''; ?> value="235000">Low $200,000s</option>

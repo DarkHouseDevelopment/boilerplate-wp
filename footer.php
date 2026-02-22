@@ -3,7 +3,7 @@
 			<div class="footer-logos">
 				<a href="http://sunbeltholdings.com" target="_blank" rel="nofollow noreferrer"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/footer-logo-sunbelt-vertical.png" alt="Sunbelt Holdings" /></a>
 				<a class="logo" href="/"><?php echo file_get_contents(get_template_directory() . '/assets/img/union-park-logo-reg.svg'); ?></a>
-				<a href="https://www.usrealco.com/" target="_blank" rel="nofollow noreferrer"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/footer-logo-usaa-2-sm.png" alt="USAA Real Estate Company" /></a>
+				<a href="https://affiniuscapital.com/" target="_blank" rel="nofollow noreferrer" style="width:140px;max-width:50%"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/footer-logo-affinius-capital.png" alt="Affinius Capital" width="140" /></a>
 			</div>
 			<p class="footer-copyright">&copy;<?php echo date("Y"); ?> <?php bloginfo('name'); ?><sup>&reg;</sup> “UNION PARK AT NORTERRA” is a registered trademark owned by US Real Estate Limited Partnership and may not be used without license or permission from US Real Estate Limited Partnership.<br><br></p>
 			<nav id="footer_menu" role="navigation">
@@ -32,7 +32,7 @@
 </div> <!-- end container -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type='text/javascript' src="<?php echo get_template_directory_uri(); ?>/assets/js/scripts.js?ver=2025-04-09"></script>
+<script type='text/javascript' src="<?php echo get_template_directory_uri(); ?>/assets/js/scripts.js?ver=<?php echo filemtime(get_template_directory().'/assets/js/scripts.js') ?>"></script>
 <?php wp_footer(); ?>
 
 <!-- Activity name for this tag: C1531_Union Park at Norterra View Thru -->
