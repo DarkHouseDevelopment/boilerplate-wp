@@ -2,6 +2,7 @@
 	
 $floorplan = get_field( 'floorplan' );
 $builder = get_field('builder', $floorplan->ID);
+$neighborhood = get_field('neighborhood', $floorplan->ID);
 $builder_email = get_post_meta( $builder->ID, 'builder_contact_0_email', true );
 $images = get_field( 'qmi_images' ) ? get_field( 'qmi_images' ) : get_field('model_images', $floorplan->ID);
 $floorplan_images = get_field('floorplan_images', $floorplan->ID);

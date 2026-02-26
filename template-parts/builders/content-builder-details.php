@@ -165,7 +165,16 @@ $qmi_builder_counts = get_option( 'qmi_builder_counts' );
 	<div class="overlay-content">
 		<article>
 			<h4>Send me info about <?php the_title(); ?> at Union Park at Norterra</h4>
-			<?php echo do_shortcode( get_field( 'send_me_info_popup_form', 'option' ) ); ?>
+			<?php // echo do_shortcode( get_field( 'send_me_info_popup_form', 'option' ) ); ?>
+			<?php 
+			if(get_field( 'neighborhood_form', $post->ID ) && current_user_can( 'manage_options' )):
+				$popup_form_id = get_field( 'neighborhood_form', $post->ID );
+				echo do_shortcode( "[gravityform id='$popup_form_id' title='false' description='false' ajax='true']" );
+			elseif(get_field( 'send_me_info_popup_form', 'option' )):
+				$popup_form = get_field( 'send_me_info_popup_form', 'option' );
+				echo do_shortcode( $popup_form ); 
+			endif; 
+			?>
 			
 			<a href="javascript:void(0);" class="close"><i class="icon-cancel"></i></a>
 		</article>

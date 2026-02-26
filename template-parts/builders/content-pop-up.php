@@ -15,7 +15,10 @@
 			<h4><?php echo $popup_title; ?></h4>
 			<a href="javascript:void(0);" class="toggle-btn btn"><?php echo get_field( 'pop-up_button_text', 'option' ); ?></a>
 			<?php 
-			if(get_field( 'pop-up_form', 'option' )):
+			if(get_field( 'neighborhood_form', $post_id ) && current_user_can( 'manage_options' )):
+				$popup_form_id = get_field( 'neighborhood_form', $post_id );
+				echo do_shortcode( "[gravityform id='$popup_form_id' title='false' description='false' ajax='true']" );
+			elseif(get_field( 'pop-up_form', 'option' )):
 				$popup_form = get_field( 'pop-up_form', 'option' );
 				echo do_shortcode( $popup_form ); 
 			endif;

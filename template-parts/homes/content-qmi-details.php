@@ -114,7 +114,18 @@ $smi_popup_form = get_field( 'send_me_info_popup_form', 'option' );
 	<div class="overlay-content">
 		<article>
 			<h4><?php echo str_replace('[model]', get_the_title(), str_replace('[builder]', $builder->post_title, $smi_popup_intro)); ?></h4>
-			<?php echo do_shortcode( $smi_popup_form ); ?>
+			<?php // echo do_shortcode( $smi_popup_form ); ?>
+			<?php 
+			if(get_field( 'neighborhood_form', $neighborhood->ID )):
+				$popup_form_id = get_field( 'neighborhood_form', $neighborhood->ID );
+				echo do_shortcode( "[gravityform id='$popup_form_id' title='false' description='false' ajax='true']" );
+			elseif(get_field( 'neighborhood_form', $builder->ID )):
+				$popup_form_id = get_field( 'neighborhood_form', $builder->ID );
+				echo do_shortcode( "[gravityform id='$popup_form_id' title='false' description='false' ajax='true']" );
+			elseif( $smi_popup_form ):
+				echo do_shortcode( $smi_popup_form ); 
+			endif; 
+			?>
 			
 			<a href="javascript:void(0);" class="close"><i class="icon-cancel"></i></a>
 		</article>
