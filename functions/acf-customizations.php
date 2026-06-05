@@ -123,3 +123,9 @@ function tdc_register_acf_block_types() {
 if( function_exists('acf_register_block_type') ) {
   add_action('acf/init', 'tdc_register_acf_block_types');
 }
+
+// Bump block version to force update of existing blocks with new features or fixes.
+function bump_acf_block_version( $version, $block ) {
+     return 3;
+}
+add_filter( 'acf/blocks/default_block_version', 'bump_acf_block_version', 10, 2 );
